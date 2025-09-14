@@ -38,8 +38,8 @@ A) Частотный анализ слов в `syslog` (TOP-5)
 
 ```
 cat /var/log/syslog \
-  | tr '[:upper:]' '[:lower:]' \
   | tr -cs '[:alnum:]' '\n' \
+  | tr '[:upper:]' '[:lower:]' \
   | sort \
   | uniq -c \
   | sort -nr \
@@ -78,7 +78,7 @@ cat /var/log/syslog \
 cat /var/log/auth.log \
   | grep -E 'Failed password|Invalid user|authentication failure|password check failed|conversation failed' \
   | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' \
-  | sed -E 's/([0-9]+\.[0-9]+\.[0-9]+\.)([0-9]+)/\1x/g' \
+  | sed -E 's/\.[0-9]+$/.x/g' \
   | sort \
   | uniq -c \
   | sort -nr \
@@ -135,6 +135,8 @@ cat /var/log/dpkg.log \
   | sort -nr \
   | head -n 10
 ```
+
+`cut` использован для наглядности, но можно заменить всё на `awk -F: '{print $1}'`
 
 Результат:
 
