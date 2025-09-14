@@ -4,14 +4,13 @@
 Задание A (Частотный анализ слов в syslog):
 
 Команды:
-```bash
 cat /var/log/syslog \
   | tr -cs '[:alnum:]' '\n' \
   | tr '[:upper:]' '[:lower:]' \
   | sort \
   | uniq -c \
   | sort -nr \
-  | head -n 5```
+  | head -n 5
 
 Результат: 
 10621 virtualbox
@@ -28,15 +27,13 @@ cat /var/log/syslog \
 Задание Б (Неудачные попытки входа):
 
 Подсчет успешных/неудачных попыток(Анализ статусов входа):
-```bash
-grep -E "Accepted|Failed|Invalid" /var/log/auth.log | awk '{print $6}' | sort | uniq -c | sort -nr```
+grep -E "Accepted|Failed|Invalid" /var/log/auth.log | awk '{print $6}' | sort | uniq -c | sort -nr
 Результаты:
 5 [system]
 1 justli
 
 Попытки входа по часам:
-```bash
-grep -E "Failed|Invalid" /var/log/auth.log | awk '{print $3}' | cut -d: -f1 | sort | uniq -c```
+grep -E "Failed|Invalid" /var/log/auth.log | awk '{print $3}' | cut -d: -f1 | sort | uniq -c
 
 Результаты:
 1 08
@@ -46,8 +43,7 @@ grep -E "Failed|Invalid" /var/log/auth.log | awk '{print $3}' | cut -d: -f1 | so
 2 22
 
 Попытки входа по датам:
-```bash
-grep -E "Failed|Invalid" /var/log/auth.log | awk '{print $1, $2}' | sort | uniq -c | sort -nr```
+grep -E "Failed|Invalid" /var/log/auth.log | awk '{print $1, $2}' | sort | uniq -c | sort -nr
 
 Результаты:
 3 Sep 6
@@ -63,13 +59,12 @@ grep -E "Failed|Invalid" /var/log/auth.log | awk '{print $1, $2}' | sort | uniq 
 
 Задание В (Установки пакетов):
 Команды:
-```bash
 grep 'install ' /var/log/dpkg.log \
 | awk '{print $4}' \
 | sort \
 | uniq -c \
 | sort -nr \
-| head -n 10```
+| head -n 10
 
 Результат:
 2 libfile-fcntllock-perl:amd64
