@@ -1,3 +1,8 @@
+if [ ! -f "/var/log/auth.log" ]; then
+        echo "файл /var/log/auth.log не найден!"
+        exit 1
+fi
+
 echo "unsuccessful login attempts:"
 # читаем весь файл
 cat /var/log/auth.log |
@@ -14,4 +19,4 @@ cat /var/log/auth.log |
 	# то logname будет пусто, заменяем на более понятное сообщение
 	sed -E "s/([0-9])  +/\1 invalid username/g" |
 	# сортируем по кол-ву попыток
-	sort -nr		
+	sort -nr

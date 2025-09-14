@@ -1,3 +1,8 @@
+if [ ! -f "/var/log/dpkg.log" ]; then
+        echo "файл /var/log/dpkg.log не найден!"
+        exit 1
+fi
+
 # читаем весь файл и ищем появление ивентов установки пакетов
 grep 'install ' /var/log/dpkg.log |
 	# извлекаем название пакета

@@ -1,3 +1,8 @@
+if [ ! -f "/var/log/syslog" ]; then
+	echo "файл /var/log/syslog не найден!"
+	exit 1
+fi
+
 # читаем весь файл
 cat /var/log/syslog |
 	# удаляем все не-числа и не-буквы
