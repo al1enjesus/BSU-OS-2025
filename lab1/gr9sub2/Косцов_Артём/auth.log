@@ -1,0 +1,843 @@
+2025-09-01T15:09:50.809564+00:00 discessit-MCLF-XX systemd-logind[1066]: New seat seat0.
+2025-09-01T15:09:50.809602+00:00 discessit-MCLF-XX systemd-logind[1066]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-01T15:09:50.809607+00:00 discessit-MCLF-XX systemd-logind[1066]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-01T15:09:50.809984+00:00 discessit-MCLF-XX systemd-logind[1066]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-01T15:09:57.263294+00:00 discessit-MCLF-XX useradd[1734]: new group: name=discessit, GID=1000
+2025-09-01T15:09:57.263350+00:00 discessit-MCLF-XX useradd[1734]: new user: name=discessit, UID=1000, GID=1000, home=/home/discessit, shell=/bin/bash, from=none
+2025-09-01T15:09:57.263859+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'adm'
+2025-09-01T15:09:57.263886+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'cdrom'
+2025-09-01T15:09:57.263908+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'sudo'
+2025-09-01T15:09:57.263929+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'dip'
+2025-09-01T15:09:57.263951+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'plugdev'
+2025-09-01T15:09:57.263972+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'users'
+2025-09-01T15:09:57.263996+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to group 'lpadmin'
+2025-09-01T15:09:57.264016+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'adm'
+2025-09-01T15:09:57.264036+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'cdrom'
+2025-09-01T15:09:57.264063+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'sudo'
+2025-09-01T15:09:57.264083+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'dip'
+2025-09-01T15:09:57.264103+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'plugdev'
+2025-09-01T15:09:57.264124+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'users'
+2025-09-01T15:09:57.264144+00:00 discessit-MCLF-XX useradd[1734]: add 'discessit' to shadow group 'lpadmin'
+2025-09-01T15:09:57.356802+00:00 discessit-MCLF-XX passwd[1832]: password for 'discessit' changed by 'root'
+2025-09-01T15:09:59.243508+00:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-01T15:09:59.254732+00:00 discessit-MCLF-XX systemd-logind[1066]: New session c1 of user gdm.
+2025-09-01T15:09:59.340069+00:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-01T15:10:00.415855+00:00 discessit-MCLF-XX polkitd[1044]: Registered Authentication Agent for unix-session:c1 (system bus name :1.45 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T15:10:08.451140+00:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-01T15:10:08.451177+00:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-01T15:10:08.457861+00:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T15:10:08.480685+00:00 discessit-MCLF-XX systemd-logind[1066]: New session 2 of user discessit.
+2025-09-01T15:10:08.494233+00:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T15:10:08.650748+00:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-01T15:10:09.170122+00:00 discessit-MCLF-XX gnome-keyring-daemon[2702]: The Secret Service was already initialized
+2025-09-01T15:10:09.170273+00:00 discessit-MCLF-XX gnome-keyring-daemon[3047]: discover_other_daemon: 1
+2025-09-01T15:10:09.172528+00:00 discessit-MCLF-XX gnome-keyring-daemon[3051]: discover_other_daemon: 1
+2025-09-01T15:10:09.173536+00:00 discessit-MCLF-XX gnome-keyring-daemon[2702]: The PKCS#11 component was already initialized
+2025-09-01T15:10:09.173782+00:00 discessit-MCLF-XX gnome-keyring-daemon[3054]: discover_other_daemon: 1
+2025-09-01T15:10:09.790865+00:00 discessit-MCLF-XX polkitd[1044]: Registered Authentication Agent for unix-session:2 (system bus name :1.87 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T15:10:10.599704+00:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-01T15:10:10.604479+00:00 discessit-MCLF-XX systemd-logind[1066]: Session c1 logged out. Waiting for processes to exit.
+2025-09-01T15:10:10.612179+00:00 discessit-MCLF-XX systemd-logind[1066]: Removed session c1.
+2025-09-01T15:10:10.613821+00:00 discessit-MCLF-XX polkitd[1044]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.45, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-01T15:10:20.745405+00:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-01T15:11:53.404865+00:00 discessit-MCLF-XX systemd-logind[1066]: Watching system buttons on /dev/input/event11 (2.4G Mouse)
+2025-09-01T15:11:53.405201+00:00 discessit-MCLF-XX systemd-logind[1066]: Watching system buttons on /dev/input/event15 (2.4G Mouse System Control)
+2025-09-01T15:11:53.408865+00:00 discessit-MCLF-XX systemd-logind[1066]: Watching system buttons on /dev/input/event14 (2.4G Mouse Consumer Control)
+2025-09-01T15:13:32.023412+00:00 discessit-MCLF-XX systemd-logind[1066]: The system will power off now!
+2025-09-01T15:13:32.072449+00:00 discessit-MCLF-XX systemd-logind[1066]: System is powering down.
+2025-09-01T15:13:32.105877+00:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-01T19:39:18.637597+03:00 discessit-MCLF-XX systemd-logind[961]: New seat seat0.
+2025-09-01T19:39:19.491503+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-01T19:39:19.526824+03:00 discessit-MCLF-XX systemd-logind[961]: New session c1 of user gdm.
+2025-09-01T19:39:19.551997+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-01T19:39:21.245679+03:00 discessit-MCLF-XX polkitd[934]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T19:39:29.123039+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:auth): authentication failure; logname= uid=0 euid=0 tty=/dev/tty1 ruser= rhost=  user=discessit
+2025-09-01T19:39:35.425038+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-01T19:39:35.425131+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-01T19:39:35.446678+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T19:39:35.469203+03:00 discessit-MCLF-XX systemd-logind[961]: New session 2 of user discessit.
+2025-09-01T19:39:35.492715+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T19:39:35.815977+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-01T19:39:36.428273+03:00 discessit-MCLF-XX gnome-keyring-daemon[1964]: The Secret Service was already initialized
+2025-09-01T19:39:36.428931+03:00 discessit-MCLF-XX gnome-keyring-daemon[2203]: discover_other_daemon: 1
+2025-09-01T19:39:36.434299+03:00 discessit-MCLF-XX gnome-keyring-daemon[1964]: The PKCS#11 component was already initialized
+2025-09-01T19:39:36.434766+03:00 discessit-MCLF-XX gnome-keyring-daemon[2207]: discover_other_daemon: 1
+2025-09-01T19:39:36.435311+03:00 discessit-MCLF-XX gnome-keyring-daemon[2208]: discover_other_daemon: 1
+2025-09-01T19:39:37.639034+03:00 discessit-MCLF-XX polkitd[934]: Registered Authentication Agent for unix-session:2 (system bus name :1.78 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T19:39:38.794933+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-01T19:39:38.811246+03:00 discessit-MCLF-XX systemd-logind[961]: Session c1 logged out. Waiting for processes to exit.
+2025-09-01T19:39:38.819073+03:00 discessit-MCLF-XX systemd-logind[961]: Removed session c1.
+2025-09-01T19:39:38.819588+03:00 discessit-MCLF-XX polkitd[934]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-01T19:44:37.438604+03:00 discessit-MCLF-XX polkitd[934]: Identity `unix-group:admin' is not valid, ignoring: No UNIX group with name admin: No such file or directory
+2025-09-01T19:44:42.938424+03:00 discessit-MCLF-XX polkitd[934]: Operator of unix-session:2 successfully authenticated as unix-user:discessit to gain TEMPORARY authorization for action io.snapcraft.snapd.manage for unix-process:3301:15270 [/snap/snap-store/1270/bin/snap-store] (owned by unix-user:discessit)
+2025-09-01T19:45:02.011132+03:00 discessit-MCLF-XX CRON[3776]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T19:45:02.018404+03:00 discessit-MCLF-XX CRON[3776]: pam_unix(cron:session): session closed for user root
+2025-09-01T19:48:27.234958+03:00 discessit-MCLF-XX systemd-logind[961]: The system will power off now!
+2025-09-01T19:48:27.284004+03:00 discessit-MCLF-XX systemd-logind[961]: System is powering down.
+2025-09-01T19:48:27.367719+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-01T20:35:59.727676+03:00 discessit-MCLF-XX systemd-logind[959]: New seat seat0.
+2025-09-01T20:35:59.730325+03:00 discessit-MCLF-XX systemd-logind[959]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-01T20:35:59.730735+03:00 discessit-MCLF-XX systemd-logind[959]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-01T20:35:59.730890+03:00 discessit-MCLF-XX systemd-logind[959]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-01T20:35:59.731069+03:00 discessit-MCLF-XX systemd-logind[959]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-01T20:36:01.008521+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-01T20:36:01.067491+03:00 discessit-MCLF-XX systemd-logind[959]: New session c1 of user gdm.
+2025-09-01T20:36:01.092912+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-01T20:36:03.391474+03:00 discessit-MCLF-XX polkitd[935]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T20:36:10.804677+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-01T20:36:10.804790+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-01T20:36:10.821854+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T20:36:10.843340+03:00 discessit-MCLF-XX systemd-logind[959]: New session 2 of user discessit.
+2025-09-01T20:36:10.869034+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T20:36:11.215509+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-01T20:36:11.888399+03:00 discessit-MCLF-XX gnome-keyring-daemon[1950]: The Secret Service was already initialized
+2025-09-01T20:36:11.888897+03:00 discessit-MCLF-XX gnome-keyring-daemon[2182]: discover_other_daemon: 1
+2025-09-01T20:36:11.894111+03:00 discessit-MCLF-XX gnome-keyring-daemon[1950]: The PKCS#11 component was already initialized
+2025-09-01T20:36:11.894720+03:00 discessit-MCLF-XX gnome-keyring-daemon[2186]: discover_other_daemon: 1
+2025-09-01T20:36:11.895002+03:00 discessit-MCLF-XX gnome-keyring-daemon[2187]: discover_other_daemon: 1
+2025-09-01T20:36:13.629468+03:00 discessit-MCLF-XX polkitd[935]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T20:36:14.886922+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-01T20:36:14.910152+03:00 discessit-MCLF-XX polkitd[935]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-01T20:36:14.924818+03:00 discessit-MCLF-XX systemd-logind[959]: Session c1 logged out. Waiting for processes to exit.
+2025-09-01T20:36:14.931142+03:00 discessit-MCLF-XX systemd-logind[959]: Removed session c1.
+2025-09-01T20:36:25.283931+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-01T20:37:42.399328+03:00 discessit-MCLF-XX systemd-logind[959]: The system will power off now!
+2025-09-01T20:37:42.456086+03:00 discessit-MCLF-XX systemd-logind[959]: System is powering down.
+2025-09-01T20:37:42.495734+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-01T20:39:29.724643+03:00 discessit-MCLF-XX systemd-logind[973]: New seat seat0.
+2025-09-01T20:39:29.724651+03:00 discessit-MCLF-XX systemd-logind[973]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-01T20:39:29.724659+03:00 discessit-MCLF-XX systemd-logind[973]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-01T20:39:29.724667+03:00 discessit-MCLF-XX systemd-logind[973]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-01T20:39:29.724675+03:00 discessit-MCLF-XX systemd-logind[973]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-01T20:39:29.724682+03:00 discessit-MCLF-XX systemd-logind[973]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-01T20:39:29.724690+03:00 discessit-MCLF-XX systemd-logind[973]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-01T20:39:31.028080+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-01T20:39:31.081113+03:00 discessit-MCLF-XX systemd-logind[973]: New session c1 of user gdm.
+2025-09-01T20:39:31.123077+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-01T20:39:33.461002+03:00 discessit-MCLF-XX polkitd[941]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T20:39:39.121367+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-01T20:39:39.121518+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-01T20:39:39.177023+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T20:39:39.209625+03:00 discessit-MCLF-XX systemd-logind[973]: New session 2 of user discessit.
+2025-09-01T20:39:39.240858+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T20:39:39.592681+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-01T20:39:40.207947+03:00 discessit-MCLF-XX gnome-keyring-daemon[1973]: The Secret Service was already initialized
+2025-09-01T20:39:40.208772+03:00 discessit-MCLF-XX gnome-keyring-daemon[2212]: discover_other_daemon: 1
+2025-09-01T20:39:40.230402+03:00 discessit-MCLF-XX gnome-keyring-daemon[1973]: The PKCS#11 component was already initialized
+2025-09-01T20:39:40.231088+03:00 discessit-MCLF-XX gnome-keyring-daemon[2217]: discover_other_daemon: 1
+2025-09-01T20:39:40.231517+03:00 discessit-MCLF-XX gnome-keyring-daemon[2216]: discover_other_daemon: 1
+2025-09-01T20:39:41.980335+03:00 discessit-MCLF-XX polkitd[941]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T20:39:43.258421+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-01T20:39:43.284623+03:00 discessit-MCLF-XX systemd-logind[973]: Session c1 logged out. Waiting for processes to exit.
+2025-09-01T20:39:43.300794+03:00 discessit-MCLF-XX systemd-logind[973]: Removed session c1.
+2025-09-01T20:39:43.316164+03:00 discessit-MCLF-XX polkitd[941]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-01T20:39:53.562807+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-01T20:45:01.616665+03:00 discessit-MCLF-XX CRON[5730]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T20:45:01.621766+03:00 discessit-MCLF-XX CRON[5730]: pam_unix(cron:session): session closed for user root
+2025-09-01T20:54:15.544797+03:00 discessit-MCLF-XX polkitd[941]: Identity `unix-group:admin' is not valid, ignoring: No UNIX group with name admin: No such file or directory
+2025-09-01T20:54:19.661736+03:00 discessit-MCLF-XX polkitd[941]: Operator of unix-session:2 successfully authenticated as unix-user:discessit to gain TEMPORARY authorization for action io.snapcraft.snapd.manage for unix-process:7940:86504 [/snap/snap-store/1270/bin/snap-store] (owned by unix-user:discessit)
+2025-09-01T20:55:01.630129+03:00 discessit-MCLF-XX CRON[8520]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T20:55:01.637341+03:00 discessit-MCLF-XX CRON[8520]: pam_unix(cron:session): session closed for user root
+2025-09-01T20:56:43.223287+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/1 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt update
+2025-09-01T20:56:43.223958+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-01T20:56:55.613754+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-01T20:57:26.021600+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/1 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt install telegram-desktop
+2025-09-01T20:57:26.022941+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-01T20:57:26.617500+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-01T20:59:10.241950+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/1 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/snap install telegram-desktop
+2025-09-01T20:59:10.243493+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-01T21:02:04.367556+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-01T21:05:01.651338+03:00 discessit-MCLF-XX CRON[19742]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T21:05:01.660171+03:00 discessit-MCLF-XX CRON[19742]: pam_unix(cron:session): session closed for user root
+2025-09-01T21:15:01.671192+03:00 discessit-MCLF-XX CRON[21032]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T21:15:01.676762+03:00 discessit-MCLF-XX CRON[21032]: pam_unix(cron:session): session closed for user root
+2025-09-01T21:17:01.685213+03:00 discessit-MCLF-XX CRON[21239]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T21:17:01.691352+03:00 discessit-MCLF-XX CRON[21239]: pam_unix(cron:session): session closed for user root
+2025-09-01T21:23:41.030512+03:00 discessit-MCLF-XX systemd-logind[973]: The system will power off now!
+2025-09-01T21:23:41.079006+03:00 discessit-MCLF-XX systemd-logind[973]: System is powering down.
+2025-09-01T21:23:41.134263+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-01T21:23:41.165120+03:00 discessit-MCLF-XX dbus-daemon[929]: [system] Rejected send message, 0 matched rules; type="error", sender=":1.74" (uid=1000 pid=1970 comm="/usr/bin/wireplumber" label="unconfined") interface="(unset)" member="(unset)" error name="org.bluez.MediaEndpoint1.Error.NotImplemented" requested_reply="0" destination=":1.6" (uid=0 pid=927 comm="/usr/libexec/bluetooth/bluetoothd" label="unconfined")
+2025-09-01T21:23:41.165782+03:00 discessit-MCLF-XX dbus-daemon[929]: message repeated 8 times: [ [system] Rejected send message, 0 matched rules; type="error", sender=":1.74" (uid=1000 pid=1970 comm="/usr/bin/wireplumber" label="unconfined") interface="(unset)" member="(unset)" error name="org.bluez.MediaEndpoint1.Error.NotImplemented" requested_reply="0" destination=":1.6" (uid=0 pid=927 comm="/usr/libexec/bluetooth/bluetoothd" label="unconfined")]
+2025-09-01T22:29:14.993131+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-01T22:29:15.038217+03:00 discessit-MCLF-XX systemd-logind[1019]: New session c1 of user gdm.
+2025-09-01T22:29:15.063910+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-01T22:29:17.482795+03:00 discessit-MCLF-XX polkitd[996]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T22:29:22.795015+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-01T22:29:22.795170+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-01T22:29:22.810601+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T22:29:22.835309+03:00 discessit-MCLF-XX systemd-logind[1019]: New session 2 of user discessit.
+2025-09-01T22:29:22.862243+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-01T22:29:23.277557+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-01T22:29:23.975049+03:00 discessit-MCLF-XX gnome-keyring-daemon[2267]: The Secret Service was already initialized
+2025-09-01T22:29:23.975639+03:00 discessit-MCLF-XX gnome-keyring-daemon[2532]: discover_other_daemon: 1
+2025-09-01T22:29:23.983175+03:00 discessit-MCLF-XX gnome-keyring-daemon[2267]: The PKCS#11 component was already initialized
+2025-09-01T22:29:23.983942+03:00 discessit-MCLF-XX gnome-keyring-daemon[2536]: discover_other_daemon: 1
+2025-09-01T22:29:23.984842+03:00 discessit-MCLF-XX gnome-keyring-daemon[2537]: discover_other_daemon: 1
+2025-09-01T22:29:25.775184+03:00 discessit-MCLF-XX polkitd[996]: Registered Authentication Agent for unix-session:2 (system bus name :1.78 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-01T22:29:27.047441+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-01T22:29:27.068174+03:00 discessit-MCLF-XX systemd-logind[1019]: Session c1 logged out. Waiting for processes to exit.
+2025-09-01T22:29:27.086933+03:00 discessit-MCLF-XX systemd-logind[1019]: Removed session c1.
+2025-09-01T22:29:27.114624+03:00 discessit-MCLF-XX polkitd[996]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-01T22:29:37.202464+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-01T22:30:01.555282+03:00 discessit-MCLF-XX CRON[4601]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T22:30:01.558293+03:00 discessit-MCLF-XX CRON[4601]: pam_unix(cron:session): session closed for user root
+2025-09-01T22:30:23.491548+03:00 discessit-MCLF-XX gnome-keyring-daemon[2267]: asked to register item /org/freedesktop/secrets/collection/login/1, but it's already registered
+2025-09-01T22:30:36.096665+03:00 discessit-MCLF-XX systemd-logind[1019]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-01T22:30:36.102196+03:00 discessit-MCLF-XX systemd-logind[1019]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-01T22:30:36.103684+03:00 discessit-MCLF-XX systemd-logind[1019]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-01T22:31:59.202108+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/sh -c 'apt update ; apt install -y build-essential'
+2025-09-01T22:31:59.202919+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-01T22:32:23.626663+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-01T22:32:41.910606+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/1 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/sh -c 'apt update ; apt install -y build-essential'
+2025-09-01T22:32:41.911441+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-01T22:32:46.193944+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-01T22:35:01.567515+03:00 discessit-MCLF-XX CRON[7038]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T22:35:01.573758+03:00 discessit-MCLF-XX CRON[7038]: pam_unix(cron:session): session closed for user root
+2025-09-01T22:38:57.760318+03:00 discessit-MCLF-XX gnome-keyring-daemon[2267]: asked to register item /org/freedesktop/secrets/collection/login/1, but it's already registered
+2025-09-01T22:45:01.585222+03:00 discessit-MCLF-XX CRON[8951]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T22:45:01.637225+03:00 discessit-MCLF-XX CRON[8951]: pam_unix(cron:session): session closed for user root
+2025-09-01T22:55:01.602827+03:00 discessit-MCLF-XX CRON[9592]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T22:55:01.607692+03:00 discessit-MCLF-XX CRON[9592]: pam_unix(cron:session): session closed for user root
+2025-09-01T22:59:34.443496+03:00 discessit-MCLF-XX systemd-logind[1019]: Lid closed.
+2025-09-01T22:59:34.445713+03:00 discessit-MCLF-XX systemd-logind[1019]: Suspending...
+2025-09-01T23:02:21.421275+03:00 discessit-MCLF-XX systemd-logind[1019]: Lid opened.
+2025-09-01T23:02:21.667667+03:00 discessit-MCLF-XX systemd-logind[1019]: Operation 'suspend' finished.
+2025-09-01T23:02:28.975250+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-01T23:05:01.309998+03:00 discessit-MCLF-XX CRON[10528]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T23:05:01.316920+03:00 discessit-MCLF-XX CRON[10528]: pam_unix(cron:session): session closed for user root
+2025-09-01T23:08:53.560578+03:00 discessit-MCLF-XX systemd-logind[1019]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-01T23:08:53.572580+03:00 discessit-MCLF-XX systemd-logind[1019]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-01T23:08:53.573396+03:00 discessit-MCLF-XX systemd-logind[1019]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-01T23:15:01.325216+03:00 discessit-MCLF-XX CRON[14266]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T23:15:01.329637+03:00 discessit-MCLF-XX CRON[14266]: pam_unix(cron:session): session closed for user root
+2025-09-01T23:17:01.337390+03:00 discessit-MCLF-XX CRON[14343]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T23:17:01.341167+03:00 discessit-MCLF-XX CRON[14343]: pam_unix(cron:session): session closed for user root
+2025-09-01T23:25:01.350895+03:00 discessit-MCLF-XX CRON[15097]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T23:25:01.354847+03:00 discessit-MCLF-XX CRON[15097]: pam_unix(cron:session): session closed for user root
+2025-09-01T23:30:01.364982+03:00 discessit-MCLF-XX CRON[15479]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T23:30:01.368103+03:00 discessit-MCLF-XX CRON[15479]: pam_unix(cron:session): session closed for user root
+2025-09-01T23:35:01.376375+03:00 discessit-MCLF-XX CRON[16201]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-01T23:35:01.381620+03:00 discessit-MCLF-XX CRON[16201]: pam_unix(cron:session): session closed for user root
+2025-09-01T23:42:46.746302+03:00 discessit-MCLF-XX systemd-logind[1019]: The system will power off now!
+2025-09-01T23:42:46.797599+03:00 discessit-MCLF-XX systemd-logind[1019]: System is powering down.
+2025-09-01T23:42:46.897725+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-02T10:59:58.665178+03:00 discessit-MCLF-XX systemd-logind[1044]: New seat seat0.
+2025-09-02T10:59:58.665222+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-02T10:59:58.665228+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-02T10:59:58.665233+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T10:59:58.665238+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T10:59:58.665243+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T10:59:58.665254+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-02T11:00:00.050953+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-02T11:00:00.092930+03:00 discessit-MCLF-XX systemd-logind[1044]: New session c1 of user gdm.
+2025-09-02T11:00:00.130700+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-02T11:00:02.639102+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T11:00:02.644217+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T11:00:02.652087+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T11:00:02.694691+03:00 discessit-MCLF-XX polkitd[1007]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T11:00:19.164233+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:auth): authentication failure; logname= uid=0 euid=0 tty=/dev/tty1 ruser= rhost=  user=discessit
+2025-09-02T11:00:25.589319+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-02T11:00:25.589482+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-02T11:00:25.645829+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T11:00:25.679560+03:00 discessit-MCLF-XX systemd-logind[1044]: New session 2 of user discessit.
+2025-09-02T11:00:25.707896+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T11:00:26.063244+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T11:00:26.737472+03:00 discessit-MCLF-XX gnome-keyring-daemon[2111]: The Secret Service was already initialized
+2025-09-02T11:00:26.738038+03:00 discessit-MCLF-XX gnome-keyring-daemon[2351]: discover_other_daemon: 1
+2025-09-02T11:00:26.742456+03:00 discessit-MCLF-XX gnome-keyring-daemon[2353]: discover_other_daemon: 1
+2025-09-02T11:00:26.743424+03:00 discessit-MCLF-XX gnome-keyring-daemon[2111]: The PKCS#11 component was already initialized
+2025-09-02T11:00:26.743735+03:00 discessit-MCLF-XX gnome-keyring-daemon[2355]: discover_other_daemon: 1
+2025-09-02T11:00:28.425445+03:00 discessit-MCLF-XX polkitd[1007]: Registered Authentication Agent for unix-session:2 (system bus name :1.82 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T11:00:29.699507+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-02T11:00:29.720739+03:00 discessit-MCLF-XX systemd-logind[1044]: Session c1 logged out. Waiting for processes to exit.
+2025-09-02T11:00:29.723722+03:00 discessit-MCLF-XX polkitd[1007]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-02T11:00:29.729938+03:00 discessit-MCLF-XX systemd-logind[1044]: Removed session c1.
+2025-09-02T11:00:40.118138+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-02T11:02:08.562339+03:00 discessit-MCLF-XX systemd-logind[1044]: Lid closed.
+2025-09-02T11:02:08.564318+03:00 discessit-MCLF-XX systemd-logind[1044]: Suspending...
+2025-09-02T11:08:01.224221+03:00 discessit-MCLF-XX systemd-logind[1044]: Lid opened.
+2025-09-02T11:08:01.507776+03:00 discessit-MCLF-XX systemd-logind[1044]: Operation 'suspend' finished.
+2025-09-02T11:08:05.034732+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T11:09:53.159061+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/find .
+2025-09-02T11:09:53.159562+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T11:09:54.455654+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:10:01.984312+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/su
+2025-09-02T11:10:01.985911+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T11:10:02.042469+03:00 discessit-MCLF-XX su[3521]: (to root) root on pts/1
+2025-09-02T11:10:02.042940+03:00 discessit-MCLF-XX su[3521]: pam_unix(su:session): session opened for user root(uid=0) by discessit(uid=0)
+2025-09-02T11:15:01.090775+03:00 discessit-MCLF-XX CRON[3683]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T11:15:01.095930+03:00 discessit-MCLF-XX CRON[3683]: pam_unix(cron:session): session closed for user root
+2025-09-02T11:16:28.880685+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T11:16:28.881583+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T11:16:28.881879+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T11:17:01.106046+03:00 discessit-MCLF-XX CRON[3817]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T11:17:01.129800+03:00 discessit-MCLF-XX CRON[3817]: pam_unix(cron:session): session closed for user root
+2025-09-02T11:19:15.089843+03:00 discessit-MCLF-XX systemd-logind[1044]: Lid closed.
+2025-09-02T11:19:15.093049+03:00 discessit-MCLF-XX systemd-logind[1044]: Suspending...
+2025-09-02T11:26:08.301542+03:00 discessit-MCLF-XX systemd-logind[1044]: Lid opened.
+2025-09-02T11:26:08.535673+03:00 discessit-MCLF-XX systemd-logind[1044]: Operation 'suspend' finished.
+2025-09-02T11:26:11.634422+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T11:26:42.449406+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T11:26:42.451612+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T11:26:42.457769+03:00 discessit-MCLF-XX systemd-logind[1044]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T11:27:56.827361+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/2 ; PWD=/usr/share/themes/Adwaita/gtk-3.0 ; USER=root ; COMMAND=/usr/bin/apt install vim
+2025-09-02T11:27:56.827755+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T11:28:10.246691+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:30:01.196518+03:00 discessit-MCLF-XX CRON[4523]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T11:30:01.199437+03:00 discessit-MCLF-XX CRON[4523]: pam_unix(cron:session): session closed for user root
+2025-09-02T11:30:35.879373+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/2 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/su
+2025-09-02T11:30:35.887368+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T11:30:35.888347+03:00 discessit-MCLF-XX su[4549]: (to root) root on pts/3
+2025-09-02T11:30:35.888996+03:00 discessit-MCLF-XX su[4549]: pam_unix(su:session): session opened for user root(uid=0) by discessit(uid=0)
+2025-09-02T11:35:01.208975+03:00 discessit-MCLF-XX CRON[4653]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T11:35:01.212914+03:00 discessit-MCLF-XX CRON[4653]: pam_unix(cron:session): session closed for user root
+2025-09-02T11:43:08.486793+03:00 discessit-MCLF-XX sudo:     root : TTY=pts/3 ; PWD=/usr/share/backgrounds ; USER=root ; COMMAND=/usr/bin/apt install gdm-settingd
+2025-09-02T11:43:08.487590+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=0)
+2025-09-02T11:43:09.145614+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:43:11.436531+03:00 discessit-MCLF-XX sudo:     root : TTY=pts/3 ; PWD=/usr/share/backgrounds ; USER=root ; COMMAND=/usr/bin/apt install gdm-settings
+2025-09-02T11:43:11.437970+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=0)
+2025-09-02T11:43:17.833305+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:44:53.592315+03:00 discessit-MCLF-XX su[3521]: pam_unix(su:session): session closed for user root
+2025-09-02T11:44:53.595083+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:44:54.056495+03:00 discessit-MCLF-XX polkitd[1007]: Unregistered Authentication Agent for unix-session:2 (system bus name :1.82, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-02T11:44:54.172183+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-02T11:44:54.188703+03:00 discessit-MCLF-XX systemd-logind[1044]: Session 2 logged out. Waiting for processes to exit.
+2025-09-02T11:44:54.191099+03:00 discessit-MCLF-XX systemd-logind[1044]: Removed session 2.
+2025-09-02T11:44:54.572023+03:00 discessit-MCLF-XX su[4549]: pam_unix(su:session): session closed for user root
+2025-09-02T11:44:54.574057+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:44:54.595630+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-02T11:44:54.621049+03:00 discessit-MCLF-XX systemd-logind[1044]: New session c2 of user gdm.
+2025-09-02T11:44:54.647265+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-02T11:44:56.165737+03:00 discessit-MCLF-XX polkitd[1007]: Registered Authentication Agent for unix-session:c2 (system bus name :1.206 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T11:45:01.225542+03:00 discessit-MCLF-XX CRON[6130]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T11:45:01.229695+03:00 discessit-MCLF-XX CRON[6130]: pam_unix(cron:session): session closed for user root
+2025-09-02T11:45:04.400928+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user discessit
+2025-09-02T11:45:05.932886+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-02T11:45:05.933039+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-02T11:45:05.952185+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T11:45:05.978884+03:00 discessit-MCLF-XX systemd-logind[1044]: New session 10 of user discessit.
+2025-09-02T11:45:06.004019+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T11:45:06.339423+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T11:45:06.936027+03:00 discessit-MCLF-XX gnome-keyring-daemon[6192]: The Secret Service was already initialized
+2025-09-02T11:45:06.936559+03:00 discessit-MCLF-XX gnome-keyring-daemon[6453]: discover_other_daemon: 1
+2025-09-02T11:45:06.964093+03:00 discessit-MCLF-XX gnome-keyring-daemon[6192]: The PKCS#11 component was already initialized
+2025-09-02T11:45:06.964930+03:00 discessit-MCLF-XX gnome-keyring-daemon[6457]: discover_other_daemon: 1
+2025-09-02T11:45:06.965681+03:00 discessit-MCLF-XX gnome-keyring-daemon[6458]: discover_other_daemon: 1
+2025-09-02T11:45:08.448019+03:00 discessit-MCLF-XX polkitd[1007]: Registered Authentication Agent for unix-session:10 (system bus name :1.239 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T11:45:09.672926+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-02T11:45:09.704725+03:00 discessit-MCLF-XX systemd-logind[1044]: Session c2 logged out. Waiting for processes to exit.
+2025-09-02T11:45:09.725383+03:00 discessit-MCLF-XX systemd-logind[1044]: Removed session c2.
+2025-09-02T11:45:09.727981+03:00 discessit-MCLF-XX polkitd[1007]: Unregistered Authentication Agent for unix-session:c2 (system bus name :1.206, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-02T11:45:19.882544+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-02T11:49:42.962038+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/gdm-settings
+2025-09-02T11:49:42.962866+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T11:50:25.732328+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T11:55:01.240640+03:00 discessit-MCLF-XX CRON[9498]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T11:55:01.245728+03:00 discessit-MCLF-XX CRON[9498]: pam_unix(cron:session): session closed for user root
+2025-09-02T12:00:05.691517+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt install git
+2025-09-02T12:00:05.697660+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:00:14.632391+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:01:09.305938+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit/Graphite-gtk-theme ; USER=root ; COMMAND=/usr/bin/apt install sassc
+2025-09-02T12:01:09.308105+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:01:16.522982+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:01:44.655392+03:00 discessit-MCLF-XX systemd-logind[1044]: The system will reboot now!
+2025-09-02T12:01:44.709683+03:00 discessit-MCLF-XX systemd-logind[1044]: System is rebooting.
+2025-09-02T12:01:44.783567+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-02T12:02:03.876245+03:00 discessit-MCLF-XX systemd-logind[1017]: New seat seat0.
+2025-09-02T12:02:03.876254+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-02T12:02:03.876262+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-02T12:02:03.876271+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T12:02:03.876280+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T12:02:03.876285+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T12:02:03.876596+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-02T12:02:05.091927+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-02T12:02:05.143930+03:00 discessit-MCLF-XX systemd-logind[1017]: New session c1 of user gdm.
+2025-09-02T12:02:05.184815+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-02T12:02:07.618996+03:00 discessit-MCLF-XX polkitd[985]: Registered Authentication Agent for unix-session:c1 (system bus name :1.39 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T12:02:15.606458+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-02T12:02:15.606571+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-02T12:02:15.626611+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T12:02:15.659273+03:00 discessit-MCLF-XX systemd-logind[1017]: New session 2 of user discessit.
+2025-09-02T12:02:15.686495+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T12:02:16.053204+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T12:02:16.737051+03:00 discessit-MCLF-XX gnome-keyring-daemon[1992]: The Secret Service was already initialized
+2025-09-02T12:02:16.737552+03:00 discessit-MCLF-XX gnome-keyring-daemon[2234]: discover_other_daemon: 1
+2025-09-02T12:02:16.741808+03:00 discessit-MCLF-XX gnome-keyring-daemon[1992]: The PKCS#11 component was already initialized
+2025-09-02T12:02:16.742243+03:00 discessit-MCLF-XX gnome-keyring-daemon[2236]: discover_other_daemon: 1
+2025-09-02T12:02:16.742658+03:00 discessit-MCLF-XX gnome-keyring-daemon[2238]: discover_other_daemon: 1
+2025-09-02T12:02:18.463527+03:00 discessit-MCLF-XX polkitd[985]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T12:02:19.737535+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-02T12:02:19.754985+03:00 discessit-MCLF-XX systemd-logind[1017]: Session c1 logged out. Waiting for processes to exit.
+2025-09-02T12:02:19.767920+03:00 discessit-MCLF-XX systemd-logind[1017]: Removed session c1.
+2025-09-02T12:02:19.768791+03:00 discessit-MCLF-XX polkitd[985]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.39, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-02T12:02:30.119003+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-02T12:03:56.903862+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T12:03:56.904271+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T12:03:56.908412+03:00 discessit-MCLF-XX systemd-logind[1017]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T12:05:01.768500+03:00 discessit-MCLF-XX CRON[4495]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T12:05:01.773805+03:00 discessit-MCLF-XX CRON[4495]: pam_unix(cron:session): session closed for user root
+2025-09-02T12:05:58.832229+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/sbin/dpkg-reconfigure gtk
+2025-09-02T12:05:58.833207+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:05:59.149554+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:06:12.312597+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt install gtk
+2025-09-02T12:06:12.313751+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:06:12.972404+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:06:19.534245+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt --help
+2025-09-02T12:06:19.534880+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:06:19.543706+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:06:27.727308+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt search gtk
+2025-09-02T12:06:27.729421+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:06:28.907918+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:08:17.351034+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/apt install libgtk-3-dev
+2025-09-02T12:08:17.352986+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:08:55.003374+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:08:59.514132+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/sbin/dpkg-reconfigure gtk
+2025-09-02T12:08:59.515719+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:08:59.696820+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:09:07.769572+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/sbin/dpkg-reconfigure libgtk-3-dev
+2025-09-02T12:09:07.771524+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-02T12:09:07.991727+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-02T12:09:10.557509+03:00 discessit-MCLF-XX systemd-logind[1017]: The system will reboot now!
+2025-09-02T12:09:10.593714+03:00 discessit-MCLF-XX systemd-logind[1017]: System is rebooting.
+2025-09-02T12:09:10.614393+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-02T12:09:30.955413+03:00 discessit-MCLF-XX systemd-logind[1014]: New seat seat0.
+2025-09-02T12:09:30.955419+03:00 discessit-MCLF-XX systemd-logind[1014]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-02T12:09:30.955426+03:00 discessit-MCLF-XX systemd-logind[1014]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-02T12:09:30.955431+03:00 discessit-MCLF-XX systemd-logind[1014]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T12:09:30.955438+03:00 discessit-MCLF-XX systemd-logind[1014]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T12:09:30.955444+03:00 discessit-MCLF-XX systemd-logind[1014]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T12:09:30.955508+03:00 discessit-MCLF-XX systemd-logind[1014]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-02T12:09:32.293693+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-02T12:09:32.360512+03:00 discessit-MCLF-XX systemd-logind[1014]: New session c1 of user gdm.
+2025-09-02T12:09:32.396940+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-02T12:09:34.842747+03:00 discessit-MCLF-XX polkitd[984]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T12:09:41.626763+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-02T12:09:41.626883+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-02T12:09:41.644330+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T12:09:41.677231+03:00 discessit-MCLF-XX systemd-logind[1014]: New session 2 of user discessit.
+2025-09-02T12:09:41.706240+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T12:09:42.053118+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T12:09:42.740413+03:00 discessit-MCLF-XX gnome-keyring-daemon[2000]: The Secret Service was already initialized
+2025-09-02T12:09:42.740851+03:00 discessit-MCLF-XX gnome-keyring-daemon[2242]: discover_other_daemon: 1
+2025-09-02T12:09:42.744039+03:00 discessit-MCLF-XX gnome-keyring-daemon[2000]: The PKCS#11 component was already initialized
+2025-09-02T12:09:42.744503+03:00 discessit-MCLF-XX gnome-keyring-daemon[2243]: discover_other_daemon: 1
+2025-09-02T12:09:42.745130+03:00 discessit-MCLF-XX gnome-keyring-daemon[2245]: discover_other_daemon: 1
+2025-09-02T12:09:44.421667+03:00 discessit-MCLF-XX polkitd[984]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T12:09:45.725066+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-02T12:09:45.747608+03:00 discessit-MCLF-XX systemd-logind[1014]: Session c1 logged out. Waiting for processes to exit.
+2025-09-02T12:09:45.763259+03:00 discessit-MCLF-XX systemd-logind[1014]: Removed session c1.
+2025-09-02T12:09:45.768320+03:00 discessit-MCLF-XX polkitd[984]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-02T12:09:55.546136+03:00 discessit-MCLF-XX systemd-logind[1014]: The system will power off now!
+2025-09-02T12:09:55.634091+03:00 discessit-MCLF-XX systemd-logind[1014]: System is powering down.
+2025-09-02T12:09:55.728116+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-02T20:07:25.702550+03:00 discessit-MCLF-XX systemd-logind[1013]: New seat seat0.
+2025-09-02T20:07:25.702560+03:00 discessit-MCLF-XX systemd-logind[1013]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-02T20:07:25.702566+03:00 discessit-MCLF-XX systemd-logind[1013]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-02T20:07:25.702570+03:00 discessit-MCLF-XX systemd-logind[1013]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-02T20:07:25.702575+03:00 discessit-MCLF-XX systemd-logind[1013]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-02T20:07:25.702580+03:00 discessit-MCLF-XX systemd-logind[1013]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-02T20:07:25.702585+03:00 discessit-MCLF-XX systemd-logind[1013]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-02T20:07:27.077717+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-02T20:07:27.135211+03:00 discessit-MCLF-XX systemd-logind[1013]: New session c1 of user gdm.
+2025-09-02T20:07:27.176513+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-02T20:07:29.704901+03:00 discessit-MCLF-XX polkitd[979]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T20:07:34.812676+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-02T20:07:34.812831+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-02T20:07:34.869817+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T20:07:34.907118+03:00 discessit-MCLF-XX systemd-logind[1013]: New session 2 of user discessit.
+2025-09-02T20:07:34.936923+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-02T20:07:35.282603+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T20:07:35.956823+03:00 discessit-MCLF-XX gnome-keyring-daemon[2026]: The Secret Service was already initialized
+2025-09-02T20:07:35.957325+03:00 discessit-MCLF-XX gnome-keyring-daemon[2264]: discover_other_daemon: 1
+2025-09-02T20:07:35.983876+03:00 discessit-MCLF-XX gnome-keyring-daemon[2026]: The PKCS#11 component was already initialized
+2025-09-02T20:07:35.984465+03:00 discessit-MCLF-XX gnome-keyring-daemon[2268]: discover_other_daemon: 1
+2025-09-02T20:07:35.985006+03:00 discessit-MCLF-XX gnome-keyring-daemon[2269]: discover_other_daemon: 1
+2025-09-02T20:07:37.638616+03:00 discessit-MCLF-XX polkitd[979]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-02T20:07:39.003010+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-02T20:07:39.031582+03:00 discessit-MCLF-XX systemd-logind[1013]: Session c1 logged out. Waiting for processes to exit.
+2025-09-02T20:07:39.048547+03:00 discessit-MCLF-XX systemd-logind[1013]: Removed session c1.
+2025-09-02T20:07:39.049914+03:00 discessit-MCLF-XX polkitd[979]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-02T20:07:49.397142+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-02T20:15:01.595862+03:00 discessit-MCLF-XX CRON[5302]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T20:15:01.600509+03:00 discessit-MCLF-XX CRON[5302]: pam_unix(cron:session): session closed for user root
+2025-09-02T20:17:01.610251+03:00 discessit-MCLF-XX CRON[5315]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T20:17:01.620286+03:00 discessit-MCLF-XX CRON[5315]: pam_unix(cron:session): session closed for user root
+2025-09-02T20:25:01.629705+03:00 discessit-MCLF-XX CRON[6639]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T20:25:01.634152+03:00 discessit-MCLF-XX CRON[6639]: pam_unix(cron:session): session closed for user root
+2025-09-02T20:30:01.642150+03:00 discessit-MCLF-XX CRON[6997]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T20:30:01.694393+03:00 discessit-MCLF-XX CRON[6997]: pam_unix(cron:session): session closed for user root
+2025-09-02T20:31:41.840968+03:00 discessit-MCLF-XX systemd-logind[1013]: Lid closed.
+2025-09-02T20:31:41.844701+03:00 discessit-MCLF-XX systemd-logind[1013]: Suspending...
+2025-09-02T20:42:52.447999+03:00 discessit-MCLF-XX systemd-logind[1013]: Lid opened.
+2025-09-02T20:42:52.675456+03:00 discessit-MCLF-XX systemd-logind[1013]: Operation 'suspend' finished.
+2025-09-02T20:42:58.831105+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-02T20:45:01.058691+03:00 discessit-MCLF-XX CRON[7332]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-02T20:45:01.062397+03:00 discessit-MCLF-XX CRON[7332]: pam_unix(cron:session): session closed for user root
+2025-09-02T20:48:07.573892+03:00 discessit-MCLF-XX systemd-logind[1013]: The system will reboot now!
+2025-09-02T20:48:07.629735+03:00 discessit-MCLF-XX systemd-logind[1013]: System is rebooting.
+2025-09-02T20:48:07.696659+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-04T21:20:13.642634+03:00 discessit-MCLF-XX systemd-logind[1046]: New seat seat0.
+2025-09-04T21:20:13.642637+03:00 discessit-MCLF-XX systemd-logind[1046]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-04T21:20:13.642639+03:00 discessit-MCLF-XX systemd-logind[1046]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-04T21:20:13.642641+03:00 discessit-MCLF-XX systemd-logind[1046]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-04T21:20:13.642644+03:00 discessit-MCLF-XX systemd-logind[1046]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-04T21:20:13.642647+03:00 discessit-MCLF-XX systemd-logind[1046]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-04T21:20:13.642650+03:00 discessit-MCLF-XX systemd-logind[1046]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-04T21:20:13.652764+03:00 discessit-MCLF-XX polkitd[998]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-04T21:20:13.652889+03:00 discessit-MCLF-XX polkitd[998]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-04T21:20:13.656730+03:00 discessit-MCLF-XX polkitd[998]: Finished loading, compiling and executing 16 rules
+2025-09-04T21:20:13.657420+03:00 discessit-MCLF-XX polkitd[998]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-04T21:20:15.106520+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-04T21:20:15.165086+03:00 discessit-MCLF-XX systemd-logind[1046]: New session c1 of user gdm.
+2025-09-04T21:20:15.208979+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-04T21:20:17.610738+03:00 discessit-MCLF-XX polkitd[998]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-04T21:20:23.113842+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-04T21:20:23.113962+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-04T21:20:23.132200+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-04T21:20:23.159450+03:00 discessit-MCLF-XX systemd-logind[1046]: New session 2 of user discessit.
+2025-09-04T21:20:23.186404+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-04T21:20:23.561130+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-04T21:20:24.197007+03:00 discessit-MCLF-XX gnome-keyring-daemon[2111]: The Secret Service was already initialized
+2025-09-04T21:20:24.197999+03:00 discessit-MCLF-XX gnome-keyring-daemon[2354]: discover_other_daemon: 1
+2025-09-04T21:20:24.200887+03:00 discessit-MCLF-XX gnome-keyring-daemon[2111]: The PKCS#11 component was already initialized
+2025-09-04T21:20:24.201435+03:00 discessit-MCLF-XX gnome-keyring-daemon[2355]: discover_other_daemon: 1
+2025-09-04T21:20:24.201971+03:00 discessit-MCLF-XX gnome-keyring-daemon[2357]: discover_other_daemon: 1
+2025-09-04T21:20:25.896618+03:00 discessit-MCLF-XX polkitd[998]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-04T21:20:27.160941+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-04T21:20:27.189616+03:00 discessit-MCLF-XX systemd-logind[1046]: Session c1 logged out. Waiting for processes to exit.
+2025-09-04T21:20:27.204192+03:00 discessit-MCLF-XX systemd-logind[1046]: Removed session c1.
+2025-09-04T21:20:27.221502+03:00 discessit-MCLF-XX polkitd[998]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-04T21:20:37.400259+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-04T21:25:01.970472+03:00 discessit-MCLF-XX CRON[4655]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-04T21:25:01.975398+03:00 discessit-MCLF-XX CRON[4655]: pam_unix(cron:session): session closed for user root
+2025-09-04T21:30:01.984363+03:00 discessit-MCLF-XX CRON[6442]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-04T21:30:01.987850+03:00 discessit-MCLF-XX CRON[6442]: pam_unix(cron:session): session closed for user root
+2025-09-04T21:35:01.998123+03:00 discessit-MCLF-XX CRON[6675]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-04T21:35:02.004469+03:00 discessit-MCLF-XX CRON[6675]: pam_unix(cron:session): session closed for user root
+2025-09-04T21:45:01.015414+03:00 discessit-MCLF-XX CRON[6952]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-04T21:45:01.019889+03:00 discessit-MCLF-XX CRON[6952]: pam_unix(cron:session): session closed for user root
+2025-09-04T21:50:10.523403+03:00 discessit-MCLF-XX systemd-logind[1046]: Lid closed.
+2025-09-04T21:50:10.524709+03:00 discessit-MCLF-XX systemd-logind[1046]: Suspending...
+2025-09-04T21:52:02.261355+03:00 discessit-MCLF-XX systemd-logind[1046]: Lid opened.
+2025-09-04T21:52:02.534081+03:00 discessit-MCLF-XX systemd-logind[1046]: Operation 'suspend' finished.
+2025-09-04T21:52:07.379034+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-04T21:54:24.693992+03:00 discessit-MCLF-XX systemd-logind[1046]: The system will power off now!
+2025-09-04T21:54:24.758770+03:00 discessit-MCLF-XX systemd-logind[1046]: System is powering down.
+2025-09-04T21:54:24.847403+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-06T09:10:57.782868+03:00 discessit-MCLF-XX systemd-logind[1050]: New seat seat0.
+2025-09-06T09:10:57.782883+03:00 discessit-MCLF-XX systemd-logind[1050]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-06T09:10:57.782888+03:00 discessit-MCLF-XX systemd-logind[1050]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-06T09:10:57.782891+03:00 discessit-MCLF-XX systemd-logind[1050]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-06T09:10:57.782894+03:00 discessit-MCLF-XX systemd-logind[1050]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-06T09:10:57.782901+03:00 discessit-MCLF-XX systemd-logind[1050]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-06T09:10:57.782912+03:00 discessit-MCLF-XX systemd-logind[1050]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-06T09:10:57.810363+03:00 discessit-MCLF-XX polkitd[1013]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-06T09:10:57.810532+03:00 discessit-MCLF-XX polkitd[1013]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-06T09:10:57.814579+03:00 discessit-MCLF-XX polkitd[1013]: Finished loading, compiling and executing 16 rules
+2025-09-06T09:10:57.815161+03:00 discessit-MCLF-XX polkitd[1013]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-06T09:10:59.222531+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-06T09:10:59.285769+03:00 discessit-MCLF-XX systemd-logind[1050]: New session c1 of user gdm.
+2025-09-06T09:10:59.317894+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-06T09:11:01.784746+03:00 discessit-MCLF-XX polkitd[1013]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-06T09:12:01.082039+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:auth): authentication failure; logname= uid=0 euid=0 tty=/dev/tty1 ruser= rhost=  user=discessit
+2025-09-06T09:12:06.219014+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-06T09:12:06.219187+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-06T09:12:06.273183+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-06T09:12:06.305511+03:00 discessit-MCLF-XX systemd-logind[1050]: New session 2 of user discessit.
+2025-09-06T09:12:06.337614+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-06T09:12:06.723750+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-06T09:12:07.382395+03:00 discessit-MCLF-XX gnome-keyring-daemon[2067]: The Secret Service was already initialized
+2025-09-06T09:12:07.382967+03:00 discessit-MCLF-XX gnome-keyring-daemon[2305]: discover_other_daemon: 1
+2025-09-06T09:12:07.388945+03:00 discessit-MCLF-XX gnome-keyring-daemon[2067]: The PKCS#11 component was already initialized
+2025-09-06T09:12:07.389454+03:00 discessit-MCLF-XX gnome-keyring-daemon[2309]: discover_other_daemon: 1
+2025-09-06T09:12:07.390116+03:00 discessit-MCLF-XX gnome-keyring-daemon[2310]: discover_other_daemon: 1
+2025-09-06T09:12:09.122240+03:00 discessit-MCLF-XX polkitd[1013]: Registered Authentication Agent for unix-session:2 (system bus name :1.79 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-06T09:12:10.466154+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-06T09:12:10.481763+03:00 discessit-MCLF-XX systemd-logind[1050]: Session c1 logged out. Waiting for processes to exit.
+2025-09-06T09:12:10.497831+03:00 discessit-MCLF-XX systemd-logind[1050]: Removed session c1.
+2025-09-06T09:12:10.509727+03:00 discessit-MCLF-XX polkitd[1013]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-06T09:12:17.078329+03:00 discessit-MCLF-XX systemd-logind[1050]: The system will reboot now!
+2025-09-06T09:12:17.126814+03:00 discessit-MCLF-XX systemd-logind[1050]: System is rebooting.
+2025-09-06T09:12:17.218416+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-08T11:14:14.592706+03:00 discessit-MCLF-XX systemd-logind[1023]: New seat seat0.
+2025-09-08T11:14:14.592710+03:00 discessit-MCLF-XX systemd-logind[1023]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-08T11:14:14.592712+03:00 discessit-MCLF-XX systemd-logind[1023]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-08T11:14:14.592714+03:00 discessit-MCLF-XX systemd-logind[1023]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-08T11:14:14.592716+03:00 discessit-MCLF-XX systemd-logind[1023]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-08T11:14:14.592718+03:00 discessit-MCLF-XX systemd-logind[1023]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-08T11:14:14.592720+03:00 discessit-MCLF-XX systemd-logind[1023]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-08T11:14:14.600288+03:00 discessit-MCLF-XX polkitd[990]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-08T11:14:14.600594+03:00 discessit-MCLF-XX polkitd[990]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-08T11:14:14.604664+03:00 discessit-MCLF-XX polkitd[990]: Finished loading, compiling and executing 16 rules
+2025-09-08T11:14:14.605357+03:00 discessit-MCLF-XX polkitd[990]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-08T11:14:16.035546+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-08T11:14:16.087398+03:00 discessit-MCLF-XX systemd-logind[1023]: New session c1 of user gdm.
+2025-09-08T11:14:16.125013+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-08T11:14:18.591559+03:00 discessit-MCLF-XX polkitd[990]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-08T11:14:23.942693+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-08T11:14:23.942793+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-08T11:14:23.983395+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-08T11:14:24.014142+03:00 discessit-MCLF-XX systemd-logind[1023]: New session 2 of user discessit.
+2025-09-08T11:14:24.040737+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-08T11:14:24.422376+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-08T11:14:25.155401+03:00 discessit-MCLF-XX gnome-keyring-daemon[1995]: The Secret Service was already initialized
+2025-09-08T11:14:25.155971+03:00 discessit-MCLF-XX gnome-keyring-daemon[2229]: discover_other_daemon: 1
+2025-09-08T11:14:25.161332+03:00 discessit-MCLF-XX gnome-keyring-daemon[1995]: The PKCS#11 component was already initialized
+2025-09-08T11:14:25.161817+03:00 discessit-MCLF-XX gnome-keyring-daemon[2233]: discover_other_daemon: 1
+2025-09-08T11:14:25.162441+03:00 discessit-MCLF-XX gnome-keyring-daemon[2234]: discover_other_daemon: 1
+2025-09-08T11:14:26.852384+03:00 discessit-MCLF-XX polkitd[990]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-08T11:14:28.139888+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-08T11:14:28.154088+03:00 discessit-MCLF-XX systemd-logind[1023]: Session c1 logged out. Waiting for processes to exit.
+2025-09-08T11:14:28.170015+03:00 discessit-MCLF-XX systemd-logind[1023]: Removed session c1.
+2025-09-08T11:14:28.190788+03:00 discessit-MCLF-XX polkitd[990]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-08T11:14:38.567216+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-08T11:15:01.518906+03:00 discessit-MCLF-XX CRON[2997]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T11:15:01.524073+03:00 discessit-MCLF-XX CRON[2997]: pam_unix(cron:session): session closed for user root
+2025-09-08T11:17:01.533089+03:00 discessit-MCLF-XX CRON[3052]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T11:17:01.586264+03:00 discessit-MCLF-XX CRON[3052]: pam_unix(cron:session): session closed for user root
+2025-09-08T11:25:01.596219+03:00 discessit-MCLF-XX CRON[3210]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T11:25:01.599758+03:00 discessit-MCLF-XX CRON[3210]: pam_unix(cron:session): session closed for user root
+2025-09-08T08:35:01.255784+03:00 discessit-MCLF-XX CRON[6781]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T08:35:01.264745+03:00 discessit-MCLF-XX CRON[6781]: pam_unix(cron:session): session closed for user root
+2025-09-08T08:45:01.274325+03:00 discessit-MCLF-XX CRON[7705]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T08:45:01.281770+03:00 discessit-MCLF-XX CRON[7705]: pam_unix(cron:session): session closed for user root
+2025-09-08T08:55:01.290922+03:00 discessit-MCLF-XX CRON[8284]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T08:55:01.294952+03:00 discessit-MCLF-XX CRON[8284]: pam_unix(cron:session): session closed for user root
+2025-09-08T09:05:01.304213+03:00 discessit-MCLF-XX CRON[8921]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T09:05:01.307798+03:00 discessit-MCLF-XX CRON[8921]: pam_unix(cron:session): session closed for user root
+2025-09-08T09:10:34.668855+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/cat syslog
+2025-09-08T09:10:34.669270+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-08T09:10:34.940033+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-08T09:13:08.004084+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/cat auth.log
+2025-09-08T09:13:08.005247+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-08T09:13:08.036940+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-08T09:13:36.562853+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/cat auth.log
+2025-09-08T09:13:36.564106+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
+2025-09-08T09:13:36.580952+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session closed for user root
+2025-09-08T09:15:01.316970+03:00 discessit-MCLF-XX CRON[9350]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T09:15:01.321079+03:00 discessit-MCLF-XX CRON[9350]: pam_unix(cron:session): session closed for user root
+2025-09-08T09:17:01.329942+03:00 discessit-MCLF-XX CRON[9614]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T09:17:01.334062+03:00 discessit-MCLF-XX CRON[9614]: pam_unix(cron:session): session closed for user root
+2025-09-08T09:20:49.812957+03:00 discessit-MCLF-XX gnome-keyring-daemon[1995]: asked to register item /org/freedesktop/secrets/collection/login/1, but it's already registered
+2025-09-08T09:25:01.344520+03:00 discessit-MCLF-XX CRON[10277]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-08T09:25:01.348592+03:00 discessit-MCLF-XX CRON[10277]: pam_unix(cron:session): session closed for user root
+2025-09-08T09:28:10.239640+03:00 discessit-MCLF-XX systemd-logind[1023]: The system will reboot now!
+2025-09-08T09:28:10.288540+03:00 discessit-MCLF-XX systemd-logind[1023]: System is rebooting.
+2025-09-08T09:28:10.397030+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-08T13:48:02.753137+03:00 discessit-MCLF-XX systemd-logind[1016]: New seat seat0.
+2025-09-08T13:48:02.754742+03:00 discessit-MCLF-XX systemd-logind[1016]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-08T13:48:02.755031+03:00 discessit-MCLF-XX systemd-logind[1016]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-08T13:48:04.184968+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-08T13:48:04.250318+03:00 discessit-MCLF-XX systemd-logind[1016]: New session c1 of user gdm.
+2025-09-08T13:48:04.300498+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-08T13:48:06.737031+03:00 discessit-MCLF-XX polkitd[986]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-08T13:49:46.869984+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-08T13:49:46.870417+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-08T13:49:46.889322+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-08T13:49:46.916436+03:00 discessit-MCLF-XX systemd-logind[1016]: New session 2 of user discessit.
+2025-09-08T13:49:46.946625+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-08T13:49:47.315467+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-08T13:49:47.992634+03:00 discessit-MCLF-XX gnome-keyring-daemon[2034]: The Secret Service was already initialized
+2025-09-08T13:49:47.993165+03:00 discessit-MCLF-XX gnome-keyring-daemon[2271]: discover_other_daemon: 1
+2025-09-08T13:49:48.010791+03:00 discessit-MCLF-XX gnome-keyring-daemon[2034]: The PKCS#11 component was already initialized
+2025-09-08T13:49:48.011464+03:00 discessit-MCLF-XX gnome-keyring-daemon[2272]: discover_other_daemon: 1
+2025-09-08T13:49:48.011861+03:00 discessit-MCLF-XX gnome-keyring-daemon[2274]: discover_other_daemon: 1
+2025-09-08T13:49:49.725038+03:00 discessit-MCLF-XX polkitd[986]: Registered Authentication Agent for unix-session:2 (system bus name :1.78 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-08T13:49:51.070874+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-08T13:49:51.090475+03:00 discessit-MCLF-XX systemd-logind[1016]: Session c1 logged out. Waiting for processes to exit.
+2025-09-08T13:49:51.096420+03:00 discessit-MCLF-XX systemd-logind[1016]: Removed session c1.
+2025-09-08T13:49:51.110654+03:00 discessit-MCLF-XX polkitd[986]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-08T13:49:58.934133+03:00 discessit-MCLF-XX systemd-logind[1016]: The system will power off now!
+2025-09-08T13:49:58.981281+03:00 discessit-MCLF-XX systemd-logind[1016]: System is powering down.
+2025-09-08T13:49:59.060299+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-08T13:50:33.754505+03:00 discessit-MCLF-XX systemd-logind[1034]: New seat seat0.
+2025-09-08T13:50:33.754534+03:00 discessit-MCLF-XX systemd-logind[1034]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-08T13:50:33.754542+03:00 discessit-MCLF-XX systemd-logind[1034]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-08T13:50:33.754549+03:00 discessit-MCLF-XX systemd-logind[1034]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-08T13:50:33.754564+03:00 discessit-MCLF-XX systemd-logind[1034]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-08T13:50:33.754572+03:00 discessit-MCLF-XX systemd-logind[1034]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-08T13:50:33.754580+03:00 discessit-MCLF-XX systemd-logind[1034]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-08T13:50:35.201013+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-08T13:50:35.251537+03:00 discessit-MCLF-XX systemd-logind[1034]: New session c1 of user gdm.
+2025-09-08T13:50:35.287836+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-08T13:50:37.771846+03:00 discessit-MCLF-XX polkitd[1005]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-08T13:50:43.856527+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-08T13:50:43.856650+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-08T13:50:43.875730+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-08T13:50:43.901734+03:00 discessit-MCLF-XX systemd-logind[1034]: New session 2 of user discessit.
+2025-09-08T13:50:43.932925+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-08T13:50:44.332888+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-08T13:50:45.017726+03:00 discessit-MCLF-XX gnome-keyring-daemon[1994]: The Secret Service was already initialized
+2025-09-08T13:50:45.018295+03:00 discessit-MCLF-XX gnome-keyring-daemon[2229]: discover_other_daemon: 1
+2025-09-08T13:50:45.044304+03:00 discessit-MCLF-XX gnome-keyring-daemon[1994]: The PKCS#11 component was already initialized
+2025-09-08T13:50:45.045018+03:00 discessit-MCLF-XX gnome-keyring-daemon[2233]: discover_other_daemon: 1
+2025-09-08T13:50:45.045486+03:00 discessit-MCLF-XX gnome-keyring-daemon[2234]: discover_other_daemon: 1
+2025-09-08T13:50:46.775485+03:00 discessit-MCLF-XX polkitd[1005]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-08T13:50:48.065222+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-08T13:50:48.084702+03:00 discessit-MCLF-XX systemd-logind[1034]: Session c1 logged out. Waiting for processes to exit.
+2025-09-08T13:50:48.098246+03:00 discessit-MCLF-XX systemd-logind[1034]: Removed session c1.
+2025-09-08T13:50:48.135190+03:00 discessit-MCLF-XX polkitd[1005]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-08T13:50:58.497098+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-08T13:51:16.332847+03:00 discessit-MCLF-XX systemd-logind[1034]: The system will reboot now!
+2025-09-08T13:51:16.376833+03:00 discessit-MCLF-XX systemd-logind[1034]: System is rebooting.
+2025-09-08T13:51:16.443717+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-12T12:39:20.673846+03:00 discessit-MCLF-XX systemd-logind[1036]: New seat seat0.
+2025-09-12T12:39:20.673855+03:00 discessit-MCLF-XX systemd-logind[1036]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-12T12:39:20.673880+03:00 discessit-MCLF-XX systemd-logind[1036]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-12T12:39:20.673891+03:00 discessit-MCLF-XX systemd-logind[1036]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-12T12:39:20.673894+03:00 discessit-MCLF-XX systemd-logind[1036]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-12T12:39:20.673898+03:00 discessit-MCLF-XX systemd-logind[1036]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-12T12:39:20.673901+03:00 discessit-MCLF-XX systemd-logind[1036]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-12T12:39:20.673911+03:00 discessit-MCLF-XX polkitd[1002]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-12T12:39:20.673914+03:00 discessit-MCLF-XX polkitd[1002]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-12T12:39:20.676680+03:00 discessit-MCLF-XX polkitd[1002]: Finished loading, compiling and executing 16 rules
+2025-09-12T12:39:20.678955+03:00 discessit-MCLF-XX polkitd[1002]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-12T12:39:22.106655+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-12T12:39:22.154827+03:00 discessit-MCLF-XX systemd-logind[1036]: New session c1 of user gdm.
+2025-09-12T12:39:22.203976+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-12T12:39:24.612680+03:00 discessit-MCLF-XX polkitd[1002]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-12T12:39:35.928277+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-12T12:39:35.928447+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-12T12:39:35.988282+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-12T12:39:36.016467+03:00 discessit-MCLF-XX systemd-logind[1036]: New session 2 of user discessit.
+2025-09-12T12:39:36.044536+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-12T12:39:36.442084+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-12T12:39:37.100874+03:00 discessit-MCLF-XX gnome-keyring-daemon[2043]: The Secret Service was already initialized
+2025-09-12T12:39:37.101370+03:00 discessit-MCLF-XX gnome-keyring-daemon[2278]: discover_other_daemon: 1
+2025-09-12T12:39:37.106204+03:00 discessit-MCLF-XX gnome-keyring-daemon[2043]: The PKCS#11 component was already initialized
+2025-09-12T12:39:37.106730+03:00 discessit-MCLF-XX gnome-keyring-daemon[2281]: discover_other_daemon: 1
+2025-09-12T12:39:37.107131+03:00 discessit-MCLF-XX gnome-keyring-daemon[2282]: discover_other_daemon: 1
+2025-09-12T12:39:38.821682+03:00 discessit-MCLF-XX polkitd[1002]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-12T12:39:40.100960+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-12T12:39:40.142583+03:00 discessit-MCLF-XX systemd-logind[1036]: Session c1 logged out. Waiting for processes to exit.
+2025-09-12T12:39:40.150544+03:00 discessit-MCLF-XX systemd-logind[1036]: Removed session c1.
+2025-09-12T12:39:40.161262+03:00 discessit-MCLF-XX polkitd[1002]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-12T12:39:50.307528+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-12T12:39:51.584120+03:00 discessit-MCLF-XX systemd-logind[1036]: The system will power off now!
+2025-09-12T12:39:51.628074+03:00 discessit-MCLF-XX systemd-logind[1036]: System is powering down.
+2025-09-12T12:39:51.708208+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-14T10:15:46.800691+03:00 discessit-MCLF-XX systemd-logind[1033]: New seat seat0.
+2025-09-14T10:15:46.800714+03:00 discessit-MCLF-XX systemd-logind[1033]: Watching system buttons on /dev/input/event1 (Power Button)
+2025-09-14T10:15:46.800718+03:00 discessit-MCLF-XX systemd-logind[1033]: Watching system buttons on /dev/input/event0 (Lid Switch)
+2025-09-14T10:15:46.800722+03:00 discessit-MCLF-XX systemd-logind[1033]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-14T10:15:46.800726+03:00 discessit-MCLF-XX systemd-logind[1033]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-14T10:15:46.800730+03:00 discessit-MCLF-XX systemd-logind[1033]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-14T10:15:46.800734+03:00 discessit-MCLF-XX systemd-logind[1033]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-09-14T10:15:46.799770+03:00 discessit-MCLF-XX polkitd[994]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-14T10:15:46.799913+03:00 discessit-MCLF-XX polkitd[994]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-14T10:15:46.803635+03:00 discessit-MCLF-XX polkitd[994]: Finished loading, compiling and executing 16 rules
+2025-09-14T10:15:46.804326+03:00 discessit-MCLF-XX polkitd[994]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-14T10:15:48.229699+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-14T10:15:48.280056+03:00 discessit-MCLF-XX systemd-logind[1033]: New session c1 of user gdm.
+2025-09-14T10:15:48.309801+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-14T10:15:50.728607+03:00 discessit-MCLF-XX polkitd[994]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T10:15:57.067954+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-14T10:15:57.068055+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-14T10:15:57.088844+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-14T10:15:57.122956+03:00 discessit-MCLF-XX systemd-logind[1033]: New session 2 of user discessit.
+2025-09-14T10:15:57.178436+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-14T10:15:57.598199+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T10:15:58.271395+03:00 discessit-MCLF-XX gnome-keyring-daemon[1996]: The Secret Service was already initialized
+2025-09-14T10:15:58.271913+03:00 discessit-MCLF-XX gnome-keyring-daemon[2227]: discover_other_daemon: 1
+2025-09-14T10:15:58.276730+03:00 discessit-MCLF-XX gnome-keyring-daemon[1996]: The PKCS#11 component was already initialized
+2025-09-14T10:15:58.277081+03:00 discessit-MCLF-XX gnome-keyring-daemon[2229]: discover_other_daemon: 1
+2025-09-14T10:15:58.277470+03:00 discessit-MCLF-XX gnome-keyring-daemon[2231]: discover_other_daemon: 1
+2025-09-14T10:16:00.029028+03:00 discessit-MCLF-XX polkitd[994]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T10:16:01.332218+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-14T10:16:01.358505+03:00 discessit-MCLF-XX systemd-logind[1033]: Session c1 logged out. Waiting for processes to exit.
+2025-09-14T10:16:01.372117+03:00 discessit-MCLF-XX systemd-logind[1033]: Removed session c1.
+2025-09-14T10:16:01.373622+03:00 discessit-MCLF-XX polkitd[994]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-14T10:16:11.614801+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-14T10:17:01.742225+03:00 discessit-MCLF-XX CRON[4565]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T10:17:01.749255+03:00 discessit-MCLF-XX CRON[4565]: pam_unix(cron:session): session closed for user root
+2025-09-14T10:24:12.128625+03:00 discessit-MCLF-XX systemd-logind[1033]: Lid closed.
+2025-09-14T10:24:12.132136+03:00 discessit-MCLF-XX systemd-logind[1033]: Suspending...
+2025-09-14T10:39:06.260998+03:00 discessit-MCLF-XX systemd-logind[1033]: Lid opened.
+2025-09-14T10:39:06.566955+03:00 discessit-MCLF-XX systemd-logind[1033]: Operation 'suspend' finished.
+2025-09-14T10:39:11.789274+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T10:39:53.855665+03:00 discessit-MCLF-XX CRON[5970]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T10:39:53.858642+03:00 discessit-MCLF-XX CRON[5970]: pam_unix(cron:session): session closed for user root
+2025-09-14T10:45:01.807514+03:00 discessit-MCLF-XX CRON[6162]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T10:45:01.812991+03:00 discessit-MCLF-XX CRON[6162]: pam_unix(cron:session): session closed for user root
+2025-09-14T10:55:01.824305+03:00 discessit-MCLF-XX CRON[6813]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T10:55:01.828232+03:00 discessit-MCLF-XX CRON[6813]: pam_unix(cron:session): session closed for user root
+2025-09-14T11:05:01.839254+03:00 discessit-MCLF-XX CRON[7272]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T11:05:01.890700+03:00 discessit-MCLF-XX CRON[7272]: pam_unix(cron:session): session closed for user root
+2025-09-14T11:15:01.855114+03:00 discessit-MCLF-XX CRON[7494]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T11:15:01.859104+03:00 discessit-MCLF-XX CRON[7494]: pam_unix(cron:session): session closed for user root
+2025-09-14T11:17:01.868406+03:00 discessit-MCLF-XX CRON[7533]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T11:17:01.876237+03:00 discessit-MCLF-XX CRON[7533]: pam_unix(cron:session): session closed for user root
+2025-09-14T11:25:01.883950+03:00 discessit-MCLF-XX CRON[7851]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T11:25:01.888880+03:00 discessit-MCLF-XX CRON[7851]: pam_unix(cron:session): session closed for user root
+2025-09-14T11:30:01.897398+03:00 discessit-MCLF-XX CRON[7992]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T11:30:01.949670+03:00 discessit-MCLF-XX CRON[7992]: pam_unix(cron:session): session closed for user root
+2025-09-14T11:30:11.782606+03:00 discessit-MCLF-XX systemd-logind[1033]: Lid closed.
+2025-09-14T11:30:11.786438+03:00 discessit-MCLF-XX systemd-logind[1033]: Suspending...
+2025-09-14T11:55:32.362235+03:00 discessit-MCLF-XX systemd-logind[1033]: Lid opened.
+2025-09-14T11:55:32.668033+03:00 discessit-MCLF-XX systemd-logind[1033]: Operation 'suspend' finished.
+2025-09-14T11:55:37.174419+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T11:58:13.684874+03:00 discessit-MCLF-XX systemd-logind[1033]: The system will suspend now!
+2025-09-14T11:58:16.383708+03:00 discessit-MCLF-XX systemd-logind[1033]: Operation 'suspend' finished.
+2025-09-14T11:58:18.975574+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:auth): authentication failure; logname=discessit uid=0 euid=0 tty=/dev/tty1 ruser= rhost=  user=discessit
+2025-09-14T11:58:24.530322+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:auth): authentication failure; logname=discessit uid=0 euid=0 tty=/dev/tty1 ruser= rhost=  user=discessit
+2025-09-14T11:58:29.518647+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T12:05:01.908617+03:00 discessit-MCLF-XX CRON[8815]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:05:01.913970+03:00 discessit-MCLF-XX CRON[8815]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:15:01.967766+03:00 discessit-MCLF-XX CRON[9144]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:15:01.973483+03:00 discessit-MCLF-XX CRON[9144]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:17:01.981208+03:00 discessit-MCLF-XX CRON[9188]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:17:01.989250+03:00 discessit-MCLF-XX CRON[9188]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:25:01.993242+03:00 discessit-MCLF-XX CRON[9449]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:25:01.998168+03:00 discessit-MCLF-XX CRON[9449]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:30:02.007005+03:00 discessit-MCLF-XX CRON[9661]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:30:02.015162+03:00 discessit-MCLF-XX CRON[9661]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:35:01.018221+03:00 discessit-MCLF-XX CRON[9802]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:35:01.026167+03:00 discessit-MCLF-XX CRON[9802]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:45:01.032258+03:00 discessit-MCLF-XX CRON[10103]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:45:01.037934+03:00 discessit-MCLF-XX CRON[10103]: pam_unix(cron:session): session closed for user root
+2025-09-14T12:55:01.047465+03:00 discessit-MCLF-XX CRON[10759]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T12:55:01.051692+03:00 discessit-MCLF-XX CRON[10759]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:05:01.063484+03:00 discessit-MCLF-XX CRON[11120]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T13:05:01.069759+03:00 discessit-MCLF-XX CRON[11120]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:15:01.081508+03:00 discessit-MCLF-XX CRON[11719]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T13:15:01.085597+03:00 discessit-MCLF-XX CRON[11719]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:17:01.094290+03:00 discessit-MCLF-XX CRON[11988]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T13:17:01.102204+03:00 discessit-MCLF-XX CRON[11988]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:25:01.109663+03:00 discessit-MCLF-XX CRON[12367]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T13:25:01.113914+03:00 discessit-MCLF-XX CRON[12367]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:30:01.124983+03:00 discessit-MCLF-XX CRON[13504]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T13:30:01.127670+03:00 discessit-MCLF-XX CRON[13504]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:35:01.137055+03:00 discessit-MCLF-XX CRON[13667]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T13:35:01.140996+03:00 discessit-MCLF-XX CRON[13667]: pam_unix(cron:session): session closed for user root
+2025-09-14T13:41:03.118502+03:00 discessit-MCLF-XX systemd-logind[1033]: The system will power off now!
+2025-09-14T13:41:03.166114+03:00 discessit-MCLF-XX systemd-logind[1033]: System is powering down.
+2025-09-14T13:41:03.268410+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session closed for user discessit
+2025-09-14T15:53:51.675127+03:00 discessit-MCLF-XX systemd-logind[1035]: New seat seat0.
+2025-09-14T15:53:53.148525+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-14T15:53:53.197081+03:00 discessit-MCLF-XX systemd-logind[1035]: New session c1 of user gdm.
+2025-09-14T15:53:53.231836+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-14T15:53:55.774118+03:00 discessit-MCLF-XX polkitd[1002]: Registered Authentication Agent for unix-session:c1 (system bus name :1.35 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T15:54:01.368418+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-14T15:54:01.368632+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-14T15:54:01.421412+03:00 discessit-MCLF-XX gdm-password]: pam_unix(gdm-password:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-14T15:54:01.442941+03:00 discessit-MCLF-XX systemd-logind[1035]: New session 2 of user discessit.
+2025-09-14T15:54:01.472500+03:00 discessit-MCLF-XX (systemd): pam_unix(systemd-user:session): session opened for user discessit(uid=1000) by discessit(uid=0)
+2025-09-14T15:54:01.864145+03:00 discessit-MCLF-XX gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T15:54:02.501972+03:00 discessit-MCLF-XX gnome-keyring-daemon[2036]: The Secret Service was already initialized
+2025-09-14T15:54:02.502475+03:00 discessit-MCLF-XX gnome-keyring-daemon[2269]: discover_other_daemon: 1
+2025-09-14T15:54:02.524577+03:00 discessit-MCLF-XX gnome-keyring-daemon[2036]: The PKCS#11 component was already initialized
+2025-09-14T15:54:02.525525+03:00 discessit-MCLF-XX gnome-keyring-daemon[2273]: discover_other_daemon: 1
+2025-09-14T15:54:02.525595+03:00 discessit-MCLF-XX gnome-keyring-daemon[2274]: discover_other_daemon: 1
+2025-09-14T15:54:04.280729+03:00 discessit-MCLF-XX polkitd[1002]: Registered Authentication Agent for unix-session:2 (system bus name :1.77 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T15:54:05.605628+03:00 discessit-MCLF-XX gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-14T15:54:05.625529+03:00 discessit-MCLF-XX systemd-logind[1035]: Session c1 logged out. Waiting for processes to exit.
+2025-09-14T15:54:05.634648+03:00 discessit-MCLF-XX systemd-logind[1035]: Removed session c1.
+2025-09-14T15:54:05.636913+03:00 discessit-MCLF-XX polkitd[1002]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.35, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-14T15:54:16.020040+03:00 discessit-MCLF-XX (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-14T15:55:01.543782+03:00 discessit-MCLF-XX CRON[4662]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T15:55:01.548721+03:00 discessit-MCLF-XX CRON[4662]: pam_unix(cron:session): session closed for user root
+2025-09-14T16:00:12.102535+03:00 discessit-MCLF-XX systemd-logind[1035]: Watching system buttons on /dev/input/event8 (2.4G Mouse Consumer Control)
+2025-09-14T16:00:12.103251+03:00 discessit-MCLF-XX systemd-logind[1035]: Watching system buttons on /dev/input/event9 (2.4G Mouse System Control)
+2025-09-14T16:00:12.111153+03:00 discessit-MCLF-XX systemd-logind[1035]: Watching system buttons on /dev/input/event5 (2.4G Mouse)
+2025-09-14T16:03:25.552466+03:00 discessit-MCLF-XX sudo: discessit : TTY=pts/0 ; PWD=/home/discessit ; USER=root ; COMMAND=/usr/bin/cp /var/log/syslog /var/log/auth.log /var/log/dpkg.log /home/discessit/EDU/ospractise/lab1/lab1/gr9sub2/Косцов_Артём/
+2025-09-14T16:03:25.553574+03:00 discessit-MCLF-XX sudo: pam_unix(sudo:session): session opened for user root(uid=0) by discessit(uid=1000)
