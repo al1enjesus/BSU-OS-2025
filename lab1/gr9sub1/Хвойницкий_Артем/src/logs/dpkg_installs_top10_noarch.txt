@@ -1,0 +1,10 @@
+1 zstd
+1 zlib1g
+1 zip
+1 zenity-common
+1 zenity
+1 yelp-xsl
+1 yelp
+1 yaru-theme-sound
+1 yaru-theme-icon
+1 yaru-theme-gtk
