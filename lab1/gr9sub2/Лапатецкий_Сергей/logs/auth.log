@@ -1,0 +1,153 @@
+2025-09-14T16:41:08.436638+00:00 killerser-desktop polkitd[818]: Finished loading, compiling and executing 16 rules
+2025-09-14T16:41:08.437912+00:00 killerser-desktop polkitd[818]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-14T16:41:09.804950+00:00 killerser-desktop useradd[1250]: new group: name=killerser, GID=1000
+2025-09-14T16:41:09.805000+00:00 killerser-desktop useradd[1250]: new user: name=killerser, UID=1000, GID=1000, home=/home/killerser, shell=/bin/bash, from=none
+2025-09-14T16:41:09.805476+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'adm'
+2025-09-14T16:41:09.805506+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'cdrom'
+2025-09-14T16:41:09.805522+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'sudo'
+2025-09-14T16:41:09.805589+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'dip'
+2025-09-14T16:41:09.805620+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'plugdev'
+2025-09-14T16:41:09.805650+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'users'
+2025-09-14T16:41:09.805662+00:00 killerser-desktop useradd[1250]: add 'killerser' to group 'lpadmin'
+2025-09-14T16:41:09.805688+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'adm'
+2025-09-14T16:41:09.805738+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'cdrom'
+2025-09-14T16:41:09.805751+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'sudo'
+2025-09-14T16:41:09.805762+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'dip'
+2025-09-14T16:41:09.805773+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'plugdev'
+2025-09-14T16:41:09.805788+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'users'
+2025-09-14T16:41:09.805799+00:00 killerser-desktop useradd[1250]: add 'killerser' to shadow group 'lpadmin'
+2025-09-14T16:41:09.836598+00:00 killerser-desktop passwd[1258]: password for 'killerser' changed by 'root'
+2025-09-14T16:41:22.660223+00:00 killerser-desktop gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-14T16:41:22.688385+00:00 killerser-desktop systemd-logind[840]: New session c1 of user gdm.
+2025-09-14T16:41:22.699217+00:00 killerser-desktop (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-14T16:41:24.150037+00:00 killerser-desktop polkitd[818]: Registered Authentication Agent for unix-session:c1 (system bus name :1.44 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T16:42:01.835183+00:00 killerser-desktop gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-14T16:42:01.835275+00:00 killerser-desktop gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-14T16:42:01.843888+00:00 killerser-desktop gdm-password]: pam_unix(gdm-password:session): session opened for user killerser(uid=1000) by killerser(uid=0)
+2025-09-14T16:42:01.861827+00:00 killerser-desktop systemd-logind[840]: New session 2 of user killerser.
+2025-09-14T16:42:01.872599+00:00 killerser-desktop (systemd): pam_unix(systemd-user:session): session opened for user killerser(uid=1000) by killerser(uid=0)
+2025-09-14T16:42:02.022633+00:00 killerser-desktop gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T16:42:02.290446+00:00 killerser-desktop gnome-keyring-daemon[2310]: The PKCS#11 component was already initialized
+2025-09-14T16:42:02.290598+00:00 killerser-desktop gnome-keyring-daemon[2524]: discover_other_daemon: 1
+2025-09-14T16:42:02.290780+00:00 killerser-desktop gnome-keyring-daemon[2527]: discover_other_daemon: 1
+2025-09-14T16:42:02.290911+00:00 killerser-desktop gnome-keyring-daemon[2310]: The Secret Service was already initialized
+2025-09-14T16:42:02.291243+00:00 killerser-desktop gnome-keyring-daemon[2528]: discover_other_daemon: 1
+2025-09-14T16:42:02.964949+00:00 killerser-desktop polkitd[818]: Registered Authentication Agent for unix-session:2 (system bus name :1.83 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T16:42:03.390849+00:00 killerser-desktop gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-14T16:42:03.404134+00:00 killerser-desktop systemd-logind[840]: Session c1 logged out. Waiting for processes to exit.
+2025-09-14T16:42:03.416760+00:00 killerser-desktop polkitd[818]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.44, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-14T16:42:03.420359+00:00 killerser-desktop systemd-logind[840]: Removed session c1.
+2025-09-14T16:42:13.700193+00:00 killerser-desktop (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-14T16:45:01.374036+00:00 killerser-desktop CRON[4118]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T16:45:01.376038+00:00 killerser-desktop CRON[4118]: pam_unix(cron:session): session closed for user root
+2025-09-14T16:45:03.763962+00:00 killerser-desktop systemd-logind[840]: The system will power off now!
+2025-09-14T16:45:03.779109+00:00 killerser-desktop systemd-logind[840]: System is powering down.
+2025-09-14T16:45:03.794794+00:00 killerser-desktop gdm-password]: pam_unix(gdm-password:session): session closed for user killerser
+2025-09-14T19:49:51.746414+03:00 killerser-desktop systemd-logind[781]: New seat seat0.
+2025-09-14T19:49:51.746417+03:00 killerser-desktop systemd-logind[781]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-14T19:50:03.093080+03:00 killerser-desktop gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-14T19:50:03.131610+03:00 killerser-desktop systemd-logind[781]: New session c1 of user gdm.
+2025-09-14T19:50:03.154024+03:00 killerser-desktop (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-14T19:50:04.532806+03:00 killerser-desktop polkitd[766]: Registered Authentication Agent for unix-session:c1 (system bus name :1.38 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T19:50:10.727598+03:00 killerser-desktop systemd-logind[781]: The system will power off now!
+2025-09-14T19:50:10.761792+03:00 killerser-desktop systemd-logind[781]: System is powering down.
+2025-09-14T19:50:10.765996+03:00 killerser-desktop gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-14T19:50:10.780596+03:00 killerser-desktop polkitd[766]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.38, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-14T19:50:10.781758+03:00 killerser-desktop systemd-logind[781]: Session c1 logged out. Waiting for processes to exit.
+2025-09-14T19:50:43.312140+03:00 killerser-desktop systemd-logind[787]: New seat seat0.
+2025-09-14T19:50:43.312142+03:00 killerser-desktop systemd-logind[787]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-14T19:50:43.328064+03:00 killerser-desktop polkitd[766]: Finished loading, compiling and executing 16 rules
+2025-09-14T19:50:43.328663+03:00 killerser-desktop polkitd[766]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-14T19:50:54.569245+03:00 killerser-desktop gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=120) by (uid=0)
+2025-09-14T19:50:54.603416+03:00 killerser-desktop systemd-logind[787]: New session c1 of user gdm.
+2025-09-14T19:50:54.616617+03:00 killerser-desktop (systemd): pam_unix(systemd-user:session): session opened for user gdm(uid=120) by gdm(uid=0)
+2025-09-14T19:50:55.978690+03:00 killerser-desktop polkitd[766]: Registered Authentication Agent for unix-session:c1 (system bus name :1.38 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T19:50:59.394906+03:00 killerser-desktop gdm-password]: gkr-pam: unable to locate daemon control file
+2025-09-14T19:50:59.394992+03:00 killerser-desktop gdm-password]: gkr-pam: stashed password to try later in open session
+2025-09-14T19:50:59.404943+03:00 killerser-desktop gdm-password]: pam_unix(gdm-password:session): session opened for user killerser(uid=1000) by killerser(uid=0)
+2025-09-14T19:50:59.421997+03:00 killerser-desktop systemd-logind[787]: New session 2 of user killerser.
+2025-09-14T19:50:59.436306+03:00 killerser-desktop (systemd): pam_unix(systemd-user:session): session opened for user killerser(uid=1000) by killerser(uid=0)
+2025-09-14T19:50:59.607173+03:00 killerser-desktop gdm-password]: gkr-pam: unlocked login keyring
+2025-09-14T19:50:59.844845+03:00 killerser-desktop gnome-keyring-daemon[1884]: discover_other_daemon: 1
+2025-09-14T19:50:59.845188+03:00 killerser-desktop gnome-keyring-daemon[1691]: The PKCS#11 component was already initialized
+2025-09-14T19:50:59.845282+03:00 killerser-desktop gnome-keyring-daemon[1691]: The Secret Service was already initialized
+2025-09-14T19:50:59.845302+03:00 killerser-desktop gnome-keyring-daemon[1886]: discover_other_daemon: 1
+2025-09-14T19:50:59.845331+03:00 killerser-desktop gnome-keyring-daemon[1887]: discover_other_daemon: 1
+2025-09-14T19:51:00.539495+03:00 killerser-desktop polkitd[766]: Registered Authentication Agent for unix-session:2 (system bus name :1.75 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+2025-09-14T19:51:00.965954+03:00 killerser-desktop gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+2025-09-14T19:51:00.976377+03:00 killerser-desktop systemd-logind[787]: Session c1 logged out. Waiting for processes to exit.
+2025-09-14T19:51:00.989874+03:00 killerser-desktop polkitd[766]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.38, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-14T19:51:00.991732+03:00 killerser-desktop systemd-logind[787]: Removed session c1.
+2025-09-14T19:51:11.298007+03:00 killerser-desktop (sd-pam): pam_unix(systemd-user:session): session closed for user gdm
+2025-09-14T19:52:54.459877+03:00 killerser-desktop sudo: pam_unix(sudo:auth): authentication failure; logname=killerser uid=1000 euid=0 tty=/dev/pts/0 ruser=killerser rhost=  user=killerser
+2025-09-14T19:52:58.710779+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt update
+2025-09-14T19:52:58.711135+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:53:00.487139+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:53:24.577211+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt install build-essential
+2025-09-14T19:53:24.577576+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:53:48.151040+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:54:05.745585+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt install openssh-server
+2025-09-14T19:54:05.745982+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:54:09.840466+03:00 killerser-desktop useradd[3752]: new user: name=sshd, UID=122, GID=65534, home=/run/sshd, shell=/usr/sbin/nologin, from=none
+2025-09-14T19:54:12.202404+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:54:20.437624+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt install 7zip
+2025-09-14T19:54:20.438291+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:54:22.544931+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:54:26.561485+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt remove 7zip
+2025-09-14T19:54:26.561949+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:54:29.528789+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:54:31.728470+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt install 7zip
+2025-09-14T19:54:31.728872+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:54:33.849800+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:54:35.245000+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt remove 7zip
+2025-09-14T19:54:35.245520+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:54:38.225245+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:54:39.344954+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt install 7zip
+2025-09-14T19:54:39.345655+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:54:41.547718+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:55:01.196886+03:00 killerser-desktop CRON[4814]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T19:55:01.199210+03:00 killerser-desktop CRON[4814]: pam_unix(cron:session): session closed for user root
+2025-09-14T19:55:09.067071+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/apt install samba
+2025-09-14T19:55:09.067655+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:55:18.032145+03:00 killerser-desktop groupadd[5251]: group added to /etc/group: name=sambashare, GID=984
+2025-09-14T19:55:18.065146+03:00 killerser-desktop groupadd[5251]: group added to /etc/gshadow: name=sambashare
+2025-09-14T19:55:18.066392+03:00 killerser-desktop groupadd[5251]: new group: name=sambashare, GID=984
+2025-09-14T19:55:21.486963+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:57:10.445196+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/nano /etc/samba/smb.conf
+2025-09-14T19:57:10.445417+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:58:44.874659+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:59:17.215273+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/sbin/service smbd restart
+2025-09-14T19:59:17.215700+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:59:17.285056+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T19:59:31.562009+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/sbin/ufw allow samba
+2025-09-14T19:59:31.562568+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T19:59:31.679159+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T20:00:10.320399+03:00 killerser-desktop sudo: killerser : TTY=pts/0 ; PWD=/home/killerser ; USER=root ; COMMAND=/usr/bin/smbpasswd -a killerser
+2025-09-14T20:00:10.320851+03:00 killerser-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by killerser(uid=1000)
+2025-09-14T20:00:14.932195+03:00 killerser-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-14T20:05:01.204831+03:00 killerser-desktop CRON[6819]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-09-14T20:05:01.206582+03:00 killerser-desktop CRON[6819]: pam_unix(cron:session): session closed for user root
+2025-09-14T20:05:34.244846+03:00 killerser-desktop smbd: pam_unix(samba:session): session opened for user killerser(uid=1000) by (uid=0)
+2025-09-14T20:08:00.183757+03:00 killerser-desktop smbd: pam_unix(samba:session): session closed for user killerser
+2025-09-14T20:08:19.310999+03:00 killerser-desktop smbd: pam_unix(samba:session): session opened for user killerser(uid=1000) by (uid=0)
+2025-09-14T20:08:51.332305+03:00 killerser-desktop smbd: pam_unix(samba:session): session opened for user killerser(uid=1000) by (uid=0)
+2025-09-14T20:10:35.660913+03:00 killerser-desktop sshd[6941]: Server listening on 0.0.0.0 port 22.
+2025-09-14T20:10:35.661004+03:00 killerser-desktop sshd[6941]: Server listening on :: port 22.
+2025-09-14T20:10:47.780460+03:00 killerser-desktop sshd[6942]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.64.1  user=killerser
+2025-09-14T20:10:49.197174+03:00 killerser-desktop sshd[6942]: Failed password for killerser from 192.168.64.1 port 59484 ssh2
+2025-09-14T20:10:51.464288+03:00 killerser-desktop sshd[6942]: Accepted password for killerser from 192.168.64.1 port 59484 ssh2
+2025-09-14T20:10:51.465483+03:00 killerser-desktop sshd[6942]: pam_unix(sshd:session): session opened for user killerser(uid=1000) by killerser(uid=0)
+2025-09-14T20:10:51.469688+03:00 killerser-desktop systemd-logind[787]: New session 6 of user killerser.
+2025-09-14T20:10:54.108944+03:00 killerser-desktop sshd[7008]: Received disconnect from 192.168.64.1 port 59484:11: disconnected by user
+2025-09-14T20:10:54.109058+03:00 killerser-desktop sshd[7008]: Disconnected from user killerser 192.168.64.1 port 59484
+2025-09-14T20:10:54.109323+03:00 killerser-desktop sshd[6942]: pam_unix(sshd:session): session closed for user killerser
+2025-09-14T20:10:54.112285+03:00 killerser-desktop systemd-logind[787]: Session 6 logged out. Waiting for processes to exit.
+2025-09-14T20:10:54.112834+03:00 killerser-desktop systemd-logind[787]: Removed session 6.
+2025-09-14T20:10:58.073889+03:00 killerser-desktop sshd[7102]: Invalid user killer from 192.168.64.1 port 59486
+2025-09-14T20:10:59.506374+03:00 killerser-desktop sshd[7102]: pam_unix(sshd:auth): check pass; user unknown
+2025-09-14T20:10:59.506454+03:00 killerser-desktop sshd[7102]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.64.1 
+2025-09-14T20:11:00.903257+03:00 killerser-desktop sshd[7102]: Failed password for invalid user killer from 192.168.64.1 port 59486 ssh2
+2025-09-14T20:11:03.209512+03:00 killerser-desktop sshd[7102]: pam_unix(sshd:auth): check pass; user unknown
+2025-09-14T20:11:05.489313+03:00 killerser-desktop sshd[7102]: Failed password for invalid user killer from 192.168.64.1 port 59486 ssh2
+2025-09-14T20:11:08.958943+03:00 killerser-desktop sshd[7102]: Connection reset by invalid user killer 192.168.64.1 port 59486 [preauth]
+2025-09-14T20:11:08.959138+03:00 killerser-desktop sshd[7102]: PAM 1 more authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.64.1 
