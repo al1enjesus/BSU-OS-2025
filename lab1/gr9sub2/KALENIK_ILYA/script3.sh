@@ -6,4 +6,4 @@ cat /var/log/dpkg.log \
   | uniq -c \
   | sort -nr \
   | head -n 10\
-  | cut  -c5-8,16- 
+  | awk '{gsub(/install/, ""); print}'
