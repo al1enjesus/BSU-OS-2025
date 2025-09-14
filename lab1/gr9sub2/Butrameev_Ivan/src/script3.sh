@@ -1,3 +1,4 @@
+#!/bin/bash
 cat /var/log/dpkg.log \
 | cut -c21- \
 | grep -E '^install' \

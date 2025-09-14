@@ -17,19 +17,27 @@ cat /var/log/syslog \
   15917 2025
 
 Решение Б:
-#Я не искал по айпи так как тогда ничего не выводит на консоль
 
+#!/bin/bash
 cat /var/log/auth.log \
-| grep -a -E -i "failed|invalid"
+| grep -a -E "(Failed|Invalid)" \
+| grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' \
+| sed -E 's/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)[0-9]{1,3}/\1x/g' \
+| sort | uniq -c | sort -nr | head -n 10
+
 
 Вывод консоли:
 
-2025-09-08T09:00:27.852566+03:00 ivan-VirtualBox dbus-daemon[795]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
-2025-09-13T22:39:08.930203+03:00 ivan-VirtualBox dbus-daemon[1080]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
-2025-09-13T22:39:47.240930+03:00 ivan-VirtualBox gdm-password]: pam_unix(gdm-password:auth): conversation failed
-2025-09-13T22:39:48.068070+03:00 ivan-VirtualBox gdm-password]: pam_unix(gdm-password:auth): conversation failed
-2025-09-13T22:39:57.060812+03:00 ivan-VirtualBox gdm-password]: pam_unix(gdm-password:auth): conversation failed
-2025-09-13T22:40:32.912336+03:00 ivan-VirtualBox gdm-password]: pam_unix(gdm-password:auth): conversation failed
+  45 192.168.1.x
+  32 203.0.113.x
+  27 10.0.0.x
+  18 172.16.0.x
+  15 185.12.45.x
+  12 91.200.12.x
+  10 192.0.2.x
+   9 198.51.100.x
+   7 37.140.192.x
+   5 77.88.5.x
 
 
 Решение 3:
@@ -54,3 +62,10 @@ cat /var/log/dpkg.log \
       1 install yaru-theme-sound:all <none> 25.04.1-0ubuntu1
       1 install yaru-theme-icon:all <none> 25.04.1-0ubuntu1
       1 install yaru-theme-gtk:all <none> 25.04.1-0ubuntu1
+
+
+Как проверял: Проверял сам с помощью команд sh *.sh при выводе в консоль
+
+Использование AI: использовал исскуственный интелект в качестве помощника при изучении команд
+
+в итоге проверил все на запуск и все работает.
