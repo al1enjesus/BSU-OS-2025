@@ -1,5 +1,17 @@
 mkdir -p artifacts
 
+if [ ! -s src/lab-logs/syslog ]; then
+  echo "syslog is empty"
+fi
+
+if [ ! -s src/lab-logs/auth.log ]; then
+  echo "auth.log is empty"
+fi
+
+if [ ! -s src/lab-logs/dpkg.log ]; then
+  echo "dpkg.log is empty"
+fi
+
 awk '{
   for (i=1;i<=NF;i++) {
     str=tolower($i)

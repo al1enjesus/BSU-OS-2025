@@ -38,7 +38,7 @@ cp /var/log/pacman.log src/lab-logs/dpkg.log
 Помощь с нахождением аналогов логов Ubuntu на Arch. 
 
 ## Автоматическое воспроизведение
-Для автоматического воспроизведения решения всех заданий, нужно проделать все шаги по созданию аналогов логов выше, и затем запустить скрипт run.sh. Все результаты будут храниться в папке artifacts.
+Для автоматического воспроизведения решения всех заданий, нужно проделать все шаги по созданию аналогов логов выше, либо запустить скрипт generate-logs.sh, и затем запустить скрипт run.sh. Все результаты будут храниться в папке artifacts.
 
 ## Задание А
 Частотный анализ слов в syslog (TOP‑5)
@@ -125,8 +125,7 @@ head -n 10 src/lab-logs/dpkg.log
 ```
 
 Ожидаем примерно такой вывод : 
-```bash
-head -n 10 src/lab-logs/dpkg.log 
+```bash 
 [2025-08-01T22:03:47+0000] [PACMAN] Running 'pacman -r /mnt -Sy --noconfirm --config=/tmp/pacman.conf.e2Pn --disable-sandbox --cachedir=/mnt/var/cache/pacman/pkg --noconfirm base base-devel linux-firmware linux intel-ucode'
 [2025-08-01T22:03:47+0000] [PACMAN] synchronizing package lists
 [2025-08-01T22:04:53+0000] [ALPM] transaction started
