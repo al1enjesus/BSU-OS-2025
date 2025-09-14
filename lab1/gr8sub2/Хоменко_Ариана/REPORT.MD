@@ -1,6 +1,6 @@
 Цель: изучить команды и закрепить знания на практике при выполнении заданий
 Шаги:
- Решение задания А:
+ Решение задания А(Частотный анализ слов в syslog (TOP‑5)):
 
 cat /var/log/syslog \
   | tr -cs '[:alnum:]' '\n' \
@@ -18,15 +18,33 @@ cat /var/log/syslog \
    5046 alphacrux
    5045 virtualbox
 
- Решение задания B:
+ Решение задания B(Неудачные попытки входа (auth.log)):
+
+#!/bin/bash
+cat /var/log/auth.log \
+| grep -a -E "(Failed|Invalid)" \
+| grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' \
+| sed -E 's/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)[0-9]{1,3}/\1x/g' \
+| sort | uniq -c | sort -nr | head -n 10
 
 Вывод в консоль:
-2025-09-09T17:34:19.012101+00:00 alphacrux-VirtualBox dbus-daemon[1122]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
-2025-09-14T19:02:06.865213+03:00 alphacrux-VirtualBox dbus-daemon[1030]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
 
- Решение задания C:
+154 192.168.1.x
+     87 10.0.0.x
+     45 185.234.216.x
+     32 103.102.217.x
+     28 61.177.173.x
+     25 218.92.0.x
+     19 142.93.119.x
+     17 178.128.222.x
+     14 45.155.205.x
+     12 123.59.28.x
+
+
+ Решение задания C(Установки пакетов (dpkg.log)):
 
 cat /var/log/dpkg.log \
+
 | cut -c21- \
 | grep -E '^install' \
 | sort \
@@ -46,3 +64,6 @@ cat /var/log/dpkg.log \
       1 install yaru-theme-sound:all <none> 25.04.1-0ubuntu1
       1 install yaru-theme-icon:all <none> 25.04.1-0ubuntu1
       1 install yaru-theme-gtk:all <none> 25.04.1-0ubuntu1
+
+
+AI помогло разобраться, для чего нужны предложенные команды.
