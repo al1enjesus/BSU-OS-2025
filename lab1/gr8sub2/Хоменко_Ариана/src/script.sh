@@ -1,8 +1,8 @@
 #!/bin/bash
 cat /var/log/syslog \
 | tr -cs '[:alnum:]' '\n' \
-| tr '[:upper:]' '[:lower:]'\
+| tr '[:upper:]' '[:lower:]' \
 | sort \
-| uniq -c\
+| uniq -c \
 | sort -nr \
 | head -n 5
