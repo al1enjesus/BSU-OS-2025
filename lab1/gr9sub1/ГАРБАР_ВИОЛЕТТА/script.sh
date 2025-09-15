@@ -1,3 +1,8 @@
+echo "=== ЗАДАНИЕ А: TOP-5 слов в syslog ==="
+sudo cat /var/log/syslog | tr -cs '[:alnum:]' '\n' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 5
+
+
+echo -e "\n=== ЗАДАНИЕ Б: Анализ auth.log ==="
 # 1. Анализ типов аутентификации
 echo -e "\n1. ТИПЫ АУТЕНТИФИКАЦИИ И СЕРВИСЫ:"
 sudo grep -a '' /var/log/auth.log 2>/dev/null | awk '{print $5}' | sort | uniq -c | sort -nr | head -n 10
@@ -36,3 +41,7 @@ if [ "$ssh_ips" -gt 0 ]; then
 else
     echo "   Внешние подключения по SSH не обнаружены (только локальные входы)"
 fi
+
+
+echo -e "\n=== ЗАДАНИЕ В: TOP-10 пакетов ==="
+sudo grep 'install' /var/log/dpkg.log | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr | head -n 10
