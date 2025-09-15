@@ -1,0 +1,5 @@
+  49153 archlinux
+  49136 sep
+  23817 kernel
+  13426 systemd
+   4454 device

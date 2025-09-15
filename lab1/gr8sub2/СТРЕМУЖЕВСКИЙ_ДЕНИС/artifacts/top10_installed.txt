@@ -1,0 +1,10 @@
+      2 python-urllib3
+      2 python-typing_extensions
+      2 python-requests
+      2 python-pillow
+      2 python-idna
+      2 python-configobj
+      2 python-charset-normalizer
+      2 libimagequant
+      2 goland
+      2 fmt

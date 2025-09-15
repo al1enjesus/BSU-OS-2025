@@ -1,0 +1,10 @@
+      6 linux-headers
+      6 linux
+      4 libphonenumber
+      4 harfbuzz-icu
+      4 harfbuzz
+      3 systemd-sysvcompat
+      3 systemd-libs
+      3 systemd
+      3 nvidia-utils
+      3 nvidia-dkms
