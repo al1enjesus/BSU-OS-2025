@@ -1,0 +1,10 @@
+      1 zstd:arm64
+      1 zlib1g:arm64
+      1 zip:arm64
+      1 zerofree:arm64
+      1 zenity-common:all
+      1 zenity:arm64
+      1 yelp-xsl:all
+      1 yelp:arm64
+      1 yaru-theme-sound:all
+      1 yaru-theme-icon:all
