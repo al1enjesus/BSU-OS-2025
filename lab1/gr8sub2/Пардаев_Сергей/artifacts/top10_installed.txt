@@ -1,0 +1,10 @@
+      5 hunspell
+      3 zxing-cpp
+      3 xmlsec
+      3 xapp
+      3 vte-common
+      3 vte3
+      3 tl-expected
+      3 timeshift
+      3 run-parts
+      3 rnnoise
