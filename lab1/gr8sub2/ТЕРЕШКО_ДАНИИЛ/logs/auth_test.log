@@ -1,0 +1,10 @@
+Sep 15 10:23:45 ubuntu sshd[1234]: Failed password for invalid user admin from 192.168.1.15 port 22 ssh2
+Sep 15 10:24:12 ubuntu sshd[1235]: Invalid user test from 192.168.1.20 port 22
+Sep 15 10:25:33 ubuntu sshd[1236]: Failed password for root from 10.0.0.5 port 22 ssh2
+Sep 15 10:26:47 ubuntu sshd[1237]: Failed password for invalid user guest from 192.168.1.15 port 22 ssh2
+Sep 15 10:27:19 ubuntu sshd[1238]: Invalid user admin from 10.0.0.8 port 22
+Sep 15 10:28:05 ubuntu sshd[1239]: Failed password for root from 192.168.1.20 port 22 ssh2
+Sep 15 10:29:27 ubuntu sshd[1240]: Failed password for invalid user test from 10.0.0.5 port 22 ssh2
+Sep 15 10:30:44 ubuntu sshd[1241]: Invalid user guest from 192.168.1.15 port 22
+Sep 15 10:31:12 ubuntu sshd[1242]: Failed password for root from 10.0.0.8 port 22 ssh2
+Sep 15 10:32:35 ubuntu sshd[1243]: Failed password for invalid user admin from 192.168.1.20 port 22 ssh2
