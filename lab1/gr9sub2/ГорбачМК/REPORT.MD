@@ -37,10 +37,10 @@
 	Шаги выполнения:
 /var/log/auth.log 
 Вместо '/var/log/auth.log' использовал journalctl для получения логов SSH:
-sudo journalctl -u ssh.service --since "30 days ago" --no-pager > lab1/gr6sub1/ФАМИЛИЯ_ИМЯ/logs/auth.txt
+sudo journalctl -u ssh.service --since "30 days ago" --no-pager > lab1/gr9sub2/ГорбачМК/logs/auth.txt
 
 Далее запустил поиск неудачных входов:
-grep -E "Failed|Invalid" lab1/gr6sub1/ФАМИЛИЯ_ИМЯ/logs/auth.txt \
+grep -E "Failed|Invalid" lab1/gr9sub2/ГорбачМК/logs/auth.txt \
   | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' \
   | sed -E 's/([0-9]+\.[0-9]+\.[0-9]+\.)[0-9]+/\1x/g' \
   | sort | uniq -c | sort -nr | head -n 10
