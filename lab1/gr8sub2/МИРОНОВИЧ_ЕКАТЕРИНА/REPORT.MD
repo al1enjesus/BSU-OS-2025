@@ -16,13 +16,15 @@ ubuntu-24.04.3-live-server-arm64
 ### Решение:
 Для обработки данных был составлен конвейер из шести последовательных фильтров:
 
-``` cat /var/log/syslog 
+``` 
+cat /var/log/syslog 
 | tr -cs '[:alnum:]' '\n' 
 | tr '[:upper:]' '[:lower:]' 
 | sort 
 | uniq -c 
 | sort -nr 
-| head -n 5 ```
+| head -n 5 
+```
 
   1.  cat /var/log/syslog 
     Выводит содержимое всего файла лога
@@ -167,4 +169,5 @@ grep " install " /var/log/dpkg.log | awk '{print $5}' | sort | uniq -c | sort -n
 ## Использование AI
 
 С помощью AI я ознакомилась с командами и их функционалом, такими как: `cut`, `awk` , `tr` , `zgrep`. 
+
 
