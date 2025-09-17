@@ -10,7 +10,7 @@ ubuntu-24.04.3-live-server-arm64
 - `/var/log/auth.log` (Задание Б)
 - `/var/log/dpkg.log \u0438 /var/log/dpkg.log.*.gz` (Задание С)
 
-### Задание фА)
+### Задание А)
 Подсчитать 5 самых частых “слов” в /var/log/syslog
 
 ### Решение:
@@ -169,5 +169,6 @@ grep " install " /var/log/dpkg.log | awk '{print $5}' | sort | uniq -c | sort -n
 ## Использование AI
 
 С помощью AI я ознакомилась с командами и их функционалом, такими как: `cut`, `awk` , `tr` , `zgrep`. 
+
 
 
