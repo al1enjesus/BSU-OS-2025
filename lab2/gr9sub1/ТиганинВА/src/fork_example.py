@@ -8,6 +8,7 @@ def child_process(name):
 
 def main():
     print(f"Parent: My PID is {os.getpid()}", flush=True)
+    fork_result2 = -1
 
     fork_result1 = os.fork()
     if fork_result1 == 0:
@@ -18,7 +19,7 @@ def main():
         if fork_result2 == 0:
             child_process("child_B")
 
-    time.sleep(2)
+    time.sleep(50)
 
     if fork_result1 > 0 and fork_result2 > 0:
         child_pid1, status1 = os.waitpid(fork_result1, 0)
