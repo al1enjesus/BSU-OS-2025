@@ -19,13 +19,13 @@ Ubuntu 24.04.3 на VirtualBox.
     Код представлен в файле fork_example.c, сборка и запуск файла с помощью Makefile.
   
 Результат:
-
+~~~
     parent: PID=5597
     child_A: PID=5598, PPID=5597
     child_B: PID=5599, PPID=5597
     child exited with code: 0
     child exited with code: 0
-
+~~~
 
 Выводы:
    Родительский процесс успешно создает и ожидает завершения двух дочерних процессов. Продемонстрирована иерархия процессов.
@@ -43,32 +43,32 @@ Ubuntu 24.04.3 на VirtualBox.
     - Сравнить информацию, полученную обеими командами. 
 
 Команда:
-
+~~~
    ps -ef --forest | head -n 30 | cat
-
+~~~
 
 Часть резальтата вывода (первые 3 строки - достаточно для демонстрации):
-
+~~~
     UID          PID    PPID  C STIME TTY          TIME CMD
     root           2       0  0 16:22 ?        00:00:00 [kthreadd]
     root           3       2  0 16:22 ?        00:00:00  \_ [pool_workqueue_release]
     root           4       2  0 16:22 ?        00:00:00  \_ [kworker/R-rcu_gp]
-
+~~~
 
 Команда:
-
+~~~
    pstree -p | head -n 50 | cat
-    
+~~~ 
 
 Часть результата вывода (первые 6 строк - достаточно для демонстрации):
-
+~~~
 systemd(1)-+-ModemManager(1386)-+-{ModemManager}(1400)
            |                    |-{ModemManager}(1402)
            |                    `-{ModemManager}(1404)
            |-NetworkManager(1361)-+-{NetworkManager}(1405)
            |                      |-{NetworkManager}(1406)
            |                      `-{NetworkManager}(1407)
-
+~~~
 
 Выводы:
     Данные команды позволяют наглядно получить представление иерархии процессов в системе. Первая команда помогает получить более полную информацию о каждом процессе. Вторая же команда помогает лучше понять иерархию процессов, благодаря визуализации в виде дерева. 
@@ -87,22 +87,22 @@ systemd(1)-+-ModemManager(1386)-+-{ModemManager}(1400)
     - Проанализировать полученную информацию
     
 Команда:
-
+~~~
     cat /proc/5554/cmdline | tr '\0' ' '; echo
-
+~~~
 
 Результат:
-
+~~~
     bash
-
+~~~
 
 Команда:
-
+~~~
     head -n 20 /proc/5554/status
-
+~~~
 
 Результат:
-
+~~~
     Name:	bash
     Umask:	0002
     State:	S (sleeping)
@@ -123,20 +123,20 @@ systemd(1)-+-ModemManager(1386)-+-{ModemManager}(1400)
     VmPeak:	   19932 kB
     VmSize:	   19932 kB
     VmLck:	       0 kB
-
+~~~
 
 Команда:
-
+~~~
     ls -l /proc/5554/fd
-
+~~~
 
 Результат:
-
+~~~
     lrwx------ 1 chris chris 64 сен 20 16:52 0 -> /dev/pts/0
     lrwx------ 1 chris chris 64 сен 20 16:52 1 -> /dev/pts/0
     lrwx------ 1 chris chris 64 сен 20 16:52 2 -> /dev/pts/0
     lrwx------ 1 chris chris 64 сен 20 16:52 255 -> /dev/pts/0
-   
+~~~ 
     
 Выводы:
    Все три комнды работают корректно и выдают ожидаемую информацию. Первая команда позволяет узнать полную командную строку процесса, вторая команда содержит информацию о текущем процессе, а третья - показывает все открытые процессом файлы и сокеты.
@@ -154,25 +154,25 @@ systemd(1)-+-ModemManager(1386)-+-{ModemManager}(1400)
     - Анализ полученных данных
     
 Команда для TOP‑5 по CPU:
-
+~~~
     ps -eo pid,comm,%cpu,etime --sort=-%cpu | head -n 6
-
+~~~
 
 Результат:
-
+~~~
     PID COMMAND         %CPU     ELAPSED
    2476 gnome-shell      2.2       54:04
    1002 snapd            0.4       54:46
    5547 gnome-terminal-  0.2       42:49
    3216 ibus-extension-  0.1       53:38
    1325 VBoxDRMClient    0.1       54:40
-
+~~~
 
 Краткий вывод:
    Основные процессы - это компоненты графической среды и фоновые службы.
 
 Команда для TOP‑5 по памяти:
-
+~~~
     ps -eo pid,comm,%mem,rss --sort=-%mem | head -n 6 | awk '
     NR==1 {
         printf "%-8s %-20s %-6s %-10s %-10s\n", $1, $2, $3, $4, "RSS(MiB)"
@@ -180,34 +180,34 @@ systemd(1)-+-ModemManager(1386)-+-{ModemManager}(1400)
     NR>1 {
         printf "%-8s %-20s %-6s %-10s %-10.1f\n", $1, $2, $3, $4, $4/1024
     }'
-
+~~~
 
 Результат:
-
+~~~
     PID      COMMAND              %MEM   RSS        RSS(MiB)  
     2476     gnome-shell          5.6    454892     444,2     
     3765     mutter-x11-fram      1.2    101884     99,5      
     3552     gsd-xsettings        1.0    84212      82,2      
     3341     Xwayland             0.8    71056      69,4      
     3711     gjs                  0.8    65768      64,2   
-
+~~~
 
 Краткий вывод:
     Наибольшую нагрузку создает графическая среда GNOME.
 
 Команда для TOP‑5 по IO:
-
+~~~
     sudo iotop -b -n 1 -k | head -n 12 | tail -n 5
-
+~~~
 
 Результат:
-
+~~~
      5 be/0 root        0.00 K/s    0.00 K/s ?unavailable?  [kworker/R-sync_wq]
      6 be/0 root        0.00 K/s    0.00 K/s ?unavailable?  [kworker/R-kvfree_rcu_reclaim]
      7 be/0 root        0.00 K/s    0.00 K/s ?unavailable?  [kworker/R-slub_flushwq]
      8 be/0 root        0.00 K/s    0.00 K/s ?unavailable?  [kworker/R-netns]
     11 be/0 root        0.00 K/s    0.00 K/s ?unavailable?  [kworker/0:0H-events_highpri]
-
+~~~
 
 Краткий вывод:
     Система в момент проверки не испытавала значительную нагрузку на подсистему IO.
@@ -230,9 +230,9 @@ systemd(1)-+-ModemManager(1386)-+-{ModemManager}(1400)
     Код утилиты предоставлен в файле ptree.c
   
 Результат:
-    
+~~~    
    ptree(6815) ← bash(6713) ← gnome-terminal-(6705) ← systemd(1637) ← systemd(1)
-
+~~~
     
 Выводы:
    Успешно создана утилита, которая отображает цепочку родительских процессов. 
