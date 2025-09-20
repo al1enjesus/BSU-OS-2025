@@ -11,7 +11,7 @@ void print_chain(pid_t pid) {
     pid_t ppid;
     int first = 1;
 
-    while (pid != 1 && pid != 0) {
+    while (pid != 0 && pid != 1) {
         snprintf(path, sizeof(path), "/proc/%d/comm", pid);
         f = fopen(path, "r");
         if (f) {
@@ -48,17 +48,9 @@ void print_chain(pid_t pid) {
     }
 
     if (pid == 1) {
-        snprintf(path, sizeof(path), "/proc/1/comm", pid);
-        f = fopen(path, "r");
-        if (f) {
-            if (fgets(proc_name, sizeof(proc_name), f)) {
-                proc_name[strcspn(proc_name, "\n")] = 0;
-            }
-            fclose(f);
-        } else {
-            strcpy(proc_name, "systemd");
-        }
-        printf(" ← %s(1)", proc_name);
+        printf(" ← %s(1)", (first ? "systemd" : "init"));
+    } else if (pid == 0) {
+        printf(" (unknown)");
     }
 
     printf("\n");
