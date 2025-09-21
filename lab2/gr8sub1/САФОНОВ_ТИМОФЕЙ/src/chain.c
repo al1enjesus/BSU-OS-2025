@@ -4,6 +4,8 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/types.h> 
+#include <errno.h> 
+#include <limits.h>
 
 #define MAX_LINE 256
 #define MAX_CHAIN 100
@@ -13,6 +15,7 @@ pid_t get_ppid(pid_t pid) {
     char line[MAX_LINE];
     FILE *file;
     pid_t ppid = -1;
+    char *endptr;
     
     snprintf(path, sizeof(path), "/proc/%d/status", pid);
     
@@ -23,7 +26,17 @@ pid_t get_ppid(pid_t pid) {
     
     while (fgets(line, sizeof(line), file)) {
         if (strncmp(line, "PPid:", 5) == 0) {
-            sscanf(line + 5, "%d", &ppid);
+            long val = strtol(line + 5, &endptr, 10);
+            
+            if (endptr == line + 5) {
+                fprintf(stderr, "Ошибка: не удалось преобразовать PPid для процесса %d\n", pid);
+                ppid = -1;
+            } else if (val < 0 || val > INT_MAX) {
+                fprintf(stderr, "Ошибка: некорректное значение PPid %ld для процесса %d\n", val, pid);
+                ppid = -1;
+            } else {
+                ppid = (pid_t)val;
+            }
             break;
         }
     }
