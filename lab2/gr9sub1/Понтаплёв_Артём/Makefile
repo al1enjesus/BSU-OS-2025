@@ -1,0 +1,27 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -O2
+SRC_DIR = src
+BIN_DIR = bin
+TARGETS = $(BIN_DIR)/fork_example $(BIN_DIR)/ptree
+
+all: $(TARGETS)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+$(BIN_DIR)/fork_example: $(SRC_DIR)/fork_example.c | $(BIN_DIR)
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(BIN_DIR)/ptree: $(SRC_DIR)/ptree.c | $(BIN_DIR)
+	$(CC) $(CFLAGS) -o $@ $<
+
+run_fork: $(BIN_DIR)/fork_example
+	./$(BIN_DIR)/fork_example
+
+run_ptree: $(BIN_DIR)/ptree
+	./$(BIN_DIR)/ptree
+
+run_fork_tree: $(BIN_DIR)/fork_example
+	./$(BIN_DIR)/fork_example
+
+.PHONY: all run-fork run-ptree run-fork-tree
