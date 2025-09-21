@@ -277,4 +277,4 @@ CPU — процесс активно выполняется; IO — проце�
 
 ## Примечания
 
-* Скриншоты: `01_fork_example_output.png`, `02_ps_forest.png`, `03_pstree_tree.png`, `04_proc_shell_cmdline_status_fd.png`, `05_top_snapshot_head.png`, `06_ps_cpu_top.png`, `07_ps_mem_top.png`, `08_pidstat_cpu_mem_io.png`.
+* Скриншоты: `01_fork_example_output.png`, `02_ps_forest.png`, `04_proc_shell_cmdline_status_fd.png`, `05_top_snapshot_head.png`, `06_ps_cpu_top.png`, `07_ps_mem_top.png`.
