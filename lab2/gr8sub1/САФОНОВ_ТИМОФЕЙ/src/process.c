@@ -10,13 +10,18 @@ int main(int argc, char *argv[]) {
 
     pid_t child1, child2;
     int status1, status2;
-    const int sleep_time = (argc > 1) ? atoi(argv[1]) : 10;
+    char *endptr;
+    const int sleep_time = (argc > 1) ? strtol(argv[1], &endptr, 10) : 10;
+    if (argc > 1 && (*endptr != '\0' || sleep_time <= 0)) {
+    fprintf(stderr, "Некорректное время ожидания\n");
+    return 1;
+    }
 
     child1 = fork();
     if (child1 == 0) {
         printf("child1: PID=%d, PPID=%d\n", getpid(), getppid());
         fflush(stdout);
-        sleep(n);
+        sleep(sleep_time);
         exit(0);
     }
 
@@ -24,7 +29,7 @@ int main(int argc, char *argv[]) {
     if (child2 == 0) {
         printf("child2: PID=%d, PPID=%d\n", getpid(), getppid());
         fflush(stdout);
-        sleep(n);
+        sleep(sleep_time);
         exit(0);
     }
     sleep(1);
