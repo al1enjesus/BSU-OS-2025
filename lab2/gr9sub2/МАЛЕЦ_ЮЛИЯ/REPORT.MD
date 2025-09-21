@@ -314,6 +314,9 @@ pidstat -u -r -d 1 5 | cat
 import os
 
 def get_process_info(pid):
+    if pid <= 0:
+        return None, None
+
     try:
         with open(f"/proc/{pid}/status") as f:
             name = None
@@ -323,6 +326,8 @@ def get_process_info(pid):
                     name = line.split()[1]
                 elif line.startswith("PPid:"):
                     ppid = int(line.split()[1])
+                if name is not None and ppid is not None:
+                    break
         return name, ppid
     except FileNotFoundError:
         return None, None
@@ -331,9 +336,9 @@ def main():
     pid = os.getpid()
     chain = []
 
-    while pid != 0:
+    while pid > 0:
         name, ppid = get_process_info(pid)
-        if name is None:
+        if name is None or ppid is None:
             break
         chain.append(f"{name}({pid})")
         pid = ppid
@@ -392,3 +397,20 @@ python3(6125) ← bash(3506) ← gnome-terminal-(3473) ← systemd(2637) ← sys
 * 11. Чем поток отличается от процесса и как увидеть потоки в ps/top? Поток — легковесный процесс, разделяет память с другими потоками. В `ps` — ключ `-L`, в `top` — клавиша `H`.
 
 * 12. Что такое зомби и сироты, как они возникают и куда «деваются»? Зомби — завершившиеся процессы, чьи статусы не считаны родителем. Сироты — процессы, чьи родители завершились. Зомби исчезают после вызова `wait()`. Сироты переназначаются на `systemd(1)` и продолжают работу.
+
+
+## Ответы на дополнительные вопросы
+
+### 1. Воспроизводимость
+Нет. 
+
+### 2. Коды завершения
+Дочерние процессы завершаются с кодами `0` и `1`, чтобы продемонстрировать передачу кода завершения родителю через `os.wait()` и различие между процессами.
+
+### 3. Оптимизация ptree
+Да, в финальной версии `ptree.py` реализован `break` после нахождения `Name` и `PPid` в файле `/proc/<pid>/status`, что ускоряет выполнение и снижает нагрузку на систему.
+
+### 4. Тестирование
+Утилита `ptree.py` протестирована в среде VirtualBox с Ubuntu 22.04. Поведение на системах с ограниченным доступом к `/proc` не проверялось, но предусмотрена обработка `FileNotFoundError`.
+
+
