@@ -11,6 +11,9 @@ int main() {
         printf("    Первый дочерний (PID: %d)\n",getpid());
         sleep(1000);
         return 0;
+    }else if(first_child == -1){
+        printf("Возникла ошибка дочерний процесс 1 не запустился")
+        return 0;
     }
 
     
@@ -19,6 +22,9 @@ int main() {
     if (second_child == 0) {
         printf("    Второй дочерний (PID: %d)\n",getpid());
         sleep(1000); // Имитация работы
+        return 0;
+    }else if(second_child == -1){
+        printf("Возникла ошибка дочерний процесс 2 не запустился")
         return 0;
     }
 
