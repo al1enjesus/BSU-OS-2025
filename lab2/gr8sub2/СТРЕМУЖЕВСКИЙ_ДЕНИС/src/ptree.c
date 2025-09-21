@@ -6,6 +6,12 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#if defined(NO_UTF8_ARROWS)
+#  define ARROW " <- "
+#else
+#  define ARROW " \u2190 "
+#endif
+
 static int read_proc_status(pid_t pid, char *name, size_t name_sz, pid_t *ppid_out) {
     char path[64];
     snprintf(path, sizeof(path), "/proc/%ld/status", (long)pid);
@@ -18,8 +24,9 @@ static int read_proc_status(pid_t pid, char *name, size_t name_sz, pid_t *ppid_o
         if (!have_name && strncmp(line, "Name:", 5) == 0) {
             char tmp[128];
             if (sscanf(line, "Name:%127s", tmp) == 1) {
-                strncpy(name, tmp, name_sz - 1);
-                name[name_sz - 1] = '\0';
+                if (name_sz > 0) {
+                    snprintf(name, name_sz, "%s", tmp);
+                }
                 have_name = 1;
             }
         } else if (!have_ppid && strncmp(line, "PPid:", 5) == 0) {
@@ -55,10 +62,10 @@ int main(void) {
     while (ppid > 0 && cur != 1 && hops < MAX_HOPS) {
         cur = ppid;
         if (read_proc_status(cur, name, sizeof(name), &ppid) != 0) {
-            printf(" \u2190 ?(%ld)", (long)cur);
+            printf("%s?(%ld)", ARROW, (long)cur);
             break;
         }
-        printf(" \u2190 %s(%ld)", name, (long)cur);
+        printf("%s%s(%ld)", ARROW, name, (long)cur);
         hops++;
     }
     printf("\n");
