@@ -79,9 +79,15 @@ int main() {
     while (current_pid != 1 && chain_length < MAX_CHAIN) {
         current_pid = get_ppid(current_pid);
         if (current_pid <= 0) {
+            fprintf(stderr, "Ошибка: не удалось получить родительский PID\n");
             break;
         }
         chain[chain_length++] = current_pid;
+
+        if (chain_length >= MAX_CHAIN - 1) {
+        fprintf(stderr, "Предупреждение: достигнут максимум цепочки (%d)\n", MAX_CHAIN);
+        break;
+    }
     }
     
     for (int i = 0; i < chain_length; i++) {

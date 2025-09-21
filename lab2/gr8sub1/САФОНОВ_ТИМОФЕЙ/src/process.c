@@ -4,13 +4,13 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-int main() {
+int main(int argc, char *argv[]) {
     printf("Parent: Starting, PID=%d\n", getpid());
     fflush(stdout);
 
     pid_t child1, child2;
     int status1, status2;
-    const int n = 10;
+    const int sleep_time = (argc > 1) ? atoi(argv[1]) : 10;
 
     child1 = fork();
     if (child1 == 0) {
