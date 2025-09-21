@@ -181,21 +181,28 @@ lrwx------ 1 somerandomprog somerandomprog 64 Sep 19 12:28 255 -> /dev/pts/8
 
 ```py
 import os
+import sys
 
 pid = os.getpid()
 # цикл прекратится, когда дойдёт очередь до systemd, у которого ppid = 0.
 while pid != 0:
 	ppid = None
 	name = None
-    # читаем файлик с информацией о процессе
-	with open(f'/proc/{pid}/status', 'r') as f:
-		for line in f:
-            # если нашли ppid
-			if line.startswith("PPid"):
-				ppid = int(line.split("\t")[1])
-            # если нашли название процесса
-			elif line.startswith("Name"):
-				name = line.split("\t")[1].replace("\n", "")
+
+    # пытаемся прочитать файлик с информацией о процессе
+	try:
+		with open(f'/proc/{pid}/status', 'r') as f:
+			for line in f:
+                # если нашли ppid
+				if line.startswith("PPid"):
+					ppid = int(line.split("\t")[1])
+                # если нашли название процесса
+				elif line.startswith("Name"):
+					name = line.split("\t")[1].strip()
+    # если не можем - выходим из программы
+	except (FileNotFoundError, PermissionError):
+		print(f"failed to print process tree: cannot read /proc/{pid}/status")
+		sys.exit(1)
 
     # выводим название и pid
 	print(f"{name}({pid})", end='')
