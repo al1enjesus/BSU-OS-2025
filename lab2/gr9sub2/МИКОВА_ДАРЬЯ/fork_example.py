@@ -51,5 +51,7 @@ def main():
         
             break
 
+    print(f"parent: FINISH.Everything is okey.", flush=True)
+
 if __name__ == "__main__":
     main()

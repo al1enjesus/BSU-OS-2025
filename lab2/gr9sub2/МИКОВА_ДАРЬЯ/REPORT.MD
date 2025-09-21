@@ -33,26 +33,49 @@ parent: FINISH. Everything is okey.
 
 При этом было получено следующее:
 
-**Команда `ps -ef --forest` (сокращенный вывод):**
+**Команда `ps -ef --forest`:**
 ```
 UID          PID    PPID  C STIME TTY          TIME CMD
 root           2       0  0 21:55 ?        00:00:00 [kthreadd]
 root           3       2  0 21:55 ?        00:00:00  \_ [pool_workqueue_release]
 root           4       2  0 21:55 ?        00:00:00  \_ [kworker/R-rcu_gp]
-... (и многие другие системные процессы)
+root           5       2  0 21:55 ?        00:00:00  \_ [kworker/R-sync_wq]
+root           6       2  0 21:55 ?        00:00:00  \_ [kworker/R-kvfree_rcu_re
+root           7       2  0 21:55 ?        00:00:00  \_ [kworker/R-slub_flushwq]
+root           8       2  0 21:55 ?        00:00:00  \_ [kworker/R-netns]
+root          10       2  0 21:55 ?        00:00:00  \_ [kworker/0:1-cgroup_dest
+root          11       2  0 21:55 ?        00:00:00  \_ [kworker/0:0H-events_hig
+root          13       2  0 21:55 ?        00:00:00  \_ [kworker/R-mm_percpu_wq]
+root          14       2  0 21:55 ?        00:00:00  \_ [rcu_tasks_kthread]
+root          15       2  0 21:55 ?        00:00:00  \_ [rcu_tasks_rude_kthread]
+root          16       2  0 21:55 ?        00:00:00  \_ [rcu_tasks_trace_kthread
+root          17       2  0 21:55 ?        00:00:00  \_ [ksoftirqd/0]
+root          18       2  0 21:55 ?        00:00:03  \_ [rcu_preempt]
+( and others...)
 ```
 
-**Команда `pstree -p` (сокращенный вывод):**
+**Команда `pstree -p`:**
 ```
-vboxuser@ubuntu:~/BSU-OS-2025$ pstree -p | head -n 50 | cat
-systemd(1)-+-ModemManager(1211)-+-{ModemManager}(1234)
-           |                    |-{ModemManager}(1237)
-           |                    `-{ModemManager}(1241)
-           |-NetworkManager(1169)-+-{NetworkManager}(1242)
-           |                      |-{NetworkManager}(1244)
-           |                      `-{NetworkManager}(1246)
-           |-VBoxDRMClient(1984)-+-{VBoxDRMClient}(2000)
-... (и многие другие процессы, включая сессию пользователя)
+vsystemd(1)─┬─ModemManager(1211)─┬─{ModemManager}(1234)
+           │                    ├─{ModemManager}(1237)
+           │                    └─{ModemManager}(1241)
+           ├─NetworkManager(1169)─┬─{NetworkManager}(1242)
+           │                      ├─{NetworkManager}(1244)
+           │                      └─{NetworkManager}(1246)
+           ├─VBoxDRMClient(1984)─┬─{VBoxDRMClient}(2000)
+           │                     ├─{VBoxDRMClient}(2002)
+           │                     ├─{VBoxDRMClient}(2009)
+           │                     ├─{VBoxDRMClient}(2010)
+           │                     └─{VBoxDRMClient}(3998)
+           ├─VBoxService(1986)─┬─{VBoxService}(1990)
+           │                   ├─{VBoxService}(1991)
+           │                   ├─{VBoxService}(1995)
+           │                   ├─{VBoxService}(1996)
+           │                   ├─{VBoxService}(1997)
+           │                   ├─{VBoxService}(1998)
+           │                   ├─{VBoxService}(2004)
+           │                   └─{VBoxService}(2005)
+    (and others...)
 ```
 
 Обе команды показали, что запущенные скрипты являются дочерними процессами моей командной оболочки (`bash`).
@@ -225,3 +248,35 @@ python3(4714) ← bash(4195) ← gnome-terminal-(4183) ← systemd(3089) ← sys
 12. **Что такое зомби и сироты, как они возникают и куда «деваются»?**
     *   **Сирота (Orphan):** Процесс, чей родитель завершился. "Усыновляется" процессом `init/systemd` (PID 1), который корректно ожидает его завершения.
     *   **Зомби (Zombie):** Процесс, который завершился, но родитель еще не считал его код возврата через `wait()`. "Исчезает", когда родитель вызывает `wait()` или сам завершается.
+    
+    
+    
+    ## **Ответы на вопросы от cloud прекраснейшего**
+
+1.  Я разместила два файлика .py в корне проекта, потому что я изначально не увидела, что они не в папке, а уж подметив, я подумала "и так сойдет", но я уже исправила.
+
+2.  Выбирая работу с `fork()`, которая при этом единственно давалась, я научилась работе с низкоуровневыми механизмами линукс.
+    Что касается того, есть ли альтернатива, то уверяю вас в том, что я теперь знаю, что они имеются:
+
+    *   `multiprocessing.Process` - высокоуровневый ООП-интерфейс
+    *   `concurrent.futures.ProcessPoolExecutor` - для пула процессов
+    *   `subprocess.Popen` - для запуска внешних программ
+
+3.  Если уж не читается, то можно добавить в `ptree.py` обработку исключения:
+
+    ```python
+    try:
+        with open(f"/proc/{pid}/status", "r") as status_file:
+            # чтение файла
+    except FileNotFoundError:
+        print(f"Process {pid} no longer exists")
+        return None
+    except PermissionError:
+        print(f"Permission denied to read process {pid} info")
+        return None
+    ```
+
+4.  Планирую, планирую.
+
+    
+    
