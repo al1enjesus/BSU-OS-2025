@@ -27,6 +27,7 @@ int main(int argc, char** argv)
 
 	char path[255];
 	char* field = NULL;
+	char* name = NULL;
 
 	do
 	{
@@ -45,7 +46,6 @@ int main(int argc, char** argv)
 
 		int v = -1;
 
-		char* name = NULL;
 		int rpid = 0;
 		int rppid = 0;
 
@@ -58,7 +58,21 @@ int main(int argc, char** argv)
 				if(strcmp(field, "Name")==0)
 				{
 					field = strtok(NULL, ":");
-					name = (char*)realloc(name, (strlen(field)+1)*sizeof(char));
+					char *temp = (char*)realloc(name, (strlen(field) + 1) * sizeof(char));
+					if (temp == NULL)
+					{
+						if(name != NULL)
+							free(name);
+						if(field != NULL)
+							free(field);
+						fclose(in);
+						fprintf(stderr, "Error: memory allocation failed\n");
+						exit(EXIT_FAILURE);
+					}
+					else
+					{
+						name = temp;
+					}
 					strcpy(name, field);
 					//printf("(%s)\n", name);
 				}
@@ -93,6 +107,9 @@ int main(int argc, char** argv)
 
 		fclose(in);
 	}while(pid != 0);
+
+	if(name != NULL)
+		free(name);
 
 	if(field != NULL)
 		free(field);
