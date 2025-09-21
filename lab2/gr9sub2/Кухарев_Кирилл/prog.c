@@ -27,8 +27,8 @@ int main() {
     printf("Родитель ожидает завершения дочерних процессов...\n" );
 
     
-    wait(nullptr); 
-    wait(nullptr); 
+    wait(NULL); 
+    wait(NULL); 
 
     printf("Все дочерние процессы завершены. Родитель (PID %d) завершает работу.\n",getpid());
 

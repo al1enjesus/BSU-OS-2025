@@ -20,7 +20,6 @@ while :; do
     if [ -z "$ppid" ] || [ "$ppid" -eq 0 ] || [ "$ppid" -eq "$pid" ]; then
         break
     fi
-1
     pid=$ppid
 done
 
