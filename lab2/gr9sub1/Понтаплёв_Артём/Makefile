@@ -24,7 +24,4 @@ run_fork: $(BIN_DIR)/fork_example
 run_ptree: $(BIN_DIR)/ptree
 	./$(BIN_DIR)/ptree
 
-run_fork_tree: $(BIN_DIR)/fork_example
-	./$(BIN_DIR)/fork_example
-
-.PHONY: all clean run-fork run-ptree run_fork_tree
+.PHONY: all clean run_fork run_ptree

@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+#define CHILD_TIME 5
+#define PARENT_TIME 7
 int main()
 {
 printf("parent: start with PID=%d\n", getpid());
@@ -14,7 +16,7 @@ if (pid == 0)
 {
 printf("child[%d]: PID=%d, PPID=%d\n", i, getpid(), getppid());
 fflush(stdout);
-sleep(5);
+sleep(CHILD_TIME);
 exit(0);
 }
 else if (pid < 0)
@@ -23,7 +25,7 @@ perror("fork failed");
 exit(1);
 }
 }
-sleep(7);
+sleep(PARENT_TIME);
 for (int i = 0; i < 2; i++)
 {
 int status;
