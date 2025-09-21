@@ -17,5 +17,3 @@ for pid in children:
 	finished_pid, status = os.waitpid(pid, 0)
 	exit_code = os.WEXITSTATUS(status)
 	print(f"child (PID={os.getpid()}) finished with code: {exit_code}", flush = True)
-
-input("")
