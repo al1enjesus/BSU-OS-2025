@@ -5,7 +5,7 @@ def create_child(index):
     pid = os.fork()
     if pid == 0:
         print(f"child[{index}]: PID={os.getpid()}, PPID={os.getppid()}", flush=True)
-        sys.exit(index)
+        sys.exit(0)
     return pid
 
 def main():
