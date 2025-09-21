@@ -13,7 +13,7 @@ int main() {
         return 0;
     }else if(first_child == -1){
         printf("Возникла ошибка дочерний процесс 1 не запустился");
-        return 0;
+        return 1;
     }
 
     
@@ -25,7 +25,7 @@ int main() {
         return 0;
     }else if(second_child == -1){
         printf("Возникла ошибка дочерний процесс 2 не запустился");
-        return 0;
+        return 1;
     }
 
     

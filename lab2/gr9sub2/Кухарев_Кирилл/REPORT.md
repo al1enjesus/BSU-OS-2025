@@ -12,36 +12,45 @@ shell: fish 4.0.2
 Для создания родительского процесса и создания двух дочерних я написал программу на C которая запускает эти самые процессы.
 ```с
 #include<stdio.h>
-#include <unistd.h>
-#include <sys/wait.h>
+#include <unistd.h>   
+#include <sys/wait.h> 
 
 int main() {
-printf("Родительский процесс (PID: %d) запущен.\n",getpid());
+    printf("Родительский процесс (PID: %d) запущен.\n",getpid());
 
-pid_t first_child = fork();  
+    pid_t first_child = fork();
 
-if (first_child == 0) {
-printf(" Первый дочерний (PID: %d)\n",getpid());
-sleep(1000);
-return 0;
-}
+    if (first_child == 0) {
+        printf("    Первый дочерний (PID: %d)\n",getpid());
+        sleep(1000);
+        return 0;
+    }else if(first_child == -1){
+        printf("Возникла ошибка дочерний процесс 1 не запустился");
+        return 1;
+    }
 
-pid_t second_child = fork();
+    
+    pid_t second_child = fork();
 
-if (second_child == 0) {
-printf(" Второй дочерний (PID: %d)\n",getpid());
-sleep(1000); // Имитация работы
-return 0;
-}
+    if (second_child == 0) {
+        printf("    Второй дочерний (PID: %d)\n",getpid());
+        sleep(1000); // Имитация работы
+        return 0;
+    }else if(second_child == -1){
+        printf("Возникла ошибка дочерний процесс 2 не запустился");
+        return 1;
+    }
 
-printf("Родитель ожидает завершения дочерних процессов...\n" );
-wait(NULL);
-wait(NULL);
+    
+    printf("Родитель ожидает завершения дочерних процессов...\n" );
 
-printf("Все дочерние процессы завершены. Родитель (PID %d) завершает работу.\n",getpid());
+    
+    wait(NULL);
+    wait(NULL);
 
-return 0;
+    printf("Все дочерние процессы завершены. Родитель (PID %d) завершает работу.\n",getpid());
 
+    return 0;
 }
 ```
 
@@ -266,7 +275,6 @@ break
 
 fi
 
-1
 
 pid=$ppid
 
