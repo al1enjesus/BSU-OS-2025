@@ -9,7 +9,7 @@
 build-essential, psmisc, sysstat
 Дополнительно использовались: htop, iotop
 
-# од работы
+# Xод работы
 ## 1) Создание процессов
 
 Запуск программы порождения двух дочерних процессов (Python):
@@ -45,6 +45,7 @@ ps -ef --forest | head -n 30 | cat
 
 ### Вывод:
 
+```
 UID          PID    PPID  C STIME TTY          TIME CMD
 root           2       0  0 00:29 ?        00:00:00 [kthreadd]
 root           3       2  0 00:29 ?        00:00:00  \_ [pool_workqueue_release]
@@ -75,6 +76,7 @@ root          28       2  0 00:29 ?        00:00:01  \_ [kworker/1:0-events]
 root          29       2  0 00:29 ?        00:00:00  \_ [kworker/1:0H-events_highpri]
 root          30       2  0 00:29 ?        00:00:00  \_ [cpuhp/2]
 root          31       2  0 00:29 ?        00:00:00  \_ [idle_inject/2]
+```
 
 ### Комментарий:
 
@@ -97,6 +99,7 @@ ls -l /proc/3565/fd
 
 ### Вывод:
 
+```
 /usr/bin/bash --init-file /usr/share/code/resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh 
 
 Name:   bash
@@ -119,15 +122,18 @@ Kthread:        0
 VmPeak:    21124 kB
 VmSize:    21124 kB
 VmLck:         0 kB
+```
 
 итого 0
 
+```
 lrwx------ 1 anya anya 64 сен 21 00:36 0 -> /dev/pts/1
 lrwx------ 1 anya anya 64 сен 21 00:36 1 -> /dev/pts/1
 lr-x------ 1 anya anya 64 сен 21 00:36 103 -> /usr/share/code/v8_context_snapshot.bin
 lrwx------ 1 anya anya 64 сен 21 00:36 2 -> /dev/pts/1
 lrwx------ 1 anya anya 64 сен 21 00:36 255 -> /dev/pts/1
 l-wx------ 1 anya anya 64 сен 21 00:36 41 -> /home/anya/.config/Code/logs/20250921T003553/ptyhost.log
+```
 
 ### Пояснения:
 
@@ -139,11 +145,13 @@ l-wx------ 1 anya anya 64 сен 21 00:36 41 -> /home/anya/.config/Code/logs/202
 
 ### Команды:
 
+```
 top -b -n 1 | head -n 20 | cat
 ps -eo pid,ppid,comm,state,%cpu,%mem,etime --sort=-%cpu | head -n 15 | cat
 ps -eo pid,ppid,comm,state,%cpu,%mem,rss --sort=-%mem | head -n 15 | cat
 pidstat -u -r -d 1 5 | cat
 sudo iotop -b -n 5 | head -n 30 | cat
+```
 
 ### Часть вывода top (сводка):
 
@@ -162,6 +170,7 @@ top - 00:45:14 up 15 min,  2 users,  load average: 0,55, 0,77, 0,55
 
 ### TOP-15 по CPU (моментальный срез ps):
 
+```
 PID    PPID COMMAND         S %CPU %MEM     ELAPSED
 4359    3565 ps              R 66.6  0.1       00:00
 3402    3365 code            S 16.1  4.8       09:21
@@ -177,9 +186,11 @@ PID    PPID COMMAND         S %CPU %MEM     ELAPSED
 1510       1 VBoxDRMClient   S  0.3  0.0       15:41
 2241    2088 ibus-extension- S  0.3  0.9       15:36
 1102       1 snapd           S  0.3  1.1       15:43
+```
 
 ### TOP-15 по памяти (ps по RSS):
 
+```
 PID    PPID COMMAND         S %CPU %MEM   RSS
 1884    1616 gnome-shell     S  9.4 12.2 428456
 3439    3368 code            S 15.6 10.1 354280
@@ -195,6 +206,7 @@ PID    PPID COMMAND         S %CPU %MEM   RSS
 2600    1616 gsd-xsettings   S  0.0  2.3 81640
 3412    3358 code            S  0.1  2.0 72376
 2140    1844 evolution-alarm S  0.0  1.8 66072
+```
 
 ### pidstat (5 интервалов по 1 сек; фрагменты):
 
