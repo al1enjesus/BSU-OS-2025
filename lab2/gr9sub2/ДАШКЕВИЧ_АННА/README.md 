@@ -1,0 +1,105 @@
+# Лабораторная работа: Модель процессов в Linux
+
+## Цель работы
+Понять модель процессов Linux, принципы порождения и ожидания завершения, а также научиться извлекать информацию из `/proc`. Освоить базовые утилиты анализа процессов (`ps`, `pstree`, `top`, `pidstat`, `iotop`) и реализовать мини-утилиту `ptree`.
+
+## Требования к окружению
+*   **ОС**: Ubuntu (проверено на ядре Linux 6.14.0-29-generic)
+*   **Среда**: Рекомендуется запуск в VirtualBox
+*   **Ресурсы**: 4 CPU, рекомендуемая локаль `RU`
+*   **Установленные пакеты**:
+    ```bash
+    sudo apt update
+    sudo apt install build-essential psmisc sysstat htop iotop
+    ```
+
+## Структура проекта
+
+.
+├── src/
+│ ├── fork_example.py # Пример программы с fork()
+│ └── ptree.py # Реализация утилиты ptree
+└── README.md # Данный файл
+
+text
+
+## Инструкции по запуску
+
+### 1. Создание процессов (fork_example.py)
+Программа демонстрирует порождение двух дочерних процессов и их корректное ожидание родителем.
+
+**Запуск:**
+```bash
+cd src
+python3 fork_example.py
+
+Ожидаемый вывод:
+
+text
+parent: PID=4026
+child_1: PID=4028, PPID=4026
+child_0: PID=4027, PPID=4026
+parent: child PID=4027 exited with code=0
+parent: child PID=4028 exited with code=1
+parent: all children finished
+
+### 2. Исследование дерева процессов
+Для просмотра дерева процессов используйте команду ps с опцией --forest:
+
+bash
+ps -ef --forest | head -n 30
+
+### 3. Изучение информации в /proc
+Замените $PID на PID вашего текущего shell-процесса (можно узнать командой echo $$).
+
+Просмотр командной строки процесса:
+
+bash
+cat /proc/$PID/cmdline | tr '\0' ' '; echo
+
+Просмотр статуса процесса:
+
+bash
+head -n 20 /proc/$PID/status
+
+Просмотр открытых файловых дескрипторов:
+
+bash
+ls -l /proc/$PID/fd
+
+### 4. Анализ процессов (CPU, память, IO)
+
+Мгновенный снимок системы (top):
+
+bash
+top -b -n 1 | head -n 20
+Топ процессов по потреблению CPU:
+
+bash
+ps -eo pid,ppid,comm,state,%cpu,%mem,etime --sort=-%cpu | head -n 15
+Топ процессов по потреблению памяти (RSS):
+
+bash
+ps -eo pid,ppid,comm,state,%cpu,%mem,rss --sort=-%mem | head -n 15
+Мониторинг утилизации CPU, памяти и диска (pidstat):
+
+bash
+pidstat -u -r -d 1 5
+Мониторинг операций ввода-вывода (iotop, требует sudo):
+
+bash
+sudo iotop -b -n 5 | head -n 30
+
+### 5. Запуск утилиты ptree
+Утилита строит цепочку родительских процессов от текущего (собственного PID) до init/systemd (PID 1).
+
+Запуск:
+
+bash
+cd src
+python3 ptree.py
+
+Ожидаемый вывод (пример):
+
+text
+python3(4510) ← bash(3565) ← code(3523) ← code(3358) ← gnome-shell(1884) ← systemd(1616) ← systemd(1)
