@@ -1,0 +1,14 @@
+*.o
+*.exe
+*.out
+process
+chain
+!*.c
+!*.h
+!.gitignore
+!README*
+!LICENSE*
+!Makefile
+!*.txt
+!*.md
+
