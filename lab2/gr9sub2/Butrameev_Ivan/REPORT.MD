@@ -1,6 +1,6 @@
-#Цель: Понять модель процессов Linux, принципы порождения и ожидания завершения, а также научиться извлекать информацию из /proc
+# Цель: Понять модель процессов Linux, принципы порождения и ожидания завершения, а также научиться извлекать информацию из /proc
 
-##Задание 1
+## Задание 1
 Код(на Python):
 ```python
 import os
@@ -24,7 +24,7 @@ for pid in children:
         print(f"child (PID={os.getpid()}) finished with code: {exit_code}", flush = True)
 ```
 
-###Вывод на консоль:
+### Вывод на консоль:
 parent(PID=9896)
 child[0]:(PID=9897),(PPID=9896)
 child[1]:(PID=9898),(PPID=9896)
@@ -32,12 +32,12 @@ child (PID=9896) finished with code: 0
 child (PID=9896) finished with code: 0
 
 
-##Задание 2
+## Задание 2
 
-###Команды чтоб найти строчки в которых есть PID программы code.py:
+### Команды чтоб найти строчки в которых есть PID программы code.py:
 ps -ef --forest | grep -C 3 '10024' | cat
 
-###Вывод на консоль:
+### Вывод на консоль:
 
 ivan        3403    1363  0 сен21 ?     00:00:55  \_ /usr/libexec/gnome-terminal-server
 ivan        3410    3403  0 сен21 pts/0 00:00:01  |   \_ bash
@@ -50,10 +50,10 @@ ivan        4389    1363  0 сен21 ?     00:00:11  \_ /usr/bin/nautilus --gapp
 rtkit       1464       1  0 сен21 ?     00:00:00 /usr/libexec/rtkit-daemon
 colord      1809       1  0 сен21 ?     00:00:00 /usr/libexec/colord
 
-###Следующая команда:
+### Следующая команда:
 pstree -p | grep -C 3 '10024' | cat
 
-###Вывод на консоль:
+### Вывод на консоль:
 
            |               |-gnome-terminal-(3403)-+-bash(3410)-+-cat(10201)
            |               |                       |            |-grep(10200)
@@ -63,7 +63,7 @@ pstree -p | grep -C 3 '10024' | cat
            |               |                       |-{gnome-terminal-}(3405)
            |               |                       |-{gnome-terminal-}(3407)
 
-#Задание 3
+# Задание 3
 ### cat /proc/<pid>/cmdline | tr '\0' ' '; echo
 Показывает командную строку, с которой был запущен процесс.  
 Символы `\0` заменяются на пробелы, чтобы аргументы выглядели как обычный ввод в терминале.  
@@ -76,14 +76,14 @@ pstree -p | grep -C 3 '10024' | cat
 Показывает список открытых файловых дескрипторов процесса.  
 Каждый дескриптор представлен как символьная ссылка на файл, сокет или устройство, с которым работает процесс.  
 
-#Задание 4
+# Задание 4
 
-##Пункт 1
+## Пункт 1
 
-###Команда:
+### Команда:
 top -b -n 1 | head -n 20 | cat
 
-###Вывод на консоль:
+### Вывод на консоль:
 top - 00:50:22 up  5:43,  2 users,  load average: 0,42, 0,67, 0,49
 Задачи: 242 total,   1 running, 241 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  2,4 us,  2,4 sy,  0,0 ni, 95,2 id,  0,0 wa,  0,0 hi,  0,0 si,  0,0 st 
@@ -105,10 +105,10 @@ top - 00:50:22 up  5:43,  2 users,  load average: 0,42, 0,67, 0,49
      13 root       0 -20       0      0      0 I   0,0   0,0   0:00.00
      14 root      20   0       0      0      0 I   0,0   0,0   0:00.00
 
-###Команда:
+### Команда:
 ps -eo pid,ppid,comm,state,%cpu,%mem,etime --sort=-%cpu | head -n 15 | cat
 
-###Вывод на консоль:
+### Вывод на консоль:
 PID    PPID COMMAND         S %CPU %MEM     ELAPSED
   10361    3410 ps              R  133  0.0       00:00
    2420    1676 firefox         S  7.9 10.5    05:44:39
@@ -125,10 +125,10 @@ PID    PPID COMMAND         S %CPU %MEM     ELAPSED
   10060       2 kworker/u18:3-e I  0.1  0.0       17:00
    8872       2 kworker/2:2-eve I  0.1  0.0    01:11:04
 
-###Команда:
+### Команда:
 ps -eo pid,ppid,comm,state,%cpu,%mem,rss --sort=-%mem | head -n 15 | cat
 
-###Вывод на консоль:
+### Вывод на консоль:
 PID    PPID COMMAND         S %CPU %MEM   RSS
    2420    1676 firefox         S  7.9 10.5 909948
    3330    2594 Isolated Web Co S  4.7  7.5 651500
@@ -145,12 +145,12 @@ PID    PPID COMMAND         S %CPU %MEM   RSS
    7624    2594 Web Content     S  0.0  0.8 73120
    1923    1632 evolution-alarm S  0.0  0.7 65652
 
-##Пункт 2
+## Пункт 2
 
-###Команда:
+### Команда:
 pidstat -u -r -d 1 5 | cat   # 5 интервалов по 1 сек
 
-###Вывод на консоль:
+### Вывод на консоль:
 Linux 6.14.0-29-generic (ivan-VirtualBox) 	22.09.2025 	_x86_64_	(4 CPU)
 
 00:57:12      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
@@ -238,12 +238,12 @@ Linux 6.14.0-29-generic (ivan-VirtualBox) 	22.09.2025 	_x86_64_	(4 CPU)
 Среднее:   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
 
 
-##Пункт 5
-##Топ 5 по CPU:
-###Команда:
+## Пункт 5
+## Топ 5 по CPU:
+### Команда:
 ps -eo pid,comm,pcpu,etime --sort=-pcpu | head -n 6
 
-###Вывод на консоль:
+### Вывод на консоль:
 PID COMMAND         %CPU     ELAPSED
   10524 ps               200       00:00
    1676 gnome-shell      8.0    05:58:01
@@ -251,11 +251,11 @@ PID COMMAND         %CPU     ELAPSED
    3330 Isolated Web Co  4.8    05:57:45
    3590 Isolated Web Co  1.3    05:54:42
 
-##Топ 5 по памяти:
-###Команда:
+## Топ 5 по памяти:
+### Команда:
 ps -eo pid,comm,pmem,rss --sort=-pmem | head -n 6
 
-###Вывод на консоль:
+### Вывод на консоль:
 PID COMMAND         %MEM   RSS
    2420 firefox         10.5 908524
    3330 Isolated Web Co  7.8 679260
@@ -270,7 +270,7 @@ PID COMMAND         %MEM   RSS
 - **Общая картина:** система нагружена в первую очередь пользовательскими приложениями (браузер, графическая оболочка), что характерно для настольной рабочей станции.
 
 
-#Задание 5
+# Задание 5
 Код на Python:
 ```python
 import os
@@ -292,10 +292,10 @@ while pid > 0:
 print(" ← ".join(chain))
 ```
 
-###Вывод в консоль:
+### Вывод в консоль:
 python3(10782) ← bash(3410) ← gnome-terminal-(3403) ← systemd(1363) ← systemd(1)
 
-#Ответы на вопросы
+# Ответы на вопросы
 
 ### Чем процесс отличается от программы  
 Программа — это пассивный набор инструкций (файл на диске).  
