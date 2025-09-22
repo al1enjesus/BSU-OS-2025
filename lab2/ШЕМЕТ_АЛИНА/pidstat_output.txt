@@ -1,0 +1,108 @@
+Linux 6.14.0-29-generic (ubuntu) 	09/16/2025 	_x86_64_	(4 CPU)
+
+02:46:51 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+02:46:52 PM  1000      2496    0.98    2.94    0.00    0.00    3.92     0  gnome-shell
+02:46:52 PM  1000      3093    0.00    0.98    0.00    0.00    0.98     1  VBoxClient
+02:46:52 PM  1000      6240    0.00    0.98    0.00    0.00    0.98     3  code
+02:46:52 PM  1000      6544    0.00    0.98    0.00    0.00    0.98     3  pidstat
+
+02:46:51 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+02:46:52 PM     0      2238      3.92      0.00  388984   11164   0.33  gdm-session-wor
+02:46:52 PM  1000      2496    207.84    142.16 5165572  484212  14.11  gnome-shell
+02:46:52 PM  1000      6087      8.82      0.00 1461520436  192800   5.62  code
+02:46:52 PM  1000      6128      8.82      0.00 34113072  134896   3.93  code
+02:46:52 PM  1000      6139      3.92      0.00 33859032   74464   2.17  code
+02:46:52 PM  1000      6165      3.92      0.00 1478120996  324972   9.47  code
+02:46:52 PM  1000      6544      0.98      0.00   10372    4280   0.12  pidstat
+
+02:46:51 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+02:46:52 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+02:46:53 PM  1000      2496    3.00    9.00    0.00    0.00   12.00     3  gnome-shell
+02:46:53 PM  1000      5895    1.00    0.00    0.00    1.00    1.00     0  gnome-terminal-
+02:46:53 PM  1000      6087    0.00    1.00    0.00    0.00    1.00     3  code
+02:46:53 PM     0      6424    0.00    1.00    0.00    0.00    1.00     2  kworker/u16:2-events_unbound
+02:46:53 PM  1000      6544    1.00    1.00    0.00    0.00    2.00     3  pidstat
+
+02:46:52 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+02:46:53 PM  1000      2496    223.00    125.00 5165588  484212  14.11  gnome-shell
+02:46:53 PM  1000      6544      1.00      0.00   10372    4280   0.12  pidstat
+
+02:46:52 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+02:46:53 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+02:46:54 PM  1000      2496    0.00    0.99    0.00    0.00    0.99     3  gnome-shell
+02:46:54 PM  1000      5895    0.00    0.99    0.00    0.00    0.99     1  gnome-terminal-
+
+02:46:53 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+02:46:54 PM     0         1      1.98      0.00   25204   15640   0.46  systemd
+02:46:54 PM  1000      2496      6.93      0.00 5157908  484212  14.11  gnome-shell
+02:46:54 PM  1000      6128      0.00      0.00 34113072  134768   3.93  code
+02:46:54 PM  1000      6240      3.96      0.00 1461295820  156780   4.57  code
+
+02:46:53 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+02:46:54 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+02:46:55 PM     0      4997    0.00    1.00    0.00    0.00    1.00     3  kworker/3:0-mm_percpu_wq
+02:46:55 PM  1000      6240    0.00    1.00    0.00    0.00    1.00     0  code
+02:46:55 PM  1000      6544    0.00    1.00    0.00    0.00    1.00     3  pidstat
+
+02:46:54 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+02:46:55 PM  1000      2496      5.00      4.00 5165588  484212  14.11  gnome-shell
+02:46:55 PM  1000      6200     14.00      0.00 1461294888  112416   3.28  code
+02:46:55 PM  1000      6201      2.00      0.00 1461295432  104736   3.05  code
+02:46:55 PM  1000      6240      5.00      0.00 1461295820  156780   4.57  code
+
+02:46:54 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+02:46:55 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+02:46:56 PM  1000      2496    0.00    2.00    0.00    0.00    2.00     0  gnome-shell
+02:46:56 PM  1000      2896    0.00    1.00    0.00    0.00    1.00     2  gvfs-gphoto2-vo
+02:46:56 PM  1000      3039    0.00    1.00    0.00    0.00    1.00     2  gjs
+02:46:56 PM  1000      6201    0.00    1.00    0.00    0.00    1.00     2  code
+02:46:56 PM  1000      6240    1.00    0.00    0.00    0.00    1.00     0  code
+02:46:56 PM     0      6424    0.00    1.00    0.00    0.00    1.00     0  kworker/u16:2-events_unbound
+02:46:56 PM  1000      6505    0.00    1.00    0.00    0.00    1.00     1  gjs
+02:46:56 PM  1000      6544    1.00    1.00    0.00    0.00    2.00     3  pidstat
+
+02:46:55 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+02:46:56 PM     0         1     84.00      0.00   25204   15640   0.46  systemd
+02:46:56 PM  1000      2496     10.00      0.00 5157904  484212  14.11  gnome-shell
+02:46:56 PM  1000      3039      3.00      0.00 2660012   28420   0.83  gjs
+02:46:56 PM  1000      6087      9.00      0.00 1461520436  192800   5.62  code
+02:46:56 PM  1000      6139      4.00      0.00 33859032   74464   2.17  code
+02:46:56 PM  1000      6201      1.00      0.00 1461295432  104736   3.05  code
+02:46:56 PM  1000      6505      6.00      0.00 2724836   67068   1.95  gjs
+
+02:46:55 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+Average:      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+Average:     1000      2496    0.80    2.98    0.00    0.00    3.78     -  gnome-shell
+Average:     1000      2896    0.00    0.20    0.00    0.00    0.20     -  gvfs-gphoto2-vo
+Average:     1000      3039    0.00    0.20    0.00    0.00    0.20     -  gjs
+Average:     1000      3093    0.00    0.20    0.00    0.00    0.20     -  VBoxClient
+Average:        0      4997    0.00    0.20    0.00    0.20    0.20     -  kworker/3:0-mm_percpu_wq
+Average:     1000      5895    0.20    0.20    0.00    0.20    0.40     -  gnome-terminal-
+Average:     1000      6087    0.00    0.20    0.00    0.00    0.20     -  code
+Average:     1000      6201    0.00    0.20    0.00    0.00    0.20     -  code
+Average:     1000      6240    0.20    0.40    0.00    0.00    0.60     -  code
+Average:        0      6424    0.00    0.40    0.00    0.00    0.40     -  kworker/u16:2-events_unbound
+Average:     1000      6505    0.00    0.20    0.00    0.00    0.20     -  gjs
+Average:     1000      6544    0.40    0.80    0.00    0.00    1.19     -  pidstat
+
+Average:      UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+Average:        0         1     17.10      0.00   25204   15640   0.46  systemd
+Average:        0      2238      0.80      0.00  388984   11164   0.33  gdm-session-wor
+Average:     1000      2496     90.85     54.47 5162512  484212  14.11  gnome-shell
+Average:     1000      3039      0.60      0.00 2660012   28420   0.83  gjs
+Average:     1000      6087      3.58      0.00 1461520436  192800   5.62  code
+Average:     1000      6128      1.79      0.00 34113072  134819   3.93  code
+Average:     1000      6139      1.59      0.00 33859032   74464   2.17  code
+Average:     1000      6165      0.80      0.00 1478120996  324972   9.47  code
+Average:     1000      6200      2.78      0.00 1461294888  112416   3.28  code
+Average:     1000      6201      0.60      0.00 1461295432  104736   3.05  code
+Average:     1000      6240      1.79      0.00 1461295820  156780   4.57  code
+Average:     1000      6505      1.19      0.00 2724836   67068   1.95  gjs
+Average:     1000      6544      0.40      0.00   10372    4280   0.12  pidstat
+
+Average:      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
