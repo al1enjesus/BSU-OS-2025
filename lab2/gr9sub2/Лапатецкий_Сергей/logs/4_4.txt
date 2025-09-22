@@ -1,0 +1,107 @@
+Linux 6.14.0-29-generic (killerser-desktop) 	09/21/2025 	_x86_64_	(8 CPU)
+
+11:25:42 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+11:25:43 PM  1000      1984    4.95    3.96    0.00    0.00    8.91     6  gnome-shell
+11:25:43 PM  1000      3852    0.99    0.00    0.00    0.00    0.99     6  gnome-terminal-
+11:25:43 PM  1000     15410    0.99    0.00    0.00    0.00    0.99     3  Isolated Web Co
+11:25:43 PM  1000     19741    0.00    0.99    0.00    0.00    0.99     5  pidstat
+
+11:25:42 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+11:25:43 PM  1000      1984   8969.31      0.00 5851548  481228   4.33  gnome-shell
+11:25:43 PM  1000      2683      0.99      0.00 4124648  885816   7.96  firefox
+11:25:43 PM  1000     19741      2.97      0.00   19452    4828   0.04  pidstat
+
+11:25:42 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+11:25:43 PM  1000      2683      0.00     99.01      0.00       0  firefox
+
+11:25:43 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+11:25:44 PM  1000      1984    7.00    6.00    0.00    0.00   13.00     7  gnome-shell
+11:25:44 PM  1000      3852    0.00    1.00    0.00    0.00    1.00     6  gnome-terminal-
+11:25:44 PM  1000      5842    1.00    0.00    0.00    0.00    1.00     2  Isolated Web Co
+
+11:25:43 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+11:25:44 PM  1000      1984  10147.00      0.00 5851548  481228   4.33  gnome-shell
+11:25:44 PM  1000     14530      1.00      0.00 2606764  249136   2.24  Isolated Web Co
+
+11:25:43 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+11:25:44 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+11:25:45 PM  1000      1984    3.00    4.00    0.00    0.00    7.00     1  gnome-shell
+11:25:45 PM  1000      3020    0.00    1.00    0.00    0.00    1.00     1  Privileged Cont
+11:25:45 PM  1000      3852    1.00    0.00    0.00    0.00    1.00     6  gnome-terminal-
+11:25:45 PM  1000     19741    0.00    1.00    0.00    0.00    1.00     5  pidstat
+
+11:25:44 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+11:25:45 PM  1000      1984   9039.00      0.00 5851548  481228   4.33  gnome-shell
+
+11:25:44 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+11:25:45 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+11:25:46 PM  1000      1984    8.00    7.00    0.00    0.00   15.00     1  gnome-shell
+11:25:46 PM  1000      2338    0.00    1.00    0.00    0.00    1.00     6  gvfs-afc-volume
+11:25:46 PM  1000      3852    0.00    1.00    0.00    0.00    1.00     6  gnome-terminal-
+11:25:46 PM  1000     11082    1.00    1.00    0.00    0.00    2.00     2  Isolated Web Co
+11:25:46 PM     0     18547    0.00    1.00    0.00    0.00    1.00     2  kworker/u32:1-events_freezable_pwr_efficient
+11:25:46 PM  1000     19561    0.00    1.00    0.00    0.00    1.00     4  Web Content
+11:25:46 PM  1000     19741    1.00    0.00    0.00    0.00    1.00     5  pidstat
+
+11:25:45 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+11:25:46 PM  1000      1984   7469.00      0.00 5843388  481228   4.33  gnome-shell
+11:25:46 PM  1000     11082      4.00      0.00 2645420  264492   2.38  Isolated Web Co
+11:25:46 PM  1000     15280      0.00      0.00 2572528  171692   1.54  Isolated Web Co
+
+11:25:45 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+11:25:46 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+11:25:47 PM     0        18    0.00    1.00    0.00    0.00    1.00     7  rcu_preempt
+11:25:47 PM  1000      1984    8.00    6.00    0.00    0.00   14.00     7  gnome-shell
+11:25:47 PM  1000      3852    1.00    0.00    0.00    0.00    1.00     0  gnome-terminal-
+11:25:47 PM  1000      4369    0.00    1.00    0.00    0.00    1.00     1  sd_dummy
+11:25:47 PM  1000      7703    1.00    1.00    0.00    0.00    2.00     1  Isolated Web Co
+11:25:47 PM  1000      8641    1.00    1.00    0.00    0.00    2.00     6  Isolated Web Co
+11:25:47 PM  1000     11275    0.00    1.00    0.00    0.00    1.00     3  Isolated Web Co
+11:25:47 PM  1000     14906    0.00    1.00    0.00    0.00    1.00     2  Isolated Web Co
+11:25:47 PM     0     17357    0.00    1.00    0.00    0.00    1.00     1  kworker/u32:2-events_unbound
+11:25:47 PM  1000     19741    0.00    1.00    0.00    0.00    1.00     5  pidstat
+
+11:25:46 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+11:25:47 PM  1000      1984  21089.00      0.00 5843388  481228   4.33  gnome-shell
+11:25:47 PM  1000      7703      4.00      0.00 2551604  165268   1.49  Isolated Web Co
+11:25:47 PM  1000      8641      4.00      0.00 2449392   87900   0.79  Isolated Web Co
+11:25:47 PM  1000     11275      4.00      0.00 2561044  174680   1.57  Isolated Web Co
+
+11:25:46 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+Average:      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+Average:        0        18    0.00    0.20    0.00    0.00    0.20     -  rcu_preempt
+Average:     1000      1984    6.19    5.39    0.00    0.00   11.58     -  gnome-shell
+Average:     1000      2338    0.00    0.20    0.00    0.00    0.20     -  gvfs-afc-volume
+Average:     1000      3020    0.00    0.20    0.00    0.00    0.20     -  Privileged Cont
+Average:     1000      3852    0.60    0.40    0.00    0.00    1.00     -  gnome-terminal-
+Average:     1000      4369    0.00    0.20    0.00    0.00    0.20     -  sd_dummy
+Average:     1000      5842    0.20    0.00    0.00    0.00    0.20     -  Isolated Web Co
+Average:     1000      7703    0.20    0.20    0.00    0.00    0.40     -  Isolated Web Co
+Average:     1000      8641    0.20    0.20    0.00    0.00    0.40     -  Isolated Web Co
+Average:     1000     11082    0.20    0.20    0.00    0.00    0.40     -  Isolated Web Co
+Average:     1000     11275    0.00    0.20    0.00    0.00    0.20     -  Isolated Web Co
+Average:     1000     14906    0.00    0.20    0.00    0.00    0.20     -  Isolated Web Co
+Average:     1000     15410    0.20    0.00    0.00    0.00    0.20     -  Isolated Web Co
+Average:        0     17357    0.00    0.20    0.00    0.00    0.20     -  kworker/u32:2-events_unbound
+Average:        0     18547    0.00    0.20    0.00    0.00    0.20     -  kworker/u32:1-kvfree_rcu_reclaim
+Average:     1000     19561    0.00    0.20    0.00    0.00    0.20     -  Web Content
+Average:     1000     19741    0.20    0.60    0.00    0.00    0.80     -  pidstat
+
+Average:      UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
+Average:     1000      1984  11337.92      0.00 5848284  481228   4.33  gnome-shell
+Average:     1000      2683      0.20      0.00 4124648  885816   7.96  firefox
+Average:     1000      7703      0.80      0.00 2551591  165268   1.49  Isolated Web Co
+Average:     1000      8641      0.80      0.00 2449379   87900   0.79  Isolated Web Co
+Average:     1000     11082      0.80      0.00 2645410  264492   2.38  Isolated Web Co
+Average:     1000     11275      0.80      0.00 2561031  174680   1.57  Isolated Web Co
+Average:     1000     14530      0.20      0.00 2606764  249136   2.24  Isolated Web Co
+Average:     1000     15280      0.00      0.00 2572538  171692   1.54  Isolated Web Co
+Average:     1000     19741      0.60      0.00   19452    4828   0.04  pidstat
+
+Average:      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+Average:     1000      2683      0.00     19.96      0.00       0  firefox
+
