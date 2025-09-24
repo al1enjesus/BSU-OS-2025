@@ -151,7 +151,7 @@ MiB Swap:   4096,0 total,   4096,0 free,      0,0 used.  13518,4 avail Mem
 	   3937    3935 fork_example    S  0.0  0.0
 		```
 **Скриншот вывода команды**`htop -u "$USER"`:
-![[Screenshot.png]]
+![[/img/Screenshot.png]]
 **Аналитика процессов**
 * TOP-5 по CPU:
 	```
