@@ -102,7 +102,7 @@ MiB Swap:   4096,0 total,   4096,0 free,      0,0 used.  13518,4 avail Mem
      12 root      20   0       0      0      0 I   0,0   0,0   0:00.06 kworker+
      13 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker+
 ```
-**Вывод команды `ps -eo pid,ppid,comm,state,%cpu,%mem,etime --sort=-%cpu | head -n 15 | cat`: **
+**Вывод команды** `ps -eo pid,ppid,comm,state,%cpu,%mem,etime --sort=-%cpu | head -n 15 | cat`:
 ```bash
     PID    PPID COMMAND         S %CPU %MEM     ELAPSED
    4020    3733 ps              R  100  0.0       00:00
@@ -121,7 +121,7 @@ MiB Swap:   4096,0 total,   4096,0 free,      0,0 used.  13518,4 avail Mem
    3966       2 kworker/u97:3-e I  0.1  0.0       19:35
 
 ```
-**Вывод команды `ps -eo pid,ppid,comm,state,%cpu,%mem,rss --sort=-%mem | head -n 15 | cat`: **
+**Вывод команды** `ps -eo pid,ppid,comm,state,%cpu,%mem,rss --sort=-%mem | head -n 15 | cat`:
 ```bash
     PID    PPID COMMAND         S %CPU %MEM   RSS
    3643    3445 obsidian        S  2.8  2.0 313200
@@ -150,7 +150,7 @@ MiB Swap:   4096,0 total,   4096,0 free,      0,0 used.  13518,4 avail Mem
 	   3936    3935 fork_example    S  0.0  0.0
 	   3937    3935 fork_example    S  0.0  0.0
 		```
-**Скриншот вывода команды `htop -u "$USER"`:**
+**Скриншот вывода команды**`htop -u "$USER"`:
 ![[Screenshot.png]]
 **Аналитика процессов**
 * TOP-5 по CPU:
