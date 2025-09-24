@@ -3,23 +3,26 @@
 #include <sys/wait.h>
 
 int main() {
-	printf("Parent start: PID=%d\n",getpid());
+	printf("Parent start: PID=%d\n", getpid());
 	fflush(stdout);
 
 	for (int i = 0; i < 2; i++) {
-		pid_t pid = fork();
+	pid_t pid = fork();
 
 		if (pid == 0) {
-			printf("child[%d]: PID=%d,PPID=%d\n", i, getpid(), getppid());
-			fflush(stdout);
-			while(1) sleep(1);
+		printf("child[%d]: PID=%d, PPID=%d\n", i, getpid(), getppid());
+		fflush(stdout);
+		return 0;
 		}
 	}
 
 	for (int i = 0; i < 2; i++) {
-		wait(NULL);
+	int status;
+	pid_t child_pid = wait(&status);
+	printf("Child with PID=%d exited, status=%d\n", child_pid, WEXITSTATUS(status));
+	fflush(stdout);
 	}
 
-	printf("Parent finish\n");
+	printf("Parent finish: PID=%d\n", getpid());
 	return 0;
 }
