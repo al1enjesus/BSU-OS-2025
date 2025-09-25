@@ -1,14 +1,20 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -O2
-BIN_DIR=bin
-BINS=$(BIN_DIR)/fork_example $(BIN_DIR)/ptree
-all: $(BIN_DIR) $(BINS)
-$(BIN_DIR): ; mkdir -p $(BIN_DIR)
-$(BIN_DIR)/fork_example: src/fork_example.c ; $(CC) $(CFLAGS) $< -o $@
-$(BIN_DIR)/ptree: src/ptree.c ; $(CC) $(CFLAGS) $< -o $@
-clean: ; rm -rf $(BIN_DIR) *.log
-run_fork_c: all ; $(BIN_DIR)/fork_example | tee fork_c.log
-run_fork_py: ; python3 src/fork_example.py | tee fork_py.log
-run_ptree_c: all ; $(BIN_DIR)/ptree
-run_ptree_py: ; python3 src/ptree.py
-.PHONY: all clean run_fork_c run_fork_py run_ptree_c run_ptree_py
+# Makefile (Python-only)
+# Запуск Python-утилит без сборки C
+
+.PHONY: all clean run_fork_py run_ptree_py lint
+
+all:
+	@echo "Nothing to build (Python-only). Use: make run_fork_py / run_ptree_py"
+
+run_fork_py:
+	python3 src/fork_example.py
+
+run_ptree_py:
+	python3 src/ptree.py
+
+lint:
+	# Лёгкая проверка стиля, не фейлит сборку если pyflakes не установлен
+	@if command -v pyflakes >/dev/null 2>&1; then pyflakes src || true; else echo "pyflakes not found (optional)"; fi
+
+clean:
+	rm -f *.log
