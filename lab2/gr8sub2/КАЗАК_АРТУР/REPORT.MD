@@ -15,7 +15,7 @@ uname -a
 
 ## Структура репозитория
 ```
-lab2/grXXsubYY/ФАМИЛИЯ_ИМЯ/
+lab2/grXXsubYY/КАЗАК_АРТУР/
   REPORT.MD
   REPORT_AUTO.MD          # генерируется run.sh (артефакты вашей машины)
   src/
