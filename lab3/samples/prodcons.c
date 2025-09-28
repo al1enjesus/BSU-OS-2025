@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <semaphore.h>
 
 typedef struct {
     int* data;
@@ -12,10 +13,13 @@ typedef struct {
     int tail;
     int count;
     pthread_mutex_t mutex;
-    pthread_cond_t not_full;
-    pthread_cond_t not_empty;
+    //pthread_cond_t not_full;
+    //pthread_cond_t not_empty;
+    sem_t empty;
+    sem_t full;
     int producers_active;
-} ring_buffer_t; // TODO: это готовая структура. Не меняйте поля без необходимости.
+    int consumers_total;
+} ring_buffer_t;
 
 typedef struct {
     ring_buffer_t* rb;
@@ -30,72 +34,69 @@ typedef struct {
     int consumer_index;
 } consumer_args_t;
 
-static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
-    // TODO: выделите буфер, инициализируйте индексы и синхронизацию
+static void rb_init(ring_buffer_t* rb, int capacity, int producers_total, int consumers_total) {
     rb->data = (int*)malloc(sizeof(int)*capacity);
+    if (!rb->data) {
+        fprintf(stderr, "malloc failed\n");
+        exit(1);
+    } //проверка выделена ли память
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
     rb->count = 0;
     rb->producers_active = producers_total;
+    rb->consumers_total = consumers_total;
     pthread_mutex_init(&rb->mutex, NULL);
-    pthread_cond_init(&rb->not_full, NULL);
-    pthread_cond_init(&rb->not_empty, NULL);
+    //pthread_cond_init(&rb->not_full, NULL);
+    //pthread_cond_init(&rb->not_empty, NULL);
+    sem_init(&rb->empty, 0, capacity);
+    sem_init(&rb->full, 0, 0);
 }
 
 static void rb_destroy(ring_buffer_t* rb) {
     free(rb->data);
     pthread_mutex_destroy(&rb->mutex);
-    pthread_cond_destroy(&rb->not_full);
-    pthread_cond_destroy(&rb->not_empty);
+    sem_destroy(&rb->empty);
+    sem_destroy(&rb->full);
 }
 
 static void rb_push(ring_buffer_t* rb, int value) {
-    // TODO: реализуйте вставку в кольцевой буфер под mutex с ожиданием not_full
+    sem_wait(&rb->empty);
     pthread_mutex_lock(&rb->mutex);
-    while (rb->count == rb->capacity) {
-        pthread_cond_wait(&rb->not_full, &rb->mutex);
-    }
     rb->data[rb->tail] = value;
     rb->tail = (rb->tail + 1) % rb->capacity;
     rb->count++;
-    pthread_cond_signal(&rb->not_empty);
     pthread_mutex_unlock(&rb->mutex);
+    sem_post(&rb->full);
 }
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
-    // TODO: реализуйте извлечение из кольцевого буфера под mutex с ожиданием not_empty
+    sem_wait(&rb->full);
     pthread_mutex_lock(&rb->mutex);
-    while (rb->count == 0 && rb->producers_active > 0) {
-        pthread_cond_wait(&rb->not_empty, &rb->mutex);
-    }
-    if (rb->count == 0 && rb->producers_active == 0) {
-        pthread_mutex_unlock(&rb->mutex);
-        return 0; // no more items will arrive
-    }
     *value = rb->data[rb->head];
     rb->head = (rb->head + 1) % rb->capacity;
     rb->count--;
-    pthread_cond_signal(&rb->not_full);
     pthread_mutex_unlock(&rb->mutex);
+    sem_post(&rb->empty);
     return 1;
 }
 
 static void rb_producer_done(ring_buffer_t* rb) {
-    // TODO: сообщайте потребителям об окончании производителей
     pthread_mutex_lock(&rb->mutex);
     rb->producers_active--;
-    if (rb->producers_active == 0) {
-        pthread_cond_broadcast(&rb->not_empty);
-    }
+    int last = (rb->producers_active == 0);
     pthread_mutex_unlock(&rb->mutex);
+    if (last) {
+        for (int i = 0; i < rb->consumers_total; i++) {
+            rb_push(rb, -1);
+        }
+    }
 }
 
 static void* producer_thread(void* arg) {
-    // TODO: генерируйте элементы и кладите их в буфер
     producer_args_t* a = (producer_args_t*)arg;
     for (int i = 0; i < a->items_to_produce; i++) {
-        int value = (a->producer_index + 1) * 1000000 + i; // пример кодирования
+        int value = a->producer_index * a->items_to_produce + i; // альт. кодирование
         rb_push(a->rb, value);
     }
     rb_producer_done(a->rb);
@@ -103,10 +104,13 @@ static void* producer_thread(void* arg) {
 }
 
 static void* consumer_thread(void* arg) {
-    // TODO: извлекайте элементы пока доступны и агрегируйте метрики
     consumer_args_t* a = (consumer_args_t*)arg;
     int v;
-    while (rb_pop(a->rb, &v)) {
+    while (1) {
+        rb_pop(a->rb, &v);
+        if (v == -1) {
+           break;
+        }
         a->consumed_sum += v;
         a->consumed_count += 1;
     }
@@ -137,7 +141,7 @@ int main(int argc, char** argv) {
     }
 
     ring_buffer_t rb;
-    rb_init(&rb, B, P);
+    rb_init(&rb, B, P, C);
 
     pthread_t* pt = (pthread_t*)calloc((size_t)P, sizeof(pthread_t));
     pthread_t* ct = (pthread_t*)calloc((size_t)C, sizeof(pthread_t));
