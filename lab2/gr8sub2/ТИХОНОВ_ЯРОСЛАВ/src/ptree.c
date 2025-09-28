@@ -5,23 +5,24 @@
 
 #define MAX_LINE 255
 #define MAX_NAME 255
-#define MAX_DEPTH 1024  // предотвращение бесконечной петли
+#define MAX_DEPTH 256  // ограничение глубины для предотвращения бесконечного цикла
 
-// функция для чтения имени и PPid из /proc/<pid>/status
+// Чтение имени и PPid из /proc/<pid>/status
 int read_status(int pid, char *name, int *ppid) {
     char path[64];
     snprintf(path, sizeof(path), "/proc/%d/status", pid);
-    FILE *f = fopen(path, "r");
-    if (!f) return -1;
 
-    char line[MAX_LINE + 1];  // +1 для нуль-терминатора
+    FILE *f = fopen(path, "r");
+    if (!f) return -1;  // процесс мог завершиться
+
+    char line[MAX_LINE + 1];
     *ppid = -1;
     name[0] = '\0';
 
     while (fgets(line, sizeof(line), f)) {
         if (strncmp(line, "Name:", 5) == 0) {
             if (sscanf(line, "Name:\t%255s", name) != 1) {
-                // если чтение не удалось
+                // непредвиденный формат строки
                 name[0] = '\0';
             }
         } else if (strncmp(line, "PPid:", 5) == 0) {
@@ -35,16 +36,38 @@ int read_status(int pid, char *name, int *ppid) {
     return 0;
 }
 
+// Альтернатива: получение имени процесса через /proc/<pid>/exe
+int get_exe_name(int pid, char *name, size_t size) {
+    char path[64];
+    snprintf(path, sizeof(path), "/proc/%d/exe", pid);
+    ssize_t len = readlink(path, name, size - 1);
+    if (len == -1) return -1;
+    name[len] = '\0';
+    return 0;
+}
+
 int main(void) {
     int pid = getpid();
-    char name[MAX_NAME + 1];  // буфер для имени
+    char name[MAX_NAME + 1];
     int ppid;
 
-    int depth = 0;  // ограничение итераций
+    int depth = 0;
     while (pid > 0 && depth < MAX_DEPTH) {
-        if (read_status(pid, name, &ppid) != 0) break;
+        // читаем статус
+        if (read_status(pid, name, &ppid) != 0) {
+            fprintf(stderr, "Process %d disappeared.\n", pid);
+            break;
+        }
 
-        printf("%s(%d)", name[0] ? name : "unknown", pid);
+        // если имя пустое, пробуем через exe
+        if (name[0] == '\0') {
+            if (get_exe_name(pid, name, sizeof(name)) != 0) {
+                strncpy(name, "unknown", sizeof(name));
+                name[sizeof(name) - 1] = '\0';
+            }
+        }
+
+        printf("%s(%d)", name, pid);
         if (pid == 1 || ppid <= 0) break;
 
         printf(" ← ");
