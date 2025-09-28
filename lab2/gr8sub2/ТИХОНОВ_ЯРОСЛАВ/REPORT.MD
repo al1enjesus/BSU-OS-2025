@@ -12,6 +12,7 @@
 
 **Компиляция и запуск:**
 ```sh
+mkdir -p build
 gcc src/fork_example.c -Wall -Wextra -O2 -o build/fork_example
 ./build/fork_example
 ```
@@ -183,6 +184,7 @@ pidstat -d 1 1 | sort -k 6 -nr | head -n 6
 
 **Компиляция и запуск:**
 ```sh
+mkdir -p build
 gcc src/ptree.c -Wall -Wextra -O2 -o build/ptree
 ./build/ptree
 ```
