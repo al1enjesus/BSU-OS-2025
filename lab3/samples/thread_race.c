@@ -26,31 +26,26 @@ static inline long long now_monotonic_ms(void) {
 
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
-    // TODO: реализуйте небезопасное инкрементирование общего счетчика без синхронизации
-    // Пример цели: shared_counter_unsync++ внутри цикла для демонстрации гонки
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        // TODO: shared_counter_unsync++;
+       shared_counter_unsync++;
     }
     return NULL;
 }
 
 static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
-    // TODO: реализуйте корректное инкрементирование под защитой mutex
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        // TODO:
-        // pthread_mutex_lock(&counter_mutex);
-        // shared_counter_mutex++;
-        // pthread_mutex_unlock(&counter_mutex);
+        pthread_mutex_lock(&counter_mutex);
+        shared_counter_mutex++;
+        pthread_mutex_unlock(&counter_mutex);
     }
     return NULL;
 }
 
 static void* worker_atomic(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
-    // TODO: реализуйте корректное инкрементирование через атомики (stdatomic.h)
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        // TODO: atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
+        atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
     }
     return NULL;
 }
