@@ -11,18 +11,24 @@
 child[1]: PID=13662, PPID=13660
 child[2]: PID=13663, PPID=13660
 parent: both children completed. Exit codes: 0, 0
+
 Вывод: родитель создал двух детей и дождался их завершения.
 
 2) Исследование дерева процессов
 Вывод команды ps -ef --forest:
 yoshido+   18558   13500  0 17:21 pts/1    00:00:00  |   |   \_ grep --color=auto yoshidori
+
 Вывод команды pstree -p:
 bash(13500)───pstree(18678)
+
 Вывод: все процессы получились видны.
 
 3) Изучение /proc
+
 PID текущей оболочки: 13500
+
 cat /proc/13500/cmdline | tr '\0' ' '; echo: bash. Это командная строка запуска процессора
+
 Вывод команды head -n 20 /proc/13500/status
 Name:	bash
 Umask:	0002
@@ -44,17 +50,23 @@ Kthread:	0
 VmPeak:	   12280 kB
 VmSize:	   12280 kB
 VmLck:	       0 kB
+
 Команда показывает статус и информацию о процессе.
+
 Вывод команды ls -l /proc/13500/fd: 
+
 итого 0
 lrwx------ 1 yoshidori yoshidori 64 Sep 28 14:29 0 -> /dev/pts/1
 lrwx------ 1 yoshidori yoshidori 64 Sep 28 14:29 1 -> /dev/pts/1
 lrwx------ 1 yoshidori yoshidori 64 Sep 28 14:29 2 -> /dev/pts/1
 lrwx------ 1 yoshidori yoshidori 64 Sep 28 14:29 255 -> /dev/pts/1
+
 Команда показывает открытые файловые дескрипторы.
 
 4) Анализ процессов (нагрузка CPU/память/IO)
+
 1. Моментальный срез top: 
+
 top - 14:31:23 up  2:09,  2 users,  load average: 1.25, 0.86, 0.54
 Задачи: 235 total,   3 running, 231 sleeping,   0 stopped,   1 zombie
 %Cpu(s): 10.0 us,  2.0 sy,  0.0 ni, 82.0 id,  4.0 wa,  0.0 hi,  2.0 si,  0.0 st 
@@ -75,8 +87,11 @@ top - 14:31:23 up  2:09,  2 users,  load average: 1.25, 0.86, 0.54
       8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
      11 root       0 -20       0      0      0 I   0.0   0.0   0:00.14
      13 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
+
 Показывает процессы с наибольшей нагрузкой на CPU.
+
 Вывод команды ps -eo pid,ppid,comm,state,%cpu,%mem,etime --sort=-%cpu | head -n 15 | cat:
+
     PID    PPID COMMAND         S %CPU %MEM     ELAPSED
   15399   13500 ps              R 50.0  0.1       00:00
    2281    2031 gnome-shell     S 12.5 15.5    02:09:10
@@ -92,8 +107,11 @@ top - 14:31:23 up  2:09,  2 users,  load average: 1.25, 0.86, 0.54
   12628   11479 Isolated Web Co S  0.3  5.8    02:03:04
   11507   11479 Privileged Cont S  0.3  4.0    02:04:53
   14553       2 kworker/u16:0-e I  0.2  0.0       49:30
+
 Показывает топ-15 процессов по использованию CPU.
+
 Вывод команды ps -eo pid,ppid,comm,state,%cpu,%mem,rss --sort=-%mem | head -n 15 | cat:
+
     PID    PPID COMMAND         S %CPU %MEM   RSS
   11303    2281 firefox         S  6.4 18.6 650492
    2281    2031 gnome-shell     S 12.5 15.5 543216
@@ -109,6 +127,7 @@ top - 14:31:23 up  2:09,  2 users,  load average: 1.25, 0.86, 0.54
   15127    2281 gjs             S  0.2  1.8 65904
   13493    2031 gnome-terminal- S  0.4  1.8 64524
    2458    2245 evolution-alarm S  0.0  1.7 62264
+
 Показывает топ-15 процессов по использованию памяти.
 
 топ-5 по использованию CPU: 
@@ -118,29 +137,41 @@ top - 14:31:23 up  2:09,  2 users,  load average: 1.25, 0.86, 0.54
   12561   11479 Isolated Web Co S  4.2    05:44:09
   18902       2 kworker/u16:0-e I  0.6       21:30
   19126       2 kworker/u16:2-e I  0.6       04:54
+
 gnome-shell -  перерисовывает интерфейс
 firefox - открыто несколько вкладок
+
 топ-5 по использованию памяти:    
+
 PID COMMAND         %MEM   RSS
 11303 firefox 17.6 599MB
 2281 gnome-shell 15.6 532MB
 12561 Isolated Web 0MB 9.7 340636
 14000 nautilus 8.2 281MB
 12628 Isolated Web 0MB 5.8 202832
+
 firefox - кэш страниц
 gnome-shell - графические буферы, темы, виджеты.
+
 топ-5 по IO:
 1 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  init splash noprompt noshell automatic-ubiquity crashkernel=2G-4G:320M,4G-32G:512M,32G-64G:1024M,64G-128G:2048M,128G-:4096M
       2 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kthreadd]
       3 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [pool_workqueue_release]
       4 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-rcu_gp]
       5 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-sync_wq]
+
 IO-нагрузка минимальна.
+
 5). Мини-утилита ptree
+
 Цель: написать утилиту печатающую цепочку родителей от текущего процесса до PID1.
+
 Программа написана на Python.
+
 Код ptree.py.
-Вывод программы: 
+
+Вывод программы:
+
 Process tree for PID 19384:
 systemd(1) -- systemd(2031) -- gnome-terminal-(13493) -- bash(13500) -- python3(19384)
 
