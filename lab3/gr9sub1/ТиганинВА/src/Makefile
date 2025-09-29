@@ -5,15 +5,22 @@ N ?= 8
 M ?= 100000
 MODE ?= unsync
 
-.PHONY: all build clean
+.PHONY: all build_race clean run_race build_prodcons run_prodcons
 
-all: build
+#all: build
 
-build: race.c
+build_race: race.c
 	gcc $(CFLAGS) race.c -o race
 
-run: race
+run_race: race
 	./race $(N) $(M) $(MODE)
+
+build_prodcons: race.c
+	gcc $(CFLAGS) prodcons.c -o prodcons
+
+run_prodcons: race
+	./prodcons -P 2 -C 2 -N 100000 -B 64
 
 clean:
 	rm -f race
+	rm -f prodcons
