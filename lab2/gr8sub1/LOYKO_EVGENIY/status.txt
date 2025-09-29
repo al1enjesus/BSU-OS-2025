@@ -1,0 +1,20 @@
+Name:	bash
+Umask:	0002
+State:	S (sleeping)
+Tgid:	2957
+Ngid:	0
+Pid:	2957
+PPid:	2950
+TracerPid:	0
+Uid:	1000	1000	1000	1000
+Gid:	1000	1000	1000	1000
+FDSize:	256
+Groups:	4 24 27 30 46 101 1000 
+NStgid:	2957
+NSpid:	2957
+NSpgid:	2957
+NSsid:	2957
+Kthread:	0
+VmPeak:	    8372 kB
+VmSize:	    8372 kB
+VmLck:	       0 kB

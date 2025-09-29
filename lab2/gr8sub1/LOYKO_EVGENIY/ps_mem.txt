@@ -1,0 +1,15 @@
+    PID    PPID COMMAND         S %CPU %MEM   RSS
+   1903    1727 gnome-shell     R  6.1 10.0 402196
+   4792    4750 unattended-upgr S  1.9  3.1 124352
+   2418    1903 mutter-x11-fram S  0.0  2.4 99412
+   2366    1727 gsd-xsettings   S  0.0  2.0 82284
+   2205    1903 Xwayland        S  0.0  1.7 70072
+   2845    1903 gjs             S  0.1  1.5 62012
+   2463    1872 evolution-alarm S  0.0  1.4 58624
+   2950    1727 gnome-terminal- S  1.0  1.4 58200
+   1988    1727 evolution-sourc S  0.0  1.0 40832
+   2537    1727 xdg-desktop-por S  0.0  0.9 39528
+    837       1 snapd           S  0.6  0.9 38772
+   2641    1872 update-notifier S  0.0  0.8 32388
+   2143    2014 ibus-extension- S  0.1  0.7 29428
+   2215    1727 evolution-addre S  0.0  0.7 28928

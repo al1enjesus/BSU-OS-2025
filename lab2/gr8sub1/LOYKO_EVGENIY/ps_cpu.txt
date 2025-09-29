@@ -1,0 +1,15 @@
+    PID    PPID COMMAND         S %CPU %MEM     ELAPSED
+   1903    1727 gnome-shell     R  6.1 10.0       26:37
+   4792    4750 unattended-upgr S  1.9  3.1       02:42
+   4847    4792 http            S  1.5  0.2       02:39
+   2950    1727 gnome-terminal- S  1.0  1.4       19:02
+    837       1 snapd           S  0.6  0.9       29:03
+   1665       1 spice-vdagentd  S  0.2  0.1       26:52
+      1       0 systemd         S  0.1  0.3       29:07
+   2014    1727 ibus-daemon     S  0.1  0.2       26:37
+   2143    2014 ibus-extension- S  0.1  0.7       26:37
+    693       1 systemd-oomd    S  0.1  0.1       29:04
+   2845    1903 gjs             S  0.1  1.5       19:15
+   3746       2 kworker/0:3-eve I  0.0  0.0       12:20
+     11       2 kworker/u8:0-ev I  0.0  0.0       29:07
+   2641    1872 update-notifier S  0.0  0.8       25:35

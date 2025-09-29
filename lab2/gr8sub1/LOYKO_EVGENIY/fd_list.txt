@@ -1,0 +1,7 @@
+total 0
+dr-x------ 2 datastream datastream  4 сен 22 05:35 .
+dr-xr-xr-x 9 datastream datastream  0 сен 22 05:33 ..
+lrwx------ 1 datastream datastream 64 сен 22 05:35 0 -> /dev/pts/0
+lrwx------ 1 datastream datastream 64 сен 22 05:35 1 -> /dev/pts/0
+lrwx------ 1 datastream datastream 64 сен 22 05:35 2 -> /dev/pts/0
+lrwx------ 1 datastream datastream 64 сен 22 05:35 255 -> /dev/pts/0
