@@ -15,10 +15,10 @@ build_race: race.c
 run_race: race
 	./race $(N) $(M) $(MODE)
 
-build_prodcons: race.c
+build_prodcons: prodcons.c
 	gcc $(CFLAGS) prodcons.c -o prodcons
 
-run_prodcons: race
+run_prodcons: prodcons
 	./prodcons -P 2 -C 2 -N 100000 -B 64
 
 clean:

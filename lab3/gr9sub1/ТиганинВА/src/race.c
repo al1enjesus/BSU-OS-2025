@@ -13,7 +13,7 @@ pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct {
     long long n_iters;
-    char sync_mode[8]; // "unsync", "mutex", "atomic"
+    char sync_mode[8]; 
 } thread_arg_t;
 
 void* increment(void* arg) {
@@ -22,7 +22,7 @@ void* increment(void* arg) {
 
     if (strcmp(t_arg->sync_mode, "unsync") == 0) {
         for (long long i = 0; i < n; ++i) {
-            counter_unsync++; // гонка!
+            counter_unsync++; 
         }
     } else if (strcmp(t_arg->sync_mode, "mutex") == 0) {
         for (long long i = 0; i < n; ++i) {
@@ -67,6 +67,10 @@ int main(int argc, char* argv[]) {
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     pthread_t* threads = malloc(sizeof(pthread_t) * N);
+    if (threads == NULL) {
+        fprintf(stderr, "malloc failed for threads\n");
+        return 1;
+    }
     thread_arg_t arg;
     arg.n_iters = M / N;
     strncpy(arg.sync_mode, mode, sizeof(arg.sync_mode) - 1);

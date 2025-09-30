@@ -32,6 +32,10 @@ typedef struct {
 
 static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
     rb->data = (int*)malloc(sizeof(int)*capacity);
+    if (rb->data == NULL) {
+        fprintf(stderr, "Failed to allocate memory for ring buffer\n");
+        exit(EXIT_FAILURE);
+    }
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
