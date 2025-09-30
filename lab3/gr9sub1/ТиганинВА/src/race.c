@@ -22,7 +22,7 @@ void* increment(void* arg) {
 
     if (strcmp(t_arg->sync_mode, "unsync") == 0) {
         for (long long i = 0; i < n; ++i) {
-            counter_unsync++; 
+            counter_unsync++;
         }
     } else if (strcmp(t_arg->sync_mode, "mutex") == 0) {
         for (long long i = 0; i < n; ++i) {
@@ -63,26 +63,38 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    struct timespec start, finish;
-    clock_gettime(CLOCK_MONOTONIC, &start);
-
     pthread_t* threads = malloc(sizeof(pthread_t) * N);
     if (threads == NULL) {
         fprintf(stderr, "malloc failed for threads\n");
         return 1;
     }
-    thread_arg_t arg;
-    arg.n_iters = M / N;
-    strncpy(arg.sync_mode, mode, sizeof(arg.sync_mode) - 1);
-    arg.sync_mode[sizeof(arg.sync_mode) - 1] = '\0';
+
+    thread_arg_t* args = malloc(sizeof(thread_arg_t) * N);
+    if (args == NULL) {
+        fprintf(stderr, "malloc failed for args\n");
+        free(threads);
+        return 1;
+    }
 
     counter_unsync = 0;
     counter_mutex = 0;
     atomic_store(&counter_atomic, 0);
 
+    struct timespec start, finish;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
     for (int i = 0; i < N; ++i) {
-        pthread_create(&threads[i], NULL, increment, &arg);
+        args[i].n_iters = M / N + (i < (M % N) ? 1 : 0);
+        strncpy(args[i].sync_mode, mode, sizeof(args[i].sync_mode) - 1);
+        args[i].sync_mode[sizeof(args[i].sync_mode) - 1] = '\0';
+
+        if (pthread_create(&threads[i], NULL, increment, &args[i]) != 0) {
+            fprintf(stderr, "Failed to create thread %d\n", i);
+            N = i; 
+            break;
+        }
     }
+
     for (int i = 0; i < N; ++i) {
         pthread_join(threads[i], NULL);
     }
@@ -96,12 +108,13 @@ int main(int argc, char* argv[]) {
         result = counter_atomic;
     }
 
-    printf("Expected: %lld, Actual: %lld\n", M, result);
-
-    free(threads);
     clock_gettime(CLOCK_MONOTONIC, &finish);
     double elapsed = (finish.tv_sec - start.tv_sec) + (finish.tv_nsec - start.tv_nsec) / 1e9;
+
+    printf("Expected: %lld, Actual: %lld\n", M, result);
     printf("Elapsed: %.5f s\n", elapsed);
 
+    free(threads);
+    free(args);
     return 0;
 }
