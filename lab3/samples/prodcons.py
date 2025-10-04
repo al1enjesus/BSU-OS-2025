@@ -25,15 +25,26 @@ class RingBuffer:
         self.used_slots.release() 
 
     def pop(self):
-        if self.all_producers_done.is_set() and self.count == 0:
-            return None
-        self.used_slots.acquire() 
-        with self.mutex:
-            value = self.data[self.head]
-            self.head = (self.head + 1) % self.capacity
-            self.count -= 1
-        self.free_slots.release()
-        return value
+        while True:
+            acquired = self.used_slots.acquire(timeout=0.1)
+        
+            with self.mutex:
+                if not acquired:
+                    if self.count == 0 and self.all_producers_done.is_set():
+                        return None
+                    continue
+            
+                if self.count == 0:
+                    self.used_slots.release()
+                    if self.all_producers_done.is_set():
+                        return None
+                    continue
+            
+                value = self.data[self.head]
+                self.head = (self.head + 1) % self.capacity
+                self.count -= 1
+                self.free_slots.release()
+                return value
 
     def producer_done(self):
         with self.mutex:
