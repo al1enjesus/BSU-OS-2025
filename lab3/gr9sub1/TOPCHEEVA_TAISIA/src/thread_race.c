@@ -31,7 +31,7 @@ static void* producer_thread(void* arg) {
     long long items_per_producer = a->items / a->num_producers;
     for (long long i = 0; i < items_per_producer; i++) {
         int value = (a->producer_index + 1) * 1000000 + i;
-        printf("[producer %d] value=%d\n", a->producer_index, value); // Отладочный вывод
+        
         sem_wait(&sem_empty);
         sem_wait(&mutex);
         buffer[buf_tail] = value;
@@ -55,8 +55,7 @@ static void* consumer_thread(void* arg) {
         sem_post(&sem_empty);
         atomic_fetch_add_explicit(&consumed_count, 1, memory_order_relaxed);
         atomic_fetch_add_explicit(&a->consumed_sum, v, memory_order_relaxed);
-        printf("[consumer %d] consumed value=%d, partial sum=%lld\n", 
-               a->consumer_index, v, atomic_load_explicit(&a->consumed_sum, memory_order_relaxed)); // Отладочный вывод
+        
     }
     return NULL;
 }
@@ -82,8 +81,28 @@ int main(int argc, char** argv) {
     }
 
     sem_init(&mutex, 0, 1);
-    sem_init(&sem_empty, 0, buffer_size);
-    sem_init(&sem_full, 0, 0);
+if (sem_init(&mutex, 0, 1) != 0) {
+    perror("Failed to initialize mutex semaphore");
+    free(buffer);
+    return 1;
+}
+
+sem_init(&sem_empty, 0, buffer_size);
+if (sem_init(&sem_empty, 0, buffer_size) != 0) {
+    perror("Failed to initialize sem_empty semaphore");
+    sem_destroy(&mutex);
+    free(buffer);
+    return 1;
+}
+
+sem_init(&sem_full, 0, 0);
+if (sem_init(&sem_full, 0, 0) != 0) {
+    perror("Failed to initialize sem_full semaphore");
+    sem_destroy(&mutex);
+    sem_destroy(&sem_empty);
+    free(buffer);
+    return 1;
+}
     atomic_store(&produced_count, 0);
     atomic_store(&consumed_count, 0);
 
@@ -133,11 +152,7 @@ int main(int argc, char** argv) {
         printf("[main] consumer %d sum=%lld\n", i, atomic_load_explicit(&args[num_producers + i].consumed_sum, memory_order_relaxed));
     }
 
-    printf("[prodcons] P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
-           num_producers, num_consumers, items, buffer_size,
-           atomic_load_explicit(&produced_count, memory_order_relaxed),
-           atomic_load_explicit(&consumed_count, memory_order_relaxed),
-           total_sum);
+    
 
     free(buffer);
     free(tids);
