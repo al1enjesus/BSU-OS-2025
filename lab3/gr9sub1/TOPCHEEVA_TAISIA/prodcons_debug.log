@@ -1,0 +1,23 @@
+Starting producers-consumers simulation:
+  Producers: 2, Consumers: 2, Items: 100000, Buffer: 64
+[producer 0] finished, produced 50000 items
+[consumer 1] finished, consumed 50000 items, local sum=39874597049
+[producer 1] finished, produced 50000 items
+[consumer 0] finished, consumed 50000 items, local sum=12625452951
+
+=== FINAL RESULTS ===
+[main] consumer 0 local sum = 12625452951
+[main] consumer 1 local sum = 39874597049
+
+Producer statistics:
+  producer 0: 50000 items consumed
+  producer 1: 50000 items consumed
+
+Summary:
+  Expected items: 100000
+  Produced: 100000 items
+  Consumed: 100000 items
+  Expected sum: 52500050000
+  Global sum: 52500050000
+  Sum of local sums: 52500050000
+✓ All checks passed - program executed correctly
