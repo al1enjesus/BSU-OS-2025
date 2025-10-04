@@ -20,15 +20,18 @@ static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static inline long long now_monotonic_ms(void) {
     struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return (long long)ts.tv_sec * 1000000LL + ts.tv_nsec / 1000LL;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0) {
+        fprintf(stderr, "clock_gettime failed\n");
+        exit(1);
+    }
+    return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
 }
 
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        shared_counter_unsync++;
-        usleep(1); 
+        shared_counter_unsync++; // Уязвим для race condition
+        usleep(1);  // Усиление race condition
     }
     return NULL;
 }
@@ -102,8 +105,8 @@ int main(int argc, char** argv) {
             case MODE_ATOMIC: fn = worker_atomic; break;
         }
         if (pthread_create(&tids[i], NULL, fn, &args[i]) != 0) {
-            fprintf(stderr, "pthread_create failed\n");
-            for (int j = 0; j < i; j++) {
+            fprintf(stderr, "pthread_create failed for thread %d\n", i);
+            for (int j = 0; j < created; j++) {
                 pthread_join(tids[j], NULL);
             }
             free(tids);
@@ -132,4 +135,3 @@ int main(int argc, char** argv) {
     free(args);
     return 0;
 }
-'''
