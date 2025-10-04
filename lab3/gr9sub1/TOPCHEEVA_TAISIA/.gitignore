@@ -1,0 +1,6 @@
+consumed_count
+consumed_sum
+*.log
+*.o
+thread_race
+prodcons
