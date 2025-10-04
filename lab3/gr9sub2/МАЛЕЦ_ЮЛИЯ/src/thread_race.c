@@ -34,9 +34,13 @@ static void* worker_unsync(void* arg) {
 static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        pthread_mutex_lock(&counter_mutex);
+        if (pthread_mutex_lock(&counter_mutex) != 0) {
+            break;
+        }
         shared_counter_mutex++;
-        pthread_mutex_unlock(&counter_mutex);
+        if (pthread_mutex_unlock(&counter_mutex) != 0) {
+            break;
+        }
     }
     return NULL;
 }
@@ -95,13 +99,21 @@ int main(int argc, char** argv) {
             case MODE_ATOMIC: fn = worker_atomic; break;
         }
         if (pthread_create(&tids[i], NULL, fn, &args[i]) != 0) {
-            fprintf(stderr, "pthread_create failed\n");
+            fprintf(stderr, "pthread_create failed for thread %d\n", i);
+            
+            for (int j = 0; j < i; j++) {
+                pthread_join(tids[j], NULL);
+            }
+            free(tids);
+            free(args);
             return 1;
         }
     }
 
     for (int i = 0; i < num_threads; i++) {
-        pthread_join(tids[i], NULL);
+        if (pthread_join(tids[i], NULL) != 0) {
+            fprintf(stderr, "pthread_join failed for thread %d\n", i);
+        }
     }
 
     long long end_ms = now_monotonic_ms();
