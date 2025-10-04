@@ -1,4 +1,3 @@
-```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -213,4 +212,3 @@ int main(int argc, char** argv) {
     rb_destroy(&rb);
     return 0;
 }
-```
