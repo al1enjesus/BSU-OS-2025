@@ -4,17 +4,20 @@ import sys
 import argparse
 
 class RingBuffer:
-    def __init__(self, capacity, producers_total):
+    def __init__(self, capacity, producers_total, consumers_total):
         self.data = [0] * capacity
         self.capacity = capacity
         self.head = 0
         self.tail = 0
         self.count = 0
         self.producers_active = producers_total
+        self.consumers_total = consumers_total
         self.mutex = threading.Lock()
         self.free_slots = threading.Semaphore(capacity)  
         self.used_slots = threading.Semaphore(0)       
         self.all_producers_done = threading.Event()
+        self.producers_done_mutex = threading.Lock()
+        self.completion_barrier = threading.Barrier(producers_total + consumers_total + 1)
 
     def push(self, value):
         self.free_slots.acquire()  
@@ -25,32 +28,37 @@ class RingBuffer:
         self.used_slots.release() 
 
     def pop(self):
-        while True:
-            acquired = self.used_slots.acquire(timeout=0.1)
-        
+        with self.mutex:
+            if self.count == 0 and self.all_producers_done.is_set():
+                return None
+    
+        if not self.used_slots.acquire(timeout=0.1):
             with self.mutex:
-                if not acquired:
-                    if self.count == 0 and self.all_producers_done.is_set():
-                        return None
-                    continue
-            
-                if self.count == 0:
-                    self.used_slots.release()
-                    if self.all_producers_done.is_set():
-                        return None
-                    continue
-            
-                value = self.data[self.head]
-                self.head = (self.head + 1) % self.capacity
-                self.count -= 1
-                self.free_slots.release()
-                return value
+                if self.count == 0 and self.all_producers_done.is_set():
+                    return None
+            return self.pop()
+        
+        with self.mutex:
+            if self.count == 0:
+                self.used_slots.release()
+                if self.all_producers_done.is_set():
+                    return None
+                return self.pop()
+                
+            value = self.data[self.head]
+            self.head = (self.head + 1) % self.capacity
+            self.count -= 1
+            self.free_slots.release()
+            return value
 
     def producer_done(self):
-        with self.mutex:
+        with self.producers_done_mutex:
             self.producers_active -= 1
             if self.producers_active == 0:
                 self.all_producers_done.set()
+
+    def wait_completion(self):
+        self.completion_barrier.wait()
 
 class ProducerArgs:
     def __init__(self, rb, items_to_produce, producer_index):
@@ -66,24 +74,30 @@ class ConsumerArgs:
         self.consumer_index = consumer_index
 
 def producer_thread(args):
-    for i in range(args.items_to_produce):
-        value = (args.producer_index + 1) * 1000000 + i  
-        args.rb.push(value)
-    args.rb.producer_done()
+    try:
+        for i in range(args.items_to_produce):
+            value = (args.producer_index + 1) * 1000000 + i  
+            args.rb.push(value)
+        args.rb.producer_done()
+    finally:
+        args.rb.wait_completion()
 
 def consumer_thread(args):
-    while True:
-        value = args.rb.pop()
-        if value is None:
-            break
-        args.consumed_sum += value
-        args.consumed_count += 1
+    try:
+        while True:
+            value = args.rb.pop()
+            if value is None:
+                break
+            args.consumed_sum += value
+            args.consumed_count += 1
+    finally:
+        args.rb.wait_completion()
 
 def now_monotonic_ms():
     return int(time.monotonic() * 1000)
 
 def main():
-    parser = argparse.ArgumentParser(description="Демонстрация производителя-потребителя с threading.Semaphore")
+    parser = argparse.ArgumentParser()
     parser.add_argument("-P", "--producers", type=int, default=2, help="Количество производителей")
     parser.add_argument("-C", "--consumers", type=int, default=2, help="Количество потребителей")
     parser.add_argument("-N", "--items", type=int, default=100000, help="Общее количество элементов")
@@ -94,7 +108,7 @@ def main():
         print("Некорректные аргументы", file=sys.stderr)
         sys.exit(1)
 
-    rb = RingBuffer(args.buffer_size, args.producers)
+    rb = RingBuffer(args.buffer_size, args.producers, args.consumers)
     producers = []
     consumers = []
     pargs = []
@@ -120,13 +134,11 @@ def main():
         consumers.append(t)
         t.start()
 
+    rb.wait_completion()
+
     produced_total = 0
     for i in range(args.producers):
-        producers[i].join()
         produced_total += pargs[i].items_to_produce
-
-    for t in consumers:
-        t.join()
 
     consumed_total = 0
     consumed_sum = 0
