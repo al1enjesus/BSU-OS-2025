@@ -2,121 +2,204 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <string.h>
-#include <stdatomic.h>
-#include <time.h>
 #include <unistd.h>
-
-typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } mode_t;
+#include <getopt.h>
+#include <semaphore.h>
 
 typedef struct {
-    int thread_index;
-    long long iterations_per_thread;
-} thread_args_t;
+    int* data;
+    int capacity;
+    int head;
+    int tail;
+    int count;
+    pthread_mutex_t mutex;
+    //pthread_cond_t not_full;
+    //pthread_cond_t not_empty;
+    sem_t empty;
+    sem_t full;
+    int producers_active;
+    int consumers_total;
+} ring_buffer_t;
 
-static long long shared_counter_unsync = 0;
-static long long shared_counter_mutex = 0;
-static atomic_llong shared_counter_atomic;
-static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
+typedef struct {
+    ring_buffer_t* rb;
+    int items_to_produce;
+    int producer_index;
+} producer_args_t;
 
-static inline long long now_monotonic_ms(void) {
-    struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
+typedef struct {
+    ring_buffer_t* rb;
+    long long consumed_sum;
+    long long consumed_count;
+    int consumer_index;
+} consumer_args_t;
+
+static void rb_init(ring_buffer_t* rb, int capacity, int producers_total, int consumers_total) {
+    rb->data = (int*)malloc(sizeof(int)*capacity);
+    if (!rb->data) {
+        fprintf(stderr, "malloc failed\n");
+        exit(1);
+    } //проверка выделена ли память
+    rb->capacity = capacity;
+    rb->head = 0;
+    rb->tail = 0;
+    rb->count = 0;
+    rb->producers_active = producers_total;
+    rb->consumers_total = consumers_total;
+    pthread_mutex_init(&rb->mutex, NULL);
+    //pthread_cond_init(&rb->not_full, NULL);
+    //pthread_cond_init(&rb->not_empty, NULL);
+    sem_init(&rb->empty, 0, capacity);
+    sem_init(&rb->full, 0, 0);
 }
 
-static void* worker_unsync(void* arg) {
-    thread_args_t* a = (thread_args_t*)arg;
-    for (long long i = 0; i < a->iterations_per_thread; i++) {
-       shared_counter_unsync++;
+static void rb_destroy(ring_buffer_t* rb) {
+    free(rb->data);
+    pthread_mutex_destroy(&rb->mutex);
+    sem_destroy(&rb->empty);
+    sem_destroy(&rb->full);
+}
+
+static void rb_push(ring_buffer_t* rb, int value) {
+    sem_wait(&rb->empty);
+    pthread_mutex_lock(&rb->mutex);
+    rb->data[rb->tail] = value;
+    rb->tail = (rb->tail + 1) % rb->capacity;
+    rb->count++;
+    pthread_mutex_unlock(&rb->mutex);
+    sem_post(&rb->full);
+}
+
+static int rb_pop(ring_buffer_t* rb, int* value) {
+    sem_wait(&rb->full);
+    pthread_mutex_lock(&rb->mutex);
+    *value = rb->data[rb->head];
+    rb->head = (rb->head + 1) % rb->capacity;
+    rb->count--;
+    pthread_mutex_unlock(&rb->mutex);
+    sem_post(&rb->empty);
+    return 1;
+}
+
+static void rb_producer_done(ring_buffer_t* rb) {
+    pthread_mutex_lock(&rb->mutex);
+    rb->producers_active--;
+    int last = (rb->producers_active == 0);
+    pthread_mutex_unlock(&rb->mutex);
+    if (last) {
+        for (int i = 0; i < rb->consumers_total; i++) {
+            rb_push(rb, -1);
+        }
+    }
+}
+
+static void* producer_thread(void* arg) {
+    producer_args_t* a = (producer_args_t*)arg;
+    for (int i = 0; i < a->items_to_produce; i++) {
+        int value = a->producer_index * a->items_to_produce + i; // альт. кодирование
+        rb_push(a->rb, value);
+    }
+    rb_producer_done(a->rb);
+    return NULL;
+}
+
+static void* consumer_thread(void* arg) {
+    consumer_args_t* a = (consumer_args_t*)arg;
+    int v;
+    while (1) {
+        rb_pop(a->rb, &v);
+        if (v == -1) {
+           break;
+        }
+        a->consumed_sum += v;
+        a->consumed_count += 1;
     }
     return NULL;
 }
 
-static void* worker_mutex(void* arg) {
-    thread_args_t* a = (thread_args_t*)arg;
-    for (long long i = 0; i < a->iterations_per_thread; i++) {
-        pthread_mutex_lock(&counter_mutex);
-        shared_counter_mutex++;
-        pthread_mutex_unlock(&counter_mutex);
-    }
-    return NULL;
-}
-
-static void* worker_atomic(void* arg) {
-    thread_args_t* a = (thread_args_t*)arg;
-    for (long long i = 0; i < a->iterations_per_thread; i++) {
-        atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
-    }
-    return NULL;
-}
-
-static mode_t parse_mode(const char* s) {
-    if (strcmp(s, "unsync") == 0) return MODE_UNSYNC;
-    if (strcmp(s, "mutex") == 0) return MODE_MUTEX;
-    if (strcmp(s, "atomic") == 0) return MODE_ATOMIC;
-    fprintf(stderr, "Unknown mode: %s (use: unsync|mutex|atomic)\n", s);
-    exit(2);
+static void usage(const char* prog) {
+    fprintf(stderr, "Usage: %s -P <producers> -C <consumers> -N <items_total> -B <buffer_size>\n", prog);
 }
 
 int main(int argc, char** argv) {
-    if (argc < 4) {
-        fprintf(stderr, "Usage: %s <num_threads> <iterations_per_thread> <unsync|mutex|atomic>\n", argv[0]);
+    int P = 2, C = 2, B = 64;
+    long long N = 100000;
+
+    int opt;
+    while ((opt = getopt(argc, argv, "P:C:N:B:")) != -1) {
+        switch (opt) {
+            case 'P': P = atoi(optarg); break;
+            case 'C': C = atoi(optarg); break;
+            case 'N': N = atoll(optarg); break;
+            case 'B': B = atoi(optarg); break;
+            default: usage(argv[0]); return 1;
+        }
+    }
+    if (P <= 0 || C <= 0 || B <= 0 || N < 0) {
+        usage(argv[0]);
         return 1;
     }
-    int num_threads = atoi(argv[1]);
-    long long iters = atoll(argv[2]);
-    mode_t mode = parse_mode(argv[3]);
 
-    if (num_threads <= 0 || iters < 0) {
-        fprintf(stderr, "Invalid arguments\n");
-        return 1;
-    }
+    ring_buffer_t rb;
+    rb_init(&rb, B, P, C);
 
-    pthread_t* tids = (pthread_t*)calloc((size_t)num_threads, sizeof(pthread_t));
-    thread_args_t* args = (thread_args_t*)calloc((size_t)num_threads, sizeof(thread_args_t));
-    if (!tids || !args) {
+    pthread_t* pt = (pthread_t*)calloc((size_t)P, sizeof(pthread_t));
+    pthread_t* ct = (pthread_t*)calloc((size_t)C, sizeof(pthread_t));
+    producer_args_t* pargs = (producer_args_t*)calloc((size_t)P, sizeof(producer_args_t));
+    consumer_args_t* cargs = (consumer_args_t*)calloc((size_t)C, sizeof(consumer_args_t));
+    if (!pt || !ct || !pargs || !cargs) {
         fprintf(stderr, "Allocation failed\n");
         return 1;
     }
 
-    atomic_store(&shared_counter_atomic, 0);
-    shared_counter_unsync = 0;
-    shared_counter_mutex = 0;
+    int per_producer = (int)(N / P);
+    int remainder = (int)(N % P);
 
-    long long start_ms = now_monotonic_ms();
-
-    for (int i = 0; i < num_threads; i++) {
-        args[i].thread_index = i;
-        args[i].iterations_per_thread = iters;
-        void* (*fn)(void*) = NULL;
-        switch (mode) {
-            case MODE_UNSYNC: fn = worker_unsync; break;
-            case MODE_MUTEX: fn = worker_mutex; break;
-            case MODE_ATOMIC: fn = worker_atomic; break;
-        }
-        if (pthread_create(&tids[i], NULL, fn, &args[i]) != 0) {
-            fprintf(stderr, "pthread_create failed\n");
+    for (int i = 0; i < P; i++) {
+        pargs[i].rb = &rb;
+        pargs[i].producer_index = i;
+        pargs[i].items_to_produce = per_producer + (i < remainder ? 1 : 0);
+        if (pthread_create(&pt[i], NULL, producer_thread, &pargs[i]) != 0) {
+            fprintf(stderr, "pthread_create producer failed\n");
             return 1;
         }
     }
 
-    for (int i = 0; i < num_threads; i++) {
-        pthread_join(tids[i], NULL);
+    for (int i = 0; i < C; i++) {
+        cargs[i].rb = &rb;
+        cargs[i].consumed_sum = 0;
+        cargs[i].consumed_count = 0;
+        cargs[i].consumer_index = i;
+        if (pthread_create(&ct[i], NULL, consumer_thread, &cargs[i]) != 0) {
+            fprintf(stderr, "pthread_create consumer failed\n");
+            return 1;
+        }
     }
 
-    long long end_ms = now_monotonic_ms();
-    long long expected = (long long)num_threads * iters;
-    long long actual = 0;
-    if (mode == MODE_UNSYNC) actual = shared_counter_unsync;
-    else if (mode == MODE_MUTEX) actual = shared_counter_mutex;
-    else actual = atomic_load_explicit(&shared_counter_atomic, memory_order_relaxed);
+    long long produced_total = 0;
+    for (int i = 0; i < P; i++) {
+        pthread_join(pt[i], NULL);
+        produced_total += pargs[i].items_to_produce;
+    }
+    for (int i = 0; i < C; i++) {
+        pthread_join(ct[i], NULL);
+    }
 
-    printf("mode=%s threads=%d iters_per_thread=%lld expected=%lld actual=%lld time_ms=%lld\n",
-           (mode==MODE_UNSYNC?"unsync":mode==MODE_MUTEX?"mutex":"atomic"),
-           num_threads, iters, expected, actual, (end_ms - start_ms));
+    long long consumed_total = 0;
+    long long consumed_sum = 0;
+    for (int i = 0; i < C; i++) {
+        consumed_total += cargs[i].consumed_count;
+        consumed_sum += cargs[i].consumed_sum;
+    }
 
-    free(tids);
-    free(args);
+    printf("[prodcons] (samples skeleton) P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
+           P, C, N, B, produced_total, consumed_total, consumed_sum);
+
+    free(pt);
+    free(ct);
+    free(pargs);
+    free(cargs);
+    rb_destroy(&rb);
     return 0;
 }
 
