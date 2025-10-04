@@ -13,21 +13,25 @@ typedef struct {
     long long iterations_per_thread;
 } thread_args_t;
 
-static long long shared_counter_unsync = 0;
+static volatile long long shared_counter_unsync = 0;
 static long long shared_counter_mutex = 0;
 static atomic_llong shared_counter_atomic;
 static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static inline long long now_monotonic_ms(void) {
     struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return (long long)ts.tv_sec * 1000000LL + ts.tv_nsec / 1000LL;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0) {
+        fprintf(stderr, "clock_gettime failed\n");
+        exit(1);
+    }
+    return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
 }
 
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        shared_counter_unsync++;
+        shared_counter_unsync++; 
+        usleep(1);  // Усиление race condition
     }
     return NULL;
 }
@@ -73,9 +77,14 @@ int main(int argc, char** argv) {
     }
 
     pthread_t* tids = (pthread_t*)calloc((size_t)num_threads, sizeof(pthread_t));
+    if (tids == NULL) {
+        fprintf(stderr, "calloc failed for tids\n");
+        return 1;
+    }
     thread_args_t* args = (thread_args_t*)calloc((size_t)num_threads, sizeof(thread_args_t));
-    if (!tids || !args) {
-        fprintf(stderr, "Allocation failed\n");
+    if (args == NULL) {
+        fprintf(stderr, "calloc failed for args\n");
+        free(tids);
         return 1;
     }
 
@@ -85,6 +94,7 @@ int main(int argc, char** argv) {
 
     long long start_ms = now_monotonic_ms();
 
+    int created = 0;
     for (int i = 0; i < num_threads; i++) {
         args[i].thread_index = i;
         args[i].iterations_per_thread = iters;
@@ -95,12 +105,17 @@ int main(int argc, char** argv) {
             case MODE_ATOMIC: fn = worker_atomic; break;
         }
         if (pthread_create(&tids[i], NULL, fn, &args[i]) != 0) {
-            fprintf(stderr, "pthread_create failed\n");
+            fprintf(stderr, "pthread_create failed for thread %d\n", i);
+            for (int j = 0; j < created; j++) {
+                pthread_join(tids[j], NULL);
+            }
+            free(tids);
+            free(args);
             return 1;
         }
-
+        created++;
     }
-      sleep(10);
+
     for (int i = 0; i < num_threads; i++) {
         pthread_join(tids[i], NULL);
     }
@@ -118,6 +133,5 @@ int main(int argc, char** argv) {
 
     free(tids);
     free(args);
-    sleep(5); // Добавляем задержку 5 секунд
     return 0;
 }
