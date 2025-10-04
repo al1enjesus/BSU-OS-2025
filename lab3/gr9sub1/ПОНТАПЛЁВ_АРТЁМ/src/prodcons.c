@@ -6,6 +6,12 @@
 #include <unistd.h>
 #include <getopt.h>
 #include <time.h>
+#include <errno.h>
+
+#define VALUE_BASE 1000000
+#define MAX_THREADS 16
+#define MAX_BUFFER_SIZE 1024
+#define MAX_ITERATIONS 10000000
 
 typedef struct {
     int* data;
@@ -17,6 +23,7 @@ typedef struct {
     sem_t empty_slots;
     sem_t full_slots;
     int producers_active;
+    int total_consumers;
 } ring_buffer_t;
 
 typedef struct {
@@ -32,13 +39,14 @@ typedef struct {
     int consumer_index;
 } consumer_args_t;
 
-static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
+static void rb_init(ring_buffer_t* rb, int capacity, int producers_total, int consumers_total) {
     rb->data = (int*)malloc(sizeof(int)*capacity);
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
     rb->count = 0;
     rb->producers_active = producers_total;
+    rb->total_consumers = consumers_total;
     pthread_mutex_init(&rb->mutex, NULL);
     sem_init(&rb->empty_slots, 0, capacity);
     sem_init(&rb->full_slots, 0, 0);
@@ -51,23 +59,35 @@ static void rb_destroy(ring_buffer_t* rb) {
     sem_destroy(&rb->full_slots);
 }
 
-static void rb_push(ring_buffer_t* rb, int value) {
-    sem_wait(&rb->empty_slots);
+static int rb_push(ring_buffer_t* rb, int value) {
+    if (sem_wait(&rb->empty_slots) != 0) {
+        fprintf(stderr, "sem_wait error in push: %s\n", strerror(errno));
+        return -1;
+    }
     pthread_mutex_lock(&rb->mutex);
     rb->data[rb->tail] = value;
     rb->tail = (rb->tail + 1) % rb->capacity;
     rb->count++;
     pthread_mutex_unlock(&rb->mutex);
-    sem_post(&rb->full_slots);
+    if (sem_post(&rb->full_slots) != 0) {
+        fprintf(stderr, "sem_post error in push: %s\n", strerror(errno));
+        return -1;
+    }
+    return 0;
 }
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
-    sem_wait(&rb->full_slots);
+  if (sem_wait(&rb->full_slots) != 0) {
+        fprintf(stderr, "sem_wait error in pop: %s\n", strerror(errno));
+        return -1;
+    }
     
     pthread_mutex_lock(&rb->mutex);
     if (rb->count == 0 && rb->producers_active == 0) {
         pthread_mutex_unlock(&rb->mutex);
-        sem_post(&rb->full_slots);
+        if (sem_post(&rb->full_slots) != 0) {
+            fprintf(stderr, "sem_post error in pop: %s\n", strerror(errno));
+        }
         return 0;
     }
     
@@ -75,8 +95,10 @@ static int rb_pop(ring_buffer_t* rb, int* value) {
     rb->head = (rb->head + 1) % rb->capacity;
     rb->count--;
     pthread_mutex_unlock(&rb->mutex);
-    
-    sem_post(&rb->empty_slots);
+    if (sem_post(&rb->empty_slots) != 0) {
+        fprintf(stderr, "sem_post error in pop: %s\n", strerror(errno));
+        return -1;
+    }
     return 1;
 }
 
@@ -85,7 +107,9 @@ static void rb_producer_done(ring_buffer_t* rb) {
     rb->producers_active--;
     if (rb->producers_active == 0) {
         for (int i = 0; i < rb->capacity; i++) {
-            sem_post(&rb->full_slots);
+            if (sem_post(&rb->full_slots) != 0) {
+                fprintf(stderr, "sem_post error in producer_done: %s\n", strerror(errno));
+            }
         }
     }
     pthread_mutex_unlock(&rb->mutex);
@@ -94,8 +118,10 @@ static void rb_producer_done(ring_buffer_t* rb) {
 static void* producer_thread(void* arg) {
     producer_args_t* a = (producer_args_t*)arg;
     for (int i = 0; i < a->items_to_produce; i++) {
-        int value = (a->producer_index + 1) * 1000000 + i;
-        rb_push(a->rb, value);
+        int value = (a->producer_index + 1) * VALUE_BASE + i;
+        if (rb_push(a->rb, value) != 0) {
+            break;
+            }
     }
     rb_producer_done(a->rb);
     return NULL;
@@ -110,6 +136,8 @@ static void* consumer_thread(void* arg) {
         if (result == 1) {
             a->consumed_sum += value;
             a->consumed_count += 1;
+            } else if (result == 0) {
+            break;
         } else {
             break;
         }
@@ -135,13 +163,16 @@ int main(int argc, char** argv) {
             default: usage(argv[0]); return 1;
         }
     }
-    if (P <= 0 || C <= 0 || B <= 0 || N < 0) {
+    if (P <= 0 || P > MAX_THREADS || C <= 0 || C > MAX_THREADS || 
+        B <= 0 || B > MAX_BUFFER_SIZE || N < 0 || N > MAX_ITERATIONS) {
+        fprintf(stderr, "Error: Invalid parameters (P:1-%d, C:1-%d, B:1-%d, N:0-%d)\n",
+                MAX_THREADS, MAX_THREADS, MAX_BUFFER_SIZE, MAX_ITERATIONS);
         usage(argv[0]);
         return 1;
     }
 
     ring_buffer_t rb;
-    rb_init(&rb, B, P);
+    rb_init(&rb, B, P, C);
 
     pthread_t* pt = (pthread_t*)calloc((size_t)P, sizeof(pthread_t));
     pthread_t* ct = (pthread_t*)calloc((size_t)C, sizeof(pthread_t));
