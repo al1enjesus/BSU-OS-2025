@@ -13,7 +13,7 @@ typedef struct {
     long long iterations_per_thread;
 } thread_args_t;
 
-static long long shared_counter_unsync = 0;
+static volatile long long shared_counter_unsync = 0;
 static long long shared_counter_mutex = 0;
 static atomic_llong shared_counter_atomic;
 static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -28,6 +28,7 @@ static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         shared_counter_unsync++;
+        usleep(1); 
     }
     return NULL;
 }
@@ -73,9 +74,14 @@ int main(int argc, char** argv) {
     }
 
     pthread_t* tids = (pthread_t*)calloc((size_t)num_threads, sizeof(pthread_t));
+    if (tids == NULL) {
+        fprintf(stderr, "calloc failed for tids\n");
+        return 1;
+    }
     thread_args_t* args = (thread_args_t*)calloc((size_t)num_threads, sizeof(thread_args_t));
-    if (!tids || !args) {
-        fprintf(stderr, "Allocation failed\n");
+    if (args == NULL) {
+        fprintf(stderr, "calloc failed for args\n");
+        free(tids);
         return 1;
     }
 
@@ -83,10 +89,9 @@ int main(int argc, char** argv) {
     shared_counter_unsync = 0;
     shared_counter_mutex = 0;
 
-    fprintf(stderr, "[thread_race] Внимание: это скелет (samples). Реализуйте TODO для осмысленных результатов.\n");
-
     long long start_ms = now_monotonic_ms();
 
+    int created = 0;
     for (int i = 0; i < num_threads; i++) {
         args[i].thread_index = i;
         args[i].iterations_per_thread = iters;
@@ -98,8 +103,14 @@ int main(int argc, char** argv) {
         }
         if (pthread_create(&tids[i], NULL, fn, &args[i]) != 0) {
             fprintf(stderr, "pthread_create failed\n");
+            for (int j = 0; j < i; j++) {
+                pthread_join(tids[j], NULL);
+            }
+            free(tids);
+            free(args);
             return 1;
         }
+        created++;
     }
 
     for (int i = 0; i < num_threads; i++) {
@@ -121,3 +132,4 @@ int main(int argc, char** argv) {
     free(args);
     return 0;
 }
+'''
