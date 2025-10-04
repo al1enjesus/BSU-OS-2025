@@ -6,6 +6,15 @@
 ## Вариант
 Вариант 2.
 
+### Установка Free-threaded CPython
+1. Зайти на сайт сделать по инструкции
+
+   ```https://py-free-threading.github.io/installing-cpython/'''
+   
+### Компиляции C функции
+
+   '''gcc -shared -o libatomic.so -fPIC atomic_ops.c'''
+   
 ## Шаги выполнения
 
 ### A) Гонка данных и устранение (mutex vs atomic)

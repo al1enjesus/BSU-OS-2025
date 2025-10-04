@@ -14,6 +14,7 @@ class RingBuffer:
         self.mutex = threading.Lock()
         self.free_slots = threading.Semaphore(capacity)  
         self.used_slots = threading.Semaphore(0)       
+        self.all_producers_done = threading.Event()
 
     def push(self, value):
         self.free_slots.acquire()  
@@ -24,11 +25,10 @@ class RingBuffer:
         self.used_slots.release() 
 
     def pop(self):
+        if self.all_producers_done.is_set() and self.count == 0:
+            return None
         self.used_slots.acquire() 
         with self.mutex:
-            if self.count == 0 and self.producers_active == 0:
-                self.used_slots.release()  
-                return None 
             value = self.data[self.head]
             self.head = (self.head + 1) % self.capacity
             self.count -= 1
@@ -39,9 +39,7 @@ class RingBuffer:
         with self.mutex:
             self.producers_active -= 1
             if self.producers_active == 0:
-
-                for _ in range(self.capacity):
-                    self.used_slots.release()
+                self.all_producers_done.set()
 
 class ProducerArgs:
     def __init__(self, rb, items_to_produce, producer_index):

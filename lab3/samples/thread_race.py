@@ -11,6 +11,9 @@ class AtomicCounterCTypes:
     def __init__(self, initial=0):
         self._value = ctypes.c_int(initial)
         lib_path = os.path.join(os.path.dirname(__file__), "libatomic.so")
+        if not os.path.exists(lib_path):
+            print(f"Ошибка: файл {lib_path} не найден. Убедитесь, что библиотека libatomic.so скомпилирована.", file=sys.stderr)
+            sys.exit(1)
         self._lib = ctypes.CDLL(lib_path)
         self._lib.atomic_increment.argtypes = [ctypes.POINTER(ctypes.c_int)]
         self._lib.atomic_increment.restype = ctypes.c_int
