@@ -101,7 +101,6 @@ void *consumer(void *arg) {
 int main(int argc, char *argv[]) {
     int P = 0, C = 0, N = 0, B = 0;
     
-    // Обработка аргументов командной строки
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-') {
             switch (argv[i][1]) {
@@ -149,7 +148,6 @@ int main(int argc, char *argv[]) {
         }
     }
     
-    // Проверка, что все параметры заданы
     if (P <= 0 || C <= 0 || N <= 0 || B <= 0) {
         fprintf(stderr, "Usage: %s -P <producers> -C <consumers> -N <items> -B <buffer_size>\n", argv[0]);
         fprintf(stderr, "All values must be positive integers\n");
@@ -171,7 +169,6 @@ int main(int argc, char *argv[]) {
     producer_arg_t pargs[P];
     consumer_arg_t cargs[C];
 
-    // Создание производителей
     for (int i = 0; i < P; ++i) {
         pargs[i].rb = &rb;
         pargs[i].items_to_produce = N / P;
@@ -179,18 +176,15 @@ int main(int argc, char *argv[]) {
         pthread_create(&producers[i], NULL, producer, &pargs[i]);
     }
 
-    // Создание потребителей
     for (int i = 0; i < C; ++i) {
         cargs[i].rb = &rb;
         cargs[i].id = i;
         pthread_create(&consumers[i], NULL, consumer, &cargs[i]);
     }
 
-    // Ожидание завершения производителей
     for (int i = 0; i < P; ++i)
         pthread_join(producers[i], NULL);
 
-    // Ожидание завершения потребителей
     for (int i = 0; i < C; ++i)
         pthread_join(consumers[i], NULL);
 
