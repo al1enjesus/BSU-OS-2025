@@ -1,0 +1,5 @@
+    PID     TID PSR %CPU STAT COMMAND
+  12233   12233   1  0.0 T    thread_race
+Threads:	1
+total 0
+dr-xr-xr-x 7 vboxuser vboxuser 0 Sep 29 14:54 12233
