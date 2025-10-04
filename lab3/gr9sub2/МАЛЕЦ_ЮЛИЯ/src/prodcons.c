@@ -27,16 +27,36 @@ typedef struct {
     int id;
 } consumer_arg_t;
 
-void rb_init(ring_buffer_t *rb, int capacity) {
+int rb_init(ring_buffer_t *rb, int capacity) {
     rb->buffer = malloc(sizeof(int) * capacity);
+    if (!rb->buffer) {
+        return -1;
+    }
     rb->capacity = capacity;
     rb->count = 0;
     rb->head = 0;
     rb->tail = 0;
     rb->done_producing = 0;
-    pthread_mutex_init(&rb->mutex, NULL);
-    pthread_cond_init(&rb->not_full, NULL);
-    pthread_cond_init(&rb->not_empty, NULL);
+    
+    if (pthread_mutex_init(&rb->mutex, NULL) != 0) {
+        free(rb->buffer);
+        return -1;
+    }
+    
+    if (pthread_cond_init(&rb->not_full, NULL) != 0) {
+        pthread_mutex_destroy(&rb->mutex);
+        free(rb->buffer);
+        return -1;
+    }
+    
+    if (pthread_cond_init(&rb->not_empty, NULL) != 0) {
+        pthread_mutex_destroy(&rb->mutex);
+        pthread_cond_destroy(&rb->not_full);
+        free(rb->buffer);
+        return -1;
+    }
+    
+    return 0;
 }
 
 void rb_destroy(ring_buffer_t *rb) {
@@ -49,9 +69,16 @@ void rb_destroy(ring_buffer_t *rb) {
 void *producer(void *arg) {
     producer_arg_t *parg = (producer_arg_t *)arg;
     for (int i = 0; i < parg->items_to_produce; ++i) {
-        pthread_mutex_lock(&parg->rb->mutex);
-        while (parg->rb->count == parg->rb->capacity)
-            pthread_cond_wait(&parg->rb->not_full, &parg->rb->mutex);
+        if (pthread_mutex_lock(&parg->rb->mutex) != 0) {
+            break;
+        }
+        
+        while (parg->rb->count == parg->rb->capacity) {
+            if (pthread_cond_wait(&parg->rb->not_full, &parg->rb->mutex) != 0) {
+                pthread_mutex_unlock(&parg->rb->mutex);
+                break;
+            }
+        }
 
         int item = i + parg->id * 1000;
         parg->rb->buffer[parg->rb->tail] = item;
@@ -64,10 +91,11 @@ void *producer(void *arg) {
         pthread_mutex_unlock(&parg->rb->mutex);
     }
 
-    pthread_mutex_lock(&parg->rb->mutex);
-    parg->rb->done_producing++;
-    pthread_cond_broadcast(&parg->rb->not_empty);
-    pthread_mutex_unlock(&parg->rb->mutex);
+    if (pthread_mutex_lock(&parg->rb->mutex) == 0) {
+        parg->rb->done_producing++;
+        pthread_cond_broadcast(&parg->rb->not_empty);
+        pthread_mutex_unlock(&parg->rb->mutex);
+    }
 
     printf("Producer %d finished\n", parg->id);
     return NULL;
@@ -76,14 +104,20 @@ void *producer(void *arg) {
 void *consumer(void *arg) {
     consumer_arg_t *carg = (consumer_arg_t *)arg;
     while (1) {
-        pthread_mutex_lock(&carg->rb->mutex);
+        if (pthread_mutex_lock(&carg->rb->mutex) != 0) {
+            break;
+        }
+        
         while (carg->rb->count == 0) {
             if (carg->rb->done_producing > 0) {
                 pthread_mutex_unlock(&carg->rb->mutex);
                 printf("Consumer %d finished\n", carg->id);
                 return NULL;
             }
-            pthread_cond_wait(&carg->rb->not_empty, &carg->rb->mutex);
+            if (pthread_cond_wait(&carg->rb->not_empty, &carg->rb->mutex) != 0) {
+                pthread_mutex_unlock(&carg->rb->mutex);
+                return NULL;
+            }
         }
 
         int item = carg->rb->buffer[carg->rb->head];
@@ -163,7 +197,10 @@ int main(int argc, char *argv[]) {
     printf("\n");
 
     ring_buffer_t rb;
-    rb_init(&rb, B);
+    if (rb_init(&rb, B) != 0) {
+        fprintf(stderr, "Failed to initialize ring buffer\n");
+        return 1;
+    }
 
     pthread_t producers[P], consumers[C];
     producer_arg_t pargs[P];
@@ -173,20 +210,51 @@ int main(int argc, char *argv[]) {
         pargs[i].rb = &rb;
         pargs[i].items_to_produce = N / P;
         pargs[i].id = i;
-        pthread_create(&producers[i], NULL, producer, &pargs[i]);
+        if (pthread_create(&producers[i], NULL, producer, &pargs[i]) != 0) {
+            fprintf(stderr, "Failed to create producer thread %d\n", i);
+            rb.done_producing = P;
+            pthread_cond_broadcast(&rb.not_empty);
+            
+            for (int j = 0; j < i; ++j) {
+                pthread_join(producers[j], NULL);
+            }
+            for (int j = 0; j < C; ++j) {
+                pthread_join(consumers[j], NULL);
+            }
+            rb_destroy(&rb);
+            return 1;
+        }
     }
 
     for (int i = 0; i < C; ++i) {
         cargs[i].rb = &rb;
         cargs[i].id = i;
-        pthread_create(&consumers[i], NULL, consumer, &cargs[i]);
+        if (pthread_create(&consumers[i], NULL, consumer, &cargs[i]) != 0) {
+            fprintf(stderr, "Failed to create consumer thread %d\n", i);
+            rb.done_producing = P;
+            pthread_cond_broadcast(&rb.not_empty);
+            
+            for (int j = 0; j < P; ++j) {
+                pthread_join(producers[j], NULL);
+            }
+            for (int j = 0; j < i; ++j) {
+                pthread_join(consumers[j], NULL);
+            }
+            for (int j = i; j < C; ++j) {
+                pthread_cancel(consumers[j]);
+            }
+            rb_destroy(&rb);
+            return 1;
+        }
     }
 
-    for (int i = 0; i < P; ++i)
+    for (int i = 0; i < P; ++i) {
         pthread_join(producers[i], NULL);
+    }
 
-    for (int i = 0; i < C; ++i)
+    for (int i = 0; i < C; ++i) {
         pthread_join(consumers[i], NULL);
+    }
 
     rb_destroy(&rb);
     
