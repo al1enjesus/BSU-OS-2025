@@ -1,3 +1,4 @@
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -6,30 +7,36 @@
 #include <time.h>
 #include <unistd.h>
 
+//режимы работы потоков
 typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } thread_mode_t;
 
+//аргументы для потока
 typedef struct {
     int thread_index;
     long long iterations_per_thread;
 } thread_args_t;
 
+//глобальные счетчики для разных режимов
 static long long shared_counter_unsync = 0;
 static long long shared_counter_mutex = 0;
 static atomic_llong shared_counter_atomic;
 static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+//получение монотонного времени в миллисекундах
 static inline long long now_monotonic_ms(void) {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
 }
 
+//функция без синхронизации
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     volatile long long dummy = 0;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        shared_counter_unsync++;
+        shared_counter_unsync++;  // Гонка данных!
 
+        // Искусственная нагрузка
         for (int j = 0; j < 100; j++) {
             dummy += i % (j + 1);
         }
@@ -37,7 +44,7 @@ static void* worker_unsync(void* arg) {
     return NULL;
 }
 
-
+//функция с мьютексом
 static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
@@ -48,6 +55,7 @@ static void* worker_mutex(void* arg) {
     return NULL;
 }
 
+//функция с атомиками
 static void* worker_atomic(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
@@ -56,7 +64,8 @@ static void* worker_atomic(void* arg) {
     return NULL;
 }
 
-static mode_t parse_mode(const char* s) {
+//парсинг режима работы из строки
+static thread_mode_t parse_mode(const char* s) {
     if (strcmp(s, "unsync") == 0) return MODE_UNSYNC;
     if (strcmp(s, "mutex") == 0) return MODE_MUTEX;
     if (strcmp(s, "atomic") == 0) return MODE_ATOMIC;
@@ -71,7 +80,7 @@ int main(int argc, char** argv) {
     }
     int num_threads = atoi(argv[1]);
     long long iters = atoll(argv[2]);
-    mode_t mode = parse_mode(argv[3]);
+    thread_mode_t mode = parse_mode(argv[3]);
 
     if (num_threads <= 0 || iters < 0) {
         fprintf(stderr, "Invalid arguments\n");
@@ -85,12 +94,14 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    //инициализация счетчиков
     atomic_store(&shared_counter_atomic, 0);
     shared_counter_unsync = 0;
     shared_counter_mutex = 0;
 
     long long start_ms = now_monotonic_ms();
 
+    //создание потоков
     for (int i = 0; i < num_threads; i++) {
         args[i].thread_index = i;
         args[i].iterations_per_thread = iters;
@@ -106,6 +117,7 @@ int main(int argc, char** argv) {
         }
     }
 
+    //ожидание завершения потоков
     for (int i = 0; i < num_threads; i++) {
         pthread_join(tids[i], NULL);
     }
@@ -113,6 +125,8 @@ int main(int argc, char** argv) {
     long long end_ms = now_monotonic_ms();
     long long expected = (long long)num_threads * iters;
     long long actual = 0;
+    
+    //получение результата в зависимости от режима
     if (mode == MODE_UNSYNC) actual = shared_counter_unsync;
     else if (mode == MODE_MUTEX) actual = shared_counter_mutex;
     else actual = atomic_load_explicit(&shared_counter_atomic, memory_order_relaxed);
@@ -125,5 +139,4 @@ int main(int argc, char** argv) {
     free(args);
     return 0;
 }
-
-
+```
