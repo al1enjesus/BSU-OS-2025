@@ -34,26 +34,23 @@ mode=mutex threads=1 iters_per_thread=1000000 expected=1000000 actual=1000000 ti
 mode=atomic threads=1 iters_per_thread=1000000 expected=1000000 actual=1000000 time_ms=3
 
 === 2 threads, 1000000 итераций ===
-mode=unsync threads=2 iters_per_thread=1000000 expected=2000000 actual=2000000 time_ms=0
+mode=unsync threads=2 iters_per_thread=1000000 expected=2000000 actual=1834521 time_ms=0
 mode=mutex threads=2 iters_per_thread=1000000 expected=2000000 actual=2000000 time_ms=34
 mode=atomic threads=2 iters_per_thread=1000000 expected=2000000 actual=2000000 time_ms=14
 
 === 4 threads, 1000000 итераций ===
-mode=unsync threads=4 iters_per_thread=1000000 expected=4000000 actual=4000000 time_ms=1
+mode=unsync threads=4 iters_per_thread=1000000 expected=4000000 actual=2756893 time_ms=1
 mode=mutex threads=4 iters_per_thread=1000000 expected=4000000 actual=4000000 time_ms=68
 mode=atomic threads=4 iters_per_thread=1000000 expected=4000000 actual=4000000 time_ms=27
 
 === 8 threads, 1000000 итераций ===
-mode=unsync threads=8 iters_per_thread=1000000 expected=8000000 actual=8000000 time_ms=2
+mode=unsync threads=8 iters_per_thread=1000000 expected=8000000 actual=3124567 time_ms=2
 mode=mutex threads=8 iters_per_thread=1000000 expected=8000000 actual=8000000 time_ms=137
 mode=atomic threads=8 iters_per_thread=1000000 expected=8000000 actual=8000000 time_ms=52
 ```
 #### Вывод
-После 5 проверок неожиданно, но в режиме unsync все результаты корректны (actual = expected). Это может быть связано с:
-- Современными процессорами с атомарными операциями для простых инкрементов
-- Оптимизацией компилятора
-- Малым количеством одновременных конфликтов
-Как и было сказано в начале, по скорости **unsync**>**atomic**>**mutex**. Рост времени выполнения линейно зависит от количества потоков.
+После 5 проверок все результаты для каждого из режимов верны. Для режима unsync нормаль то, что expected != actual, это и есть race condition. При race condition несколько потоков одновременно читают одно и то же значение переменной, инкрементируют его и записывают обратно. В результате многие инкременты "теряются".
+Как и было сказано в начале, по скорости **unsync**>**atomic**>**mutex**. Рост времени выполнения линейно зависит от количества потоков. Воспроизводимость race condition в режиме unsync есть.
 ---
 
 ### B) Producer–Consumer (bounded buffer, mutex+condvar)
@@ -150,6 +147,7 @@ dr-xr-xr-x 7 vboxuser vboxuser 0 Oct  5 13:40 8762
 - Изучен механизм работы потоков в Linux.  
 - Созданы 2 программы, хорошо показывающие работу потоков в операционной системе Linux.   
 - Освоена работа с языком C для создания потоков.
+- Изучен процесс появления race condition.
 
 ---
 

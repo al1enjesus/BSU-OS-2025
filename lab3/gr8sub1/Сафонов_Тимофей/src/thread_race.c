@@ -52,12 +52,22 @@ static void* worker_atomic(void* arg) {
     return NULL;
 }
 
-static sync_mode_t parse_mode(const char* s) {
-    if (strcmp(s, "unsync") == 0) return MODE_UNSYNC;
-    if (strcmp(s, "mutex") == 0) return MODE_MUTEX;
-    if (strcmp(s, "atomic") == 0) return MODE_ATOMIC;
+static int parse_mode(const char* s, sync_mode_t* out_mode) {
+    if (strcmp(s, "unsync") == 0) {
+        *out_mode = MODE_UNSYNC;
+        return 0;
+    }
+    if (strcmp(s, "mutex") == 0) {
+        *out_mode = MODE_MUTEX;
+        return 0;
+    }
+    if (strcmp(s, "atomic") == 0) {
+        *out_mode = MODE_ATOMIC;
+        return 0;
+    }
+    
     fprintf(stderr, "Unknown mode: %s (use: unsync|mutex|atomic)\n", s);
-    exit(2);
+    return -1;
 }
 
 int main(int argc, char** argv) {
