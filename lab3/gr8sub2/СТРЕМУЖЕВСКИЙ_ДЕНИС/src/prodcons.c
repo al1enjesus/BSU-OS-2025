@@ -81,26 +81,20 @@ static void rb_destroy(ring_buffer_t *rb) {
 }
 
 static void rb_push(ring_buffer_t *rb, const int value) {
-    while (sem_wait(&rb->empty_slots) == -1 && errno == EINTR) {
-    }
     sem_wait_checked(&rb->empty_slots, "empty_slots");
     pthread_mutex_lock(&rb->mutex);
     rb->data[rb->tail] = value;
     rb->tail = (rb->tail + 1) % rb->capacity;
     pthread_mutex_unlock(&rb->mutex);
-    sem_post(&rb->full_slots);
     sem_post_checked(&rb->full_slots, "full_slots");
 }
 
 static int rb_pop(ring_buffer_t *rb) {
-    while (sem_wait(&rb->full_slots) == -1 && errno == EINTR) {
-    }
     sem_wait_checked(&rb->full_slots, "full_slots");
     pthread_mutex_lock(&rb->mutex);
     const int val = rb->data[rb->head];
     rb->head = (rb->head + 1) % rb->capacity;
     pthread_mutex_unlock(&rb->mutex);
-    sem_post(&rb->empty_slots);
     sem_post_checked(&rb->empty_slots, "empty_slots");
     return val;
 }
