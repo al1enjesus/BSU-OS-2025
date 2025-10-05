@@ -1,0 +1,220 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <string.h>
+#include <stdatomic.h>
+#include <time.h>
+#include <unistd.h>
+#include <sched.h>
+
+typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } sync_mode_t;
+
+typedef struct {
+    int thread_index;
+    long long iterations_per_thread;
+} thread_args_t;
+
+static volatile long long shared_counter_unsync = 0;
+static long long shared_counter_mutex = 0;
+static atomic_llong shared_counter_atomic;
+static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static inline long long now_monotonic_ms(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
+}
+
+static void force_context_switch() {
+    sched_yield();
+    for (volatile int i = 0; i < 100; i++);
+}
+
+static void* worker_unsync(void* arg) {
+    thread_args_t* a = (thread_args_t*)arg;
+    
+    printf("Поток %d начал работу\n", a->thread_index);
+    
+    for (long long i = 0; i < a->iterations_per_thread; i++) {
+        long long current_value = shared_counter_unsync;
+        
+        if (i % 1000 == 0) {
+            force_context_switch();
+        }
+        
+        long long new_value = current_value + 1;
+        
+        if (i % 1000 == 500) {
+            force_context_switch();
+        }
+        
+        shared_counter_unsync = new_value;
+    }
+    
+    printf("Поток %d завершил работу\n", a->thread_index);
+    return NULL;
+}
+
+static void* worker_unsync_aggressive(void* arg) {
+    thread_args_t* a = (thread_args_t*)arg;
+    
+    printf("Поток %d начал работу \n", a->thread_index);
+    
+    for (long long i = 0; i < a->iterations_per_thread; i++) {
+        long long temp = shared_counter_unsync;
+        
+
+        for (volatile int j = 0; j < 50; j++);
+        
+        shared_counter_unsync = temp + 1;
+        
+
+        if (i % 500 == 0) {
+            sched_yield();
+        }
+    }
+    
+    printf("Поток %d завершил работу\n", a->thread_index);
+    return NULL;
+}
+
+static void* worker_mutex(void* arg) {
+    thread_args_t* a = (thread_args_t*)arg;
+    
+    
+    for (long long i = 0; i < a->iterations_per_thread; i++) {
+        pthread_mutex_lock(&counter_mutex);
+        shared_counter_mutex++;
+        pthread_mutex_unlock(&counter_mutex);
+    }
+    return NULL;
+}
+
+static void* worker_atomic(void* arg) {
+    thread_args_t* a = (thread_args_t*)arg;
+    
+    
+    for (long long i = 0; i < a->iterations_per_thread; i++) {
+        atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
+    }
+    return NULL;
+}
+
+static sync_mode_t parse_mode(const char* s) {
+    if (strcmp(s, "unsync") == 0) return MODE_UNSYNC;
+    if (strcmp(s, "mutex") == 0) return MODE_MUTEX;
+    if (strcmp(s, "atomic") == 0) return MODE_ATOMIC;
+    if (strcmp(s, "unsync_aggressive") == 0) return MODE_UNSYNC; 
+    fprintf(stderr, "Unknown mode: %s (use: unsync|mutex|atomic)\n", s);
+    exit(2);
+}
+
+int main(int argc, char** argv) {
+    if (argc < 4) {
+        fprintf(stderr, "Usage: %s <num_threads> <iterations_per_thread> <unsync|mutex|atomic>\n", argv[0]);
+        fprintf(stderr, "Examples:\n");
+        fprintf(stderr, "  %s 8 5000000 unsync   # демонстрация гонки данных\n", argv[0]);
+        fprintf(stderr, "  %s 8 5000000 mutex    # корректная синхронизация\n", argv[0]);
+        fprintf(stderr, "  %s 8 5000000 atomic   # атомарные операции\n", argv[0]);
+        return 1;
+    }
+    int num_threads = atoi(argv[1]);
+    long long iters = atoll(argv[2]);
+    sync_mode_t mode = parse_mode(argv[3]);
+    
+    int aggressive_mode = (strcmp(argv[3], "unsync_aggressive") == 0);
+
+    if (num_threads <= 0 || iters < 0) {
+        fprintf(stderr, "Invalid arguments: threads=%d, iterations=%lld\n", num_threads, iters);
+        return 1;
+    }
+
+    pthread_t* tids = (pthread_t*)calloc((size_t)num_threads, sizeof(pthread_t));
+    thread_args_t* args = (thread_args_t*)calloc((size_t)num_threads, sizeof(thread_args_t));
+    if (!tids || !args) {
+        fprintf(stderr, "Allocation failed\n");
+        return 1;
+    }
+
+    atomic_store(&shared_counter_atomic, 0);
+    shared_counter_unsync = 0;
+    shared_counter_mutex = 0;
+
+    printf("═══════════════════════════════════════════════════════════════════\n");
+    printf("ТЕСТ ГОНКИ ДАННЫХ\n");
+    printf("Потоков: %d, Итераций на поток: %lld, Режим: %s\n", 
+           num_threads, iters, aggressive_mode ? "unsync_aggressive" : 
+           (mode==MODE_UNSYNC?"unsync":mode==MODE_MUTEX?"mutex":"atomic"));
+    printf("═══════════════════════════════════════════════════════════════════\n");
+
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+
+    long long start_ms = now_monotonic_ms();
+
+    for (int i = 0; i < num_threads; i++) {
+        args[i].thread_index = i;
+        args[i].iterations_per_thread = iters;
+        void* (*fn)(void*) = NULL;
+        
+        switch (mode) {
+            case MODE_UNSYNC: 
+                fn = aggressive_mode ? worker_unsync_aggressive : worker_unsync; 
+                break;
+            case MODE_MUTEX: fn = worker_mutex; break;
+            case MODE_ATOMIC: fn = worker_atomic; break;
+        }
+        
+        if (pthread_create(&tids[i], &attr, fn, &args[i]) != 0) {
+            fprintf(stderr, "pthread_create failed для потока %d\n", i);
+            return 1;
+        }
+    }
+
+    for (int i = 0; i < num_threads; i++) {
+        if (pthread_join(tids[i], NULL) != 0) {
+            fprintf(stderr, "pthread_join failed для потока %d\n", i);
+        }
+    }
+
+    pthread_attr_destroy(&attr);
+
+    long long end_ms = now_monotonic_ms();
+    long long expected = (long long)num_threads * iters;
+    long long actual = 0;
+    
+    if (mode == MODE_UNSYNC) actual = shared_counter_unsync;
+    else if (mode == MODE_MUTEX) actual = shared_counter_mutex;
+    else actual = atomic_load_explicit(&shared_counter_atomic, memory_order_relaxed);
+
+    printf("\nРЕЗУЛЬТАТЫ ТЕСТА:\n");
+    printf("  Ожидаемое значение: %lld\n", expected);
+    printf("  Полученное значение: %lld\n", actual);
+    printf("  Расхождение: %lld операций\n", expected - actual);
+    printf("  Процент потерь: %.2f%%\n", (expected - actual) * 100.0 / expected);
+    printf("  Время выполнения: %lld мс\n", (end_ms - start_ms));
+    
+    if (expected == actual) {
+        printf("  Статус: ✓ КОРРЕКТНО (все операции выполнены)\n");
+        if (mode == MODE_UNSYNC) {
+            printf("  Примечание: Гонка данных не проявилась. Попробуйте:\n");
+            printf("    - Увеличить количество потоков до 16+\n");
+            printf("    - Увеличить количество итераций до 10+ миллионов\n");
+            printf("    - Использовать агрессивный режим: unsync_aggressive\n");
+        }
+    } else {
+        printf("  Статус: ✗ ГОНКА ДАННЫХ (потеряно %lld операций!)\n", expected - actual);
+        printf("\nАНАЛИЗ ГОНКИ ДАННЫХ:\n");
+        printf("  Причина: операция инкремента не атомарна\n");
+        printf("  Потоки одновременно читают/изменяют/записывают значение\n");
+        printf("  Результат: некоторые инкременты 'теряются'\n");
+    }
+    
+    printf("═══════════════════════════════════════════════════════════════════\n");
+
+    free(tids);
+    free(args);
+    
+    return 0;
+}
