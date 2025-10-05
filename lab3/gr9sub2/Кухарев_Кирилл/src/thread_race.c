@@ -33,25 +33,13 @@ static void force_context_switch() {
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     
-    printf("Поток %d начал работу\n", a->thread_index);
-    
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        long long current_value = shared_counter_unsync;
+        shared_counter_unsync++;
         
-        if (i % 1000 == 0) {
-            force_context_switch();
+        if (i % 10000 == 0) {
+            sched_yield();  
         }
-        
-        long long new_value = current_value + 1;
-        
-        if (i % 1000 == 500) {
-            force_context_switch();
-        }
-        
-        shared_counter_unsync = new_value;
     }
-    
-    printf("Поток %d завершил работу\n", a->thread_index);
     return NULL;
 }
 
@@ -62,9 +50,6 @@ static void* worker_unsync_aggressive(void* arg) {
     
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         long long temp = shared_counter_unsync;
-        
-
-        for (volatile int j = 0; j < 50; j++);
         
         shared_counter_unsync = temp + 1;
         
