@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -O2 -pthread
+CFLAGS=-Wall -Wextra -O0 -pthread
 
 all: thread_race prodcons_sem
 
