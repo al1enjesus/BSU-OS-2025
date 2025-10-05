@@ -1,3 +1,4 @@
+// Исправленный prodcons.c
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,4 +99,15 @@ int main(int argc, char* argv[]) {
     printf("P=%d C=%d N=%llu B=%d\n", P, C, N, B);
     printf("expected items = %llu\n", expected_items);
     printf("actual consumed items = %llu\n", actual_consumed);
+    printf("expected sum = %llu\n", expected_sum);
+    printf("actual sum = %llu\n", actual_sum);
+
+    sem_destroy(&sem_empty);
+    sem_destroy(&sem_full);
+    pthread_mutex_destroy(&buf_mtx);
+    free(buffer);
+    free(prods);
+    free(cons);
+
+    return 0;
 }
