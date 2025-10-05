@@ -31,6 +31,24 @@ typedef struct {
     int consumer_index;
 } consumer_args_t;
 
+static inline void sem_wait_checked(sem_t *s, const char *name) {
+    int rc;
+    do {
+        rc = sem_wait(s);
+    } while (rc == -1 && errno == EINTR);
+    if (rc == -1) {
+        fprintf(stderr, "sem_wait(%s) failed: %s\n", name, strerror(errno));
+        exit(1);
+    }
+}
+
+static inline void sem_post_checked(sem_t *s, const char *name) {
+    if (sem_post(s) == -1) {
+        fprintf(stderr, "sem_post(%s) failed: %s\n", name, strerror(errno));
+        exit(1);
+    }
+}
+
 static void rb_init(ring_buffer_t *rb, const int capacity) {
     rb->data = (int *) malloc(sizeof(int) * (size_t) capacity);
     if (!rb->data) {
@@ -54,28 +72,36 @@ static void rb_init(ring_buffer_t *rb, const int capacity) {
 static void rb_destroy(ring_buffer_t *rb) {
     free(rb->data);
     pthread_mutex_destroy(&rb->mutex);
-    sem_destroy(&rb->empty_slots);
-    sem_destroy(&rb->full_slots);
+    if (sem_destroy(&rb->empty_slots) != 0) {
+        fprintf(stderr, "sem_destroy(empty_slots) failed: %s\n", strerror(errno));
+    }
+    if (sem_destroy(&rb->full_slots) != 0) {
+        fprintf(stderr, "sem_destroy(full_slots) failed: %s\n", strerror(errno));
+    }
 }
 
 static void rb_push(ring_buffer_t *rb, const int value) {
     while (sem_wait(&rb->empty_slots) == -1 && errno == EINTR) {
     }
+    sem_wait_checked(&rb->empty_slots, "empty_slots");
     pthread_mutex_lock(&rb->mutex);
     rb->data[rb->tail] = value;
     rb->tail = (rb->tail + 1) % rb->capacity;
     pthread_mutex_unlock(&rb->mutex);
     sem_post(&rb->full_slots);
+    sem_post_checked(&rb->full_slots, "full_slots");
 }
 
 static int rb_pop(ring_buffer_t *rb) {
     while (sem_wait(&rb->full_slots) == -1 && errno == EINTR) {
     }
+    sem_wait_checked(&rb->full_slots, "full_slots");
     pthread_mutex_lock(&rb->mutex);
     const int val = rb->data[rb->head];
     rb->head = (rb->head + 1) % rb->capacity;
     pthread_mutex_unlock(&rb->mutex);
     sem_post(&rb->empty_slots);
+    sem_post_checked(&rb->empty_slots, "empty_slots");
     return val;
 }
 
