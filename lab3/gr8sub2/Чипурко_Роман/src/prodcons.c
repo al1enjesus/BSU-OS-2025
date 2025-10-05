@@ -64,21 +64,21 @@ static void rb_push(ring_buffer_t* rb, int value) {
 static int rb_pop(ring_buffer_t* rb, int* value) {
     sem_wait(&sem_items);
     pthread_mutex_lock(&rb->mutex);
-    if (rb->count == 0 && rb->producers_active == 0) {
+    if (rb->count == 0) {
+        if (rb->producers_active == 0) {
+            pthread_mutex_unlock(&rb->mutex);
+            return 0;
+        }
         pthread_mutex_unlock(&rb->mutex);
+        sem_post(&sem_items);
         return 0;
     }
-    if (rb->count > 0) {
-        *value = rb->data[rb->head];
-        rb->head = (rb->head + 1) % rb->capacity;
-        rb->count--;
-        pthread_mutex_unlock(&rb->mutex);
-        sem_post(&sem_slots);
-        return 1;
-    } else {
-        pthread_mutex_unlock(&rb->mutex);
-        return 0;
-    }
+    *value = rb->data[rb->head];
+    rb->head = (rb->head + 1) % rb->capacity;
+    rb->count--;
+    pthread_mutex_unlock(&rb->mutex);
+    sem_post(&sem_slots);
+    return 1;
 }
 
 static void rb_producer_done(ring_buffer_t* rb) {
@@ -181,8 +181,6 @@ int main(int argc, char** argv) {
     printf("Consumed:  %lld items\n",consumed_total);
     printf("Total sum: %lld\n",consumed_sum);
     printf("Elapsed time: %.3f s (%.3f µs per item)\n", elapsed, (elapsed/(double)consumed_total)*1e6);
-
-    sleep(30);
 
     free(pt); free(ct); free(pargs); free(cargs);
     rb_destroy(&rb);
