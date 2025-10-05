@@ -100,14 +100,18 @@ static void rb_producer_done(ring_buffer_t* rb) {
     pthread_mutex_unlock(&rb->mutex);
 }
 
-sstatic void* producer_thread(void* arg) {
+static void* producer_thread(void* arg) {
     producer_args_t* a = (producer_args_t*)arg;
     printf("Производитель %d запущен: произведет %d элементов\n", 
            a->producer_index, a->items_to_produce);
     
+    int start_index = 0;
+    for (int j = 0; j < a->producer_index; j++) {
+        start_index += pargs[j].items_to_produce; 
+    }
+    
     for (int i = 0; i < a->items_to_produce; i++) {
-        long long base = (a->producer_index + 1LL) * 1000000LL;
-        int value = (int)(base + i);  
+        int value = start_index + i;  
         rb_push(a->rb, value);
     }
     
@@ -243,12 +247,12 @@ int main(int argc, char** argv) {
     }
 
     long long expected_sum = 0;
+    int total_count = 0;
     for (int i = 0; i < P; i++) {
-    long long start = (i + 1LL) * 1000000LL; 
     int count = pargs[i].items_to_produce;
-    expected_sum += (long long)count * start + (long long)count * (count - 1) / 2;
+    expected_sum += (long long)total_count * count + (long long)count * (count - 1) / 2;
+    total_count += count;
     }
-
     printf("═══════════════════════════════════════════════════════════════════\n");
     printf("ФИНАЛЬНЫЕ РЕЗУЛЬТАТЫ:\n");
     printf("  Произведено:    %lld элементов\n", produced_total);

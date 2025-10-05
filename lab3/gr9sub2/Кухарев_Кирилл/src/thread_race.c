@@ -25,14 +25,11 @@ static inline long long now_monotonic_ms(void) {
     return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
 }
 
-static void force_context_switch() {
-    sched_yield();
-    for (volatile int i = 0; i < 100; i++);
-}
 
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     
+    printf("Поток %d начал работу\n", a->thread_index);
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         shared_counter_unsync++;
         
@@ -40,6 +37,8 @@ static void* worker_unsync(void* arg) {
             sched_yield();  
         }
     }
+    
+    printf("Поток %d завершил работу\n", a->thread_index);
     return NULL;
 }
 
