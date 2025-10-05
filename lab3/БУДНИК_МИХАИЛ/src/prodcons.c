@@ -5,6 +5,10 @@
 #include <string.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <errno.h>
+
+int P = 2, C = 2, B = 64;
+long long N = 100000;
 
 typedef struct {
     int* data;
@@ -58,15 +62,15 @@ static void rb_push(ring_buffer_t* rb, int value) {
 }
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
-    if (sem_wait(&rb->full) == -1) {
-        return 0;
+    while(sem_wait(&rb->full) == -1) {
+        if(errno != EINTR) return 0;
     }
 
     pthread_mutex_lock(&rb->mutex);
 
     if (rb->producers_active == 0 && rb->head == rb->tail) {
-        sem_post(&rb->full);
         pthread_mutex_unlock(&rb->mutex);
+        sem_post(&rb->full);
         return 0;
     }
 
@@ -81,7 +85,9 @@ static void rb_producer_done(ring_buffer_t* rb) {
     pthread_mutex_lock(&rb->mutex);
     rb->producers_active--;
     if (rb->producers_active == 0) {
-        sem_post(&rb->full);
+        for (int i = 0; i < C; i++) {
+            sem_post(&rb->full);
+        }
     }
     pthread_mutex_unlock(&rb->mutex);
 }
@@ -111,9 +117,6 @@ static void usage(const char* prog) {
 }
 
 int main(int argc, char** argv) {
-    int P = 2, C = 2, B = 64;
-    long long N = 100000;
-
     int opt;
     while ((opt = getopt(argc, argv, "P:C:N:B:")) != -1) {
         switch (opt) {
