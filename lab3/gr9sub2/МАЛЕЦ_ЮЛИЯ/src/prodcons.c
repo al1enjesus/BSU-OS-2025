@@ -30,11 +30,11 @@ typedef struct {
     int consumer_index;
 } consumer_args_t;
 
-static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
+static int rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
     rb->data = (int*)malloc(sizeof(int) * capacity);
     if (rb->data == NULL) {
         fprintf(stderr, "Error: malloc failed in rb_init\n");
-        exit(1); // ⛔️ аварийное завершение, чтобы не работать с NULL
+        return -1;
     }
     rb->capacity = capacity;
     rb->head = 0;
@@ -44,6 +44,7 @@ static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
     pthread_mutex_init(&rb->mutex, NULL);
     pthread_cond_init(&rb->not_full, NULL);
     pthread_cond_init(&rb->not_empty, NULL);
+    return 0;
 }
 
 static void rb_destroy(ring_buffer_t* rb) {
@@ -139,7 +140,10 @@ int main(int argc, char** argv) {
     }
 
     ring_buffer_t rb;
-    rb_init(&rb, B, P);
+    if (rb_init(&rb, B, P) != 0) {
+        fprintf(stderr, "Failed to initialize ring buffer\n");
+        return 1;
+    }
 
     pthread_t* pt = (pthread_t*)calloc((size_t)P, sizeof(pthread_t));
     pthread_t* ct = (pthread_t*)calloc((size_t)C, sizeof(pthread_t));
@@ -147,6 +151,8 @@ int main(int argc, char** argv) {
     consumer_args_t* cargs = (consumer_args_t*)calloc((size_t)C, sizeof(consumer_args_t));
     if (!pt || !ct || !pargs || !cargs) {
         fprintf(stderr, "Allocation failed\n");
+        rb_destroy(&rb);
+        free(pt); free(ct); free(pargs); free(cargs);
         return 1;
     }
 
@@ -159,6 +165,8 @@ int main(int argc, char** argv) {
         pargs[i].items_to_produce = per_producer + (i < remainder ? 1 : 0);
         if (pthread_create(&pt[i], NULL, producer_thread, &pargs[i]) != 0) {
             fprintf(stderr, "pthread_create producer failed\n");
+            rb_destroy(&rb);
+            free(pt); free(ct); free(pargs); free(cargs);
             return 1;
         }
     }
@@ -170,6 +178,8 @@ int main(int argc, char** argv) {
         cargs[i].consumer_index = i;
         if (pthread_create(&ct[i], NULL, consumer_thread, &cargs[i]) != 0) {
             fprintf(stderr, "pthread_create consumer failed\n");
+            rb_destroy(&rb);
+            free(pt); free(ct); free(pargs); free(cargs);
             return 1;
         }
     }
