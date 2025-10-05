@@ -50,18 +50,31 @@ static void rb_destroy(ring_buffer_t* rb) {
     sem_destroy(&rb->not_empty);
 }
 
-static void rb_push(ring_buffer_t* rb, int value) {
-    sem_wait(&rb->not_full);
+static int rb_push(ring_buffer_t* rb, int value) {
+    if(sem_wait(&rb->not_full) != 0)
+    {
+        fprintf(stderr, "sem_wait(not_full) failed\n");
+        return -1;
+    }
     pthread_mutex_lock(&rb->mutex);
     rb->data[rb->tail] = value;
     rb->tail = (rb->tail + 1) % rb->capacity;
     rb->count++;
     pthread_mutex_unlock(&rb->mutex);
-    sem_post(&rb->not_empty);
+    if(sem_post(&rb->not_empty) != 0)
+    {
+        fprintf(stderr, "sem_post(not_empty) failed\n");
+        return -1;
+    }
+    return 0;
 }
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
-    sem_wait(&rb->not_empty);
+    if(sem_wait(&rb->not_empty) != 0)
+    {
+        fprintf(stderr, "sem_wait(not_empty) failed\n");
+        return -1;
+    }
     pthread_mutex_lock(&rb->mutex);
     if (rb->count == 0 && rb->producers_active == 0) {
         pthread_mutex_unlock(&rb->mutex);
@@ -71,38 +84,61 @@ static int rb_pop(ring_buffer_t* rb, int* value) {
     rb->head = (rb->head + 1) % rb->capacity;
     rb->count--;
     pthread_mutex_unlock(&rb->mutex);
-    sem_post(&rb->not_full);
+    if(sem_post(&rb->not_full) != 0)
+    {
+        fprintf(stderr, "sem_post(not_full) failed\n");
+        return -1;
+    }
     return 1;
 }
 
-static void rb_producer_done(ring_buffer_t* rb) {
+static int rb_producer_done(ring_buffer_t* rb) {
     pthread_mutex_lock(&rb->mutex);
     rb->producers_active--;
     if(rb->producers_active == 0)
     {
         for(int i = 0; i < rb->capacity; ++i)
-            sem_post(&rb->not_empty);
+            if(sem_post(&rb->not_empty) != 0)
+            {
+                fprintf(stderr, "sem_post(not_empty) failed\n");
+                return -1;
+            }
     }
     pthread_mutex_unlock(&rb->mutex);
+    return 0;
 }
 
 static void* producer_thread(void* arg) {
     producer_args_t* a = (producer_args_t*)arg;
     for (int i = 0; i < a->items_to_produce; i++) {
         int value = (a->producer_index + 1) * 1000000 + i;
-        rb_push(a->rb, value);
+        if(rb_push(a->rb, value) == -1)
+        {
+            fprintf(stderr, "Producer(%d) rb_push failed\n", a->producer_index);
+            break;
+        }
     }
-    rb_producer_done(a->rb);
+    if(rb_producer_done(a->rb) == -1)
+    {
+        fprintf(stderr, "Producer(%d) rb_producer_done failed\n", a->producer_index);
+    }
     return NULL;
 }
 
 static void* consumer_thread(void* arg) {
     consumer_args_t* a = (consumer_args_t*)arg;
     int v;
-    while (rb_pop(a->rb, &v)) {
+    int result;
+    while ((result = rb_pop(a->rb, &v)) > 0) {
         a->consumed_sum += v;
         a->consumed_count += 1;
     }
+
+    if(result == -1)
+    {
+        fprintf(stderr, "Consumer(%d) rb_pop failed\n", a->consumer_index);
+    }
+
     return NULL;
 }
 
