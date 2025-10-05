@@ -29,7 +29,7 @@ static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         shared_counter_unsync++;
-          for (int j = 0; j < 100; j++);
+          usleep(1);
     }
     return NULL;
 }
