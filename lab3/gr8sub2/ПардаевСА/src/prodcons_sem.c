@@ -40,6 +40,7 @@ static void rb_init(ring_buffer_t *rb, const int capacity) {
   rb->capacity = capacity;
   rb->head = 0;
   rb->tail = 0;
+  rb->count = 0;
   pthread_mutex_init(&rb->mutex, NULL);
   if (sem_init(&rb->empty_slots, 0, (unsigned int)capacity) != 0) {
     perror("sem_init(empty_slots)");
