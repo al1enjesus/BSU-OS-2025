@@ -35,11 +35,13 @@ static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         if (pthread_mutex_lock(&counter_mutex) != 0) {
-            break;
+            perror("pthread_mutex_lock");
+            pthread_exit((void*)1);
         }
         shared_counter_mutex++;
         if (pthread_mutex_unlock(&counter_mutex) != 0) {
-            break;
+            perror("pthread_mutex_unlock");
+            pthread_exit((void*)2);
         }
     }
     return NULL;
@@ -100,7 +102,6 @@ int main(int argc, char** argv) {
         }
         if (pthread_create(&tids[i], NULL, fn, &args[i]) != 0) {
             fprintf(stderr, "pthread_create failed for thread %d\n", i);
-            
             for (int j = 0; j < i; j++) {
                 pthread_join(tids[j], NULL);
             }
@@ -110,9 +111,15 @@ int main(int argc, char** argv) {
         }
     }
 
+    int error_count = 0;
     for (int i = 0; i < num_threads; i++) {
-        if (pthread_join(tids[i], NULL) != 0) {
+        void* retval = NULL;
+        if (pthread_join(tids[i], &retval) != 0) {
             fprintf(stderr, "pthread_join failed for thread %d\n", i);
+            error_count++;
+        } else if (retval != NULL) {
+            fprintf(stderr, "Thread %d exited with error code %ld\n", i, (long)(intptr_t)retval);
+            error_count++;
         }
     }
 
@@ -123,11 +130,11 @@ int main(int argc, char** argv) {
     else if (mode == MODE_MUTEX) actual = shared_counter_mutex;
     else actual = atomic_load_explicit(&shared_counter_atomic, memory_order_relaxed);
 
-    printf("mode=%s threads=%d iters_per_thread=%lld expected=%lld actual=%lld time_ms=%lld\n",
+    printf("mode=%s threads=%d iters_per_thread=%lld expected=%lld actual=%lld time_ms=%lld errors=%d\n",
         (mode==MODE_UNSYNC?"unsync":mode==MODE_MUTEX?"mutex":"atomic"),
-        num_threads, iters, expected, actual, (end_ms - start_ms));
+        num_threads, iters, expected, actual, (end_ms - start_ms), error_count);
 
     free(tids);
     free(args);
-    return 0;
+    return error_count > 0 ? 1 : 0;
 }
