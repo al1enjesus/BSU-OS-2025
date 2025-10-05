@@ -30,11 +30,11 @@ typedef struct {
     int consumer_index;
 } consumer_args_t;
 
-static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
+static int rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
     rb->data = (int*)malloc(sizeof(int) * capacity);
     if (!rb->data) {
         fprintf(stderr, "Failed to allocate buffer\n");
-        exit(1);
+        return -1;
     }
     rb->capacity = capacity;
     rb->head = 0;
@@ -44,16 +44,24 @@ static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
     
     if (pthread_mutex_init(&rb->mutex, NULL) != 0) {
         fprintf(stderr, "Failed to initialize mutex\n");
-        exit(1);
+        free(rb->data);
+        return -1;
     }
     if (pthread_cond_init(&rb->not_full, NULL) != 0) {
         fprintf(stderr, "Failed to initialize condition variable\n");
-        exit(1);
+        pthread_mutex_destroy(&rb->mutex);
+        free(rb->data);
+        return -1;
     }
     if (pthread_cond_init(&rb->not_empty, NULL) != 0) {
         fprintf(stderr, "Failed to initialize condition variable\n");
-        exit(1);
+        pthread_mutex_destroy(&rb->mutex);
+        pthread_cond_destroy(&rb->not_full);
+        free(rb->data);
+        return -1;
     }
+    
+    return 0;
 }
 
 static void rb_destroy(ring_buffer_t* rb) {
@@ -158,7 +166,9 @@ int main(int argc, char** argv) {
     }
 
     ring_buffer_t rb;
-    rb_init(&rb, B, P);
+    if (rb_init(&rb, B, P) != 0) {
+        return 1;
+    }
 
     pthread_t* producers = (pthread_t*)calloc((size_t)P, sizeof(pthread_t));
     pthread_t* consumers = (pthread_t*)calloc((size_t)C, sizeof(pthread_t));
@@ -167,6 +177,11 @@ int main(int argc, char** argv) {
     
     if (!producers || !consumers || !pargs || !cargs) {
         fprintf(stderr, "Memory allocation failed\n");
+        free(producers);
+        free(consumers);
+        free(pargs);
+        free(cargs);
+        rb_destroy(&rb);
         return 1;
     }
 

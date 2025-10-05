@@ -5,6 +5,8 @@
 #include <stdatomic.h>
 #include <time.h>
 #include <unistd.h>
+#include <errno.h>
+#include <limits.h>
 
 typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } sync_mode_t;
 
@@ -27,7 +29,7 @@ static inline long long now_monotonic_ms(void) {
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        shared_counter_unsync++;  // НЕбезопасное инкрементирование
+        shared_counter_unsync++;
     }
     return NULL;
 }
@@ -63,8 +65,22 @@ int main(int argc, char** argv) {
         fprintf(stderr, "Usage: %s <num_threads> <iterations_per_thread> <unsync|mutex|atomic>\n", argv[0]);
         return 1;
     }
-    int num_threads = atoi(argv[1]);
-    long long iters = atoll(argv[2]);
+    char* endptr;
+    errno = 0;
+    long num_threads_long = strtol(argv[1], &endptr, 10);
+    if (errno != 0 || *endptr != '\0' || num_threads_long <= 0 || num_threads_long > INT_MAX) {
+        fprintf(stderr, "Invalid number of threads: %s\n", argv[1]);
+        return 1;
+    }
+    int num_threads = (int)num_threads_long;
+    
+    errno = 0;
+    long long iters = strtoll(argv[2], &endptr, 10);
+    if (errno != 0 || *endptr != '\0' || iters < 0) {
+        fprintf(stderr, "Invalid iterations count: %s\n", argv[2]);
+        return 1;
+    }
+
     sync_mode_t mode = parse_mode(argv[3]);
 
     if (num_threads <= 0 || iters < 0) {
@@ -74,10 +90,6 @@ int main(int argc, char** argv) {
 
     pthread_t* tids = (pthread_t*)calloc((size_t)num_threads, sizeof(pthread_t));
     thread_args_t* args = (thread_args_t*)calloc((size_t)num_threads, sizeof(thread_args_t));
-    if (!tids || !args) {
-        fprintf(stderr, "Allocation failed\n");
-        return 1;
-    }
 
     atomic_store(&shared_counter_atomic, 0);
     shared_counter_unsync = 0;
