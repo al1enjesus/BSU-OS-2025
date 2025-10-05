@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
     shared_counter_unsync = 0;
     shared_counter_mutex = 0;
 
-    fprintf(stderr, "[thread_race] Внимание: это скелет (samples). Реализуйте TODO для осмысленных результатов.\n");
+    //fprintf(stderr, "[thread_race] Внимание: это скелет (samples). Реализуйте TODO для осмысленных результатов.\n");
 
     long long start_ms = now_monotonic_ms();
 
@@ -122,5 +122,3 @@ int main(int argc, char** argv) {
     free(args);
     return 0;
 }
-
-
