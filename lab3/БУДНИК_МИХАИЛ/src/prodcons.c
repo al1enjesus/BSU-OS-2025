@@ -70,7 +70,6 @@ static int rb_pop(ring_buffer_t* rb, int* value) {
 
     if (rb->producers_active == 0 && rb->head == rb->tail) {
         pthread_mutex_unlock(&rb->mutex);
-        sem_post(&rb->full);
         return 0;
     }
 
@@ -127,7 +126,8 @@ int main(int argc, char** argv) {
             default: usage(argv[0]); return 1;
         }
     }
-    if (P <= 0 || C <= 0 || B <= 0 || N < 0) {
+    if (P <= 0 || C <= 0 || B <= 0 || N < 0 ||
+        P > 1000 || C > 1000 || B > 1000000 || N > 1000000000) {
         usage(argv[0]);
         return 1;
     }
