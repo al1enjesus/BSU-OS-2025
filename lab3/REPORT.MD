@@ -6,14 +6,17 @@
 ## Вариант
 Вариант 2.
 
-### Установка Free-threaded CPython
-1. Зайти на сайт сделать по инструкции
+## Установка Free-threaded CPython
+1. Перейдите на сайт и следуйте инструкциям по установке:
 
-   ```https://py-free-threading.github.io/installing-cpython/'''
-   
-### Компиляции C функции
+   [https://py-free-threading.github.io/installing-cpython/](https://py-free-threading.github.io/installing-cpython/)
 
-   '''gcc -shared -o libatomic.so -fPIC atomic_ops.c'''
+## Компиляция C функции
+Для компиляции C функции используйте следующую команду:
+
+```bash
+gcc -shared -o libatomic.so -fPIC atomic_ops.c
+```
    
 ## Шаги выполнения
 
