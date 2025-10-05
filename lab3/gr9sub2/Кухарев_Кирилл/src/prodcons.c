@@ -22,6 +22,7 @@ typedef struct {
     ring_buffer_t* rb;
     int items_to_produce;
     int producer_index;
+    int start_index;  
 } producer_args_t;
 
 typedef struct {
@@ -102,16 +103,11 @@ static void rb_producer_done(ring_buffer_t* rb) {
 
 static void* producer_thread(void* arg) {
     producer_args_t* a = (producer_args_t*)arg;
-    printf("Производитель %d запущен: произведет %d элементов\n", 
-           a->producer_index, a->items_to_produce);
-    
-    int start_index = 0;
-    for (int j = 0; j < a->producer_index; j++) {
-        start_index += pargs[j].items_to_produce; 
-    }
+    printf("Производитель %d запущен: произведет %d элементов (start=%d)\n", 
+           a->producer_index, a->items_to_produce, a->start_index);
     
     for (int i = 0; i < a->items_to_produce; i++) {
-        int value = start_index + i;  
+        int value = a->start_index + i;
         rb_push(a->rb, value);
     }
     
@@ -202,13 +198,18 @@ int main(int argc, char** argv) {
     }
     printf("Всего распределено: %lld элементов\n", distributed_total);
 
+    int current_start = 0;
     for (int i = 0; i < P; i++) {
-        pargs[i].rb = &rb;
-        pargs[i].producer_index = i;
-        if (pthread_create(&pt[i], NULL, producer_thread, &pargs[i]) != 0) {
-            fprintf(stderr, "Ошибка создания производителя %d\n", i);
-            return 1;
-        }
+    pargs[i].rb = &rb;
+    pargs[i].producer_index = i;
+    pargs[i].items_to_produce = per_producer + (i < remainder ? 1 : 0);
+    pargs[i].start_index = current_start;  
+    current_start += pargs[i].items_to_produce;  
+    
+    if (pthread_create(&pt[i], NULL, producer_thread, &pargs[i]) != 0) {
+        fprintf(stderr, "Ошибка создания производителя %d\n", i);
+        return 1;
+    }
     }
 
     for (int i = 0; i < C; i++) {

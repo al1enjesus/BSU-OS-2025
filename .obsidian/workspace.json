@@ -189,8 +189,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "0e0af30b4c5addc9",
+  "active": "815bf04858942486",
   "lastOpenFiles": [
+    "lab3/gr9sub2/Кухарев_Кирилл/prodcons",
+    "lab3/gr9sub2/Кухарев_Кирилл/thread_race",
     "lab3/gr9sub2/Кухарев_Кирилл/screenshots/c.png",
     "lab3/README.md",
     "lab3/gr9sub2/Кухарев_Кирилл/REPORT.md",
@@ -199,8 +201,6 @@
     "lab3/gr9sub2/Кухарев_Кирилл/screenshots/unsync.png",
     "lab3/gr9sub2/Кухарев_Кирилл/screenshots/atomic.png",
     "lab3/gr9sub2/Кухарев_Кирилл/screenshots",
-    "lab3/gr9sub2/Кухарев_Кирилл/prodcons",
-    "lab3/gr9sub2/Кухарев_Кирилл/thread_race",
     "lab3/gr9sub2/Кухарев_Кирилл/lab3_test_report_20251005_101800.txt",
     "lab3/gr9sub2/Кухарев_Кирилл/lab3_test_report_20251005_101636.txt",
     "lab3/gr9sub2/Кухарев_Кирилл/run.sh",
