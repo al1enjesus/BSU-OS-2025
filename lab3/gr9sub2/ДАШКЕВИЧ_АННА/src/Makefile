@@ -23,6 +23,7 @@ run_prodcons: prodcons
 
 clean:
 	rm -f thread_race prodcons
+	rm -f prodcons thread_race *.o
 
 .PHONY: all clean run_race_unsync run_race_mutex run_race_atomic run_prodcons
 
