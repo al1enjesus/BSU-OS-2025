@@ -4,6 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <semaphore.h>
+#include <time.h>
 
 typedef struct {
     int* data;
@@ -11,11 +13,11 @@ typedef struct {
     int head;
     int tail;
     int count;
+    sem_t free_slots;
+    sem_t used_slots;
     pthread_mutex_t mutex;
-    pthread_cond_t not_full;
-    pthread_cond_t not_empty;
     int producers_active;
-} ring_buffer_t; // TODO: это готовая структура. Не меняйте поля без необходимости.
+} ring_buffer_t;
 
 typedef struct {
     ring_buffer_t* rb;
@@ -31,68 +33,95 @@ typedef struct {
 } consumer_args_t;
 
 static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
-    // TODO: выделите буфер, инициализируйте индексы и синхронизацию
     rb->data = (int*)malloc(sizeof(int)*capacity);
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
     rb->count = 0;
     rb->producers_active = producers_total;
+    
+    // инициализация синхронизации
+    sem_init(&rb->free_slots, 0, capacity);
+    sem_init(&rb->used_slots, 0, 0);
     pthread_mutex_init(&rb->mutex, NULL);
-    pthread_cond_init(&rb->not_full, NULL);
-    pthread_cond_init(&rb->not_empty, NULL);
 }
 
 static void rb_destroy(ring_buffer_t* rb) {
     free(rb->data);
+    sem_destroy(&rb->free_slots);
+    sem_destroy(&rb->used_slots);
     pthread_mutex_destroy(&rb->mutex);
-    pthread_cond_destroy(&rb->not_full);
-    pthread_cond_destroy(&rb->not_empty);
 }
 
 static void rb_push(ring_buffer_t* rb, int value) {
-    // TODO: реализуйте вставку в кольцевой буфер под mutex с ожиданием not_full
+    // ждем свободное место
+    sem_wait(&rb->free_slots);
+
     pthread_mutex_lock(&rb->mutex);
-    while (rb->count == rb->capacity) {
-        pthread_cond_wait(&rb->not_full, &rb->mutex);
-    }
+
+    // добавляем место
     rb->data[rb->tail] = value;
-    rb->tail = (rb->tail + 1) % rb->capacity;
-    rb->count++;
-    pthread_cond_signal(&rb->not_empty);
+    rb->tail = (rb->tail+1) % rb->capacity;
+    rb->count += 1;
+
     pthread_mutex_unlock(&rb->mutex);
+
+    sem_post(&rb->used_slots);
 }
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
-    // TODO: реализуйте извлечение из кольцевого буфера под mutex с ожиданием not_empty
-    pthread_mutex_lock(&rb->mutex);
-    while (rb->count == 0 && rb->producers_active > 0) {
-        pthread_cond_wait(&rb->not_empty, &rb->mutex);
+    while (1) {
+        struct timespec ts;
+        clock_gettime(CLOCK_REALTIME, &ts);
+        ts.tv_sec += 1;
+
+        int result = sem_timedwait(&rb->used_slots, &ts);
+
+        if (result == 0) {
+            pthread_mutex_lock(&rb->mutex);
+
+            if (rb->count == 0) {
+                if (rb->producers_active == 0) {
+                    pthread_mutex_unlock(&rb->mutex);
+                    return 0;
+                }
+                pthread_mutex_unlock(&rb->mutex);
+                continue;
+            }
+
+            *value = rb->data[rb->head];
+            rb->head = (rb->head + 1) % rb->capacity;
+            rb->count--;
+
+            pthread_mutex_unlock(&rb->mutex);
+
+            sem_post(&rb->free_slots);
+            return 1;
+        } else {
+            pthread_mutex_lock(&rb->mutex);
+            int should_exit = (rb->producers_active == 0 && rb->count == 0);
+            pthread_mutex_unlock(&rb->mutex);
+
+            if (should_exit) {
+                return 0;
+            }
+        }
     }
-    if (rb->count == 0 && rb->producers_active == 0) {
-        pthread_mutex_unlock(&rb->mutex);
-        return 0; // no more items will arrive
-    }
-    *value = rb->data[rb->head];
-    rb->head = (rb->head + 1) % rb->capacity;
-    rb->count--;
-    pthread_cond_signal(&rb->not_full);
-    pthread_mutex_unlock(&rb->mutex);
-    return 1;
 }
 
+
 static void rb_producer_done(ring_buffer_t* rb) {
-    // TODO: сообщайте потребителям об окончании производителей
     pthread_mutex_lock(&rb->mutex);
     rb->producers_active--;
     if (rb->producers_active == 0) {
-        pthread_cond_broadcast(&rb->not_empty);
+        for (int i = 0; i < rb->capacity; i++) {
+            sem_post(&rb->used_slots);
+        }
     }
     pthread_mutex_unlock(&rb->mutex);
 }
 
 static void* producer_thread(void* arg) {
-    // TODO: генерируйте элементы и кладите их в буфер
     producer_args_t* a = (producer_args_t*)arg;
     for (int i = 0; i < a->items_to_produce; i++) {
         int value = (a->producer_index + 1) * 1000000 + i; // пример кодирования
@@ -103,7 +132,6 @@ static void* producer_thread(void* arg) {
 }
 
 static void* consumer_thread(void* arg) {
-    // TODO: извлекайте элементы пока доступны и агрегируйте метрики
     consumer_args_t* a = (consumer_args_t*)arg;
     int v;
     while (rb_pop(a->rb, &v)) {
@@ -188,8 +216,17 @@ int main(int argc, char** argv) {
         consumed_sum += cargs[i].consumed_sum;
     }
 
-    printf("[prodcons] (samples skeleton) P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
+    // Ожидаемая сумма
+    long long exc_cons_sum = 0;
+    for (int i = 0; i < P; i++)
+    {
+        exc_cons_sum += (i + 1LL) * 1000000LL * pargs[i].items_to_produce 
+        + (pargs[i].items_to_produce * (pargs[i].items_to_produce - 1LL)) / 2LL;
+    }
+
+    printf("[prodcons] P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
            P, C, N, B, produced_total, consumed_total, consumed_sum);
+    printf("[prodcons] Excepted sum = %lld\n", exc_cons_sum);
 
     free(pt);
     free(ct);
