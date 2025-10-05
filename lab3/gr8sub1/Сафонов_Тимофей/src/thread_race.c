@@ -92,10 +92,17 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    sync_mode_t mode = parse_mode(argv[3]);
+    sync_mode_t mode;
+    if (parse_mode(argv[3], &mode) != 0) {
+        return 1;
+    }
 
     pthread_t* tids = (pthread_t*)calloc((size_t)num_threads, sizeof(pthread_t));
     thread_args_t* args = (thread_args_t*)calloc((size_t)num_threads, sizeof(thread_args_t));
+    if (tids == NULL || args == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return 1;
+    }
 
     atomic_store(&shared_counter_atomic, 0);
     shared_counter_unsync = 0;
