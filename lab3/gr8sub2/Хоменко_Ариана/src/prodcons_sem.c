@@ -123,7 +123,7 @@ static void* producer_thread(void* arg) {
         rb_push(a->rb, value);
     }
     rb_producer_done(a->rb);
-    getchar();
+    // getchar();
     return NULL;
 }
 
@@ -134,7 +134,7 @@ static void* consumer_thread(void* arg) {
         a->consumed_sum += v;
         a->consumed_count += 1;
     }
-    getchar();
+    //getchar();
     return NULL;
 }
 
@@ -227,6 +227,6 @@ int main(int argc, char** argv) {
     free(pargs);
     free(cargs);
     rb_destroy(&rb);
-    getchar();
+     // getchar();
     return 0;
 }

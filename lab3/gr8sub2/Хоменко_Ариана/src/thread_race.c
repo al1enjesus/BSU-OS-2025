@@ -50,7 +50,7 @@ static void* worker_atomic(void* arg) {
     return NULL;
 }
 
-static mode_t parse_mode(const char* s) {
+static race_mode_t parse_mode(const char* s) {
     if (strcmp(s, "unsync") == 0) return MODE_UNSYNC;
     if (strcmp(s, "mutex") == 0) return MODE_MUTEX;
     if (strcmp(s, "atomic") == 0) return MODE_ATOMIC;
