@@ -36,13 +36,33 @@ typedef struct {
 
 static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
     rb->data = (int*)malloc(sizeof(int) * capacity);
+    if(rb->data == NULL) {
+        perror("malloc");
+        exit(EXIT_FAILURE);
+    }
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
     rb->producers_active = producers_total;
-    pthread_mutex_init(&rb->mutex, NULL);
-    sem_init(&rb->empty, 0, capacity);
-    sem_init(&rb->full, 0, 0);
+    
+    if (pthread_mutex_init(&rb->mutex, NULL) != 0) {
+        perror("pthread_mutex_init");
+        free(rb->data);
+        exit(EXIT_FAILURE);
+    }
+    if (sem_init(&rb->empty, 0, capacity) != 0) {
+        perror("sem_init(empty)");
+        pthread_mutex_destroy(&rb->mutex);
+        free(rb->data);
+        exit(EXIT_FAILURE);
+    }
+    if (sem_init(&rb->full, 0, 0) != 0) {
+        perror("sem_init(full)");
+        sem_destroy(&rb->empty);
+        pthread_mutex_destroy(&rb->mutex);
+        free(rb->data);
+        exit(EXIT_FAILURE);
+    }
 }
 
 static void rb_destroy(ring_buffer_t* rb) {
@@ -63,7 +83,10 @@ static void rb_push(ring_buffer_t* rb, int value) {
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
     while(sem_wait(&rb->full) == -1) {
-        if(errno != EINTR) return 0;
+        if(errno != EINTR) {
+            perror("rb_pop");
+            return 0;
+        }
     }
 
     pthread_mutex_lock(&rb->mutex);
