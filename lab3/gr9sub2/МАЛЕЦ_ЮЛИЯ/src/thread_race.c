@@ -35,13 +35,11 @@ static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         if (pthread_mutex_lock(&counter_mutex) != 0) {
-            perror("pthread_mutex_lock");
-            pthread_exit((void*)1);
+            return (void*)1L;
         }
         shared_counter_mutex++;
         if (pthread_mutex_unlock(&counter_mutex) != 0) {
-            perror("pthread_mutex_unlock");
-            pthread_exit((void*)2);
+            return (void*)2L;
         }
     }
     return NULL;
@@ -118,7 +116,7 @@ int main(int argc, char** argv) {
             fprintf(stderr, "pthread_join failed for thread %d\n", i);
             error_count++;
         } else if (retval != NULL) {
-            fprintf(stderr, "Thread %d exited with error code %ld\n", i, (long)(intptr_t)retval);
+            fprintf(stderr, "Thread %d exited with error code %ld\n", i, (long)retval);
             error_count++;
         }
     }
