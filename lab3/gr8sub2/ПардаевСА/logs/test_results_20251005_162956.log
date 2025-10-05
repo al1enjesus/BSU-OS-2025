@@ -1,0 +1,121 @@
+2025-10-05 16:29:56 - Начало компиляции программ...
+2025-10-05 16:29:56 - Выполнение: Компиляция всех программ
+2025-10-05 16:29:56 - Команда: make all
+--------------------------------------------------
+make: Nothing to be done for 'all'.
+--------------------------------------------------
+2025-10-05 16:29:56 - Код завершения: 0
+
+2025-10-05 16:29:56 - Начало тестирования thread_race...
+2025-10-05 16:29:56 - Выполнение: Thread Race - 1 потоков, mutex (таймаут: 10с)
+2025-10-05 16:29:56 - Команда: ./thread_race 1 1000000 mutex
+--------------------------------------------------
+mode=mutex threads=1 iters_per_thread=1000000 expected=1000000 actual=1000000 time_ms=14
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 2 потоков, mutex (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 2 1000000 mutex
+--------------------------------------------------
+mode=mutex threads=2 iters_per_thread=1000000 expected=2000000 actual=2000000 time_ms=95
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 4 потоков, mutex (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 4 1000000 mutex
+--------------------------------------------------
+mode=mutex threads=4 iters_per_thread=1000000 expected=4000000 actual=4000000 time_ms=193
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 8 потоков, mutex (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 8 1000000 mutex
+--------------------------------------------------
+mode=mutex threads=8 iters_per_thread=1000000 expected=8000000 actual=8000000 time_ms=365
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 1 потоков, atomic (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 1 1000000 atomic
+--------------------------------------------------
+mode=atomic threads=1 iters_per_thread=1000000 expected=1000000 actual=1000000 time_ms=5
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 2 потоков, atomic (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 2 1000000 atomic
+--------------------------------------------------
+mode=atomic threads=2 iters_per_thread=1000000 expected=2000000 actual=2000000 time_ms=16
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 4 потоков, atomic (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 4 1000000 atomic
+--------------------------------------------------
+mode=atomic threads=4 iters_per_thread=1000000 expected=4000000 actual=4000000 time_ms=34
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Thread Race - 8 потоков, atomic (таймаут: 10с)
+2025-10-05 16:29:57 - Команда: ./thread_race 8 1000000 atomic
+--------------------------------------------------
+mode=atomic threads=8 iters_per_thread=1000000 expected=8000000 actual=8000000 time_ms=63
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Начало тестирования producer-consumer с семафорами...
+2025-10-05 16:29:57 - Выполнение: Producer-Consumer - 2 производителя, 2 потребителя (таймаут: 30с)
+2025-10-05 16:29:57 - Команда: ./prodcons_sem -P 2 -C 2 -N 10000 -B 64
+--------------------------------------------------
+Starting producer-consumer: P=2, C=2, N=10000, B=64
+Producer 0 finished, produced 5000 items
+Producer 1 finished, produced 5000 items
+Consumer 0 finished, consumed 5498 items
+Consumer 1 finished, consumed 4502 items
+All producers finished. Total produced: 10000
+All consumers finished.
+[prodcons_sem] P=2 C=2 N=10000 B=64 produced=10000 consumed=10000 sum=15024995000
+SUCCESS: All items produced and consumed correctly.
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Producer-Consumer - 4 производителя, 4 потребителя (таймаут: 30с)
+2025-10-05 16:29:57 - Команда: ./prodcons_sem -P 4 -C 4 -N 20000 -B 128
+--------------------------------------------------
+Starting producer-consumer: P=4, C=4, N=20000, B=128
+Producer 3 finished, produced 5000 items
+Producer 1 finished, produced 5000 items
+Producer 0 finished, produced 5000 items
+Producer 2 finished, produced 5000 items
+Consumer 1 finished, consumed 5035 items
+Consumer 2 finished, consumed 4965 items
+All producers finished. Total produced: 20000
+Consumer 0 finished, consumed 5000 items
+Consumer 3 finished, consumed 5000 items
+All consumers finished.
+[prodcons_sem] P=4 C=4 N=20000 B=128 produced=20000 consumed=20000 sum=50049990000
+SUCCESS: All items produced and consumed correctly.
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Выполнение: Producer-Consumer - 1 производитель, 3 потребителя (таймаут: 30с)
+2025-10-05 16:29:57 - Команда: ./prodcons_sem -P 1 -C 3 -N 5000 -B 32
+--------------------------------------------------
+Starting producer-consumer: P=1, C=3, N=5000, B=32
+Producer 0 finished, produced 5000 items
+Consumer 0 finished, consumed 1742 items
+Consumer 1 finished, consumed 1582 items
+Consumer 2 finished, consumed 1676 items
+All producers finished. Total produced: 5000
+All consumers finished.
+[prodcons_sem] P=1 C=3 N=5000 B=32 produced=5000 consumed=5000 sum=5012497500
+SUCCESS: All items produced and consumed correctly.
+--------------------------------------------------
+2025-10-05 16:29:57 - Команда завершилась успешно
+
+2025-10-05 16:29:57 - Исследование потоков в системе...
+2025-10-05 16:29:57 - Запуск prodcons_sem в фоне для исследования потоков...
+2025-10-05 16:29:57 - PID запущенного процесса prodcons_sem: 8557
+2025-10-05 16:29:59 - Процесс prodcons_sem уже завершился
+2025-10-05 16:29:59 - Ожидание завершения фонового процесса prodcons_sem (таймаут 30с)...
+2025-10-05 16:29:59 - Фоновый процесс prodcons_sem завершился успешно
