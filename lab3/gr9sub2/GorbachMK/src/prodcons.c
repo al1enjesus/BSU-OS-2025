@@ -6,66 +6,72 @@
 
 typedef struct 
 {
-	int *buf;
+	int *data;
 	int size;
-	int in, out, count;
-	pthread_mutex_t mtx;
-	pthread_cond_t not_full, not_empty;
-	int done;
+	int head;
+	int tail;
+	int count;
+	pthread_mutex_t mutex;
+	pthread_cond_t not_full;
+	pthread_cond_t not_empty;
 } buffer_t;
 
-buffer_t buf;
-int produced_sum = 0;
-int consumed_sum = 0;
-pthread_mutex_t sum_lock;
+buffer_t buffer;
+int done = 0;
 
 void buffer_init(buffer_t *b, int size) 
 {
-	b->buf = malloc(size * sizeof(int));
+	b->data = malloc(size * sizeof(int));
+	if (!b->data) 
+	{
+		perror("malloc");
+		exit(1);
+	}
 	b->size = size;
-	b->in = b->out = b->count = 0;
-	b->done = 0;
-	pthread_mutex_init(&b->mtx, NULL);
+	b->head = b->tail = b->count = 0;
+	pthread_mutex_init(&b->mutex, NULL);
 	pthread_cond_init(&b->not_full, NULL);
 	pthread_cond_init(&b->not_empty, NULL);
 }
 
 void buffer_destroy(buffer_t *b) 
 {
-	free(b->buf);
-	pthread_mutex_destroy(&b->mtx);
+	free(b->data);
+	pthread_mutex_destroy(&b->mutex);
 	pthread_cond_destroy(&b->not_full);
 	pthread_cond_destroy(&b->not_empty);
 }
 
-void buffer_put(buffer_t *b, int val) 
+void buffer_put(buffer_t *b, int value) 
 {
-	pthread_mutex_lock(&b->mtx);
+	pthread_mutex_lock(&b->mutex);
 	while (b->count == b->size)
-		pthread_cond_wait(&b->not_full, &b->mtx);
-	b->buf[b->in] = val;
-	b->in = (b->in + 1) % b->size;
+		pthread_cond_wait(&b->not_full, &b->mutex);
+	b->data[b->tail] = value;
+	b->tail = (b->tail + 1) % b->size;
 	b->count++;
 	pthread_cond_signal(&b->not_empty);
-	pthread_mutex_unlock(&b->mtx);
+	pthread_mutex_unlock(&b->mutex);
 }
 
-int buffer_get(buffer_t *b, int *val) 
+int buffer_get(buffer_t *b) 
 {
-	pthread_mutex_lock(&b->mtx);
-	while (b->count == 0 && !b->done)
-		pthread_cond_wait(&b->not_empty, &b->mtx);
-	if (b->count == 0 && b->done) 
+	pthread_mutex_lock(&b->mutex);
+	while (b->count == 0 && !done)
+		pthread_cond_wait(&b->not_empty, &b->mutex);
+
+	if (b->count == 0 && done) 
 	{
-		pthread_mutex_unlock(&b->mtx);
-		return 0;
+		pthread_mutex_unlock(&b->mutex);
+		return -1;
 	}
-	*val = b->buf[b->out];
-	b->out = (b->out + 1) % b->size;
+
+	int value = b->data[b->head];
+	b->head = (b->head + 1) % b->size;
 	b->count--;
 	pthread_cond_signal(&b->not_full);
-	pthread_mutex_unlock(&b->mtx);
-	return 1;
+	pthread_mutex_unlock(&b->mutex);
+	return value;
 }
 
 void *producer(void *arg) 
@@ -73,22 +79,18 @@ void *producer(void *arg)
 	int n = *(int *)arg;
 	for (int i = 0; i < n; i++) 
 	{
-		buffer_put(&buf, i + 1);
-		pthread_mutex_lock(&sum_lock);
-		produced_sum += i + 1;
-		pthread_mutex_unlock(&sum_lock);
+		buffer_put(&buffer, i);
 	}
 	return NULL;
 }
 
 void *consumer(void *arg) 
 {
-	int val;
-	while (buffer_get(&buf, &val)) 
+	(void)arg;
+	while (1) 
 	{
-		pthread_mutex_lock(&sum_lock);
-		consumed_sum += val;
-		pthread_mutex_unlock(&sum_lock);
+		int val = buffer_get(&buffer);
+		if (val == -1) break;
 	}
 	return NULL;
 }
@@ -105,28 +107,45 @@ int main(int argc, char *argv[])
 		else if (strcmp(argv[i], "-B") == 0) B = atoi(argv[++i]);
 	}
 
-	buffer_init(&buf, B);
-	pthread_mutex_init(&sum_lock, NULL);
+	if (P <= 0 || C <= 0 || N <= 0 || B <= 0) 
+	{
+		fprintf(stderr, "Error: all parameters (-P, -C, -N, -B) must be positive integers.\n");
+		return 1;
+	}
 
-	pthread_t prod[P], cons[C];
-	for (int i = 0; i < P; i++)
-		pthread_create(&prod[i], NULL, producer, &N);
-	for (int i = 0; i < C; i++)
+	buffer_init(&buffer, B);
+
+	pthread_t *prod = malloc(P * sizeof(pthread_t));
+	pthread_t *cons = malloc(C * sizeof(pthread_t));
+	if (!prod || !cons) 
+	{
+		perror("malloc");
+		return 1;
+	}
+
+	int per_prod = N / P;
+	for (int i = 0; i < P; i++) 
+	{
+		pthread_create(&prod[i], NULL, producer, &per_prod);
+	}
+	for (int i = 0; i < C; i++) 
+	{
 		pthread_create(&cons[i], NULL, consumer, NULL);
+	}
 
-	for (int i = 0; i < P; i++)
-		pthread_join(prod[i], NULL);
+	for (int i = 0; i < P; i++) pthread_join(prod[i], NULL);
 
-	pthread_mutex_lock(&buf.mtx);
-	buf.done = 1;
-	pthread_cond_broadcast(&buf.not_empty);
-	pthread_mutex_unlock(&buf.mtx);
+	pthread_mutex_lock(&buffer.mutex);
+	done = 1;
+	pthread_cond_broadcast(&buffer.not_empty);
+	pthread_mutex_unlock(&buffer.mutex);
 
-	for (int i = 0; i < C; i++)
-		pthread_join(cons[i], NULL);
+	for (int i = 0; i < C; i++) pthread_join(cons[i], NULL);
 
-	printf("Produced sum = %d | Consumed sum = %d\n", produced_sum, consumed_sum);
-	buffer_destroy(&buf);
-	pthread_mutex_destroy(&sum_lock);
+	buffer_destroy(&buffer);
+	free(prod);
+	free(cons);
+
+	printf("Done. Produced and consumed %d items successfully.\n", N);
 	return 0;
 }
