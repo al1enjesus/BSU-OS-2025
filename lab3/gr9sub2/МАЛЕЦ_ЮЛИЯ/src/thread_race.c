@@ -10,6 +10,7 @@ typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } mode_t;
 typedef struct {
     int thread_index;
     long long iterations_per_thread;
+    int* result_ptr;
 } thread_args_t;
 
 static long long shared_counter_unsync = 0;
@@ -28,6 +29,7 @@ static void* worker_unsync(void* arg) {
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         shared_counter_unsync++;
     }
+    *a->result_ptr = 0;
     return NULL;
 }
 
@@ -35,13 +37,16 @@ static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         if (pthread_mutex_lock(&counter_mutex) != 0) {
-            return (void*)1L;
+            *a->result_ptr = 1;
+            return NULL;
         }
         shared_counter_mutex++;
         if (pthread_mutex_unlock(&counter_mutex) != 0) {
-            return (void*)2L;
+            *a->result_ptr = 2;
+            return NULL;
         }
     }
+    *a->result_ptr = 0;
     return NULL;
 }
 
@@ -50,6 +55,7 @@ static void* worker_atomic(void* arg) {
     for (long long i = 0; i < a->iterations_per_thread; i++) {
         atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
     }
+    *a->result_ptr = 0;
     return NULL;
 }
 
@@ -78,8 +84,10 @@ int main(int argc, char** argv) {
 
     pthread_t* tids = calloc(num_threads, sizeof(pthread_t));
     thread_args_t* args = calloc(num_threads, sizeof(thread_args_t));
-    if (!tids || !args) {
+    int* results = calloc(num_threads, sizeof(int));
+    if (!tids || !args || !results) {
         fprintf(stderr, "Allocation failed\n");
+        free(tids); free(args); free(results);
         return 1;
     }
 
@@ -92,6 +100,7 @@ int main(int argc, char** argv) {
     for (int i = 0; i < num_threads; i++) {
         args[i].thread_index = i;
         args[i].iterations_per_thread = iters;
+        args[i].result_ptr = &results[i];
         void* (*fn)(void*) = NULL;
         switch (mode) {
             case MODE_UNSYNC: fn = worker_unsync; break;
@@ -103,20 +112,18 @@ int main(int argc, char** argv) {
             for (int j = 0; j < i; j++) {
                 pthread_join(tids[j], NULL);
             }
-            free(tids);
-            free(args);
+            free(tids); free(args); free(results);
             return 1;
         }
     }
 
     int error_count = 0;
     for (int i = 0; i < num_threads; i++) {
-        void* retval = NULL;
-        if (pthread_join(tids[i], &retval) != 0) {
+        if (pthread_join(tids[i], NULL) != 0) {
             fprintf(stderr, "pthread_join failed for thread %d\n", i);
             error_count++;
-        } else if (retval != NULL) {
-            fprintf(stderr, "Thread %d exited with error code %ld\n", i, (long)retval);
+        } else if (results[i] != 0) {
+            fprintf(stderr, "Thread %d exited with error code %d\n", i, results[i]);
             error_count++;
         }
     }
@@ -134,5 +141,6 @@ int main(int argc, char** argv) {
 
     free(tids);
     free(args);
+    free(results);
     return error_count > 0 ? 1 : 0;
 }
