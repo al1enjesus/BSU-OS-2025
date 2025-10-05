@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <limits.h>
 
 typedef struct {
     int* data;
@@ -120,6 +121,13 @@ static void rb_producer_done(ring_buffer_t* rb) {
 
 static void* producer_thread(void* arg) {
     producer_args_t* a = (producer_args_t*)arg;
+
+    if (a->producer_index > (INT_MAX - a->items_to_produce) / 1000000) {
+        fprintf(stderr, "Error: producer_index %d too large, would cause integer overflow\n",
+                a->producer_index);
+        rb_producer_done(a->rb);
+        return NULL;
+    }
     
     for (int i = 0; i < a->items_to_produce; i++) {
         int value = (a->producer_index + 1) * 1000000 + i;

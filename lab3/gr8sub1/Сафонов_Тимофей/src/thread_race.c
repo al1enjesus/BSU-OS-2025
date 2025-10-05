@@ -15,7 +15,7 @@ typedef struct {
     long long iterations_per_thread;
 } thread_args_t;
 
-static long long shared_counter_unsync = 0;
+static volatile long long shared_counter_unsync = 0;
 static long long shared_counter_mutex = 0;
 static atomic_llong shared_counter_atomic;
 static pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER;
