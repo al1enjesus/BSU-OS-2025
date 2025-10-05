@@ -2,79 +2,87 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <stdatomic.h>
-#include <string.h>
 #include <time.h>
+#include <string.h>
 
+long N;
+int M;
+
+unsigned long long counter_unsync = 0;
+unsigned long long counter_mutex = 0;
+atomic_ulong counter_atomic;
 pthread_mutex_t mtx;
-atomic_ulong counter_atomic = 0;
-unsigned long counter_unsync = 0;
 
-typedef struct {
-    int id;
-    unsigned long M;
-    const char *mode;
-} thread_arg_t;
-
-void *thread_func(void *arg) {
-    thread_arg_t *a = arg;
-    if (strcmp(a->mode, "unsync") == 0) {
-        for (unsigned long i = 0; i < a->M; i++)
-            counter_unsync++;
-    } else if (strcmp(a->mode, "mutex") == 0) {
-        for (unsigned long i = 0; i < a->M; i++) {
-            pthread_mutex_lock(&mtx);
-            counter_unsync++;
-            pthread_mutex_unlock(&mtx);
-        }
-    } else if (strcmp(a->mode, "atomic") == 0) {
-        for (unsigned long i = 0; i < a->M; i++)
-            atomic_fetch_add_explicit(&counter_atomic, 1, memory_order_relaxed);
+void* thread_func_unsync(void* arg) {
+    for (long i = 0; i < M; ++i) {
+        counter_unsync++;
     }
     return NULL;
 }
 
-int main(int argc, char *argv[]) {
+void* thread_func_mutex(void* arg) {
+    for (long i = 0; i < M; ++i) {
+        pthread_mutex_lock(&mtx);
+        counter_mutex++;
+        pthread_mutex_unlock(&mtx);
+    }
+    return NULL;
+}
+
+void* thread_func_atomic(void* arg) {
+    for (long i = 0; i < M; ++i) {
+        atomic_fetch_add_explicit(&counter_atomic, 1, memory_order_relaxed);
+    }
+    return NULL;
+}
+
+int main(int argc, char* argv[]) {
     if (argc < 4) {
-        fprintf(stderr, "Usage: %s N M mode\n", argv[0]);
+        fprintf(stderr, "Usage: %s <threads> <increments_per_thread> <mode: unsync|mutex|atomic>\n", argv[0]);
         return 1;
     }
 
-    int N = atoi(argv[1]);
-    unsigned long M = strtoul(argv[2], NULL, 10);
-    const char *mode = argv[3];
+    int threads_count = atoi(argv[1]);
+    M = atoi(argv[2]);
+    char* mode = argv[3];
 
-    pthread_t *threads = malloc(N * sizeof(pthread_t));
-    thread_arg_t *args = malloc(N * sizeof(thread_arg_t));
+    pthread_t* threads = malloc(sizeof(pthread_t) * threads_count);
+    if (!threads) { perror("malloc"); return 2; }
 
-    pthread_mutex_init(&mtx, NULL);
-    struct timespec t0, t1;
+    struct timespec t0, t1, dt;
     clock_gettime(CLOCK_MONOTONIC, &t0);
 
-    for (int i = 0; i < N; i++) {
-        args[i].id = i;
-        args[i].M = M;
-        args[i].mode = mode;
-        pthread_create(&threads[i], NULL, thread_func, &args[i]);
-    }
-
-    for (int i = 0; i < N; i++) {
-        pthread_join(threads[i], NULL);
+    if (strcmp(mode, "unsync") == 0) {
+        for (int i = 0; i < threads_count; ++i)
+            if (pthread_create(&threads[i], NULL, thread_func_unsync, NULL) != 0) { perror("pthread_create"); return 3; }
+        for (int i = 0; i < threads_count; ++i) pthread_join(threads[i], NULL);
+    } else if (strcmp(mode, "mutex") == 0) {
+        pthread_mutex_init(&mtx, NULL);
+        for (int i = 0; i < threads_count; ++i)
+            if (pthread_create(&threads[i], NULL, thread_func_mutex, NULL) != 0) { perror("pthread_create"); return 3; }
+        for (int i = 0; i < threads_count; ++i) pthread_join(threads[i], NULL);
+        pthread_mutex_destroy(&mtx);
+    } else if (strcmp(mode, "atomic") == 0) {
+        atomic_init(&counter_atomic, 0);
+        for (int i = 0; i < threads_count; ++i)
+            if (pthread_create(&threads[i], NULL, thread_func_atomic, NULL) != 0) { perror("pthread_create"); return 3; }
+        for (int i = 0; i < threads_count; ++i) pthread_join(threads[i], NULL);
+    } else {
+        fprintf(stderr, "Unknown mode %s\n", mode);
+        return 1;
     }
 
     clock_gettime(CLOCK_MONOTONIC, &t1);
-    long long sec = t1.tv_sec - t0.tv_sec;
-    long nsec = t1.tv_nsec - t0.tv_nsec;
-    if (nsec < 0) { sec--; nsec += 1000000000L; }
+    dt.tv_sec = t1.tv_sec - t0.tv_sec;
+    dt.tv_nsec = t1.tv_nsec - t0.tv_nsec;
+    if (dt.tv_nsec < 0) { dt.tv_sec--; dt.tv_nsec += 1000000000L; }
 
-    unsigned long expected = (unsigned long)N * M;
-    unsigned long actual = (strcmp(mode, "atomic") == 0) ? counter_atomic : counter_unsync;
+    unsigned long long expected = (unsigned long long)threads_count * M;
+    unsigned long long actual = 0;
+    if (strcmp(mode, "unsync") == 0) actual = counter_unsync;
+    if (strcmp(mode, "mutex") == 0) actual = counter_mutex;
+    if (strcmp(mode, "atomic") == 0) actual = atomic_load(&counter_atomic);
 
-    printf("mode=%s N=%d M=%lu\n", mode, N, M);
-    printf("expected=%lu actual=%lu\n", expected, actual);
-    printf("time=%lld.%09ld s\n", sec, nsec);
-
-    pthread_mutex_destroy(&mtx);
-    free(threads);
-    free(args);
-    return 0;
-}
+    printf("mode=%s threads=%d M=%d\n", mode, threads_count, M);
+    printf("expected = %llu\n", expected);
+");
