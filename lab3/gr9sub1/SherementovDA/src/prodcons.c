@@ -202,7 +202,6 @@ int main(int argc, char** argv) {
     printf("Consumed total: %lld items\n", consumed_total);
     printf("Consumed sum: %lld\n", consumed_sum);
     
-    // Проверка корректности
     if (produced_total == consumed_total) {
         printf("SUCCESS: Produced == Consumed\n");
     } else {
