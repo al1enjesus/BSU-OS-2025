@@ -28,7 +28,7 @@ cleanone:
 runone: $(TARGET)
     ./$(TARGET) 4 1000000 atomic
 
-.PHONY: all clean run
+.PHONY: allone cleanone runone
 ```
 
 3. Выполнены запуски для различных режимов синхронизации:
