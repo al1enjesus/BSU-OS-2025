@@ -103,5 +103,8 @@ int main(int argc, char *argv[]) {
 
     printf("mode=%s N=%d M=%llu\n", mode, N, M);
     printf("expected = %llu\n", expected);
-");
+    printf("actual = %llu\n", actual);
+    printf("time = %ld.%09ld s\n", dt.tv_sec, dt.tv_nsec);
+    free(threads);
+    return 0
 }
