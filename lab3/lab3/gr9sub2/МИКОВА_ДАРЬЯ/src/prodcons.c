@@ -33,6 +33,11 @@ typedef struct {
 static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
 
     rb->data = (int*)malloc(sizeof(int)*capacity);
+    if (!rb->data) {
+    fprintf(stderr, "malloc failed\n");
+    exit(1);
+    }
+    
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
@@ -94,7 +99,6 @@ static void rb_producer_done(ring_buffer_t* rb) {
 static void* producer_thread(void* arg) {
 
     producer_args_t* a = (producer_args_t*)arg;
-    ////getchar();
 
     for (int i = 0; i < a->items_to_produce; i++) {
         int value = (a->producer_index + 1) * 1000000 + i; // пример кодирования
@@ -107,7 +111,6 @@ static void* producer_thread(void* arg) {
 static void* consumer_thread(void* arg) {
 
     consumer_args_t* a = (consumer_args_t*)arg;
-     //////getchar();
     int v;
     while (rb_pop(a->rb, &v)) {
         a->consumed_sum += v;
@@ -200,6 +203,6 @@ int main(int argc, char** argv) {
     free(pargs);
     free(cargs);
     rb_destroy(&rb);
-     ////getchar();
+     
     return 0;
 }

@@ -198,5 +198,3 @@ int main(int argc, char** argv) {
     rb_destroy(&rb);
     return 0;
 }
-
-
