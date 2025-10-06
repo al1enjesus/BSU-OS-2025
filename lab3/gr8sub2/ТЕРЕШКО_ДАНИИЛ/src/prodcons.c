@@ -6,6 +6,12 @@
 #include <getopt.h>
 #include <limits.h>
 
+#define DEFAULT_PRODUCERS 2
+#define DEFAULT_CONSUMERS 2
+#define DEFAULT_BUFFER_SIZE 64
+#define DEFAULT_ITEMS_TOTAL 100000
+#define VALUE_MULTIPLIER 1000000
+
 typedef struct {
     int* data;
     int capacity;
@@ -130,7 +136,7 @@ static void* producer_thread(void* arg) {
     }
     
     for (int i = 0; i < a->items_to_produce; i++) {
-        int value = (a->producer_index + 1) * 1000000 + i;
+        int value = (a->producer_index + 1) * VALUE_MULTIPLIER + i;
         rb_push(a->rb, value);
     }
     
@@ -155,8 +161,8 @@ static void usage(const char* prog) {
 }
 
 int main(int argc, char** argv) {
-    int P = 2, C = 2, B = 64;
-    long long N = 100000;
+    int P = DEFAULT_PRODUCERS, C = DEFAULT_CONSUMERS, B = DEFAULT_BUFFER_SIZE;
+    long long N = DEFAULT_ITEMS_TOTAL;
 
     int opt;
     while ((opt = getopt(argc, argv, "P:C:N:B:")) != -1) {
