@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ ! -f /var/log/syslog ]; then
-  echo "Ошибка: файл /var/log/syslog не найден"
+if [ ! -f /var/log/dpkg.log ]; then
+  echo "Ошибка: файл /var/log/dpkg.log не найден"
   exit 1
 fi
 grep 'install ' /var/log/dpkg.log | \
