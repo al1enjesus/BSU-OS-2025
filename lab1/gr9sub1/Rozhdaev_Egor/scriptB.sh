@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ ! -f /var/log/auth.log]; then
+if [ ! -f /var/log/auth.log ]; then
   echo "Ошибка: файл /var/log/auth.log не найден"
   exit 1
 fi
