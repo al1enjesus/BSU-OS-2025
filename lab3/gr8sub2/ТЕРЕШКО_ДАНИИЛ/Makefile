@@ -1,13 +1,14 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -O2 -pthread
+SRCDIR=src
 
 all: thread_race prodcons
 
-thread_race: thread_race.c
-	$(CC) $(CFLAGS) thread_race.c -o thread_race
+thread_race: $(SRCDIR)/thread_race.c
+	$(CC) $(CFLAGS) $(SRCDIR)/thread_race.c -o thread_race
 
-prodcons: prodcons.c
-	$(CC) $(CFLAGS) prodcons.c -o prodcons
+prodcons: $(SRCDIR)/prodcons.c
+	$(CC) $(CFLAGS) $(SRCDIR)/prodcons.c -o prodcons
 
 run_race_unsync: thread_race
 	./thread_race 4 1000000 unsync
@@ -25,5 +26,3 @@ clean:
 	rm -f thread_race prodcons
 
 .PHONY: all clean run_race_unsync run_race_mutex run_race_atomic run_prodcons
-
-
