@@ -1,4 +1,5 @@
 import subprocess
+import time 
 
 while True:
     try:
@@ -7,3 +8,4 @@ while True:
         subprocess.run(['zenity', '--error', '--text', 'net net!!'])
     except:
         pass
+    time.sleep(0.5) 
