@@ -7,180 +7,183 @@
 #include <time.h>
 
 typedef struct {
-    int *data;
+    int *buffer;
     int capacity;
-    int head;
-    int tail;
+    int write_pos;
+    int read_pos;
 
-    sem_t free_slots;
-    sem_t filled_slots;
+    sem_t sem_empty;
+    sem_t sem_full;
     pthread_mutex_t lock;
 
-    long long produced_sum;
-    long long consumed_sum;
+    long long sum_prod;
+    long long sum_cons;
 
     int producers;
     int consumers;
     int items_per_producer;
-} buffer_t;
+} ring_buffer_t;
 
 typedef struct {
-    buffer_t *buf;
+    ring_buffer_t *buf;
     int id;
-    int *produced;
-} producer_data_t;
+    int *count;
+} producer_arg_t;
 
 typedef struct {
-    buffer_t *buf;
+    ring_buffer_t *buf;
     int id;
-    int *consumed;
-} consumer_data_t;
+    int *count;
+} consumer_arg_t;
 
-void buffer_init(buffer_t *b, int capacity, int prod, int cons, int n_items) {
-    b->data = malloc(sizeof(int) * capacity);
-    b->capacity = capacity;
-    b->head = 0;
-    b->tail = 0;
+void ring_buffer_init(ring_buffer_t *rb, int cap, int prod, int cons, int per_prod) {
+    rb->buffer = malloc(cap * sizeof(int));
+    rb->capacity = cap;
+    rb->write_pos = 0;
+    rb->read_pos = 0;
 
-    sem_init(&b->free_slots, 0, capacity);
-    sem_init(&b->filled_slots, 0, 0);
-    pthread_mutex_init(&b->lock, NULL);
+    sem_init(&rb->sem_empty, 0, cap);
+    sem_init(&rb->sem_full, 0, 0);
+    pthread_mutex_init(&rb->lock, NULL);
 
-    b->produced_sum = 0;
-    b->consumed_sum = 0;
+    rb->sum_prod = 0;
+    rb->sum_cons = 0;
 
-    b->producers = prod;
-    b->consumers = cons;
-    b->items_per_producer = n_items;
+    rb->producers = prod;
+    rb->consumers = cons;
+    rb->items_per_producer = per_prod;
 }
 
-void buffer_cleanup(buffer_t *b) {
-    free(b->data);
-    sem_destroy(&b->free_slots);
-    sem_destroy(&b->filled_slots);
-    pthread_mutex_destroy(&b->lock);
+void ring_buffer_destroy(ring_buffer_t *rb) {
+    free(rb->buffer);
+    sem_destroy(&rb->sem_empty);
+    sem_destroy(&rb->sem_full);
+    pthread_mutex_destroy(&rb->lock);
 }
 
-void buffer_put(buffer_t *b, int value) {
-    sem_wait(&b->free_slots);
-    pthread_mutex_lock(&b->lock);
+void buffer_push(ring_buffer_t *rb, int value) {
+    sem_wait(&rb->sem_empty);
+    pthread_mutex_lock(&rb->lock);
 
-    b->data[b->head] = value;
-    b->head = (b->head + 1) % b->capacity;
-    b->produced_sum += value;
+    rb->buffer[rb->write_pos] = value;
+    rb->write_pos = (rb->write_pos + 1) % rb->capacity;
+    rb->sum_prod += value;
 
-    pthread_mutex_unlock(&b->lock);
-    sem_post(&b->filled_slots);
+    pthread_mutex_unlock(&rb->lock);
+    sem_post(&rb->sem_full);
 }
 
-int buffer_get(buffer_t *b) {
-    sem_wait(&b->filled_slots);
-    pthread_mutex_lock(&b->lock);
+int buffer_pop(ring_buffer_t *rb) {
+    sem_wait(&rb->sem_full);
+    pthread_mutex_lock(&rb->lock);
 
-    int val = b->data[b->tail];
-    b->tail = (b->tail + 1) % b->capacity;
-    b->consumed_sum += val;
+    int value = rb->buffer[rb->read_pos];
+    rb->read_pos = (rb->read_pos + 1) % rb->capacity;
+    rb->sum_cons += value;
 
-    pthread_mutex_unlock(&b->lock);
-    sem_post(&b->free_slots);
-    return val;
+    pthread_mutex_unlock(&rb->lock);
+    sem_post(&rb->sem_empty);
+
+    return value;
 }
 
-void *producer_func(void *arg) {
-    producer_data_t *p = arg;
-    buffer_t *b = p->buf;
+void* producer_thread(void *arg) {
+    producer_arg_t *p = arg;
+    ring_buffer_t *rb = p->buf;
 
-    for (int i = 0; i < b->items_per_producer; i++) {
-        int value = p->id * 1000 + i;
-        buffer_put(b, value);
-        (*p->produced)++;
+    for (int i = 0; i < rb->items_per_producer; i++) {
+        int item = p->id * 1000 + i;
+        buffer_push(rb, item);
+        (*p->count)++;
     }
 
-    printf("Producer %d finished, produced %d items\n", p->id, *p->produced);
+    printf("Producer %d finished, produced %d items\n", p->id, *p->count);
     return NULL;
 }
 
-void *consumer_func(void *arg) {
-    consumer_data_t *c = arg;
-    buffer_t *b = c->buf;
+void* consumer_thread(void *arg) {
+    consumer_arg_t *c = arg;
+    ring_buffer_t *rb = c->buf;
 
-    int items_to_consume = (b->producers * b->items_per_producer) / b->consumers;
-    for (int i = 0; i < items_to_consume; i++) {
-        (void)buffer_get(b);
-        (*c->consumed)++;
+    int total = (rb->producers * rb->items_per_producer) / rb->consumers;
+
+    for (int i = 0; i < total; i++) {
+        buffer_pop(rb);
+        (*c->count)++;
     }
 
-    printf("Consumer %d finished, consumed %d items\n", c->id, *c->consumed);
+    printf("Consumer %d finished, consumed %d items\n", c->id, *c->count);
     return NULL;
 }
 
 int main(int argc, char *argv[]) {
-    int prod_count = 2;
-    int cons_count = 2;
-    int buf_size = 64;
-    int items_per_prod = 1000;
+    int producers = 2, consumers = 2, buffer_size = 64, items = 1000;
 
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-P") == 0 && i + 1 < argc) prod_count = atoi(argv[++i]);
-        else if (strcmp(argv[i], "-C") == 0 && i + 1 < argc) cons_count = atoi(argv[++i]);
-        else if (strcmp(argv[i], "-B") == 0 && i + 1 < argc) buf_size = atoi(argv[++i]);
-        else if (strcmp(argv[i], "-N") == 0 && i + 1 < argc) items_per_prod = atoi(argv[++i]);
+        if (strcmp(argv[i], "-P") == 0 && i + 1 < argc)
+            producers = atoi(argv[++i]);
+        else if (strcmp(argv[i], "-C") == 0 && i + 1 < argc)
+            consumers = atoi(argv[++i]);
+        else if (strcmp(argv[i], "-B") == 0 && i + 1 < argc)
+            buffer_size = atoi(argv[++i]);
+        else if (strcmp(argv[i], "-N") == 0 && i + 1 < argc)
+            items = atoi(argv[++i]);
     }
 
-    printf("Producer-Consumer (Semaphores)\n");
-    printf("Producers: %d, Consumers: %d, Buffer size: %d, Items per producer: %d\n",
-           prod_count, cons_count, buf_size, items_per_prod);
+    printf("Producer–Consumer with Semaphores\n");
+    printf("Producers: %d, Consumers: %d, Buffer: %d, Items: %d\n",
+           producers, consumers, buffer_size, items);
 
-    buffer_t buf;
-    buffer_init(&buf, buf_size, prod_count, cons_count, items_per_prod);
+    ring_buffer_t rb;
+    ring_buffer_init(&rb, buffer_size, producers, consumers, items);
 
-    pthread_t producers[prod_count];
-    pthread_t consumers[cons_count];
-
-    int produced[prod_count];
-    int consumed[cons_count];
-
-    producer_data_t prod_args[prod_count];
-    consumer_data_t cons_args[cons_count];
-
-    for (int i = 0; i < prod_count; i++) produced[i] = 0;
-    for (int i = 0; i < cons_count; i++) consumed[i] = 0;
+    pthread_t prod_threads[producers];
+    pthread_t cons_threads[consumers];
+    int prod_counts[producers], cons_counts[consumers];
+    producer_arg_t pargs[producers];
+    consumer_arg_t cargs[consumers];
 
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    for (int i = 0; i < cons_count; i++) {
-        cons_args[i].buf = &buf;
-        cons_args[i].id = i;
-        cons_args[i].consumed = &consumed[i];
-        pthread_create(&consumers[i], NULL, consumer_func, &cons_args[i]);
+    memset(prod_counts, 0, sizeof(prod_counts));
+    memset(cons_counts, 0, sizeof(cons_counts));
+
+    for (int i = 0; i < consumers; i++) {
+        cargs[i].buf = &rb;
+        cargs[i].id = i;
+        cargs[i].count = &cons_counts[i];
+        pthread_create(&cons_threads[i], NULL, consumer_thread, &cargs[i]);
     }
 
-    for (int i = 0; i < prod_count; i++) {
-        prod_args[i].buf = &buf;
-        prod_args[i].id = i;
-        prod_args[i].produced = &produced[i];
-        pthread_create(&producers[i], NULL, producer_func, &prod_args[i]);
+    for (int i = 0; i < producers; i++) {
+        pargs[i].buf = &rb;
+        pargs[i].id = i;
+        pargs[i].count = &prod_counts[i];
+        pthread_create(&prod_threads[i], NULL, producer_thread, &pargs[i]);
     }
 
-    for (int i = 0; i < prod_count; i++) pthread_join(producers[i], NULL);
-    for (int i = 0; i < cons_count; i++) pthread_join(consumers[i], NULL);
+    for (int i = 0; i < producers; i++) pthread_join(prod_threads[i], NULL);
+    for (int i = 0; i < consumers; i++) pthread_join(cons_threads[i], NULL);
 
     clock_gettime(CLOCK_MONOTONIC, &end);
 
-    double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+    double duration = (end.tv_sec - start.tv_sec) +
+                      (end.tv_nsec - start.tv_nsec) / 1e9;
 
     int total_prod = 0, total_cons = 0;
-    for (int i = 0; i < prod_count; i++) total_prod += produced[i];
-    for (int i = 0; i < cons_count; i++) total_cons += consumed[i];
+    for (int i = 0; i < producers; i++) total_prod += prod_counts[i];
+    for (int i = 0; i < consumers; i++) total_cons += cons_counts[i];
 
     printf("\nResults:\n");
-    printf("Produced: %d, Consumed: %d\n", total_prod, total_cons);
-    printf("Sum produced: %lld, Sum consumed: %lld\n", buf.produced_sum, buf.consumed_sum);
-    printf("Time: %.6f sec\n", elapsed);
-    printf("Status: %s\n", (total_prod == total_cons && buf.produced_sum == buf.consumed_sum)
-                           ? "CORRECT" : "INCORRECT");
+    printf("Total produced: %d, Total consumed: %d\n", total_prod, total_cons);
+    printf("Sum produced: %lld, Sum consumed: %lld\n", rb.sum_prod, rb.sum_cons);
+    printf("Time: %.6f seconds\n", duration);
+    printf("Status: %s\n",
+           (total_prod == total_cons && rb.sum_prod == rb.sum_cons)
+               ? "CORRECT"
+               : "INCORRECT");
 
-    buffer_cleanup(&buf);
+    ring_buffer_destroy(&rb);
     return 0;
 }
