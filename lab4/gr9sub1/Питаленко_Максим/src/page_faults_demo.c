@@ -199,11 +199,13 @@ void demo_calloc_vs_malloc() {
     get_page_faults(&start_minor, &start_major);
 
     char *ptr1 = malloc(size);
-    if (ptr1) {
-        memset(ptr1, 0, size);
-        print_page_fault_delta("After malloc + memset", start_minor, start_major);
-        free(ptr1);
+    if (!ptr1) {
+        perror("malloc failed");
+        return;
     }
+    memset(ptr1, 0, size);
+    print_page_fault_delta("After malloc + memset", start_minor, start_major);
+    free(ptr1);
 
     printf("\n");
 
@@ -211,25 +213,28 @@ void demo_calloc_vs_malloc() {
     get_page_faults(&start_minor, &start_major);
 
     char *ptr2 = calloc(1, size);
-    if (ptr2) {
-        print_page_fault_delta("After calloc (no access)", start_minor, start_major);
-
-        // Чтение для вызова page faults (без сохранения в переменную)
-        get_page_faults(&start_minor, &start_major);
-        for (size_t i = 0; i < size; i += PAGE_SIZE) {
-            (void)ptr2[i];  // Чтение без сохранения
-        }
-        print_page_fault_delta("After calloc + read", start_minor, start_major);
-
-        get_page_faults(&start_minor, &start_major);
-        for (size_t i = 0; i < size; i += PAGE_SIZE) {
-            ptr2[i] = 1;
-        }
-        print_page_fault_delta("After calloc + write", start_minor, start_major);
-
-        free(ptr2);
+    if (!ptr2) {
+        perror("calloc failed");
+        return;
     }
+    print_page_fault_delta("After calloc (no access)", start_minor, start_major);
+
+    // Чтение для вызова page faults
+    get_page_faults(&start_minor, &start_major);
+    for (size_t i = 0; i < size; i += PAGE_SIZE) {
+        (void)ptr2[i];  // Чтение без сохранения
+    }
+    print_page_fault_delta("After calloc + read", start_minor, start_major);
+
+    get_page_faults(&start_minor, &start_major);
+    for (size_t i = 0; i < size; i += PAGE_SIZE) {
+        ptr2[i] = 1;
+    }
+    print_page_fault_delta("After calloc + write", start_minor, start_major);
+
+    free(ptr2);
 }
+ 
 
 int main() {
     printf("Page Faults Demonstration\n");
