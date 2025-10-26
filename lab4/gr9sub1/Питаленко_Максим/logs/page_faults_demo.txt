@@ -1,0 +1,74 @@
+Page Faults Demonstration
+==========================
+Page size: 4096 bytes
+Initial page faults: minor=87, major=0
+
+
+=== Demo 1: Allocation without access ===
+Allocated 104857600 bytes (100.0 MB)
+After malloc (no access):
+  Minor faults: 92 (+5)
+  Major faults: 0 (+0)
+
+=== Demo 2: Sequential access ===
+Allocated 104857600 bytes (100.0 MB)
+After sequential write (one byte per page):
+  Minor faults: 25692 (+25599)
+  Major faults: 0 (+0)
+Expected page faults: 25600 (size / PAGE_SIZE)
+
+=== Demo 3: Full memory write ===
+Allocated 52428800 bytes (50.0 MB)
+After memset:
+  Minor faults: 25693 (+0)
+  Major faults: 0 (+0)
+
+=== Demo 4: Random access ===
+Allocated 104857600 bytes (100.0 MB)
+After random writes:
+  Minor faults: 34009 (+8315)
+  Major faults: 0 (+0)
+Random accesses performed: 10000
+Unique pages touched: 8291
+Note: Some pages may have been accessed multiple times.
+
+=== Demo 5: Re-reading memory ===
+First pass: writing memory...
+After first write:
+  Minor faults: 46810 (+12800)
+  Major faults: 0 (+0)
+
+Second pass: reading memory...
+After second read:
+  Minor faults: 46810 (+0)
+  Major faults: 0 (+0)
+Checksum: 3565158400 (to prevent optimization)
+Note: No new page faults expected (pages already in memory).
+
+=== Demo 6: calloc vs malloc ===
+Method 1: malloc + memset
+After malloc + memset:
+  Minor faults: 46811 (+1)
+  Major faults: 0 (+0)
+
+Method 2: calloc
+After calloc (no access):
+  Minor faults: 46812 (+1)
+  Major faults: 0 (+0)
+After calloc + read:
+  Minor faults: 46812 (+0)
+  Major faults: 0 (+0)
+After calloc + write:
+  Minor faults: 59611 (+12799)
+  Major faults: 0 (+0)
+
+=== Summary ===
+Total page faults during demo: minor=59524, major=0
+
+Key observations:
+1. malloc() alone doesn't cause page faults (memory is virtual)
+2. First write to a page causes a minor page fault
+3. Subsequent accesses to the same page don't cause faults
+4. Major faults occur only when loading from disk (swap, files)
+5. calloc() may use zero page optimization (CoW)
+6. Random access causes more page faults than sequential

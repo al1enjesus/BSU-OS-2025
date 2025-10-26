@@ -1,0 +1,24 @@
+Process: bash (PID 9379)
+=====================================
+
+Memory Metrics:
+  VSZ (Virtual):       69.6 MB
+  RSS (Resident):      63.7 MB
+  PSS (Proportional):  61.5 MB (more accurate)
+  USS (Unique):        61.4 MB
+
+Memory Breakdown:
+  Shared (clean):       2.5 MB
+  Shared (dirty):       0 KB
+  Private (clean):      1.6 MB
+  Private (dirty):     59.8 MB
+
+Memory Regions:
+  Text (code):          1.2 MB
+  Data + Heap:         59.8 MB
+  Stack:              132 KB
+  Libraries:            1.9 MB
+
+Page Faults:
+  Minor: 60511
+  Major: 3
