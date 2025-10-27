@@ -1,0 +1,6 @@
+PID: 595143
+VM Size (VSZ): -1 kB
+Resident (RSS): -1 kB
+Proportional Set Size (PSS): -1 kB
+Unique Set Size (USS): -1 kB
+Page Faults: <error reading /proc/<pid>/stat>

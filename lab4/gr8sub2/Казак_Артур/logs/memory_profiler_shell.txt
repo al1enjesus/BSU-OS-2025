@@ -1,0 +1,40 @@
+PID: 372464
+VM Size (VSZ): 7860 kB
+Resident (RSS): 3712 kB
+Proportional Set Size (PSS): 1960 kB
+Unique Set Size (USS): 1904 kB
+Page Faults: minor=5409 major=17
+
+--- /proc/<pid>/maps (first 40 lines) ---
+60ca7a712000-60ca7a742000 r--p 00000000 fd:01 1811                       /usr/bin/bash
+60ca7a742000-60ca7a831000 r-xp 00030000 fd:01 1811                       /usr/bin/bash
+60ca7a831000-60ca7a866000 r--p 0011f000 fd:01 1811                       /usr/bin/bash
+60ca7a866000-60ca7a86a000 r--p 00154000 fd:01 1811                       /usr/bin/bash
+60ca7a86a000-60ca7a873000 rw-p 00158000 fd:01 1811                       /usr/bin/bash
+60ca7a873000-60ca7a87e000 rw-p 00000000 00:00 0 
+60ca8571f000-60ca857a1000 rw-p 00000000 00:00 0                          [heap]
+7580b9200000-7580b94eb000 r--p 00000000 fd:01 2424                       /usr/lib/locale/locale-archive
+7580b9600000-7580b9628000 r--p 00000000 fd:01 21681                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7580b9628000-7580b97b0000 r-xp 00028000 fd:01 21681                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7580b97b0000-7580b97ff000 r--p 001b0000 fd:01 21681                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7580b97ff000-7580b9803000 r--p 001fe000 fd:01 21681                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7580b9803000-7580b9805000 rw-p 00202000 fd:01 21681                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7580b9805000-7580b9812000 rw-p 00000000 00:00 0 
+7580b9845000-7580b9866000 rw-p 00000000 00:00 0 
+7580b9866000-7580b986d000 r--s 00000000 fd:01 21670                      /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7580b986d000-7580b9870000 rw-p 00000000 00:00 0 
+7580b9870000-7580b987e000 r--p 00000000 fd:01 5533                       /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7580b987e000-7580b9891000 r-xp 0000e000 fd:01 5533                       /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7580b9891000-7580b989f000 r--p 00021000 fd:01 5533                       /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7580b989f000-7580b98a3000 r--p 0002e000 fd:01 5533                       /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7580b98a3000-7580b98a4000 rw-p 00032000 fd:01 5533                       /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7580b98aa000-7580b98ac000 rw-p 00000000 00:00 0 
+7580b98ac000-7580b98ad000 r--p 00000000 fd:01 21678                      /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7580b98ad000-7580b98d8000 r-xp 00001000 fd:01 21678                      /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7580b98d8000-7580b98e2000 r--p 0002c000 fd:01 21678                      /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7580b98e2000-7580b98e4000 r--p 00036000 fd:01 21678                      /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7580b98e4000-7580b98e6000 rw-p 00038000 fd:01 21678                      /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fff6194d000-7fff6196e000 rw-p 00000000 00:00 0                          [stack]
+7fff61979000-7fff6197d000 r--p 00000000 00:00 0                          [vvar]
+7fff6197d000-7fff6197f000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
