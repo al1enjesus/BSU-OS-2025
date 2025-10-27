@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,23 +26,31 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        perror("Failed to open /proc/[PID]/status");
+        fprintf(stderr, "Error: Cannot open /proc/%d/status: %s\n", pid, strerror(errno));
         return -1;
     }
 
     memset(metrics, 0, sizeof(MemoryMetrics));
 
     char line[256];
+    int found_metrics = 0;
+    
     while (fgets(line, sizeof(line), f)) {
-        if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) continue;
-        if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) continue;
-        if (sscanf(line, "VmData: %lu kB", &metrics->vm_data) == 1) continue;
-        if (sscanf(line, "VmStk: %lu kB", &metrics->vm_stk) == 1) continue;
-        if (sscanf(line, "VmExe: %lu kB", &metrics->vm_exe) == 1) continue;
-        if (sscanf(line, "VmLib: %lu kB", &metrics->vm_lib) == 1) continue;
+        if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) found_metrics++;
+        else if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) found_metrics++;
+        else if (sscanf(line, "VmData: %lu kB", &metrics->vm_data) == 1) found_metrics++;
+        else if (sscanf(line, "VmStk: %lu kB", &metrics->vm_stk) == 1) found_metrics++;
+        else if (sscanf(line, "VmExe: %lu kB", &metrics->vm_exe) == 1) found_metrics++;
+        else if (sscanf(line, "VmLib: %lu kB", &metrics->vm_lib) == 1) found_metrics++;
     }
 
     fclose(f);
+    
+    if (found_metrics < 2) {
+        fprintf(stderr, "Error: Could not read memory metrics for PID %d\n", pid);
+        return -1;
+    }
+    
     return 0;
 }
 
@@ -53,16 +60,22 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        perror("Failed to open /proc/[PID]/stat");
+        fprintf(stderr, "Error: Cannot open /proc/%d/stat: %s\n", pid, strerror(errno));
         return -1;
     }
 
     unsigned long minflt, majflt;
-    fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*lu %lu", &minflt, &majflt);
+    int result = fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*lu %lu", &minflt, &majflt);
+    
+    fclose(f);
+    
+    if (result != 2) {
+        fprintf(stderr, "Error: Could not read page faults for PID %d\n", pid);
+        return -1;
+    }
+    
     faults->minor_faults = minflt;
     faults->major_faults = majflt;
-
-    fclose(f);
     return 0;
 }
 
@@ -86,17 +99,33 @@ int get_process_name(pid_t pid, char *name, size_t len) {
         return -1;
     }
 
-    if (fgets(name, len, f)) {
-        name[strcspn(name, "\n")] = 0;
+    if (!fgets(name, len, f)) {
+        snprintf(name, len, "unknown");
+        fclose(f);
+        return -1;
     }
-
+    
+    name[strcspn(name, "\n")] = 0;
     fclose(f);
     return 0;
 }
 
+int process_exists(pid_t pid) {
+    char path[256];
+    snprintf(path, sizeof(path), "/proc/%d", pid);
+    return access(path, F_OK) == 0;
+}
+
 void print_process_info(pid_t pid) {
+    if (!process_exists(pid)) {
+        fprintf(stderr, "Error: Process %d does not exist\n", pid);
+        return;
+    }
+
     char proc_name[256];
-    get_process_name(pid, proc_name, sizeof(proc_name));
+    if (get_process_name(pid, proc_name, sizeof(proc_name)) != 0) {
+        strcpy(proc_name, "unknown");
+    }
 
     printf("Process: %s (PID %d)\n", proc_name, pid);
     printf("=====================================\n\n");
@@ -125,6 +154,11 @@ void print_process_info(pid_t pid) {
 }
 
 void watch_process(pid_t pid, int interval) {
+    if (!process_exists(pid)) {
+        fprintf(stderr, "Error: Process %d does not exist\n", pid);
+        return;
+    }
+
     printf("Monitoring PID %d (update every %d sec, Ctrl+C to stop)\n\n", pid, interval);
 
     PageFaults prev_faults = {0, 0};
@@ -132,6 +166,11 @@ void watch_process(pid_t pid, int interval) {
     int first_iteration = 1;
 
     while (1) {
+        if (!process_exists(pid)) {
+            printf("Process %d no longer exists.\n", pid);
+            break;
+        }
+
         printf("\n========================================\n");
         time_t now = time(NULL);
         printf("Time: %s", ctime(&now));
@@ -140,11 +179,14 @@ void watch_process(pid_t pid, int interval) {
         PageFaults faults;
 
         if (read_memory_metrics(pid, &metrics) != 0) {
-            printf("Process no longer exists or not accessible.\n");
+            printf("Failed to read memory metrics.\n");
             break;
         }
 
-        read_page_faults(pid, &faults);
+        if (read_page_faults(pid, &faults) != 0) {
+            printf("Failed to read page faults.\n");
+            break;
+        }
 
         char proc_name[256];
         get_process_name(pid, proc_name, sizeof(proc_name));
@@ -195,25 +237,33 @@ void watch_process(pid_t pid, int interval) {
     }
 }
 
+void print_usage(const char *program_name) {
+    printf("Usage: %s <PID> [options]\n", program_name);
+    printf("\nOptions:\n");
+    printf("  --watch [interval]     Monitor process continuously (default: 1 sec)\n");
+    printf("  --compare <PID2>       Compare two processes\n");
+    printf("  --map                  Show detailed memory map\n");
+    printf("  --help                 Show this help message\n");
+    printf("\nExamples:\n");
+    printf("  %s 1234                # Show info for PID 1234\n", program_name);
+    printf("  %s 1234 --watch        # Monitor PID 1234\n", program_name);
+    printf("  %s 1234 --watch 5      # Monitor with 5 sec interval\n", program_name);
+    printf("  %s --help              # Show help\n", program_name);
+}
+
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: %s <PID> [options]\n", argv[0]);
-        printf("\nOptions:\n");
-        printf("  --watch [interval]     Monitor process continuously (default: 1 sec)\n");
-        printf("  --compare <PID2>       Compare two processes\n");
-        printf("  --map                  Show detailed memory map\n");
-        printf("\nExamples:\n");
-        printf("  %s 1234                # Show info for PID 1234\n", argv[0]);
-        printf("  %s 1234 --watch        # Monitor PID 1234\n", argv[0]);
-        printf("  %s 1234 --watch 5      # Monitor with 5 sec interval\n", argv[0]);
+    if (argc < 2 || strcmp(argv[1], "--help") == 0) {
+        print_usage(argv[0]);
         return 1;
     }
 
     pid_t pid = atoi(argv[1]);
+    if (pid <= 0) {
+        fprintf(stderr, "Error: Invalid PID '%s'\n", argv[1]);
+        return 1;
+    }
 
-    char path[256];
-    snprintf(path, sizeof(path), "/proc/%d", pid);
-    if (access(path, F_OK) != 0) {
+    if (!process_exists(pid)) {
         fprintf(stderr, "Error: Process %d does not exist or not accessible.\n", pid);
         return 1;
     }
@@ -226,8 +276,15 @@ int main(int argc, char *argv[]) {
             watch_mode = 1;
             if (i + 1 < argc && argv[i + 1][0] != '-') {
                 watch_interval = atoi(argv[i + 1]);
+                if (watch_interval <= 0) {
+                    fprintf(stderr, "Error: Invalid interval '%s'\n", argv[i + 1]);
+                    return 1;
+                }
                 i++;
             }
+        } else if (strcmp(argv[i], "--help") == 0) {
+            print_usage(argv[0]);
+            return 0;
         }
     }
 
