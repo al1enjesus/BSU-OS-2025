@@ -71,11 +71,6 @@ int get_process_name(pid_t pid, char *name, size_t len) {
     return 0;
 }
 
-/* ============================
- * РЕАЛИЗАЦИЯ ЧТЕНИЯ ИЗ /proc
- * ============================ */
-
-// Чтение метрик из /proc/[PID]/status
 int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/status", pid);
@@ -90,7 +85,6 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
 
     char line[256];
     while (fgets(line, sizeof(line), f)) {
-        // Набор стандартных полей
         if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) continue;
         if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) continue;
         if (sscanf(line, "VmData: %lu kB", &metrics->vm_data) == 1) continue;
@@ -103,14 +97,13 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     return 0;
 }
 
-// Фолбэк: суммирование PSS и разбиения из /proc/[PID]/smaps, если smaps_rollup недоступен
 static int read_pss_from_smaps(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/smaps", pid);
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        return -1; // нет доступа или слишком старое ядро/права
+        return -1; 
     }
 
     char line[256];
@@ -153,14 +146,12 @@ static int read_pss_from_smaps(pid_t pid, MemoryMetrics *metrics) {
     return 0;
 }
 
-// Чтение PSS из /proc/[PID]/smaps_rollup
 int read_pss(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/smaps_rollup", pid);
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        // smaps_rollup может не существовать на старых ядрах — fallback
         return read_pss_from_smaps(pid, metrics);
     }
 
@@ -186,7 +177,6 @@ int read_pss(pid_t pid, MemoryMetrics *metrics) {
     return 0;
 }
 
-// Корректное чтение page faults из /proc/[PID]/stat с учётом (comm) в скобках
 int read_page_faults(pid_t pid, PageFaults *faults) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/stat", pid);
@@ -197,7 +187,6 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
         return -1;
     }
 
-    // Считаем всю строку, потом разберём
     char buf[4096];
     if (!fgets(buf, sizeof(buf), f)) {
         fclose(f);
@@ -205,38 +194,28 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     }
     fclose(f);
 
-    // Найдём конец (comm), который в круглых скобках и может содержать пробелы
     char *lparen = strchr(buf, '(');
     char *rparen = strrchr(buf, ')');
     if (!lparen || !rparen || rparen < lparen) {
         return -1;
     }
 
-    // Поля после rparen+2 (пробел) — это начиная с state (3-е поле)
-    char *p = rparen + 2; // пропустить ") "
+    char *p = rparen + 2; 
 
-    // Теперь парсим оставшиеся поля как токены
-    // Порядок после comm:
-    // 3: state, 4: ppid, 5: pgrp, 6: session, 7: tty_nr, 8: tpgid, 9: flags,
-    // 10: minflt, 11: cminflt, 12: majflt, 13: cmajflt, ...
-    // Возьмём 7 токенов, затем minflt, пропустим один, затем majflt.
+
     char *saveptr = NULL;
     unsigned long minflt = 0, majflt = 0;
 
-    // state
     strtok_r(p, " ", &saveptr); // 3
     for (int i = 4; i <= 9; i++) {
         strtok_r(NULL, " ", &saveptr); // 4..9
     }
-    // 10: minflt
     {
         char *tok = strtok_r(NULL, " ", &saveptr);
         if (!tok) return -1;
         minflt = strtoul(tok, NULL, 10);
     }
-    // 11: cminflt
     strtok_r(NULL, " ", &saveptr);
-    // 12: majflt
     {
         char *tok = strtok_r(NULL, " ", &saveptr);
         if (!tok) return -1;
@@ -248,7 +227,6 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     return 0;
 }
 
-// Чтение карты памяти из /proc/[PID]/maps
 int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/maps", pid);
@@ -285,16 +263,12 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
         seg->path[0] = '\0';
         seg->perms[0] = '\0';
 
-        // Формат: address perms offset dev inode pathname(optional)
-        // Пример строки:
-        // 55c7d1c8e000-55c7d1cb0000 r--p 00000000 103:00 123456 /usr/bin/cat
-        // path может отсутствовать (анонимный)
+
         unsigned long start, end;
         char perms[5] = {0};
         char pathname[256] = {0};
 
-        // Вытаскиваем адреса, права и путь (если есть)
-        // %255[^\n] захватывает остаток строки как путь/метку
+
         int matched = sscanf(line, "%lx-%lx %4s %*s %*s %*s %255[^\n]",
                              &start, &end, perms, pathname);
 
@@ -304,7 +278,6 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
         seg->perms[sizeof(seg->perms) - 1] = '\0';
 
         if (matched == 4) {
-            // Уберём начальные пробелы для path
             size_t off = 0;
             while (pathname[off] == ' ' || pathname[off] == '\t') off++;
             snprintf(seg->path, sizeof(seg->path), "%s", pathname + off);
@@ -322,11 +295,7 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
     return 0;
 }
 
-/* ===========================
- * ВЫВОД И РЕЖИМЫ РАБОТЫ
- * =========================== */
 
-// Функция для вывода карты памяти
 void print_memory_map_summary(pid_t pid) {
     MemorySegment *segments = NULL;
     int count = 0;
@@ -339,7 +308,6 @@ void print_memory_map_summary(pid_t pid) {
     printf("%-18s %-6s %10s  %s\n", "Address Range", "Perms", "Size", "Path");
     printf("----------------------------------------------------------------\n");
 
-    // Пример вывода первых 20 сегментов
     for (int i = 0; i < count && i < 20; i++) {
         MemorySegment *seg = &segments[i];
         unsigned long size_kb = (seg->end - seg->start) / 1024UL;
@@ -356,7 +324,6 @@ void print_memory_map_summary(pid_t pid) {
     free(segments);
 }
 
-// Главная функция вывода информации о процессе
 void print_process_info(pid_t pid) {
     char proc_name[256];
     get_process_name(pid, proc_name, sizeof(proc_name));
@@ -364,14 +331,12 @@ void print_process_info(pid_t pid) {
     printf("Process: %s (PID %d)\n", proc_name, pid);
     printf("=====================================\n\n");
 
-    // Метрики памяти
     MemoryMetrics metrics;
     if (read_memory_metrics(pid, &metrics) == 0) {
         printf("Memory Metrics:\n");
         printf("  VSZ (Virtual):     "); print_size(metrics.vm_size); printf("\n");
         printf("  RSS (Resident):    "); print_size(metrics.vm_rss); printf("\n");
 
-        // PSS + разбиение, если возможно
         if (read_pss(pid, &metrics) == 0) {
             printf("  PSS (Proportional):"); print_size(metrics.pss); printf(" (more accurate)\n");
 
@@ -396,7 +361,6 @@ void print_process_info(pid_t pid) {
         printf("Failed to read memory metrics.\n");
     }
 
-    // Page faults
     printf("\n");
     PageFaults faults;
     if (read_page_faults(pid, &faults) == 0) {
@@ -407,12 +371,9 @@ void print_process_info(pid_t pid) {
         printf("Failed to read page faults.\n");
     }
 
-    // Опционально - показать карту памяти (выводится из main при --map)
-    // printf("\n");
-    // print_memory_map_summary(pid);
+
 }
 
-// Режим мониторинга (--watch)
 void watch_process(pid_t pid, int interval) {
     printf("Monitoring PID %d (update every %d sec, Ctrl+C to stop)\n\n", pid, interval);
 
@@ -427,7 +388,6 @@ void watch_process(pid_t pid, int interval) {
         time_t now = time(NULL);
         printf("Time: %s", ctime(&now));
 
-        // Текущие метрики
         MemoryMetrics metrics;
         PageFaults faults;
 
@@ -439,7 +399,6 @@ void watch_process(pid_t pid, int interval) {
         read_pss(pid, &metrics);
         read_page_faults(pid, &faults);
 
-        // Вывести метрики
         char proc_name[256];
         get_process_name(pid, proc_name, sizeof(proc_name));
         printf("Process: %s (PID %d)\n\n", proc_name, pid);
@@ -492,7 +451,6 @@ void watch_process(pid_t pid, int interval) {
         }
         printf("\n");
 
-        // Сохранить текущие значения
         prev_metrics = metrics;
         prev_faults = faults;
         first_iteration = 0;
@@ -501,7 +459,6 @@ void watch_process(pid_t pid, int interval) {
     }
 }
 
-// Режим сравнения двух процессов (--compare)
 void compare_processes(pid_t pid1, pid_t pid2) {
     printf("Comparing processes: %d vs %d\n", pid1, pid2);
     printf("=====================================\n\n");
@@ -521,11 +478,9 @@ void compare_processes(pid_t pid1, pid_t pid2) {
     read_pss(pid1, &m1);
     read_pss(pid2, &m2);
 
-    // Табличный вывод + разница
     printf("%-20s %15s %15s %15s\n", "Metric", "PID 1", "PID 2", "Δ (PID2-PID1)");
     printf("-----------------------------------------------------------------------\n");
 
-    // Вспомогательный макрос для печати KB и дельты
 #define PRINT_ROW(label, v1, v2) do { \
     printf("%-20s %15lu KB %15lu KB %15ld KB\n", \
            label, (unsigned long)(v1), (unsigned long)(v2), (long)((v2) - (v1))); \
@@ -566,7 +521,6 @@ int main(int argc, char *argv[]) {
 
     pid_t pid = (pid_t)atoi(argv[1]);
 
-    // Проверить существование процесса
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d", pid);
     if (access(path, F_OK) != 0) {
@@ -574,7 +528,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Парсинг опций
     int watch_mode = 0;
     int watch_interval = 1;
     int compare_mode = 0;
@@ -598,9 +551,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Выполнить нужный режим
     if (compare_mode) {
-        // Проверить второй PID
         snprintf(path, sizeof(path), "/proc/%d", compare_pid);
         if (access(path, F_OK) != 0) {
             fprintf(stderr, "Error: Process %d does not exist or not accessible.\n", compare_pid);
@@ -610,7 +561,6 @@ int main(int argc, char *argv[]) {
     } else if (watch_mode) {
         watch_process(pid, watch_interval);
     } else {
-        // Обычный режим - показать информацию один раз
         print_process_info(pid);
 
         if (show_map) {

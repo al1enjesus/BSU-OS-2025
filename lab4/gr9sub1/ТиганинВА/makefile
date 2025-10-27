@@ -38,7 +38,7 @@ clean_B:
 	rm -f B_task/B
 
 clean_memory_profiler:
-	rm -f memory_prof/memory_profiler
+	rm -f memory_prof/memory_profiler 100
 
 clean:
 	$(MAKE) clean_A

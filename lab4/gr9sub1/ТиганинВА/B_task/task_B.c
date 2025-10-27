@@ -146,13 +146,13 @@ unsigned long long read_with_mmap_sequential(const char *filename) {
 
     int fd = open(filename, O_RDONLY);
     if(fd == -1){
-        perror("open faild");
+        perror("open failed");
         return 0;
     }
 
     struct stat sb;
     if(fstat(fd, &sb) == -1){
-        perror("fstat fails");
+        perror("fstat failed");
         close(fd);
         return 0;
     }
@@ -161,7 +161,7 @@ unsigned long long read_with_mmap_sequential(const char *filename) {
 
     void * data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
     if(data == MAP_FAILED){
-        perror("mmap faild");
+        perror("mmap failed");
         close(fd);
         return 0;
     }
@@ -187,7 +187,7 @@ unsigned long long read_with_mmap_sequential(const char *filename) {
 
     munmap(data, sb.st_size);
     close(fd);
-    return 0;
+    return sum;
 }
 
 void create_test_file(const char *filename, size_t size_mb) {
