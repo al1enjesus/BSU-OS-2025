@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,6 +6,9 @@
 #include <sys/types.h>
 #include <errno.h>
 #include <time.h>
+#include <signal.h>
+
+static volatile sig_atomic_t monitoring_active = 1;
 
 typedef struct {
     unsigned long vm_size;
@@ -20,17 +24,27 @@ typedef struct {
     unsigned long major_faults;
 } PageFaults;
 
+
+void signal_handler(int sig) {
+    monitoring_active = 0;
+    printf("\nReceived signal %d, stopping monitoring...\n", sig);
+}
+
 int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
     int path_len = snprintf(path, sizeof(path), "/proc/%d/status", pid);
-    if (path_len < 0 || path_len >= (int)sizeof(path)) {
-        fprintf(stderr, "Error: Path too long for PID %d\n", pid);
+    if (path_len < 0) {
+        fprintf(stderr, "Error: snprintf failed for PID %d\n", pid);
+        return -1;
+    }
+    if (path_len >= (int)sizeof(path)) {
+        fprintf(stderr, "Error: Path too long for PID %d (max %zu chars)\n", pid, sizeof(path));
         return -1;
     }
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        fprintf(stderr, "Error: Cannot open /proc/%d/status: %s\n", pid, strerror(errno));
+        fprintf(stderr, "Error: Cannot open %s: %s\n", path, strerror(errno));
         return -1;
     }
 
@@ -51,7 +65,7 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     fclose(f);
     
     if (found_metrics < 2) {
-        fprintf(stderr, "Error: Could not read memory metrics for PID %d\n", pid);
+        fprintf(stderr, "Error: Could not read sufficient memory metrics for PID %d (found %d)\n", pid, found_metrics);
         return -1;
     }
     
@@ -61,14 +75,18 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
 int read_page_faults(pid_t pid, PageFaults *faults) {
     char path[256];
     int path_len = snprintf(path, sizeof(path), "/proc/%d/stat", pid);
-    if (path_len < 0 || path_len >= (int)sizeof(path)) {
-        fprintf(stderr, "Error: Path too long for PID %d\n", pid);
+    if (path_len < 0) {
+        fprintf(stderr, "Error: snprintf failed for PID %d\n", pid);
+        return -1;
+    }
+    if (path_len >= (int)sizeof(path)) {
+        fprintf(stderr, "Error: Path too long for PID %d (max %zu chars)\n", pid, sizeof(path));
         return -1;
     }
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        fprintf(stderr, "Error: Cannot open /proc/%d/stat: %s\n", pid, strerror(errno));
+        fprintf(stderr, "Error: Cannot open %s: %s\n", path, strerror(errno));
         return -1;
     }
 
@@ -78,7 +96,7 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     fclose(f);
     
     if (result != 2) {
-        fprintf(stderr, "Error: Could not read page faults for PID %d (read %d fields, expected 2)\n", pid, result);
+        fprintf(stderr, "Error: Failed to parse page faults from %s (read %d fields, expected 2)\n", path, result);
         return -1;
     }
     
@@ -100,7 +118,11 @@ void print_size(unsigned long kb) {
 int get_process_name(pid_t pid, char *name, size_t len) {
     char path[256];
     int path_len = snprintf(path, sizeof(path), "/proc/%d/comm", pid);
-    if (path_len < 0 || path_len >= (int)sizeof(path)) {
+    if (path_len < 0) {
+        strncpy(name, "unknown", len);
+        return -1;
+    }
+    if (path_len >= (int)sizeof(path)) {
         strncpy(name, "unknown", len);
         return -1;
     }
@@ -133,12 +155,13 @@ int process_exists(pid_t pid) {
 
 void print_process_info(pid_t pid) {
     if (!process_exists(pid)) {
-        fprintf(stderr, "Error: Process %d does not exist\n", pid);
+        fprintf(stderr, "Error: Process %d does not exist or cannot be accessed\n", pid);
         return;
     }
 
     char proc_name[256];
     if (get_process_name(pid, proc_name, sizeof(proc_name)) != 0) {
+        fprintf(stderr, "Warning: Could not read process name for PID %d\n", pid);
         strcpy(proc_name, "unknown");
     }
 
@@ -157,6 +180,8 @@ void print_process_info(pid_t pid) {
         printf("  Data + Heap:       "); print_size(metrics.vm_data); printf("\n");
         printf("  Stack:             "); print_size(metrics.vm_stk); printf("\n");
         printf("  Libraries:         "); print_size(metrics.vm_lib); printf("\n");
+    } else {
+        printf("Memory Metrics: unavailable\n");
     }
 
     printf("\n");
@@ -172,17 +197,22 @@ void print_process_info(pid_t pid) {
 
 void watch_process(pid_t pid, int interval) {
     if (!process_exists(pid)) {
-        fprintf(stderr, "Error: Process %d does not exist\n", pid);
+        fprintf(stderr, "Error: Process %d does not exist or cannot be accessed\n", pid);
         return;
     }
+
+  
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
 
     printf("Monitoring PID %d (update every %d sec, Ctrl+C to stop)\n\n", pid, interval);
 
     PageFaults prev_faults = {0, 0};
     MemoryMetrics prev_metrics = {0};
     int first_iteration = 1;
+    int iteration_count = 0;
 
-    while (1) {
+    while (monitoring_active) {
         if (!process_exists(pid)) {
             printf("Process %d no longer exists.\n", pid);
             break;
@@ -191,22 +221,25 @@ void watch_process(pid_t pid, int interval) {
         printf("\n========================================\n");
         time_t now = time(NULL);
         printf("Time: %s", ctime(&now));
+        printf("Iteration: %d\n", ++iteration_count);
 
         MemoryMetrics metrics;
         PageFaults faults;
 
         if (read_memory_metrics(pid, &metrics) != 0) {
-            printf("Failed to read memory metrics.\n");
+            printf("Error: Failed to read memory metrics for PID %d\n", pid);
             break;
         }
 
         if (read_page_faults(pid, &faults) != 0) {
-            printf("Failed to read page faults.\n");
+            printf("Warning: Failed to read page faults for PID %d\n", pid);
             // Continue monitoring even if page faults fail
         }
 
         char proc_name[256];
-        get_process_name(pid, proc_name, sizeof(proc_name));
+        if (get_process_name(pid, proc_name, sizeof(proc_name)) != 0) {
+            strcpy(proc_name, "unknown");
+        }
         printf("Process: %s (PID %d)\n\n", proc_name, pid);
 
         printf("VSZ:  "); print_size(metrics.vm_size);
@@ -231,8 +264,8 @@ void watch_process(pid_t pid, int interval) {
         printf("  Minor: %lu", faults.minor_faults);
         if (!first_iteration) {
             long delta = faults.minor_faults - prev_faults.minor_faults;
-            if (delta > 0) {
-                printf("  (+%ld)", delta);
+            if (delta != 0) {
+                printf("  (%+ld)", delta);
             }
         }
         printf("\n");
@@ -240,8 +273,8 @@ void watch_process(pid_t pid, int interval) {
         printf("  Major: %lu", faults.major_faults);
         if (!first_iteration) {
             long delta = faults.major_faults - prev_faults.major_faults;
-            if (delta > 0) {
-                printf("  (+%ld)", delta);
+            if (delta != 0) {
+                printf("  (%+ld)", delta);
             }
         }
         printf("\n");
@@ -250,11 +283,17 @@ void watch_process(pid_t pid, int interval) {
         prev_faults = faults;
         first_iteration = 0;
 
-        sleep(interval);
+        // Sleep with interruption check
+        for (int i = 0; i < interval && monitoring_active; i++) {
+            sleep(1);
+        }
     }
+
+    printf("\nMonitoring stopped. Total iterations: %d\n", iteration_count);
 }
 
 void print_usage(const char *program_name) {
+    printf("Memory Profiler - Monitor process memory usage\n");
     printf("Usage: %s <PID> [options]\n", program_name);
     printf("\nOptions:\n");
     printf("  --watch [interval]     Monitor process continuously (default: 1 sec)\n");
@@ -266,6 +305,7 @@ void print_usage(const char *program_name) {
     printf("  %s 1234 --watch        # Monitor PID 1234\n", program_name);
     printf("  %s 1234 --watch 5      # Monitor with 5 sec interval\n", program_name);
     printf("  %s --help              # Show help\n", program_name);
+    printf("\nMonitoring can be stopped with Ctrl+C\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -276,12 +316,13 @@ int main(int argc, char *argv[]) {
 
     pid_t pid = atoi(argv[1]);
     if (pid <= 0) {
-        fprintf(stderr, "Error: Invalid PID '%s'\n", argv[1]);
+        fprintf(stderr, "Error: Invalid PID '%s'. PID must be a positive integer.\n", argv[1]);
         return 1;
     }
 
     if (!process_exists(pid)) {
-        fprintf(stderr, "Error: Process %d does not exist or not accessible.\n", pid);
+        fprintf(stderr, "Error: Process %d does not exist or cannot be accessed.\n", pid);
+        fprintf(stderr, "Check if the process exists and you have permission to access it.\n");
         return 1;
     }
 
@@ -294,7 +335,7 @@ int main(int argc, char *argv[]) {
             if (i + 1 < argc && argv[i + 1][0] != '-') {
                 watch_interval = atoi(argv[i + 1]);
                 if (watch_interval <= 0) {
-                    fprintf(stderr, "Error: Invalid interval '%s'\n", argv[i + 1]);
+                    fprintf(stderr, "Error: Invalid interval '%s'. Interval must be positive.\n", argv[i + 1]);
                     return 1;
                 }
                 i++;
@@ -302,6 +343,10 @@ int main(int argc, char *argv[]) {
         } else if (strcmp(argv[i], "--help") == 0) {
             print_usage(argv[0]);
             return 0;
+        } else {
+            fprintf(stderr, "Error: Unknown option '%s'\n", argv[i]);
+            print_usage(argv[0]);
+            return 1;
         }
     }
 

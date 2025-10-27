@@ -9,6 +9,7 @@ TARGETS = memory_profiler memory_test io_benchmark disk_stress
 
 all: $(TARGETS)
 
+# Сборка из src в корневую папку
 memory_profiler: src/memory_profiler.c
 	$(CC) $(CFLAGS) $< -o $@
 
@@ -36,7 +37,7 @@ run_profiler: memory_profiler
 	fi
 
 test_all: all
-	@echo " Тестирование всех программ"
+	@echo "=== Тестирование всех программ ==="
 	@echo "1. Memory Profiler (текущая оболочка):"
 	@./memory_profiler $$$$ | head -20
 	@echo ""
@@ -58,4 +59,4 @@ help:
 	@echo "  run_profiler - Запустить memory_profiler (используйте PID=<id>)"
 	@echo "  test_all     - Протестировать все программы"
 	@echo "  help         - Показать эту справку"
-EOF
+
