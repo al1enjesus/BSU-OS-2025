@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -O2
 
 # Имена исполняемых файлов
 TARGET1 = memory_info
-TARGET2 = buf_vs_nobuf
+TARGET2 = io_benchmark
 
 # Директории
 SRCDIR = src
@@ -19,7 +19,7 @@ all: $(BINARY1) $(BINARY2)
 
 memory_info: $(BINARY1)
 
-buf_vs_nobuf: $(BINARY2)
+io_benchmark: $(BINARY2)
 
 # Создание директорий если их нет
 $(BINDIR):
@@ -40,4 +40,4 @@ $(BINARY2): $(SRCDIR)/$(TARGET2).c | $(BINDIR)
 clean:
 	rm -rf $(BINDIR)
 
-.PHONY: all memory_info buf_vs_nobuf clean
+.PHONY: all memory_info io_benchmark clean
