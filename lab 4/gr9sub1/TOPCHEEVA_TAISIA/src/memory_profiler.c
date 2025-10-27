@@ -22,7 +22,11 @@ typedef struct {
 
 int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/status", pid);
+    int path_len = snprintf(path, sizeof(path), "/proc/%d/status", pid);
+    if (path_len < 0 || path_len >= (int)sizeof(path)) {
+        fprintf(stderr, "Error: Path too long for PID %d\n", pid);
+        return -1;
+    }
 
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -56,7 +60,11 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
 
 int read_page_faults(pid_t pid, PageFaults *faults) {
     char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/stat", pid);
+    int path_len = snprintf(path, sizeof(path), "/proc/%d/stat", pid);
+    if (path_len < 0 || path_len >= (int)sizeof(path)) {
+        fprintf(stderr, "Error: Path too long for PID %d\n", pid);
+        return -1;
+    }
 
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -70,7 +78,7 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     fclose(f);
     
     if (result != 2) {
-        fprintf(stderr, "Error: Could not read page faults for PID %d\n", pid);
+        fprintf(stderr, "Error: Could not read page faults for PID %d (read %d fields, expected 2)\n", pid, result);
         return -1;
     }
     
@@ -91,16 +99,20 @@ void print_size(unsigned long kb) {
 
 int get_process_name(pid_t pid, char *name, size_t len) {
     char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/comm", pid);
+    int path_len = snprintf(path, sizeof(path), "/proc/%d/comm", pid);
+    if (path_len < 0 || path_len >= (int)sizeof(path)) {
+        strncpy(name, "unknown", len);
+        return -1;
+    }
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        snprintf(name, len, "unknown");
+        strncpy(name, "unknown", len);
         return -1;
     }
 
     if (!fgets(name, len, f)) {
-        snprintf(name, len, "unknown");
+        strncpy(name, "unknown", len);
         fclose(f);
         return -1;
     }
@@ -112,7 +124,10 @@ int get_process_name(pid_t pid, char *name, size_t len) {
 
 int process_exists(pid_t pid) {
     char path[256];
-    snprintf(path, sizeof(path), "/proc/%d", pid);
+    int path_len = snprintf(path, sizeof(path), "/proc/%d", pid);
+    if (path_len < 0 || path_len >= (int)sizeof(path)) {
+        return 0;
+    }
     return access(path, F_OK) == 0;
 }
 
@@ -150,6 +165,8 @@ void print_process_info(pid_t pid) {
         printf("Page Faults:\n");
         printf("  Minor: %lu\n", faults.minor_faults);
         printf("  Major: %lu\n", faults.major_faults);
+    } else {
+        printf("Page Faults: unavailable\n");
     }
 }
 
@@ -185,7 +202,7 @@ void watch_process(pid_t pid, int interval) {
 
         if (read_page_faults(pid, &faults) != 0) {
             printf("Failed to read page faults.\n");
-            break;
+            // Continue monitoring even if page faults fail
         }
 
         char proc_name[256];
