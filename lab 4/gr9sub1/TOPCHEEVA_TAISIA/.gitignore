@@ -1,0 +1,10 @@
+*.bin
+stress_file_*
+
+memory_profiler
+memory_test
+io_benchmark
+disk_stress
+
+*.gnu
+

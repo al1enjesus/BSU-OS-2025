@@ -1,0 +1,25 @@
+Тестирование утилиты memory_profiler:
+
+Функциональность:
+ Чтение метрик памяти из /proc
+ Отображение VSZ, RSS, регионов памяти
+ Подсчет page faults (minor/major)
+ Режим мониторинга в реальном времени
+ Поддержка разных процессов
+
+Пример вывода для PID $$ (текущая оболочка):
+Process: bash (PID: XXXXX)
+VSZ: 9.0 MB
+RSS: 5.7 MB
+Text: 1.4 MB
+Data+Heap: 2.3 MB  
+Stack: 0.1 MB
+Libraries: 1.8 MB
+Minor faults: 1149
+Major faults: 0
+
+Режим мониторинга:
+./memory_profiler PID --watch 2
+- Обновление каждые 2 секунды
+- Показывает изменения метрик
+- Отслеживает новые page faults
