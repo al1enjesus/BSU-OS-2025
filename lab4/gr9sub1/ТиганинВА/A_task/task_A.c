@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -107,7 +108,11 @@ void demonstrate_memory_types() {
     if (fd == -1) {
         perror("open failed");
     } else {
-        ftruncate(fd, 4096);
+        if (ftruncate(fd, 4096) == -1) {
+            perror("ftruncate failed");
+            close(fd);
+            return;
+        }
         char *file_map = mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
         if (file_map != MAP_FAILED) {
             strcpy(file_map, "Hello from file-backed mmap!");

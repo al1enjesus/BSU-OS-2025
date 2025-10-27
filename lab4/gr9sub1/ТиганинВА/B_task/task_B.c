@@ -1,4 +1,5 @@
 #define _POSIX_C_SOURCE 200112L
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -259,14 +260,18 @@ int main(int argc, char *argv[]) {
 
     unsigned long long sum2 = read_with_mmap(filename);
 
-    printf("\n=== Verification ===\n");
-    if (sum1 == sum2) {
-        printf("✓ Checksums match: %llu\n", sum1);
-    } else {
-        printf("✗ Checksums differ! read(): %llu, mmap(): %llu\n", sum1, sum2);
-    }
+    sleep(1);
 
     unsigned long long sum3 = read_with_mmap_sequential(filename);
+
+    printf("\n=== Verification 2 ===\n");
+    if (sum1 == sum3 && sum2 == sum3) {
+        printf("✓ All checksums match: %llu\n", sum3);
+    } else {
+        printf("✗ Checksums differ! read(): %llu, mmap(): %llu, mmap+sequential: %llu\n",
+               sum1, sum2, sum3);
+    }
+
 
     return 0;
 }

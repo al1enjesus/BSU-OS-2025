@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -220,7 +221,6 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     // 10: minflt, 11: cminflt, 12: majflt, 13: cmajflt, ...
     // Возьмём 7 токенов, затем minflt, пропустим один, затем majflt.
     char *saveptr = NULL;
-    int field_index = 3;
     unsigned long minflt = 0, majflt = 0;
 
     // state
@@ -300,14 +300,14 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
 
         seg->start = start;
         seg->end = end;
-        strncpy(seg->perms, perms, sizeof(seg->perms) - 1);
+        snprintf(seg->perms, sizeof(seg->perms), "%s", perms);
         seg->perms[sizeof(seg->perms) - 1] = '\0';
 
         if (matched == 4) {
             // Уберём начальные пробелы для path
             size_t off = 0;
             while (pathname[off] == ' ' || pathname[off] == '\t') off++;
-            strncpy(seg->path, pathname + off, sizeof(seg->path) - 1);
+            snprintf(seg->path, sizeof(seg->path), "%s", pathname + off);
             seg->path[sizeof(seg->path) - 1] = '\0';
         } else {
             seg->path[0] = '\0';
@@ -526,14 +526,11 @@ void compare_processes(pid_t pid1, pid_t pid2) {
     printf("-----------------------------------------------------------------------\n");
 
     // Вспомогательный макрос для печати KB и дельты
-    #define PRINT_ROW(label, v1, v2) do { \
-        printf("%-20s ", label); \
-        char buf1[32], buf2[32], bufd[32]; \
-        /* Преобразуем для печати в человекочитаемом формате */ \
-        /* Используем временные FILE* для форматирования через print_size */ \
-        /* Но проще — распечатать KB напрямую, чтобы избежать сложностей */ \
-        printf("%15lu KB %15lu KB %15ld KB\n", (unsigned long)(v1), (unsigned long)(v2), (long)((v2) - (v1))); \
-    } while(0)
+#define PRINT_ROW(label, v1, v2) do { \
+    printf("%-20s %15lu KB %15lu KB %15ld KB\n", \
+           label, (unsigned long)(v1), (unsigned long)(v2), (long)((v2) - (v1))); \
+} while(0)
+
 
     PRINT_ROW("VSZ", m1.vm_size, m2.vm_size);
     PRINT_ROW("RSS", m1.vm_rss, m2.vm_rss);
