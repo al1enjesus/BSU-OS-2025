@@ -1,0 +1,241 @@
+[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[H[2J[3J[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 3.98 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 3.70 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.73 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.40 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.35 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.35 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3704 ===[0m
+VSZ: 12.10 MB
+RSS: 2.60 MB
+Data/Heap: 2.32 MB
+Stack: 132 KB
+Exe: 1.21 MB
+Lib: 1.86 MB
+PSS: 2.34 MB
+Minor Faults: 4194304
+Major Faults: 287688
+[1;32m=== PID 3[H[2J[3J[H[2J[3J[H[2J[3J
