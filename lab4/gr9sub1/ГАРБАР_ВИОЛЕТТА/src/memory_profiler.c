@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,6 +40,55 @@ typedef struct {
 #define COLOR_MAGENTA "\x1b[35m"
 #define COLOR_CYAN    "\x1b[36m"
 #define COLOR_RESET   "\x1b[0m"
+
+void print_colored_size(const char* label, unsigned long kb, long delta) {
+    printf("  %-18s ", label);
+    
+    if (kb < 1024) {
+        printf("%4lu KB", kb);
+    } else if (kb < 1024 * 1024) {
+        printf("%6.1f MB", kb / 1024.0);
+    } else {
+        printf("%6.2f GB", kb / (1024.0 * 1024.0));
+    }
+    
+    if (delta != 0) {
+        if (delta > 0) {
+            printf(COLOR_RED "  (+%ld KB)" COLOR_RESET, delta);
+        } else {
+            printf(COLOR_GREEN "  (%ld KB)" COLOR_RESET, delta);
+        }
+    }
+    printf("\n");
+}
+
+void print_colored_faults(const char* label, unsigned long current, unsigned long previous) {
+    printf("  %-10s %lu", label, current);
+    
+    if (previous > 0) {
+        long delta = current - previous;
+        if (delta > 0) {
+            printf(COLOR_RED "  (+%ld)" COLOR_RESET, delta);
+        }
+    }
+    printf("\n");
+}
+
+const char* get_segment_color(const MemorySegment* seg) {
+    if (strstr(seg->path, "[heap]")) {
+        return COLOR_GREEN;
+    } else if (strstr(seg->path, "[stack]")) {
+        return COLOR_BLUE;
+    } else if (strstr(seg->path, ".so") || strstr(seg->path, "/lib/")) {
+        return COLOR_YELLOW;
+    } else if (strlen(seg->path) == 0 || strstr(seg->path, "anonymous")) {
+        return COLOR_MAGENTA;
+    } else if (seg->perms[2] == 'x') {
+        return COLOR_RED;
+    } else {
+        return COLOR_RESET;
+    }
+}
 
 int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
@@ -265,21 +315,17 @@ void print_memory_map_summary(pid_t pid) {
         MemorySegment *seg = &segments[i];
         unsigned long size_kb = (seg->end - seg->start) / 1024;
 
-        const char *color = COLOR_RESET;
+        const char *color = get_segment_color(seg);
+        
         if (strstr(seg->path, "[heap]")) {
-            color = COLOR_GREEN;
             heap_count++;
         } else if (strstr(seg->path, "[stack]")) {
-            color = COLOR_BLUE;
             stack_count++;
         } else if (strstr(seg->path, ".so") || strstr(seg->path, "/lib/")) {
-            color = COLOR_YELLOW;
             lib_count++;
         } else if (strlen(seg->path) == 0 || strstr(seg->path, "anonymous")) {
-            color = COLOR_MAGENTA;
             anonymous_count++;
         } else if (seg->perms[2] == 'x') {
-            color = COLOR_RED;
             exec_count++;
         } else {
             other_count++;
@@ -382,53 +428,20 @@ void watch_process(pid_t pid, int interval) {
         get_process_name(pid, proc_name, sizeof(proc_name));
         printf(COLOR_GREEN "Process: %s (PID %d)\n\n" COLOR_RESET, proc_name, pid);
 
-        printf("VSZ:  "); print_size(metrics.vm_size);
-        if (!first_iteration) {
-            long delta = (long)metrics.vm_size - (long)prev_metrics.vm_size;
-            if (delta != 0) {
-                printf("  (%+ld KB)", delta);
-            }
-        }
-        printf("\n");
+        long vsz_delta = first_iteration ? 0 : (long)metrics.vm_size - (long)prev_metrics.vm_size;
+        long rss_delta = first_iteration ? 0 : (long)metrics.vm_rss - (long)prev_metrics.vm_rss;
+        long pss_delta = first_iteration ? 0 : (long)metrics.pss - (long)prev_metrics.pss;
 
-        printf("RSS:  "); print_size(metrics.vm_rss);
-        if (!first_iteration) {
-            long delta = (long)metrics.vm_rss - (long)prev_metrics.vm_rss;
-            if (delta != 0) {
-                printf("  (%+ld KB)", delta);
-            }
-        }
-        printf("\n");
-
+        print_colored_size("VSZ:", metrics.vm_size, vsz_delta);
+        print_colored_size("RSS:", metrics.vm_rss, rss_delta);
+        
         if (metrics.pss > 0) {
-            printf("PSS:  "); print_size(metrics.pss);
-            if (!first_iteration && prev_metrics.pss > 0) {
-                long delta = (long)metrics.pss - (long)prev_metrics.pss;
-                if (delta != 0) {
-                    printf("  (%+ld KB)", delta);
-                }
-            }
-            printf("\n");
+            print_colored_size("PSS:", metrics.pss, pss_delta);
         }
 
         printf("\n" COLOR_CYAN "Page Faults:\n" COLOR_RESET);
-        printf("  Minor: %lu", faults.minor_faults);
-        if (!first_iteration) {
-            long delta = faults.minor_faults - prev_faults.minor_faults;
-            if (delta > 0) {
-                printf("  (+%ld)", delta);
-            }
-        }
-        printf("\n");
-
-        printf("  Major: %lu", faults.major_faults);
-        if (!first_iteration) {
-            long delta = faults.major_faults - prev_faults.major_faults;
-            if (delta > 0) {
-                printf("  (+%ld)", delta);
-            }
-        }
-        printf("\n");
+        print_colored_faults("Minor:", faults.minor_faults, first_iteration ? 0 : prev_faults.minor_faults);
+        print_colored_faults("Major:", faults.major_faults, first_iteration ? 0 : prev_faults.major_faults);
 
         if (!first_iteration) {
             printf("\n" COLOR_CYAN "RSS History:\n" COLOR_RESET);

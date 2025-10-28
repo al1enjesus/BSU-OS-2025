@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -66,7 +67,6 @@ double benchmark_fwrite(size_t buffer_size) {
     return elapsed;
 }
 
-
 double benchmark_write(size_t buffer_size) {
     char filename[256];
     snprintf(filename, sizeof(filename), "test_write_%zu.bin", buffer_size);
@@ -113,7 +113,6 @@ double benchmark_write(size_t buffer_size) {
     return elapsed;
 }
 
-
 void benchmark_buffer_sizes() {
     printf("\n=== Сравнение размеров буфера ===\n");
     printf("Запись 100 MB данных\n\n");
@@ -141,12 +140,13 @@ void benchmark_buffer_sizes() {
     }
 }
 
-
 void benchmark_methods() {
     printf("\n=== Сравнение методов I/O ===\n");
     printf("Запись 100 MB данных с буфером 64 KB\n\n");
     
-    size_t optimal_buffer = 65536; 
+    size_t optimal_buffer = 65536;
+    int num_calls_fwrite = FILE_SIZE / optimal_buffer / 8;
+    int num_calls_write = FILE_SIZE / optimal_buffer;
     
     printf("Метод          | Время (сек) | Скорость (MB/s) | Системные вызовы\n");
     printf("----------------|-------------|-----------------|------------------\n");
@@ -156,17 +156,16 @@ void benchmark_methods() {
     
     printf("fwrite (stdio)  |    %6.3f    |      %6.2f      |       ~%d\n", 
            time_fwrite, (FILE_SIZE / (1024.0 * 1024.0)) / time_fwrite, 
-           FILE_SIZE / optimal_buffer / 8); 
+           num_calls_fwrite);
     
     printf("write (syscall) |    %6.3f    |      %6.2f      |       %d\n", 
            time_write, (FILE_SIZE / (1024.0 * 1024.0)) / time_write,
-           FILE_SIZE / optimal_buffer);
+           num_calls_write);
 }
 
 int main() {
     printf("Бенчмарк методов файлового I/O\n");
     printf("===============================\n");
-    
     
     benchmark_methods();
     benchmark_buffer_sizes();
