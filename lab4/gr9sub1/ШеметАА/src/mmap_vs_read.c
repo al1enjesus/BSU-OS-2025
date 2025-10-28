@@ -20,8 +20,18 @@
 
 void create_test_file(void) {
     printf(BLUE "Создаём файл %s (100 MB)...\n" RESET, FILENAME);
+    
+    // Проверяем существование файла
+    struct stat st;
+    if (stat(FILENAME, &st) == 0) {
+        printf(YELLOW "Файл уже существует, используем существующий\n" RESET);
+        return;
+    }
+    
     if (system("dd if=/dev/urandom of=" FILENAME " bs=1M count=100 status=none") != 0) {
-        fprintf(stderr, RED "Ошибка создания файла\n" RESET);
+        fprintf(stderr, RED "Ошибка создания файла. Создайте вручную:\n" RESET);
+        fprintf(stderr, RED "  dd if=/dev/urandom of=%s bs=1M count=100\n" RESET, FILENAME);
+        exit(1);
     }
 }
 
@@ -50,12 +60,12 @@ void print_faults(const char *label, long min_before, long maj_before) {
            dmin > 0 ? RED : (dmin < 0 ? GREEN : ""), dmin, RESET,
            dmaj > 0 ? RED : (dmaj < 0 ? GREEN : ""), dmaj, RESET);
 }
-
 void sync_and_drop_caches(void) {
     sync();
-    if (system("echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null") != 0) {
-        printf(YELLOW "Очистка кеша не удалась (нужен sudo)\n" RESET);
-    }
+    printf(YELLOW "Для точных измерений рекомендуется очистить кеш:\n" RESET);
+    printf(YELLOW "  sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n" RESET);
+    printf(YELLOW "Затем нажмите Enter для продолжения...\n" RESET);
+    getchar();
 }
 
 uint64_t read_with_syscalls(void) {

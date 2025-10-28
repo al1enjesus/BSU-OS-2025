@@ -10,7 +10,6 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 void print_memory_metrics(const char *stage) {
-    // Ваш текущий код print_memory_metrics (оставьте без изменений, он работает корректно)
     FILE *f = fopen("/proc/self/status", "r");
     if (!f) {
         perror("Failed to open /proc/self/status");
@@ -38,7 +37,6 @@ void print_memory_metrics(const char *stage) {
         fprintf(stderr, "Warning: /proc/self/smaps_rollup not available\n");
     } else {
         while (fgets(line, sizeof(line), f)) {
-            printf("DEBUG: %s", line);
             if (strncmp(line, "Pss: ", 5) == 0) {
                 sscanf(line + 5, "%lu kB", &pss);
             } else if (strncmp(line, "Private_Clean: ", 15) == 0) {
@@ -76,7 +74,6 @@ void print_memory_metrics(const char *stage) {
 }
 
 void print_memory_map(const char *stage) {
-    // Ваш текущий код для вывода карты памяти и ASCII-визуализации (предполагается, что он работает корректно)
     FILE *f = fopen("/proc/self/maps", "r");
     if (!f) {
         perror("Failed to open /proc/self/maps");
