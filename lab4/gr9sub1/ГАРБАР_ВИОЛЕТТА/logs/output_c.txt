@@ -1,0 +1,141 @@
+vboxuser@ubuntu:~/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ ./disk_io_workload
+=== Дисковый I/O Workload ===
+PID процесса: 7935
+Запустите мониторинг в другом терминале:
+  iostat -x 1 10
+  pidstat -d 1 10
+  sudo iotop -b -n 10
+  cat /proc/7935/io
+Нажмите Enter для начала...
+
+Генерация дискового I/O workload...
+Создание 3 файлов по 500 MB каждый
+Запись файла workload_file_0.bin...
+Чтение файла workload_file_0.bin...
+Файл workload_file_0.bin обработан (checksum: 520000)
+Запись файла workload_file_1.bin...
+Чтение файла workload_file_1.bin...
+Файл workload_file_1.bin обработан (checksum: 528000)
+Запись файла workload_file_2.bin...
+Чтение файла workload_file_2.bin...
+Файл workload_file_2.bin обработан (checksum: 536000)
+Workload завершен
+
+
+vboxuser@ubuntu:~/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ iostat -x 1 10
+Linux 6.14.0-29-generic (ubuntu) 	10/28/2025 	_x86_64_	(4 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           1.43    0.00    0.94    0.28    0.00   97.35
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+loop0            0.00      0.00     0.00   0.00    0.07     1.21    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop1            0.01      0.16     0.00   0.00    1.75    19.05    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop10           0.39      4.74     0.00   0.00    0.35    12.27    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.01
+loop11           0.01      0.16     0.00   0.00    1.28    18.45    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop12           0.01      0.31     0.00   0.00    0.45    22.68    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop13           0.04      0.23     0.00   0.00    0.31     6.05    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop14           0.01      0.05     0.00   0.00    0.55     8.07    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop15           0.01      0.39     0.00   0.00    0.89    26.82    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop16           0.01      0.06     0.00   0.00    0.51     7.45    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop17           0.01      0.06     0.00   0.00    0.50     7.96    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop18           0.01      0.05     0.00   0.00    0.31     9.49    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop19           0.01      0.05     0.00   0.00    0.16     7.98    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop2            0.06      0.80     0.00   0.00    0.59    13.76    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop20           0.00      0.01     0.00   0.00    0.14     2.76    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop21           0.11      4.27     0.00   0.00    0.51    37.28    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.01
+loop22           0.00      0.00     0.00   0.00    0.00     1.27    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop3            0.01      0.16     0.00   0.00    0.66    18.25    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop4            0.01      0.16     0.00   0.00    2.35    17.33    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop5            0.01      0.05     0.00   0.00    0.77     8.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop6            0.01      0.06     0.00   0.00    1.04     8.43    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop7            0.01      0.16     0.00   0.00    1.65    19.76    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop8            0.01      0.17     0.00   0.00    0.84    18.79    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop9            0.01      0.05     0.00   0.00    0.66     8.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+sda              3.48    181.14     0.93  21.13    1.22    52.03    2.82    258.60     3.18  53.03    9.05    91.76    0.00      0.00     0.00   0.00    0.00     0.00    0.66   11.63    0.04   1.20
+sr0              0.01      0.02     0.00   0.00    0.20     3.55    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           2.26    0.00    0.75    0.00    0.00   96.98
+...
+
+
+vboxuser@ubuntu:~/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ pidstat -d 1 10
+Linux 6.14.0-29-generic (ubuntu) 	10/28/2025 	_x86_64_	(4 CPU)
+
+10:26:12 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:13 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:14 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:15 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:16 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+10:26:17 AM  1000      7904     59.41      0.00      0.00       0  bash
+10:26:17 AM  1000      7919     27.72      0.00      0.00       0  bash
+
+10:26:17 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:18 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:19 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:20 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+10:26:21 AM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+Average:      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+Average:     1000      7904      5.93      0.00      0.00       0  bash
+Average:     1000      7919      2.77      0.00      0.00       0  bash
+
+
+vboxuser@ubuntu:~/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ sudo iotop -b -n 10
+[sudo] password for vboxuser: 
+Total DISK READ:         0.00 B/s | Total DISK WRITE:         0.00 B/s
+Current DISK READ:       0.00 B/s | Current DISK WRITE:       0.00 B/s
+    TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN      IO    COMMAND
+      1 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  init splash noprompt noshell automatic-ubiquity crashkernel=2G-4G:320M,4G-32G:512M,32G-64G:1024M,64G-128G:2048M,128G-:4096M
+      2 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kthreadd]
+      3 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [pool_workqueue_release]
+      4 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-rcu_gp]
+      5 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-sync_wq]
+      6 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-kvfree_rcu_reclaim]
+      7 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-slub_flushwq]
+      8 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-netns]
+     11 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/0:0H-events_highpri]
+     12 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u16:0-ipv6_addrconf]
+     13 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-mm_percpu_wq]
+     14 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_tasks_kthread]
+     15 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_tasks_rude_kthread]
+     16 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_tasks_trace_kthread]
+     17 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [ksoftirqd/0]
+     18 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_preempt]
+     19 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_exp_par_gp_kthread_worker/0]
+     20 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_exp_gp_kthread_worker]
+     21 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [migration/0]
+...
+   6707 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u17:3-flush-8:0]
+   6798 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u20:1-kvfree_rcu_reclaim]
+   7813 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/0:2-events]
+   7819 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u18:0-kvfree_rcu_reclaim]
+   7849 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u19:0-events_unbound]
+   7853 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/0:1-mm_percpu_wq]
+   7904 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  bash
+   7912 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  bash
+   7919 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  bash
+   7928 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  bash
+   7935 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  ./disk_io_workload
+   7939 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  sudo iotop -b -n 10
+   7941 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  watch -n 1 cat /proc/$(pgrep disk_io_workload)/io
+    288 be/3 root        0.00 B/s    0.00 B/s ?unavailable?  systemd-journald
+   5245 be/4 systemd-    0.00 B/s    0.00 B/s ?unavailable?  systemd-oomd
+   2550 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-shell
+   2566 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-shell [KMS thread]
+   2577 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-shell [Mutter Input Th]
+   3616 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-terminal-server
+   7938 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  sudo iotop -b -n 10
+   7940 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  python3 /usr/sbin/iotop -b -n 10
+
+

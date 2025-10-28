@@ -1,0 +1,71 @@
+```
+vboxuser@ubuntu:~/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ ./memory_analysis
+Initial memory state:
+
+=== Memory Information ===
+VmSize:	    2752 kB
+VmRSS:	    1316 kB
+VmData:	     224 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1816 kB
+
+=== Detailed Memory Breakdown ===
+Pss:                 121 kB
+Shared_Clean:       1508 kB
+Shared_Dirty:          0 kB
+Private_Clean:         0 kB
+Private_Dirty:       108 kB
+Shared_Hugetlb:        0 kB
+Private_Hugetlb:       0 kB
+
+==================================================
+Allocating memory using different methods...
+✓ Allocated 1 KB on stack
+✓ Allocated 1 MB on heap (malloc)
+✓ Allocated 1 MB via mmap (anonymous)
+
+==================================================
+Memory state after allocations:
+
+=== Memory Information ===
+VmSize:	    4804 kB
+VmRSS:	    3504 kB
+VmData:	    2276 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1816 kB
+
+=== Detailed Memory Breakdown ===
+Pss:                2169 kB
+Shared_Clean:       1508 kB
+Shared_Dirty:          0 kB
+Private_Clean:         0 kB
+Private_Dirty:      2156 kB
+Shared_Hugetlb:        0 kB
+Private_Hugetlb:       0 kB
+
+=== Memory Map ===
+6242be6db000-6242be6dc000 r--p 00000000 08:02 524340                     /home/vboxuser/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src/memory_analysis
+6242be6dc000-6242be6dd000 r-xp 00001000 08:02 524340                     /home/vboxuser/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src/memory_analysis
+6242be6dd000-6242be6de000 r--p 00002000 08:02 524340                     /home/vboxuser/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src/memory_analysis
+6242be6de000-6242be6df000 r--p 00002000 08:02 524340                     /home/vboxuser/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src/memory_analysis
+6242be6df000-6242be6e0000 rw-p 00003000 08:02 524340                     /home/vboxuser/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src/memory_analysis
+6242e2510000-6242e2531000 rw-p 00000000 00:00 0                          [heap]
+71c1ee1ff000-71c1ee400000 rw-p 00000000 00:00 0 
+71c1ee400000-71c1ee428000 r--p 00000000 08:02 945047                     /usr/lib/x86_64-linux-gnu/libc.so.6
+71c1ee428000-71c1ee5be000 r-xp 00028000 08:02 945047                     /usr/lib/x86_64-linux-gnu/libc.so.6
+71c1ee5be000-71c1ee60d000 r--p 001be000 08:02 945047                     /usr/lib/x86_64-linux-gnu/libc.so.6
+71c1ee60d000-71c1ee611000 r--p 0020c000 08:02 945047                     /usr/lib/x86_64-linux-gnu/libc.so.6
+71c1ee611000-71c1ee613000 rw-p 00210000 08:02 945047                     /usr/lib/x86_64-linux-gnu/libc.so.6
+71c1ee613000-71c1ee620000 rw-p 00000000 00:00 0 
+71c1ee6a9000-71c1ee6ac000 rw-p 00000000 00:00 0 
+71c1ee6bb000-71c1ee6bd000 rw-p 00000000 00:00 0 
+71c1ee6bd000-71c1ee6bf000 r--p 00000000 00:00 0                          [vvar]
+71c1ee6bf000-71c1ee6c1000 r--p 00000000 00:00 0                          [vvar_vclock]
+71c1ee6c1000-71c1ee6c3000 r-xp 00000000 00:00 0                          [vdso]
+71c1ee6c3000-71c1ee6c4000 r--p 00000000 08:02 944847                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+71c1ee6c4000-71c1ee6f2000 r-xp 00001000 08:02 944847                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+... (showing first 20 segments only)
+
+```
