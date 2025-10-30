@@ -1,0 +1,48 @@
+----- 12:35:53 -----
+rchar: 3150044
+wchar: 10
+syscr: 12
+syscw: 1
+read_bytes: 5242880
+write_bytes: 4096
+cancelled_write_bytes: 0
+----- 12:35:54 -----
+rchar: 806359260
+wchar: 10
+syscr: 778
+syscw: 1
+read_bytes: 588632064
+write_bytes: 4096
+cancelled_write_bytes: 0
+----- 12:35:55 -----
+rchar: 1547702492
+wchar: 10
+syscr: 1485
+syscw: 1
+read_bytes: 1290665984
+write_bytes: 4096
+cancelled_write_bytes: 0
+----- 12:35:56 -----
+rchar: 2548043996
+wchar: 10
+syscr: 2439
+syscw: 1
+read_bytes: 2288984064
+write_bytes: 4096
+cancelled_write_bytes: 0
+----- 12:35:57 -----
+rchar: 3575648476
+wchar: 10
+syscr: 3419
+syscw: 1
+read_bytes: 3317571584
+write_bytes: 4096
+cancelled_write_bytes: 0
+----- 12:35:58 -----
+rchar: 4775219420
+wchar: 10
+syscr: 4563
+syscw: 1
+read_bytes: 4516986880
+write_bytes: 4096
+cancelled_write_bytes: 0

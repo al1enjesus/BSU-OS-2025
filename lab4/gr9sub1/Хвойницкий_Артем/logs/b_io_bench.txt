@@ -1,0 +1,4 @@
+stdio fputc: 100.00 MB written in 0.442 s (226.06 MB/s)
+write(512 B buf): 100.00 MB in 0.543 s (184.15 MB/s), ~204800 write() calls
+write(4096 B buf): 100.00 MB in 0.233 s (428.80 MB/s), ~25600 write() calls
+write(65536 B buf): 100.00 MB in 0.207 s (483.22 MB/s), ~1600 write() calls

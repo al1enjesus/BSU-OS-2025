@@ -1,0 +1,39 @@
+
+== Before allocations ==
+VSZ: 2748 kB
+RSS: 1580 kB
+PSS: 127 kB
+USS: 112 kB
+
+== After malloc(1MB)+mmap(1MB) and touch ==
+VSZ: 4800 kB
+RSS: 3628 kB
+PSS: 2179 kB
+USS: 2164 kB
+
+[Memory map, first 25 lines]
+5c2ab052a000-5c2ab052b000 r--p 00000000 08:02 528895                     /home/armiqu/lab4/gr9sub1/Хвойницкий_Артем/a_memmap
+5c2ab052b000-5c2ab052c000 r-xp 00001000 08:02 528895                     /home/armiqu/lab4/gr9sub1/Хвойницкий_Артем/a_memmap
+5c2ab052c000-5c2ab052d000 r--p 00002000 08:02 528895                     /home/armiqu/lab4/gr9sub1/Хвойницкий_Артем/a_memmap
+5c2ab052d000-5c2ab052e000 r--p 00002000 08:02 528895                     /home/armiqu/lab4/gr9sub1/Хвойницкий_Артем/a_memmap
+5c2ab052e000-5c2ab052f000 rw-p 00003000 08:02 528895                     /home/armiqu/lab4/gr9sub1/Хвойницкий_Артем/a_memmap
+5c2ab869a000-5c2ab86bb000 rw-p 00000000 00:00 0                          [heap]
+7cc7979ff000-7cc797c00000 rw-p 00000000 00:00 0 
+7cc797c00000-7cc797c28000 r--p 00000000 08:02 1444986                    /usr/lib/x86_64-linux-gnu/libc.so.6
+7cc797c28000-7cc797dbd000 r-xp 00028000 08:02 1444986                    /usr/lib/x86_64-linux-gnu/libc.so.6
+7cc797dbd000-7cc797e0c000 r--p 001bd000 08:02 1444986                    /usr/lib/x86_64-linux-gnu/libc.so.6
+7cc797e0c000-7cc797e10000 r--p 0020b000 08:02 1444986                    /usr/lib/x86_64-linux-gnu/libc.so.6
+7cc797e10000-7cc797e12000 rw-p 0020f000 08:02 1444986                    /usr/lib/x86_64-linux-gnu/libc.so.6
+7cc797e12000-7cc797e1f000 rw-p 00000000 00:00 0 
+7cc797ef4000-7cc797ef7000 rw-p 00000000 00:00 0 
+7cc797f06000-7cc797f08000 rw-p 00000000 00:00 0 
+7cc797f08000-7cc797f0a000 r--p 00000000 00:00 0                          [vvar]
+7cc797f0a000-7cc797f0c000 r--p 00000000 00:00 0                          [vvar_vclock]
+7cc797f0c000-7cc797f0e000 r-xp 00000000 00:00 0                          [vdso]
+7cc797f0e000-7cc797f0f000 r--p 00000000 08:02 1444983                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7cc797f0f000-7cc797f3d000 r-xp 00001000 08:02 1444983                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7cc797f3d000-7cc797f48000 r--p 0002f000 08:02 1444983                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7cc797f48000-7cc797f4a000 r--p 0003a000 08:02 1444983                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7cc797f4a000-7cc797f4b000 rw-p 0003c000 08:02 1444983                    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7cc797f4b000-7cc797f4c000 rw-p 00000000 00:00 0 
+7fffb2059000-7fffb207a000 rw-p 00000000 00:00 0                          [stack]

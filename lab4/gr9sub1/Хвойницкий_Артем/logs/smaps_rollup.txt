@@ -1,0 +1,8 @@
+Pss:                2178 kB
+Pss_Dirty:          2152 kB
+Pss_Anon:           2152 kB
+Pss_File:             26 kB
+Pss_Shmem:             0 kB
+Private_Clean:        12 kB
+Private_Dirty:      2152 kB
+Private_Hugetlb:       0 kB

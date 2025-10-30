@@ -1,0 +1,12 @@
+VmPeak:	    4800 kB
+VmSize:	    4800 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	    3628 kB
+VmRSS:	    3628 kB
+VmData:	    2276 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1812 kB
+VmPTE:	      52 kB
+VmSwap:	       0 kB
