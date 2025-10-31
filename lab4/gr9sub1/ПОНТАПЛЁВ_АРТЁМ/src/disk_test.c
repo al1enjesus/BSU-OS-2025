@@ -13,25 +13,20 @@
 #define OPERATIONS 3000
 #define DURATION_SECONDS 20
 
-void generate_random_data(char *buffer, size_t size) {
+int generate_random_data(char *buffer, size_t size) {
     int fd = open("/dev/urandom", O_RDONLY);
     if (fd == -1) {
-        srand(time(NULL));
-        for (size_t i = 0; i < size; i++) {
-            buffer[i] = rand() % 256;
-        }
-    } else {
-        ssize_t bytes_read = read(fd, buffer, size);
-        if (bytes_read != (ssize_t)size) {
-            close(fd);
-            srand(time(NULL));
-            for (size_t i = 0; i < size; i++) {
-                buffer[i] = rand() % 256;
-            }
-            return;
-        }
-        close(fd);
+        fprintf(stderr, "Ошибка открытия /dev/urandom\n");
+        return -1;
     }
+    ssize_t bytes_read = read(fd, buffer, size);
+    if (bytes_read != (ssize_t)size) {
+        close(fd);
+        fprintf(stderr, "Ошибка чтения из /dev/urandom\n");
+        return -1;
+    }
+    close(fd);
+    return 0;
 }
 
 int intensive_write(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
@@ -45,7 +40,10 @@ int intensive_write(const char *filename, char *buffer, size_t buffer_size, size
     int sync_counter = 0;
     printf("Интенсивная запись %s (%zu MB)...\n", filename, file_size / (1024 * 1024));
     for (size_t i = 0; i < blocks; i++) {
-        generate_random_data(buffer, buffer_size);
+        if (generate_random_data(buffer, buffer_size) == -1) {
+            close(fd);
+            return -1;
+        }
         ssize_t written = write(fd, buffer, buffer_size);
         if ((size_t)written != buffer_size) {
             printf("Ошибка записи: записано %zd из %zu байт\n", written, buffer_size);
@@ -91,7 +89,7 @@ int intensive_read(const char *filename, char *buffer, size_t buffer_size, size_
         }
     }
     close(fd);
-    printf("\nЧтение завершено: %zu MB\n", total_read / (1024 * 1024));
+    printf("\nЧтение завершена: %zu MB\n", total_read / (1024 * 1024));
     return 0;
 }
 
@@ -103,7 +101,10 @@ int mixed_workload(const char *filename, char *buffer, size_t buffer_size, size_
     }
     printf("Смешанная нагрузка %s...\n", filename);
     for (size_t i = 0; i < file_size / buffer_size; i++) {
-        generate_random_data(buffer, buffer_size);
+        if (generate_random_data(buffer, buffer_size) == -1) {
+            close(fd);
+            return -1;
+        }
         ssize_t result = write(fd, buffer, buffer_size);
         if (result == -1) {
             perror("Ошибка записи при заполнении");
@@ -125,7 +126,10 @@ int mixed_workload(const char *filename, char *buffer, size_t buffer_size, size_
                 perror("Ошибка чтения");
             }
         } else {
-            generate_random_data(buffer, buffer_size);
+            if (generate_random_data(buffer, buffer_size) == -1) {
+                close(fd);
+                return -1;
+            }
             ssize_t result = write(fd, buffer, buffer_size);
             if (result == -1) {
                 perror("Ошибка записи");
@@ -151,7 +155,10 @@ int create_many_small_files(char *buffer, size_t buffer_size, int num_files, siz
         int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         if (fd != -1) {
             for (size_t j = 0; j < file_size / buffer_size; j++) {
-                generate_random_data(buffer, buffer_size);
+                if (generate_random_data(buffer, buffer_size) == -1) {
+                    close(fd);
+                    return -1;
+                }
                 ssize_t result = write(fd, buffer, buffer_size);
                 if (result == -1) {
                     perror("Ошибка записи маленького файла");
@@ -191,16 +198,19 @@ int main() {
     }
     unsigned int seed;
     int urandom_fd = open("/dev/urandom", O_RDONLY);
-    if (urandom_fd != -1) {
-        if (read(urandom_fd, &seed, sizeof(seed)) == sizeof(seed)) {
-            srand(seed);
-        } else {
-            srand(time(NULL));
-        }
-        close(urandom_fd);
-    } else {
-        srand(time(NULL));
+    if (urandom_fd == -1) {
+        fprintf(stderr, "Ошибка открытия /dev/urandom\n");
+        free(buffer);
+        return 1;
     }
+    if (read(urandom_fd, &seed, sizeof(seed)) != sizeof(seed)) {
+        fprintf(stderr, "Ошибка чтения из /dev/urandom\n");
+        close(urandom_fd);
+        free(buffer);
+        return 1;
+    }
+    close(urandom_fd);
+    srand(seed);
     struct timeval start_time, end_time;
     printf("\nТЕСТ 1: ИНТЕНСИВНАЯ ЗАПИСЬ\n");
     gettimeofday(&start_time, NULL);

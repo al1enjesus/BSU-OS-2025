@@ -28,7 +28,7 @@ double get_time() {
 
 double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== fwrite() with buffer=%zu bytes ===\n", buffer_size);
-    FILE *f = fopen(filename, "wb");
+    FILE *f = fopen(filename, "wbx");
     if (!f) {
         perror("fopen failed");
         return -1;
@@ -59,7 +59,7 @@ double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
 
 double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== write() with buffer=%zu bytes ===\n", buffer_size);
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, FILE_PERMS);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_EXCL | O_TRUNC, FILE_PERMS);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -91,7 +91,7 @@ double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
 
 double benchmark_write_sync(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== write() with O_SYNC (buffer=%zu bytes) ===\n", buffer_size);
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_SYNC, FILE_PERMS);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_EXCL | O_TRUNC | O_SYNC, FILE_PERMS);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -124,7 +124,7 @@ double benchmark_write_sync(const char *filename, size_t size, size_t buffer_siz
 
 double benchmark_mmap(const char *filename, size_t size) {
     printf("\n=== mmap() ===\n");
-    int fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, FILE_PERMS);
+    int fd = open(filename, O_RDWR | O_CREAT | O_EXCL | O_TRUNC, FILE_PERMS);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -157,7 +157,7 @@ double benchmark_mmap(const char *filename, size_t size) {
 double benchmark_write_direct(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== write() with O_DIRECT (buffer=%zu bytes) ===\n", buffer_size);
 #ifdef O_DIRECT
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, FILE_PERMS);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_EXCL | O_TRUNC | O_DIRECT, FILE_PERMS);
     if (fd == -1) {
         perror("open with O_DIRECT failed");
         printf("Note: O_DIRECT may require root privileges or specific filesystem\n");
