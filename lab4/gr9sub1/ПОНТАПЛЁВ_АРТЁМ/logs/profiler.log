@@ -1,0 +1,130 @@
+//./memory_profiler $$
+Process: bash (PID 272825)
+=====================================
+Memory Metrics:
+  VSZ (Virtual):       10.3 MB
+  RSS (Resident):       4.6 MB
+  PSS (Proportional):   2.3 MB (more accurate)
+  USS (Unique):         2.2 MB
+Memory Breakdown:
+  Shared (clean):       2.5 MB
+  Shared (dirty):       0 KB
+  Private (clean):      1.6 MB
+  Private (dirty):    676 KB
+Memory Regions:
+  Text (code):          1.2 MB
+  Data + Heap:        568 KB
+  Stack:              132 KB
+  Libraries:            1.9 MB
+Page Faults:
+  Minor: 493
+  Major: 0
+  
+  
+//./memory_profiler 1
+Process: systemd (PID 1)
+=====================================
+Memory Metrics:
+  VSZ (Virtual):       24.5 MB
+  RSS (Resident):      13.2 MB
+Memory Regions:
+  Text (code):         64 KB
+  Data + Heap:          4.8 MB
+  Stack:              132 KB
+  Libraries:           12.6 MB
+Page Faults:
+  Minor: 1111613
+  Major: 130
+
+
+//./memory_profiler firefox --watch
+Found process: firefox (PID 271796)
+Monitoring PID 271796 (update every 1 sec, Ctrl+C to stop)
+========================================
+Time: Thu Oct 30 21:47:33 2025
+Process: firefox (PID 271796)
+VSZ:   10.98 GB
+RSS:   403.8 MB
+PSS:   317.4 MB
+Page Faults:
+  Minor: 603082
+  Major: 169
+Data saved to: memory_pid271796.csv
+========================================
+Time: Thu Oct 30 21:47:34 2025
+Process: firefox (PID 271796)
+VSZ:   10.98 GB
+RSS:   403.8 MB
+PSS:   317.4 MB
+Page Faults:
+  Minor: 603082
+  Major: 169
+Data saved to: memory_pid271796.csv
+
+
+//./memory_profiler $$ --map
+Process: bash (PID 272825)
+=====================================
+Memory Metrics:
+  VSZ (Virtual):       10.3 MB
+  RSS (Resident):       4.6 MB
+  PSS (Proportional):   2.3 MB (more accurate)
+  USS (Unique):         2.2 MB
+Memory Breakdown:
+  Shared (clean):       2.5 MB
+  Shared (dirty):       0 KB
+  Private (clean):      1.6 MB
+  Private (dirty):    676 KB
+Memory Regions:
+  Text (code):          1.2 MB
+  Data + Heap:        568 KB
+  Stack:              132 KB
+  Libraries:            1.9 MB
+Page Faults:
+  Minor: 785
+  Major: 0
+Memory Map (33 segments)
+Top 10 largest segments:
+Address Range      Perms        Size  Type                 Path
+----------------------------------------------------------------
+789979200000-789979776000 r--p      5.5 MB  Library              /usr/lib/locale/locale-archive
+789979828000-7899799bd000 r-xp      1.6 MB  Library              /usr/lib/x86_64-linux-gnu/libc.so.6
+59158db1e000-59158dc54000 r-xp      1.2 MB  Executable           /usr/bin/bash
+5915aab0a000-5915aab6d000 rw-p    396 KB  Heap                 [heap]
+7899799bd000-789979a0c000 r--p    316 KB  Library              /usr/lib/x86_64-linux-gnu/libc.so.6
+59158dc54000-59158dc8a000 r--p    216 KB  Executable           /usr/bin/bash
+59158daee000-59158db1e000 r--p    192 KB  Executable           /usr/bin/bash
+789979b33000-789979b61000 r-xp    184 KB  Library              /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+789979800000-789979828000 r--p    160 KB  Library              /usr/lib/x86_64-linux-gnu/libc.so.6
+7ffed6f31000-7ffed6f52000 rw-p    132 KB  Stack                [stack]
+Memory Summary by Type:
+  Heap:               396 KB
+  Stack:              132 KB
+  Libraries:            8.0 MB
+  Anonymous:          120 KB
+  Executable:           1.7 MB
+  Other:                28 KB
+  
+  
+//./memory_profiler $$ --watch
+Monitoring PID 272825 (update every 1 sec, Ctrl+C to stop)
+========================================
+Time: Thu Oct 30 21:49:46 2025
+Process: bash (PID 272825)
+VSZ:    10.3 MB
+RSS:     4.6 MB
+PSS:     2.3 MB
+Page Faults:
+  Minor: 827
+  Major: 0
+Data saved to: memory_pid272825.csv
+========================================
+Time: Thu Oct 30 21:49:47 2025
+Process: bash (PID 272825)
+VSZ:    10.3 MB
+RSS:     4.6 MB
+PSS:     2.3 MB
+Page Faults:
+  Minor: 827
+  Major: 0
+Data saved to: memory_pid272825.csv

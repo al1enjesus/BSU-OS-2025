@@ -1,0 +1,343 @@
+//iostat -x 1 10
+Linux 6.14.0-29-generic (ubuntu) 	10/30/2025 	_x86_64_	(4 CPU)
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           5.38    0.01    1.93    0.08    0.00   92.60
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+loop0            0.10      2.29     0.00   0.00    0.16    22.63    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop1            0.00      0.00     0.00   0.00    0.07     1.40    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop10           0.01      0.24     0.00   0.00    0.14    36.97    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop11           0.09      3.59     0.00   0.00    0.28    41.49    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop12           0.00      0.00     0.00   0.00    0.09     3.21    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop13           0.01      0.25     0.00   0.00    0.27    21.69    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop14           0.00      0.03     0.00   0.00    0.32    19.06    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop15           0.03      0.79     0.00   0.00    0.22    25.93    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop16           0.00      0.16     0.00   0.00    0.32    39.77    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop17           0.00      0.00     0.00   0.00    0.20     9.08    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop18           0.01      0.43     0.00   0.00    0.10    50.41    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop2            0.09      4.07     0.00   0.00    0.32    45.94    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop3            0.03      1.32     0.00   0.00    0.30    47.75    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop4            0.02      1.11     0.00   0.00    0.87    47.29    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop5            0.09      5.21     0.00   0.00    0.38    56.76    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop6            0.20      4.94     0.00   0.00    0.21    24.50    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop7            0.00      0.10     0.00   0.00    0.29    34.50    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop8            0.51      2.42     0.00   0.00    0.02     4.79    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop9            0.00      0.04     0.00   0.00    0.50    27.33    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+sda              3.33    126.96     0.65  16.35    0.63    38.09    6.08    372.54     6.20  50.47    1.26    61.26    0.00      0.00     0.00   0.00    0.00     0.00    1.96    0.99    0.01   0.47
+sr0              0.00      0.01     0.00   0.00    1.18    24.41    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+          15.95    0.00    1.89    5.14    0.00   77.03
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+loop0            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop1            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop10           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop11           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop12           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop13           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop14           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop15           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop16           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop17           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop18           0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop2            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop3            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop4            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop5            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop6            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop7            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop8            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+loop9            0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+sda              0.00      0.00     0.00   0.00    0.00     0.00  321.00  36808.00   431.00  57.31    0.67   114.67    0.00      0.00     0.00   0.00    0.00     0.00  214.00    0.65    0.35  29.30
+sr0              0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+
+          
+//pidstat -d 1 10
+Linux 6.14.0-29-generic (ubuntu) 	10/30/2025 	_x86_64_	(4 CPU)
+
+02:55:00 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:01 PM  1000    264212      0.00  29452.43      0.00       0  disk_test
+
+02:55:01 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:02 PM  1000    264212      0.00  34360.00      0.00       0  disk_test
+
+02:55:02 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:03 PM  1000    264212      0.00  35080.00      0.00       0  disk_test
+
+02:55:03 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:04 PM  1000    264212      3.96  35453.47      0.00       0  disk_test
+
+02:55:04 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:05 PM  1000    264212      0.00  31239.60      0.00       0  disk_test
+
+02:55:05 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:06 PM  1000    263767    253.47      0.00      0.00       0  bash
+02:55:06 PM  1000    264212      0.00  31588.12      0.00       0  disk_test
+
+02:55:06 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:07 PM  1000    263764     44.00      0.00      0.00       0  bash
+02:55:07 PM  1000    264212      0.00  37216.00      0.00       0  disk_test
+
+02:55:07 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:08 PM  1000    264212      0.00  35104.00      0.00       0  disk_test
+
+02:55:08 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:09 PM  1000    264212      0.00  38592.00      0.00       0  disk_test
+
+02:55:09 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+02:55:10 PM  1000    264212      0.00  36224.00      0.00       0  disk_test
+
+Average:      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+Average:     1000    263764      4.37      0.00      0.00       0  bash
+Average:     1000    263767     25.45      0.00      0.00       0  bash
+Average:     1000    264212      0.40  34411.13      0.00       0  disk_test
+
+
+//sudo iotop -b -n 10
+Total DISK READ:         0.00 B/s | Total DISK WRITE:         0.00 B/s
+Current DISK READ:       0.00 B/s | Current DISK WRITE:      13.56 M/s
+    TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN      IO    COMMAND
+      1 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  systemd --system --deserialize=86 splash noprompt noshell automatic-ubiquity crashkernel=2G-4G:320M,4G-32G:512M,32G-64G:1024M,64G-128G:2048M,128G-:4096M
+      2 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kthreadd]
+      3 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [pool_workqueue_release]
+      4 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-rcu_gp]
+      5 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-sync_wq]
+      6 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-kvfree_rcu_reclaim]
+      7 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-slub_flushwq]
+      8 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-netns]
+     13 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-mm_percpu_wq]
+     14 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_tasks_kthread]
+     15 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_tasks_rude_kthread]
+     16 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_tasks_trace_kthread]
+     17 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [ksoftirqd/0]
+     18 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_preempt]
+     19 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_exp_par_gp_kthread_worker/0]
+     20 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [rcu_exp_gp_kthread_worker]
+     21 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [migration/0]
+     22 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [idle_inject/0]
+     23 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [cpuhp/0]
+     24 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [cpuhp/1]
+     25 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [idle_inject/1]
+     26 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [migration/1]
+     27 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [ksoftirqd/1]
+     30 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [cpuhp/2]
+     31 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [idle_inject/2]
+     32 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [migration/2]
+     33 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [ksoftirqd/2]
+     36 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [cpuhp/3]
+     37 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [idle_inject/3]
+     38 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [migration/3]
+     39 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [ksoftirqd/3]
+     46 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kdevtmpfs]
+     47 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-inet_frag_wq]
+     48 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kauditd]
+     49 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [khungtaskd]
+     50 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [oom_reaper]
+     53 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-writeback]
+     54 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kcompactd0]
+     55 be/5 root        0.00 B/s    0.00 B/s ?unavailable?  [ksmd]
+     56 be/7 root        0.00 B/s    0.00 B/s ?unavailable?  [khugepaged]
+     57 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-kintegrityd]
+     58 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-kblockd]
+     59 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-blkcg_punt_bio]
+     60 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [irq/9-acpi]
+     64 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-tpm_dev_wq]
+     65 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-ata_sff]
+     66 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-md]
+     67 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-md_bitmap]
+     68 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-edac-poller]
+     69 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-devfreq_wq]
+     70 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [watchdogd]
+     73 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kswapd0]
+     74 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [ecryptfs-kthread]
+     75 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-kthrotld]
+     77 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-acpi_thermal_pm]
+     78 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [scsi_eh_0]
+     79 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-scsi_tmf_0]
+     80 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [scsi_eh_1]
+     81 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-scsi_tmf_1]
+     84 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-mld]
+     86 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-ipv6_addrconf]
+     87 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u16:1-ipv6_addrconf]
+     97 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-kstrp]
+     99 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u21:0]
+    118 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-charger_manager]
+    172 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [scsi_eh_2]
+    173 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-scsi_tmf_2]
+    236 be/3 root        0.00 B/s    0.00 B/s ?unavailable?  [jbd2/sda2-8]
+    237 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-ext4-rsv-conversion]
+    489 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [irq/18-vmwgfx]
+    498 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-ttm]
+    528 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/R-cryptd]
+   1083 be/4 avahi       0.00 B/s    0.00 B/s ?unavailable?  avahi-daemon: running [ubuntu-2.local]
+   1084 be/4 messageb    0.00 B/s    0.00 B/s ?unavailable?  @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+   1088 be/4 gnome-re    0.00 B/s    0.00 B/s ?unavailable?  gnome-remote-desktop-daemon --system
+   1158 be/4 gnome-re    0.00 B/s    0.00 B/s ?unavailable?  gnome-remote-desktop-daemon --system [gmain]
+   1161 be/4 gnome-re    0.00 B/s    0.00 B/s ?unavailable?  gnome-remote-desktop-daemon --system [pool-spawner]
+   1171 be/4 gnome-re    0.00 B/s    0.00 B/s ?unavailable?  gnome-remote-desktop-daemon --system [gdbus]
+   1091 be/4 polkitd     0.00 B/s    0.00 B/s ?unavailable?  polkitd --no-debug --log-level=notice
+   1179 be/4 polkitd     0.00 B/s    0.00 B/s ?unavailable?  polkitd --no-debug --log-level=notice [gmain]
+   1180 be/4 polkitd     0.00 B/s    0.00 B/s ?unavailable?  polkitd --no-debug --log-level=notice [pool-spawner]
+   1185 be/4 polkitd     0.00 B/s    0.00 B/s ?unavailable?  polkitd --no-debug --log-level=notice [gdbus]
+   1106 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  accounts-daemon
+   1152 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  accounts-daemon [pool-spawner]
+   1153 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  accounts-daemon [gmain]
+   1159 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  accounts-daemon [gdbus]
+   1107 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  cron -f -P
+   1110 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  switcheroo-control
+   1138 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  switcheroo-control [pool-spawner]
+   1139 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  switcheroo-control [gmain]
+   1160 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  switcheroo-control [gdbus]
+   1115 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  udisksd
+   1148 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  udisksd [gmain]
+   1149 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  udisksd [pool-spawner]
+   1172 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  udisksd [gdbus]
+   1215 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  udisksd [probing-thread]
+   1225 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  udisksd [cleanup]
+   1126 be/4 avahi       0.00 B/s    0.00 B/s ?unavailable?  avahi-daemon: chroot helper
+   1163 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  NetworkManager --no-daemon
+   1216 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  NetworkManager --no-daemon [gmain]
+   1217 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  NetworkManager --no-daemon [pool-spawner]
+   1218 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  NetworkManager --no-daemon [gdbus]
+   1173 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  wpa_supplicant -u -s -O DIR=/run/wpa_supplicant GROUP=netdev
+   1195 be/4 syslog      0.00 B/s    0.00 B/s ?unavailable?  rsyslogd -n -iNONE
+   1226 be/4 syslog      0.00 B/s    0.00 B/s ?unavailable?  rsyslogd -n -iNONE [in:imuxsock]
+   1227 be/4 syslog      0.00 B/s    0.00 B/s ?unavailable?  rsyslogd -n -iNONE [in:imklog]
+   1228 be/4 syslog      0.00 B/s    0.00 B/s ?unavailable?  rsyslogd -n -iNONE [rs:main Q:Reg]
+   1213 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  ModemManager
+   1233 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  ModemManager [gmain]
+   1234 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  ModemManager [pool-spawner]
+   1237 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  ModemManager [gdbus]
+   1312 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  cupsd -l
+   1315 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+   1344 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal [gmain]
+   1330 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm3
+   1334 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm3 [pool-spawner]
+   1335 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm3 [gmain]
+   1336 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm3 [gdbus]
+   1333 be/4 cups-bro    0.00 B/s    0.00 B/s ?unavailable?  cups-browsed
+   1347 be/4 cups-bro    0.00 B/s    0.00 B/s ?unavailable?  cups-browsed [pool-spawner]
+   1348 be/4 cups-bro    0.00 B/s    0.00 B/s ?unavailable?  cups-browsed [gmain]
+   1349 be/4 cups-bro    0.00 B/s    0.00 B/s ?unavailable?  cups-browsed [gdbus]
+   1404 be/4 rtkit       0.00 B/s    0.00 B/s ?unavailable?  rtkit-daemon
+   1418 be/4 rtkit       0.00 B/s    0.00 B/s ?unavailable?  rtkit-daemon
+   1419 be/4 rtkit       0.00 B/s    0.00 B/s ?unavailable?  rtkit-daemon
+   1629 be/4 colord      0.00 B/s    0.00 B/s ?unavailable?  colord
+   1636 be/4 colord      0.00 B/s    0.00 B/s ?unavailable?  colord [pool-spawner]
+   1637 be/4 colord      0.00 B/s    0.00 B/s ?unavailable?  colord [gmain]
+   1639 be/4 colord      0.00 B/s    0.00 B/s ?unavailable?  colord [gdbus]
+   1671 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  upowerd
+   1710 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  upowerd [pool-spawner]
+   1711 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  upowerd [gmain]
+   1712 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  upowerd [gdbus]
+   1898 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  power-profiles-daemon
+   1909 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  power-profiles-daemon [pool-spawner]
+   1910 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  power-profiles-daemon [gmain]
+   1912 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  power-profiles-daemon [gdbus]
+   6845 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  fwupd
+   6868 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  fwupd [gmain]
+   6869 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  fwupd [pool-spawner]
+   6870 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  fwupd [gdbus]
+  34822 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/3:0H-kblockd]
+  48632 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u24:1-ttm]
+  73635 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u16:2]
+ 121063 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/1:2H-kblockd]
+ 209264 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u25:2]
+ 209426 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u22:1-ttm]
+ 210524 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/2:1H]
+ 219340 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/3:2H-kblockd]
+ 222003 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/1:0H-kblockd]
+ 227822 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/2:0H-kblockd]
+ 230706 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/0:1H-kblockd]
+ 231920 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  systemd --user
+ 231921 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  (sd-pam)
+ 231935 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire
+ 231960 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire [module-rt]
+ 231963 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire [data-loop.0]
+ 231936 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire -c filter-chain.conf
+ 231957 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire -c filter-chain.conf [module-rt]
+ 231940 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  wireplumber
+ 231959 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  wireplumber [module-rt]
+ 231961 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  wireplumber [gmain]
+ 231970 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  wireplumber [pool-spawner]
+ 231980 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  wireplumber [gdbus]
+ 231982 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  wireplumber [data-loop.0]
+ 231941 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire-pulse
+ 231962 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire-pulse [module-rt]
+ 231977 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  pipewire-pulse [data-loop.0]
+ 232155 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gcr-ssh-agent --base-dir /run/user/1000/gcr
+ 232167 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gcr-ssh-agent --base-dir /run/user/1000/gcr [pool-spawner]
+ 232169 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gcr-ssh-agent --base-dir /run/user/1000/gcr [gmain]
+ 236744 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u22:2]
+ 236783 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u25:0-ttm]
+ 236872 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/0:0H-kblockd]
+ 236976 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u23:1-ttm]
+ 252578 be/4 systemd-    0.00 B/s    0.00 B/s ?unavailable?  systemd-timesyncd
+ 252585 be/4 systemd-    0.00 B/s    0.00 B/s ?unavailable?  systemd-timesyncd [sd-resolve]
+ 253327 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u18:0-events_unbound]
+ 253332 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u19:2-writeback]
+ 257364 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/3:2-events]
+ 257367 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257438 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257439 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257440 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257441 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257442 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257443 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257557 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257607 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257675 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257912 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  snapd
+ 257398 be/4 systemd-    0.00 B/s    0.00 B/s ?unavailable?  systemd-resolved
+ 257414 be/0 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u24:0]
+ 257421 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  systemd-logind
+ 258263 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/u19:1-loop16]
+ 258436 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  [kworker/2:2-cgroup_destroy]
+ 258516 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+ 258917 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal
+ 258921 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal [pool-spawner]
+ 258922 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal [gmain]
+ 258925 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal [gdbus]
+ 258944 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal [fuse mainloop]
+ 258946 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal [fuse mainloop]
+ 258947 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-document-portal [fuse mainloop]
+ 258929 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-permission-store
+ 258934 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-permission-store [pool-spawner]
+ 258935 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-permission-store [gmain]
+ 258937 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  xdg-permission-store [gdbus]
+ 258945 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+ 259261 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm-session-worker [pam/gdm-password]
+ 259263 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm-session-worker [pam/gdm-password] [pool-spawner]
+ 259264 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm-session-worker [pam/gdm-password] [gmain]
+ 259265 be/4 root        0.00 B/s    0.00 B/s ?unavailable?  gdm-session-worker [pam/gdm-password] [gdbus]
+ 259447 rt/4 root        0.00 B/s    0.00 B/s ?unavailable?  [psimon]
+ 259473 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring
+ 259474 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring [pool-spawner]
+ 259475 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring [gmain]
+ 259476 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring [gdbus]
+ 259477 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring [timer]
+ 259486 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
+ 259487 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu [gmain]
+ 259488 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu [pool-spawner]
+ 259490 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu [gdbus]
+ 259491 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-session-binary --session=ubuntu
+ 259517 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-session-binary --session=ubuntu [pool-spawner]
+ 259518 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-session-binary --session=ubuntu [gmain]
+ 259519 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-session-binary --session=ubuntu [gdbus]
+ 259520 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-session-ctl --monitor
+ 259525 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gnome-session-ctl --monitor [gmain]
+ 259532 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gvfsd
+ 259535 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gvfsd [pool-spawner]
+ 259536 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gvfsd [gmain]
+ 259537 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gvfsd [gdbus]
+ 259540 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gvfsd-fuse /run/user/1000/gvfs -f
+ 259544 be/4 vboxuser    0.00 B/s    0.00 B/s ?unavailable?  gvfsd-fuse /run/user/1000/gvfs -f
+ 
+ 
+//cat /proc/264212/io
+rchar: 314577117
+wchar: 420256079
+syscr: 9610
+syscw: 13041
+read_bytes: 12288
+write_bytes: 420249600
+cancelled_write_bytes: 0
+теперь проанализируй
