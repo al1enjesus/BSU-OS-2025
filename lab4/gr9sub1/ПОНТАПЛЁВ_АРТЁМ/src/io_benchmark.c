@@ -368,8 +368,7 @@ int main(int argc, char *argv[]) {
     printf("I/O Benchmark\n");
     printf("=============\n");
     printf("Test file size: %zu MB\n", size_mb);
-    printf("Note: For clean results, run manually before:\n");
-    printf("  sync && sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n\n");
+    printf("Note: For a clean experiment, clear the page cache before running\n");
     benchmark_all_methods(size_mb);
     printf("\n");
     benchmark_buffer_sizes(size_mb);

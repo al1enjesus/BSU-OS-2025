@@ -29,6 +29,23 @@ int generate_random_data(char *buffer, size_t size) {
     return 0;
 }
 
+int generate_random_position(long max_position) {
+    long position;
+    int fd = open("/dev/urandom", O_RDONLY);
+    if (fd == -1) {
+        fprintf(stderr, "Ошибка открытия /dev/urandom\n");
+        return -1;
+    }
+    ssize_t bytes_read = read(fd, &position, sizeof(position));
+    close(fd);
+    if (bytes_read != sizeof(position)) {
+        fprintf(stderr, "Ошибка чтения из /dev/urandom\n");
+        return -1;
+    }
+    if (position < 0) position = -position;
+    return position % max_position;
+}
+
 int intensive_write(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
     int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) {
@@ -114,7 +131,12 @@ int mixed_workload(const char *filename, char *buffer, size_t buffer_size, size_
     }
     fsync(fd);
     for (int i = 0; i < OPERATIONS; i++) {
-        long position = (rand() % (file_size / buffer_size)) * buffer_size;
+        int position_result = generate_random_position(file_size / buffer_size);
+        if (position_result == -1) {
+            close(fd);
+            return -1;
+        }
+        long position = position_result * buffer_size;
         if (lseek(fd, position, SEEK_SET) == -1) {
             perror("Ошибка позиционирования");
             close(fd);
@@ -196,21 +218,6 @@ int main() {
         perror("Ошибка выделения памяти");
         return 1;
     }
-    unsigned int seed;
-    int urandom_fd = open("/dev/urandom", O_RDONLY);
-    if (urandom_fd == -1) {
-        fprintf(stderr, "Ошибка открытия /dev/urandom\n");
-        free(buffer);
-        return 1;
-    }
-    if (read(urandom_fd, &seed, sizeof(seed)) != sizeof(seed)) {
-        fprintf(stderr, "Ошибка чтения из /dev/urandom\n");
-        close(urandom_fd);
-        free(buffer);
-        return 1;
-    }
-    close(urandom_fd);
-    srand(seed);
     struct timeval start_time, end_time;
     printf("\nТЕСТ 1: ИНТЕНСИВНАЯ ЗАПИСЬ\n");
     gettimeofday(&start_time, NULL);
