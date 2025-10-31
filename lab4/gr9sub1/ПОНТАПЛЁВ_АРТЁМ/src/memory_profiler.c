@@ -8,6 +8,18 @@
 #include <dirent.h>
 #include <ctype.h>
 #include <sys/stat.h>
+#include <signal.h>
+
+#define MAX_SEGMENTS 1000
+#define MAX_PROCESSES 1000
+#define MAX_LIBRARIES 1000
+#define RSS_HISTORY_SIZE 100
+#define MAX_PIDS 10
+#define PAGE_SIZE 20
+#define MAX_CSV_FILENAME 256
+#define MAX_LINE_LENGTH 512
+#define MAX_PATH_LENGTH 256
+#define MAX_COMMAND_LENGTH 10
 
 typedef struct {
     unsigned long vm_size;
@@ -32,12 +44,12 @@ typedef struct {
     unsigned long start;
     unsigned long end;
     char perms[5];
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     unsigned long size;
 } MemorySegment;
 
 typedef struct {
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     unsigned long size;
     int sharing_count;
     unsigned long shared_size;
@@ -45,7 +57,7 @@ typedef struct {
 
 typedef struct {
     pid_t pid;
-    char name[256];
+    char name[MAX_PATH_LENGTH];
     unsigned long rss;
 } ProcessInfo;
 
@@ -57,8 +69,15 @@ typedef struct {
 #define COLOR_CYAN    "\033[36m"
 #define COLOR_RESET   "\033[0m"
 
+static volatile sig_atomic_t keep_running = 1;
+
+void handle_signal(int sig) {
+    (void)sig;
+    keep_running = 0;
+}
+
 int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     snprintf(path, sizeof(path), "/proc/%d/status", pid);
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -66,7 +85,7 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
         return -1;
     }
     memset(metrics, 0, sizeof(MemoryMetrics));
-    char line[256];
+    char line[MAX_LINE_LENGTH];
     while (fgets(line, sizeof(line), f)) {
         if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) continue;
         if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) continue;
@@ -80,7 +99,7 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
 }
 
 int read_pss(pid_t pid, MemoryMetrics *metrics) {
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     snprintf(path, sizeof(path), "/proc/%d/smaps_rollup", pid);
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -89,7 +108,7 @@ int read_pss(pid_t pid, MemoryMetrics *metrics) {
         if (!f) {
             return -1;
         }
-        char line[256];
+        char line[MAX_LINE_LENGTH];
         unsigned long total_pss = 0;
         unsigned long total_shared_clean = 0;
         unsigned long total_shared_dirty = 0;
@@ -121,7 +140,7 @@ int read_pss(pid_t pid, MemoryMetrics *metrics) {
         fclose(f);
         return 0;
     }
-    char line[256];
+    char line[MAX_LINE_LENGTH];
     while (fgets(line, sizeof(line), f)) {
         if (sscanf(line, "Pss: %lu kB", &metrics->pss) == 1) continue;
         if (sscanf(line, "Shared_Clean: %lu kB", &metrics->shared_clean) == 1) continue;
@@ -134,7 +153,7 @@ int read_pss(pid_t pid, MemoryMetrics *metrics) {
 }
 
 int read_page_faults(pid_t pid, PageFaults *faults) {
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     snprintf(path, sizeof(path), "/proc/%d/stat", pid);
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -171,7 +190,7 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
 }
 
 int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     snprintf(path, sizeof(path), "/proc/%d/maps", pid);
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -179,13 +198,14 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
         return -1;
     }
     *count = 0;
-    char line[512];
+    char line[MAX_LINE_LENGTH];
     while (fgets(line, sizeof(line), f)) {
         (*count)++;
     }
     rewind(f);
     *segments = malloc(*count * sizeof(MemorySegment));
     if (!*segments) {
+        perror("Failed to allocate memory for segments");
         fclose(f);
         return -1;
     }
@@ -213,7 +233,7 @@ void print_size(unsigned long kb) {
 }
 
 int get_process_name(pid_t pid, char *name, size_t len) {
-    char path[256];
+    char path[MAX_PATH_LENGTH];
     snprintf(path, sizeof(path), "/proc/%d/comm", pid);
     FILE *f = fopen(path, "r");
     if (!f) {
@@ -262,6 +282,11 @@ int analyze_libraries(pid_t pid, LibraryInfo **libraries, int *count) {
     }
     *count = 0;
     *libraries = malloc(seg_count * sizeof(LibraryInfo));
+    if (!*libraries) {
+        perror("Failed to allocate memory for libraries");
+        free(segments);
+        return -1;
+    }
     for (int i = 0; i < seg_count; i++) {
         MemorySegment *seg = &segments[i];
         if (strstr(seg->path, ".so")) {
@@ -296,11 +321,11 @@ int analyze_libraries(pid_t pid, LibraryInfo **libraries, int *count) {
             if (isdigit(entry->d_name[0])) {
                 pid_t other_pid = atoi(entry->d_name);
                 if (other_pid == pid) continue;
-                char maps_path[256];
+                char maps_path[MAX_PATH_LENGTH];
                 snprintf(maps_path, sizeof(maps_path), "/proc/%d/maps", other_pid);
                 FILE *f = fopen(maps_path, "r");
                 if (f) {
-                    char line[512];
+                    char line[MAX_LINE_LENGTH];
                     while (fgets(line, sizeof(line), f)) {
                         if (strstr(line, lib->path)) {
                             sharing_count++;
@@ -329,7 +354,7 @@ int find_pid_by_name(const char *name, pid_t *pids, int max_pids) {
     while ((entry = readdir(dir)) != NULL && count < max_pids) {
         if (isdigit(entry->d_name[0])) {
             pid_t pid = atoi(entry->d_name);
-            char proc_name[256];
+            char proc_name[MAX_PATH_LENGTH];
             if (get_process_name(pid, proc_name, sizeof(proc_name)) == 0) {
                 if (strstr(proc_name, name)) {
                     pids[count++] = pid;
@@ -356,6 +381,7 @@ int get_all_processes(ProcessInfo **processes, int *count) {
     rewinddir(dir);
     *processes = malloc(*count * sizeof(ProcessInfo));
     if (!*processes) {
+        perror("Failed to allocate memory for processes");
         closedir(dir);
         return -1;
     }
@@ -440,7 +466,7 @@ void interactive_memory_map(pid_t pid) {
         return;
     }
     int current_index = 0;
-    int page_size = 20;
+    int page_size = PAGE_SIZE;
     while (1) {
         printf("\033[2J\033[H");
         printf("Interactive Memory Map - PID %d (%d segments total)\n", pid, count);
@@ -455,7 +481,7 @@ void interactive_memory_map(pid_t pid) {
             printf("  %s%s\n", seg->path[0] ? seg->path : "(anonymous)", COLOR_RESET);
         }
         printf("\nCommands: n-next, p-previous, d-detail, q-quit, g-goto: ");
-        char command[10];
+        char command[MAX_COMMAND_LENGTH];
         if (scanf("%s", command) != 1) break;
         if (strcmp(command, "n") == 0 || strcmp(command, "next") == 0) {
             if (current_index + page_size < count) {
@@ -487,7 +513,7 @@ void interactive_memory_map(pid_t pid) {
 }
 
 void print_process_info(pid_t pid) {
-    char proc_name[256];
+    char proc_name[MAX_PATH_LENGTH];
     get_process_name(pid, proc_name, sizeof(proc_name));
     printf("Process: %s (PID %d)\n", proc_name, pid);
     printf("=====================================\n\n");
@@ -603,20 +629,36 @@ void print_library_analysis(pid_t pid) {
 }
 
 void watch_process(pid_t pid, int interval) {
+    signal(SIGINT, handle_signal);
+    signal(SIGTERM, handle_signal);
     printf("Monitoring PID %d (update every %d sec, Ctrl+C to stop)\n\n", pid, interval);
     PageFaults prev_faults = {0, 0};
     MemoryMetrics prev_metrics = {0};
     int first_iteration = 1;
     int iteration_count = 0;
-    unsigned long rss_history[100] = {0};
+    unsigned long rss_history[RSS_HISTORY_SIZE] = {0};
     FILE *csv_file = NULL;
-    char csv_filename[256];
+    char csv_filename[MAX_CSV_FILENAME];
     snprintf(csv_filename, sizeof(csv_filename), "memory_pid%d.csv", pid);
-    csv_file = fopen(csv_filename, "w");
-    if (csv_file) {
-        fprintf(csv_file, "timestamp,VSZ,RSS,PSS,minor_faults,major_faults\n");
+    if (access(".", W_OK) != 0) {
+        printf("Warning: No write permission in current directory. CSV logging disabled.\n");
+        csv_file = NULL;
+    } else {
+        csv_file = fopen(csv_filename, "w");
+        if (csv_file) {
+            if (fprintf(csv_file, "timestamp,VSZ,RSS,PSS,minor_faults,major_faults\n") < 0) {
+                fclose(csv_file);
+                csv_file = NULL;
+                printf("Warning: Cannot write to CSV file %s (check permissions)\n", csv_filename);
+            } else {
+                fflush(csv_file);
+                printf("Logging data to: %s\n", csv_filename);
+            }
+        } else {
+            printf("Warning: Cannot create CSV file %s (check permissions)\n", csv_filename);
+        }
     }
-    while (1) {
+    while (keep_running) {
         if (iteration_count % 20 == 0) {
             printf("\033[2J\033[H");
         }
@@ -631,16 +673,21 @@ void watch_process(pid_t pid, int interval) {
         }
         read_pss(pid, &metrics);
         read_page_faults(pid, &faults);
-        if (iteration_count < 100) {
+        if (iteration_count < RSS_HISTORY_SIZE) {
             rss_history[iteration_count] = metrics.vm_rss;
         }
         if (csv_file) {
-            fprintf(csv_file, "%ld,%lu,%lu,%lu,%lu,%lu\n", 
+            if (fprintf(csv_file, "%ld,%lu,%lu,%lu,%lu,%lu\n", 
                     now, metrics.vm_size, metrics.vm_rss, metrics.pss,
-                    faults.minor_faults, faults.major_faults);
-            fflush(csv_file);
+                    faults.minor_faults, faults.major_faults) < 0) {
+                fclose(csv_file);
+                csv_file = NULL;
+                printf("Warning: CSV file write error, disabling logging\n");
+            } else {
+                fflush(csv_file);
+            }
         }
-        char proc_name[256];
+        char proc_name[MAX_PATH_LENGTH];
         get_process_name(pid, proc_name, sizeof(proc_name));
         printf("Process: %s (PID %d)\n\n", proc_name, pid);
         printf("VSZ:  "); print_size(metrics.vm_size);
@@ -719,7 +766,9 @@ void watch_process(pid_t pid, int interval) {
             }
         }
         if (csv_file) {
-            printf("\nData saved to: %s\n", csv_filename);
+            printf("Data saved to: %s\n", csv_filename);
+        } else {
+            printf("CSV logging: disabled (no write permission)\n");
         }
         prev_metrics = metrics;
         prev_faults = faults;
@@ -727,8 +776,10 @@ void watch_process(pid_t pid, int interval) {
         iteration_count++;
         sleep(interval);
     }
+    printf("\nMonitoring stopped by user.\n");
     if (csv_file) {
         fclose(csv_file);
+        printf("Final data saved to: %s\n", csv_filename);
     }
 }
 
@@ -736,7 +787,7 @@ void compare_processes(pid_t pid1, pid_t pid2) {
     printf("Comparing processes: %d vs %d\n", pid1, pid2);
     printf("=====================================\n\n");
     MemoryMetrics m1, m2;
-    char name1[256], name2[256];
+    char name1[MAX_PATH_LENGTH], name2[MAX_PATH_LENGTH];
     get_process_name(pid1, name1, sizeof(name1));
     get_process_name(pid2, name2, sizeof(name2));
     if (read_memory_metrics(pid1, &m1) != 0) {
@@ -829,8 +880,8 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(argv[1], "--interactive") == 0) {
         interactive_mode = 1;
     } else {
-        pid_t pids[10];
-        int found = find_pid_by_name(argv[1], pids, 10);
+        pid_t pids[MAX_PIDS];
+        int found = find_pid_by_name(argv[1], pids, MAX_PIDS);
         if (found <= 0) {
             fprintf(stderr, "Error: No processes found with name '%s'\n", argv[1]);
             return 1;
@@ -841,7 +892,7 @@ int main(int argc, char *argv[]) {
         } else {
             printf("Found %d processes with name '%s':\n", found, argv[1]);
             for (int i = 0; i < found; i++) {
-                char name[256];
+                char name[MAX_PATH_LENGTH];
                 get_process_name(pids[i], name, sizeof(name));
                 printf("  %d. PID %d: %s\n", i + 1, pids[i], name);
             }
@@ -883,7 +934,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (!interactive_mode && pid != 0) {
-        char path[256];
+        char path[MAX_PATH_LENGTH];
         snprintf(path, sizeof(path), "/proc/%d", pid);
         if (access(path, F_OK) != 0) {
             fprintf(stderr, "Error: Process %d does not exist or not accessible.\n", pid);

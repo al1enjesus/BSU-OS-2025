@@ -11,6 +11,10 @@
 #include <errno.h>
 
 #define DEFAULT_SIZE_MB 100
+#define FILE_PERMS 0644
+#define READ_BUFFER_SIZE 65536
+#define OPTIMAL_BUFFER_SIZE (64 * 1024)
+#define DIRECT_BUFFER_SIZE (64 * 1024)
 
 #ifndef O_DIRECT
 #define O_DIRECT 040000
@@ -55,7 +59,7 @@ double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
 
 double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== write() with buffer=%zu bytes ===\n", buffer_size);
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, FILE_PERMS);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -87,7 +91,7 @@ double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
 
 double benchmark_write_sync(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== write() with O_SYNC (buffer=%zu bytes) ===\n", buffer_size);
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_SYNC, 0644);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_SYNC, FILE_PERMS);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -120,7 +124,7 @@ double benchmark_write_sync(const char *filename, size_t size, size_t buffer_siz
 
 double benchmark_mmap(const char *filename, size_t size) {
     printf("\n=== mmap() ===\n");
-    int fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0644);
+    int fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, FILE_PERMS);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -153,7 +157,7 @@ double benchmark_mmap(const char *filename, size_t size) {
 double benchmark_write_direct(const char *filename, size_t size, size_t buffer_size) {
     printf("\n=== write() with O_DIRECT (buffer=%zu bytes) ===\n", buffer_size);
 #ifdef O_DIRECT
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, 0644);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, FILE_PERMS);
     if (fd == -1) {
         perror("open with O_DIRECT failed");
         printf("Note: O_DIRECT may require root privileges or specific filesystem\n");
@@ -188,7 +192,7 @@ double benchmark_write_direct(const char *filename, size_t size, size_t buffer_s
     printf("Time: %.3f seconds\n", elapsed);
     printf("Throughput: %.2f MB/s\n", (size / (1024.0 * 1024.0)) / elapsed);
     printf("Note: O_DIRECT bypasses page cache (direct to disk)\n");
-    printf("Requires aligned memory and buffer size\n");
+    printf("      Requires aligned memory and buffer size\n");
     free(buffer);
     close(fd);
     return elapsed;
@@ -221,23 +225,21 @@ void benchmark_all_methods(size_t file_size_mb) {
     printf("Benchmark: I/O Methods Comparison\n");
     printf("========================================\n");
     size_t file_size = file_size_mb * 1024 * 1024;
-    size_t optimal_buffer = 64 * 1024;
     printf("\nFile size: %zu MB\n", file_size_mb);
-    printf("Buffer size: %zu KB (for fwrite/write)\n", optimal_buffer / 1024);
-    benchmark_fwrite("test_fwrite.bin", file_size, optimal_buffer);
+    printf("Buffer size: %u KB (for fwrite/write)\n", (unsigned int)(OPTIMAL_BUFFER_SIZE / 1024));
+    benchmark_fwrite("test_fwrite.bin", file_size, OPTIMAL_BUFFER_SIZE);
     unlink("test_fwrite.bin");
     sleep(1);
-    benchmark_write("test_write.bin", file_size, optimal_buffer);
+    benchmark_write("test_write.bin", file_size, OPTIMAL_BUFFER_SIZE);
     unlink("test_write.bin");
     sleep(1);
-    benchmark_write_sync("test_write_sync.bin", file_size, optimal_buffer);
+    benchmark_write_sync("test_write_sync.bin", file_size, OPTIMAL_BUFFER_SIZE);
     unlink("test_write_sync.bin");
     sleep(1);
     benchmark_mmap("test_mmap.bin", file_size);
     unlink("test_mmap.bin");
     sleep(1);
-    size_t direct_buffer = 64 * 1024;
-    benchmark_write_direct("test_direct.bin", file_size, direct_buffer);
+    benchmark_write_direct("test_direct.bin", file_size, DIRECT_BUFFER_SIZE);
     unlink("test_direct.bin");
     printf("\n=== Summary ===\n");
     printf("Fastest method: (compare results above)\n");
@@ -270,7 +272,7 @@ void benchmark_read_methods(const char *filename) {
         perror("fopen failed");
         return;
     }
-    char *buffer = malloc(65536);
+    char *buffer = malloc(READ_BUFFER_SIZE);
     if (!buffer) {
         perror("malloc failed");
         fclose(f);
@@ -279,7 +281,7 @@ void benchmark_read_methods(const char *filename) {
     double start = get_time();
     size_t total_read = 0;
     while (total_read < file_size) {
-        size_t to_read = (file_size - total_read < 65536) ? (file_size - total_read) : 65536;
+        size_t to_read = (file_size - total_read < READ_BUFFER_SIZE) ? (file_size - total_read) : READ_BUFFER_SIZE;
         size_t bytes_read = fread(buffer, 1, to_read, f);
         if (bytes_read == 0) {
             if (feof(f)) break;
@@ -299,7 +301,7 @@ void benchmark_read_methods(const char *filename) {
         perror("open failed");
         return;
     }
-    buffer = malloc(65536);
+    buffer = malloc(READ_BUFFER_SIZE);
     if (!buffer) {
         perror("malloc failed");
         close(fd);
@@ -308,7 +310,7 @@ void benchmark_read_methods(const char *filename) {
     start = get_time();
     total_read = 0;
     while (total_read < file_size) {
-        size_t to_read = (file_size - total_read < 65536) ? (file_size - total_read) : 65536;
+        size_t to_read = (file_size - total_read < READ_BUFFER_SIZE) ? (file_size - total_read) : READ_BUFFER_SIZE;
         ssize_t bytes_read = read(fd, buffer, to_read);
         if (bytes_read <= 0) {
             if (bytes_read == 0) break;
@@ -347,11 +349,6 @@ void benchmark_read_methods(const char *filename) {
     close(fd);
 }
 
-void safe_system(const char *command) {
-    int result = system(command);
-    (void)result;
-}
-
 int main(int argc, char *argv[]) {
     size_t size_mb = DEFAULT_SIZE_MB;
     for (int i = 1; i < argc; i++) {
@@ -377,7 +374,7 @@ int main(int argc, char *argv[]) {
     printf("\n");
     benchmark_buffer_sizes(size_mb);
     printf("\nCreating file for read benchmarks\n");
-    benchmark_write("test_read.bin", size_mb * 1024 * 1024, 65536);
+    benchmark_write("test_read.bin", size_mb * 1024 * 1024, READ_BUFFER_SIZE);
     printf("\n");
     benchmark_read_methods("test_read.bin");
     unlink("test_read.bin");

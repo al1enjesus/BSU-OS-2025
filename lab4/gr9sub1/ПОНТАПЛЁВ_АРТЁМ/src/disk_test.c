@@ -14,16 +14,31 @@
 #define DURATION_SECONDS 20
 
 void generate_random_data(char *buffer, size_t size) {
-    for (size_t i = 0; i < size; i++) {
-        buffer[i] = rand() % 256;
+    int fd = open("/dev/urandom", O_RDONLY);
+    if (fd == -1) {
+        srand(time(NULL));
+        for (size_t i = 0; i < size; i++) {
+            buffer[i] = rand() % 256;
+        }
+    } else {
+        ssize_t bytes_read = read(fd, buffer, size);
+        if (bytes_read != (ssize_t)size) {
+            close(fd);
+            srand(time(NULL));
+            for (size_t i = 0; i < size; i++) {
+                buffer[i] = rand() % 256;
+            }
+            return;
+        }
+        close(fd);
     }
 }
 
-void intensive_write(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
+int intensive_write(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
     int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) {
         perror("Ошибка открытия файла для записи");
-        exit(1);
+        return -1;
     }
     size_t total_written = 0;
     size_t blocks = file_size / buffer_size;
@@ -34,7 +49,8 @@ void intensive_write(const char *filename, char *buffer, size_t buffer_size, siz
         ssize_t written = write(fd, buffer, buffer_size);
         if ((size_t)written != buffer_size) {
             printf("Ошибка записи: записано %zd из %zu байт\n", written, buffer_size);
-            break;
+            close(fd);
+            return -1;
         }
         total_written += written;
         sync_counter++;
@@ -49,13 +65,14 @@ void intensive_write(const char *filename, char *buffer, size_t buffer_size, siz
     fsync(fd);
     close(fd);
     printf("\nЗапись завершена: %zu MB\n", total_written / (1024 * 1024));
+    return 0;
 }
 
-void intensive_read(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
+int intensive_read(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
     int fd = open(filename, O_RDONLY);
     if (fd == -1) {
         perror("Ошибка открытия файла для чтения");
-        exit(1);
+        return -1;
     }
     size_t total_read = 0;
     size_t blocks = file_size / buffer_size;
@@ -64,7 +81,8 @@ void intensive_read(const char *filename, char *buffer, size_t buffer_size, size
         ssize_t read_bytes = read(fd, buffer, buffer_size);
         if ((size_t)read_bytes != buffer_size) {
             printf("Ошибка чтения: прочитано %zd из %zu байт\n", read_bytes, buffer_size);
-            break;
+            close(fd);
+            return -1;
         }
         total_read += read_bytes;
         if (i % 100 == 0) {
@@ -74,13 +92,14 @@ void intensive_read(const char *filename, char *buffer, size_t buffer_size, size
     }
     close(fd);
     printf("\nЧтение завершено: %zu MB\n", total_read / (1024 * 1024));
+    return 0;
 }
 
-void mixed_workload(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
+int mixed_workload(const char *filename, char *buffer, size_t buffer_size, size_t file_size) {
     int fd = open(filename, O_RDWR | O_CREAT, 0644);
     if (fd == -1) {
         perror("Ошибка открытия файла для смешанной нагрузки");
-        exit(1);
+        return -1;
     }
     printf("Смешанная нагрузка %s...\n", filename);
     for (size_t i = 0; i < file_size / buffer_size; i++) {
@@ -88,7 +107,8 @@ void mixed_workload(const char *filename, char *buffer, size_t buffer_size, size
         ssize_t result = write(fd, buffer, buffer_size);
         if (result == -1) {
             perror("Ошибка записи при заполнении");
-            break;
+            close(fd);
+            return -1;
         }
     }
     fsync(fd);
@@ -96,7 +116,8 @@ void mixed_workload(const char *filename, char *buffer, size_t buffer_size, size
         long position = (rand() % (file_size / buffer_size)) * buffer_size;
         if (lseek(fd, position, SEEK_SET) == -1) {
             perror("Ошибка позиционирования");
-            break;
+            close(fd);
+            return -1;
         }
         if (i % 3 == 0) {
             ssize_t result = read(fd, buffer, buffer_size);
@@ -119,9 +140,10 @@ void mixed_workload(const char *filename, char *buffer, size_t buffer_size, size
     fsync(fd);
     close(fd);
     printf("\nСмешанная нагрузка завершена: %d операций\n", OPERATIONS);
+    return 0;
 }
 
-void create_many_small_files(char *buffer, size_t buffer_size, int num_files, size_t file_size) {
+int create_many_small_files(char *buffer, size_t buffer_size, int num_files, size_t file_size) {
     printf("Создание %d маленьких файлов по %zu KB...\n", num_files, file_size / 1024);
     for (int i = 0; i < num_files; i++) {
         char filename[64];
@@ -133,7 +155,8 @@ void create_many_small_files(char *buffer, size_t buffer_size, int num_files, si
                 ssize_t result = write(fd, buffer, buffer_size);
                 if (result == -1) {
                     perror("Ошибка записи маленького файла");
-                    break;
+                    close(fd);
+                    return -1;
                 }
             }
             fsync(fd);
@@ -146,6 +169,7 @@ void create_many_small_files(char *buffer, size_t buffer_size, int num_files, si
         }
     }
     printf("\nСоздание маленьких файлов завершено\n");
+    return 0;
 }
 
 int main() {
@@ -165,32 +189,55 @@ int main() {
         perror("Ошибка выделения памяти");
         return 1;
     }
-    srand(time(NULL));
+    unsigned int seed;
+    int urandom_fd = open("/dev/urandom", O_RDONLY);
+    if (urandom_fd != -1) {
+        if (read(urandom_fd, &seed, sizeof(seed)) == sizeof(seed)) {
+            srand(seed);
+        } else {
+            srand(time(NULL));
+        }
+        close(urandom_fd);
+    } else {
+        srand(time(NULL));
+    }
     struct timeval start_time, end_time;
     printf("\nТЕСТ 1: ИНТЕНСИВНАЯ ЗАПИСЬ\n");
     gettimeofday(&start_time, NULL);
-    intensive_write(main_file, buffer, BUFFER_SIZE, file_size);
+    if (intensive_write(main_file, buffer, BUFFER_SIZE, file_size) == -1) {
+        free(buffer);
+        return 1;
+    }
     gettimeofday(&end_time, NULL);
     double write_time = (end_time.tv_sec - start_time.tv_sec) + 
                        (end_time.tv_usec - start_time.tv_usec) / 1000000.0;
     printf("Скорость записи: %.2f MB/s\n", FILE_SIZE_MB / write_time);
     printf("\nТЕСТ 2: ИНТЕНСИВНОЕ ЧТЕНИЕ\n");
     gettimeofday(&start_time, NULL);
-    intensive_read(main_file, buffer, BUFFER_SIZE, file_size);
+    if (intensive_read(main_file, buffer, BUFFER_SIZE, file_size) == -1) {
+        free(buffer);
+        return 1;
+    }
     gettimeofday(&end_time, NULL);
     double read_time = (end_time.tv_sec - start_time.tv_sec) + 
                       (end_time.tv_usec - start_time.tv_usec) / 1000000.0;
     printf("Скорость чтения: %.2f MB/s\n", FILE_SIZE_MB / read_time);
     printf("\nТЕСТ 3: МНОЖЕСТВО МАЛЕНЬКИХ ФАЙЛОВ\n");
     gettimeofday(&start_time, NULL);
-    create_many_small_files(buffer, BUFFER_SIZE, 200, 1024 * 1024);
+    if (create_many_small_files(buffer, BUFFER_SIZE, 200, 1024 * 1024) == -1) {
+        free(buffer);
+        return 1;
+    }
     gettimeofday(&end_time, NULL);
     double small_files_time = (end_time.tv_sec - start_time.tv_sec) + 
                              (end_time.tv_usec - start_time.tv_usec) / 1000000.0;
     printf("Файлов в секунду: %.2f\n", 200 / small_files_time);
     printf("\nТЕСТ 4: СМЕШАННАЯ НАГРУЗКА\n");
     gettimeofday(&start_time, NULL);
-    mixed_workload("mixed_workload.dat", buffer, BUFFER_SIZE, 150 * 1024 * 1024);
+    if (mixed_workload("mixed_workload.dat", buffer, BUFFER_SIZE, 150 * 1024 * 1024) == -1) {
+        free(buffer);
+        return 1;
+    }
     gettimeofday(&end_time, NULL);
     double mixed_time = (end_time.tv_sec - start_time.tv_sec) + 
                        (end_time.tv_usec - start_time.tv_usec) / 1000000.0;
@@ -204,18 +251,23 @@ int main() {
         double elapsed = (current_time.tv_sec - start_time.tv_sec) + 
                         (current_time.tv_usec - start_time.tv_usec) / 1000000.0;
         if (elapsed >= DURATION_SECONDS) break;
+        int result = 0;
         switch (iterations % 3) {
             case 0:
-                intensive_write("temp_stress.dat", buffer, BUFFER_SIZE, 50 * 1024 * 1024);
+                result = intensive_write("temp_stress.dat", buffer, BUFFER_SIZE, 50 * 1024 * 1024);
                 remove("temp_stress.dat");
                 break;
             case 1:
-                create_many_small_files(buffer, 8192, 50, 512 * 1024);
+                result = create_many_small_files(buffer, 8192, 50, 512 * 1024);
                 break;
             case 2:
-                mixed_workload("temp_mixed.dat", buffer, BUFFER_SIZE, 80 * 1024 * 1024);
+                result = mixed_workload("temp_mixed.dat", buffer, BUFFER_SIZE, 80 * 1024 * 1024);
                 remove("temp_mixed.dat");
                 break;
+        }
+        if (result == -1) {
+            printf("\nОшибка выполнения теста\n");
+            break;
         }
         iterations++;
         printf("Итерация длительной нагрузки: %d\r", iterations);
