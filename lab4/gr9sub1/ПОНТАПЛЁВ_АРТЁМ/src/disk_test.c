@@ -204,11 +204,7 @@ int create_many_small_files(char *buffer, size_t buffer_size, int num_files, siz
 int main() {
     printf("=== ИНТЕНСИВНОЕ ТЕСТИРОВАНИЕ ДИСКА ДЛЯ МОНИТОРИНГА ===\n");
     printf("PID: %d\n", getpid());
-    printf("Запустите мониторинг в отдельных терминалах:\n");
-    printf("1. iostat -x 1 10\n");
-    printf("2. pidstat -d 1 10\n");
-    printf("3. sudo iotop -b -n 10\n");
-    printf("4. cat /proc/%d/io\n", getpid());
+    printf("Запустите мониторинг в отдельных терминалах\n");
     printf("\nНажмите Enter для начала тестирования");
     getchar();
     const char *main_file = "disk_stress_test.dat";
