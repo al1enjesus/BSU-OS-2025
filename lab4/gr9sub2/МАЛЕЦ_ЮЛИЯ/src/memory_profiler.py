@@ -2,9 +2,20 @@
 import os
 import mmap
 import time
+import sys
 
-FILENAME = "testfile.bin"
+FILENAME = os.getenv("TESTFILE", "testfile.bin")
+if len(sys.argv) > 1:
+    FILENAME = sys.argv[1]
+
 FILESIZE = 100 * 1024 * 1024
+
+def create_test_file():
+    if not os.path.exists(FILENAME):
+        print(f"Создание файла {FILENAME} размером {FILESIZE // (1024 * 1024)} MB...")
+        with open(FILENAME, "wb") as f:
+            f.write(b"A" * FILESIZE)
+        print("Файл создан.\n")
 
 def read_with_syscalls():
     """Чтение файла через open() + read()"""
@@ -19,12 +30,11 @@ def read_with_syscalls():
 
 def read_with_mmap():
     """Чтение файла через mmap()"""
+    total = 0
     with open(FILENAME, "rb") as f:
-        mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
-        total = sum(mm[i] for i in range(len(mm)))
-        mm.close()
+        with mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as mm:
+            total = sum(mm[i] for i in range(len(mm)))
     return total
-
 
 def benchmark(func, name):
     start = time.time()
@@ -40,4 +50,5 @@ def main():
     benchmark(read_with_mmap, "mmap()")
 
 if __name__ == "__main__":
+    create_test_file()
     main()

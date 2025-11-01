@@ -34,17 +34,17 @@ def main():
     print_memory_info("До выделения памяти")
 
     stack_var = bytearray(1024)
-
     heap_var = bytearray(1024 * 1024)
 
     mmap_var = mmap.mmap(-1, 1024 * 1024, access=mmap.ACCESS_WRITE)
-
     heap_var[0:4] = b"HEAP"
     mmap_var[0:4] = b"MMAP"
 
     print_memory_info("После выделения памяти")
 
     input("\nНажмите Enter для выхода...")
+
+    mmap_var.close()
 
 if __name__ == "__main__":
     main()
