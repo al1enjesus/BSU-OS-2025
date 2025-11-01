@@ -1,0 +1,47 @@
+
+===============================================
+Memory Profiler - bash (PID: 3878)
+===============================================
+
+Основные метрики памяти:
+-------------------------------
+Метрика          | Значение    | Изменение
+-------------------------------
+VSZ              | 11.1 MB   |       -     
+RSS              | 5.0 MB   |       -     
+PSS              | 2.6 MB   |       -     
+USS              | 2.5 MB   |       -     
+-------------------------------
+
+Shared/Private память:
+- Shared:  2.7 MB
+- Private: 2.5 MB
+- Ratio:   51.4% shared
+
+Page Faults:
+- Minor: 2712
+- Major: 4
+
+Распределение памяти по типам:
+-------------------------------
+Тип             | Размер      
+-------------------------------
+Heap            |     1584 KB
+Stack           |      132 KB
+Libraries       |     8124 KB
+Anonymous       |      152 KB
+-------------------------------
+
+Примеры регионов памяти (первые 10):
+Адрес           Размер   Права Тип       Путь
+------------------------------------------------
+5eba64d58000-5eba64d88000    192 KB r--p Executable /usr/bin/bash
+5eba64d88000-5eba64e77000    956 KB r-xp Executable /usr/bin/bash
+5eba64e77000-5eba64eac000    212 KB r--p Executable /usr/bin/bash
+5eba64eac000-5eba64eb0000     16 KB r--p Executable /usr/bin/bash
+5eba64eb0000-5eba64eb9000     36 KB rw-p Anonymous  /usr/bin/bash
+5eba64eb9000-5eba64ec4000     44 KB rw-p Anonymous  
+5eba776c6000-5eba77852000   1584 KB rw-p Heap       [heap]
+711ab9400000-711ab9975000   5588 KB r--p Library    /usr/lib/locale/locale-archive
+711ab9a00000-711ab9a28000    160 KB r--p Library    /usr/lib/x86_64-linux-gnu/libc.so.6
+711ab9a28000-711ab9bb0000   1568 KB r-xp Library    /usr/lib/x86_64-linux-gnu/libc.so.6
