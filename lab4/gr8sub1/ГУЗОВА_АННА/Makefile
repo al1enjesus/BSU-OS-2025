@@ -12,9 +12,6 @@ memory_info: src/memory_info.c
 	
 mmap_vs_read: src/mmap_vs_read.c
 	$(CC) $(CFLAGS) $< -o $@
-	
-page_faults_demo: page_faults_demo.c
-	$(CC) $(CFLAGS) $< -o $@
 
 io_benchmark: src/io_benchmark.c
 	$(CC) $(CFLAGS) $< -o $@
@@ -47,5 +44,3 @@ run_io_bench: io_benchmark
 run_mmap_vs_read: mmap_vs_read
 	./mmap_vs_read testfile.bin --create-file 100 && ./mmap_vs_read testfile.bin
 
-run_page_faults: page_faults_demo
-	./page_faults_demo
