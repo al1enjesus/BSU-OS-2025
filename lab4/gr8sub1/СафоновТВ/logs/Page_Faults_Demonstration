@@ -1,0 +1,150 @@
+Page Faults Demonstration
+==========================
+Page size: 4096 bytes
+Initial page faults: minor=81, major=0
+
+=== Demo 1: Allocation without access ===
+Allocated 104857600 bytes (100.0 MB)
+After malloc (no access):
+  Minor faults: 84 (+3)
+  Major faults: 0 (+0)
+
+=== Demo 2: Sequential access ===
+Allocated 104857600 bytes (100.0 MB)
+After sequential write (one byte per page):
+  Minor faults: 25684 (+25599)
+  Major faults: 0 (+0)
+Expected page faults: 25600 (size / PAGE_SIZE)
+
+=== Demo 3: Full memory write ===
+Allocated 52428800 bytes (50.0 MB)
+After memset:
+  Minor faults: 25685 (+0)
+  Major faults: 0 (+0)
+
+=== Demo 4: Random access ===
+Allocated 104857600 bytes (100.0 MB)
+After random writes:
+  Minor faults: 33937 (+8250)
+  Major faults: 0 (+0)
+Random accesses performed: 10000
+Pages potentially touched: 10000
+Note: Some pages may have been accessed multiple times.
+
+=== Demo 5: Re-reading memory ===
+First pass: writing memory...
+After first write:
+  Minor faults: 46738 (+12800)
+  Major faults: 0 (+0)
+
+Second pass: reading memory...
+After second read:
+  Minor faults: 46738 (+0)
+  Major faults: 0 (+0)
+Checksum: 3565158400 (to prevent optimization)
+Note: No new page faults expected (pages already in memory).
+
+=== Demo 6: calloc vs malloc ===
+Method 1: malloc + memset
+After malloc + memset:
+  Minor faults: 46739 (+1)
+  Major faults: 0 (+0)
+
+Method 2: calloc
+After calloc + read:
+  Minor faults: 59539 (+12800)
+  Major faults: 0 (+0)
+After calloc + write:
+  Minor faults: 72338 (+12799)
+  Major faults: 0 (+0)
+
+=== Summary ===
+Total page faults: minor=72338, major=0
+
+# Проверка через системные утилиты
+
+Page Faults Demonstration
+==========================
+Page size: 4096 bytes
+Initial page faults: minor=69, major=0
+
+=== Demo 1: Allocation without access ===
+Allocated 104857600 bytes (100.0 MB)
+After malloc (no access):
+  Minor faults: 72 (+3)
+  Major faults: 0 (+0)
+
+=== Demo 2: Sequential access ===
+Allocated 104857600 bytes (100.0 MB)
+After sequential write (one byte per page):
+  Minor faults: 25672 (+25599)
+  Major faults: 0 (+0)
+Expected page faults: 25600 (size / PAGE_SIZE)
+
+=== Demo 3: Full memory write ===
+Allocated 52428800 bytes (50.0 MB)
+After memset:
+  Minor faults: 25673 (+0)
+  Major faults: 0 (+0)
+
+=== Demo 4: Random access ===
+Allocated 104857600 bytes (100.0 MB)
+After random writes:
+  Minor faults: 33920 (+8245)
+  Major faults: 0 (+0)
+Random accesses performed: 10000
+Pages potentially touched: 10000
+Note: Some pages may have been accessed multiple times.
+
+=== Demo 5: Re-reading memory ===
+First pass: writing memory...
+After first write:
+  Minor faults: 46721 (+12800)
+  Major faults: 0 (+0)
+
+Second pass: reading memory...
+After second read:
+  Minor faults: 46721 (+0)
+  Major faults: 0 (+0)
+Checksum: 3565158400 (to prevent optimization)
+Note: No new page faults expected (pages already in memory).
+
+=== Demo 6: calloc vs malloc ===
+Method 1: malloc + memset
+After malloc + memset:
+  Minor faults: 46722 (+1)
+  Major faults: 0 (+0)
+
+Method 2: calloc
+After calloc + read:
+  Minor faults: 59522 (+12800)
+  Major faults: 0 (+0)
+After calloc + write:
+  Minor faults: 72321 (+12799)
+  Major faults: 0 (+0)
+
+=== Summary ===
+Total page faults: minor=72321, major=0
+	Command being timed: "./bin/page_faults"
+	User time (seconds): 0.01
+	System time (seconds): 0.17
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.19
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 103888
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 72323
+	Voluntary context switches: 2
+	Involuntary context switches: 3
+	Swaps: 0
+	File system inputs: 40
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
