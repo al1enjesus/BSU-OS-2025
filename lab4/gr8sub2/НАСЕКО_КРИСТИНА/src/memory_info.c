@@ -17,6 +17,8 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <time.h>
+#include <errno.h>
 
 // Функция для красивого вывода размера
 void print_human_readable(unsigned long bytes) {
@@ -29,6 +31,51 @@ void print_human_readable(unsigned long bytes) {
     } else {
         printf("%.1f GB", bytes / (1024.0 * 1024.0 * 1024.0));
     }
+}
+
+// Безопасное создание временного файла для mmap
+int create_temp_mmap_file(char *filename, size_t filename_size) {
+    // Генерация уникального имени файла с временной меткой и PID
+    time_t now = time(NULL);
+    struct tm *tm_info = localtime(&now);
+    char timestamp[32];
+    strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", tm_info);
+    
+    // Создаем уникальное имя с временной меткой и PID процесса
+    snprintf(filename, filename_size, "test_mmap_file_%s_%d.bin", timestamp, getpid());
+    
+    // Проверяем, не существует ли уже файл (маловероятно, но для безопасности)
+    int counter = 0;
+    char unique_filename[256];
+    strcpy(unique_filename, filename);
+    
+    while (access(unique_filename, F_OK) == 0 && counter < 100) {
+        // Если файл существует, добавляем суффикс
+        snprintf(unique_filename, sizeof(unique_filename), 
+                 "test_mmap_file_%s_%d_%d.bin", timestamp, getpid(), counter);
+        counter++;
+    }
+    
+    if (counter >= 100) {
+        fprintf(stderr, "Error: Could not create unique temporary file name\n");
+        return -1;
+    }
+    
+    // Копируем окончательное имя обратно
+    strncpy(filename, unique_filename, filename_size - 1);
+    filename[filename_size - 1] = '\0';
+    
+    printf("Creating temporary file: %s\n", filename);
+    
+    // Создаем файл с проверкой на существование (O_EXCL)
+    int fd = open(filename, O_RDWR | O_CREAT | O_EXCL, 0644);
+    
+    if (fd == -1) {
+        perror("Failed to create temporary file");
+        return -1;
+    }
+    
+    return fd;
 }
 
 // Реализовать функцию для чтения метрик из /proc/[PID]/status
@@ -72,7 +119,11 @@ void print_memory_metrics(pid_t pid) {
     printf("  Stack:             "); print_human_readable(vm_stk * 1024); printf("\n");
     printf("  Text (code):       "); print_human_readable(vm_exe * 1024); printf("\n");
     printf("  Libraries:         "); print_human_readable(vm_lib * 1024); printf("\n");
-    printf("  Ratio RSS/VSZ:     %.1f%%\n", (vm_rss * 100.0) / vm_size);
+    if (vm_size > 0) {
+        printf("  Ratio RSS/VSZ:     %.1f%%\n", (vm_rss * 100.0) / vm_size);
+    } else {
+        printf("  Ratio RSS/VSZ:     N/A\n");
+    }
 }
 
 // Реализовать функцию для вывода карты памяти
@@ -160,10 +211,11 @@ void demonstrate_memory_types() {
     memset(mmap_var, 'M', mmap_size);
     printf("3. Anonymous mmap: 50 MB at %p\n", mmap_var);
 
-    // 4. File-backed mmap
-    int fd = open("test_mmap_file.bin", O_RDWR | O_CREAT | O_TRUNC, 0644);
+    // 4. File-backed mmap с безопасным созданием файла
+    char temp_filename[256];
+    int fd = create_temp_mmap_file(temp_filename, sizeof(temp_filename));
     if (fd == -1) {
-        perror("open failed");
+        fprintf(stderr, "Failed to create temporary file for mmap\n");
         free(heap_var);
         munmap(mmap_var, mmap_size);
         return;
@@ -173,6 +225,8 @@ void demonstrate_memory_types() {
     if (ftruncate(fd, 5 * 1024 * 1024) == -1) {
         perror("ftruncate failed");
         close(fd);
+        // Удаляем временный файл при ошибке
+        unlink(temp_filename);
         free(heap_var);
         munmap(mmap_var, mmap_size);
         return;
@@ -183,12 +237,14 @@ void demonstrate_memory_types() {
     if (file_mmap == MAP_FAILED) {
         perror("file mmap failed");
         close(fd);
+        // Удаляем временный файл при ошибке
+        unlink(temp_filename);
         free(heap_var);
         munmap(mmap_var, mmap_size);
         return;
     }
     memset(file_mmap, 'F', 5 * 1024 * 1024);
-    printf("4. File-backed mmap: 5 MB at %p\n", file_mmap);
+    printf("4. File-backed mmap: 5 MB at %p (file: %s)\n", file_mmap, temp_filename);
 
     printf("\nMemory allocated. Check /proc/%d/maps to see different regions.\n", getpid());
     printf("Press Enter to see memory info and map...\n");
@@ -206,7 +262,13 @@ void demonstrate_memory_types() {
     munmap(mmap_var, mmap_size);
     munmap(file_mmap, 5 * 1024 * 1024);
     close(fd);
-    unlink("test_mmap_file.bin");
+    
+    // Удаляем временный файл
+    if (unlink(temp_filename) == -1) {
+        perror("Failed to delete temporary file");
+    } else {
+        printf("Temporary file deleted: %s\n", temp_filename);
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -219,11 +281,16 @@ int main(int argc, char *argv[]) {
         printf("Analyzing process %d\n\n", pid);
         print_memory_metrics(pid);
         print_memory_map(pid);
-    } else {
+    } else if (argc == 1) {
         // Режим: демонстрация на себе
         printf("No PID specified. Running demonstration mode.\n");
         printf("This will allocate different types of memory and show the results.\n\n");
         demonstrate_memory_types();
+    } else {
+        printf("Usage: %s [PID]\n", argv[0]);
+        printf("  Without PID: run demonstration mode\n");
+        printf("  With PID: analyze specified process\n");
+        return 1;
     }
 
     return 0;
