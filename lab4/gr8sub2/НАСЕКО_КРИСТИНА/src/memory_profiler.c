@@ -9,6 +9,8 @@
 #include <sys/stat.h>
 
 #define MAX_HISTORY 50
+#define MAX_PATHNAME 256
+#define MAX_LINE 512
 
 typedef struct {
     unsigned long vm_size;
@@ -37,7 +39,7 @@ typedef struct {
     unsigned long offset;
     char dev[16];
     unsigned long inode;
-    char pathname[256];
+    char pathname[MAX_PATHNAME];
 } MemoryMapEntry;
 
 typedef struct {
@@ -162,20 +164,49 @@ int read_memory_map(pid_t pid, MemoryMapEntry **entries, int *count) {
     *count = 0;
     int capacity = 100;
     *entries = malloc(capacity * sizeof(MemoryMapEntry));
+    if (!*entries) {
+        fclose(f);
+        return -1;
+    }
 
-    char line[512];
+    char line[MAX_LINE];
     while (fgets(line, sizeof(line), f)) {
         if (*count >= capacity) {
             capacity *= 2;
-            *entries = realloc(*entries, capacity * sizeof(MemoryMapEntry));
+            MemoryMapEntry *new_entries = realloc(*entries, capacity * sizeof(MemoryMapEntry));
+            if (!new_entries) {
+                // Сохраняем то, что успели прочитать
+                break;
+            }
+            *entries = new_entries;
         }
 
-        MemoryMapEntry *entry = &(*entries)[(*count)++];
+        MemoryMapEntry *entry = &(*entries)[(*count)];
         memset(entry, 0, sizeof(MemoryMapEntry));
 
-        sscanf(line, "%lx-%lx %7s %lx %15s %lu %255[^\n]",
-               &entry->start, &entry->end, entry->perms, &entry->offset,
-               entry->dev, &entry->inode, entry->pathname);
+        // Безопасный парсинг строки
+        char perms_buf[8] = {0};
+        char dev_buf[16] = {0};
+        char pathname_buf[MAX_PATHNAME] = {0};
+        
+        int parsed = sscanf(line, "%lx-%lx %7s %lx %15s %lu %255[^\n]",
+               &entry->start, &entry->end, perms_buf, &entry->offset,
+               dev_buf, &entry->inode, pathname_buf);
+
+        // Минимально должно быть 6 полей
+        if (parsed >= 6) {
+            // Копируем с проверкой длины
+            strncpy(entry->perms, perms_buf, sizeof(entry->perms) - 1);
+            strncpy(entry->dev, dev_buf, sizeof(entry->dev) - 1);
+            
+            if (parsed >= 7) {
+                strncpy(entry->pathname, pathname_buf, sizeof(entry->pathname) - 1);
+            } else {
+                entry->pathname[0] = '\0';
+            }
+            
+            (*count)++;
+        }
     }
 
     fclose(f);
@@ -289,7 +320,7 @@ void analyze_shared_libraries(MemoryMapEntry *entries, int count) {
 
     int lib_count = 0;
     struct {
-        char path[256];
+        char path[MAX_PATHNAME];
         unsigned long total_size;
         int segments;
     } libraries[100];
@@ -307,7 +338,7 @@ void analyze_shared_libraries(MemoryMapEntry *entries, int count) {
                 }
             }
             if (!found && lib_count < 100) {
-                strcpy(libraries[lib_count].path, entry->pathname);
+                strncpy(libraries[lib_count].path, entry->pathname, sizeof(libraries[lib_count].path) - 1);
                 libraries[lib_count].total_size = (entry->end - entry->start);
                 libraries[lib_count].segments = 1;
                 lib_count++;
