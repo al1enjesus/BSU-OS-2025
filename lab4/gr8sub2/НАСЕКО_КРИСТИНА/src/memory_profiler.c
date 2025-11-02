@@ -442,7 +442,14 @@ void print_ascii_graph(MemoryHistory *history, int height, int width) {
     printf("  Time → (last %d samples)\n", history->count);
 }
 
+// Строка 164 - исправленная функция
 void save_to_csv(pid_t pid, MemoryHistory *history, const char *filename) {
+    // Проверка существования файла
+    if (access(filename, F_OK) == 0) {
+        printf("Warning: File '%s' already exists. Overwriting...\n", filename);
+       
+    }
+    
     FILE *f = fopen(filename, "w");
     if (!f) {
         perror("Failed to open CSV file");
