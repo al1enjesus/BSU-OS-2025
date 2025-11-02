@@ -48,9 +48,11 @@ void print_memory_map(pid_t pid) {
     while (fgets(line, sizeof(line), f)) {
         unsigned long start, end;
         char perms[5];
-        char path[256] = "";
-        sscanf(line, "%lx-%lx %4s %*s %*s %*s %[^\n]", &start, &end, perms, path);
-        printf("%08lx-%08lx  %s  %8lu  %s\n", start, end, perms, (end - start)/1024, path);
+        char map_path[256] = "";
+        // Ограничение размера для безопасности
+        if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %255[^\n]", &start, &end, perms, map_path) >= 3) {
+            printf("%08lx-%08lx  %s  %8lu  %s\n", start, end, perms, (end - start)/1024, map_path);
+        }
     }
     fclose(f);
 }
