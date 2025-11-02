@@ -101,11 +101,14 @@
 Результаты мониторинга
 
 Статистика процесса (PID 36445):
+
+```bash
 06:48:35 PM UID  PID    kB_rd/s  kB_wr/s  kB_ccwr/s  Command
 06:48:35 PM 1000 36445  0.00     555873.27 0.00       python3
 
 06:48:36 PM UID  PID    kB_rd/s  kB_wr/s  kB_ccwr/s  Command  
 06:48:36 PM 1000 36445  0.00     481732.00 0.00       python3
+```
 
 Средние показатели:
 
