@@ -5,15 +5,15 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <fcntl.h>
+#include <errno.h>
 
-// Функция для чтения метрик из /proc/[PID]/status
 void print_memory_metrics(pid_t pid) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/status", pid);
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        perror("fopen failed");
+        fprintf(stderr, "fopen failed: %s\n", strerror(errno));
         return;
     }
 
@@ -54,7 +54,7 @@ void print_pss_info(pid_t pid) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        printf("PSS info not available (smaps_rollup not found)\n");
+        fprintf(stderr, "PSS info not available: %s\n", strerror(errno));
         return;
     }
 
@@ -95,7 +95,7 @@ void print_memory_map(pid_t pid) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        perror("fopen failed");
+        fprintf(stderr, "fopen failed: %s\n", strerror(errno));
         return;
     }
 
@@ -117,11 +117,11 @@ void print_memory_map(pid_t pid) {
             const char *display_path = path_str[0] ? path_str : "[anonymous]";
             
             if (strstr(display_path, "[heap]")) {
-                printf("\033[32m"); 
+                printf("\033[32m");
             } else if (strstr(display_path, "[stack]")) {
-                printf("\033[34m"); 
+                printf("\033[34m");
             } else if (strstr(display_path, ".so")) {
-                printf("\033[33m"); 
+                printf("\033[33m");
             }
             
             printf("%08lx-%08lx %-4s %6lu KB  %s\033[0m\n", 
@@ -140,29 +140,28 @@ void print_memory_map(pid_t pid) {
 void demonstrate_memory_types() {
     printf("\n=== Demonstrating Different Memory Types ===\n\n");
 
-    // 1. Стек (stack)
-    char stack_var[1024];  
+    char stack_var[1024];
     memset(stack_var, 'S', sizeof(stack_var));
     printf("1. Stack variable allocated: 1 KB at %p\n", (void*)stack_var);
 
     size_t heap_size = 10 * 1024 * 1024;
     char *heap_var = malloc(heap_size);
     if (!heap_var) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         return;
     }
     
     printf("2. Heap allocated: 10 MB at %p\n", (void*)heap_var);
     printf("   Filling heap memory to trigger page allocation...\n");
     for (size_t i = 0; i < heap_size; i += 4096) {
-        heap_var[i] = 'H';  
+        heap_var[i] = 'H';
     }
 
     size_t mmap_size = 50 * 1024 * 1024;
     void *mmap_var = mmap(NULL, mmap_size, PROT_READ | PROT_WRITE,
                           MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     if (mmap_var == MAP_FAILED) {
-        perror("mmap failed");
+        fprintf(stderr, "mmap failed: %s\n", strerror(errno));
         free(heap_var);
         return;
     }
@@ -176,16 +175,24 @@ void demonstrate_memory_types() {
     printf("4. Creating file-backed mmap...\n");
     int fd = open("test_mmap_file.bin", O_RDWR | O_CREAT, 0644);
     if (fd != -1) {
-        ftruncate(fd, 1024 * 1024);  // 1 MB
-        
-        void *file_mmap = mmap(NULL, 1024 * 1024, PROT_READ | PROT_WRITE,
-                              MAP_SHARED, fd, 0);
-        if (file_mmap != MAP_FAILED) {
-            printf("   File-backed mmap: 1 MB at %p\n", file_mmap);
-            strcpy((char*)file_mmap, "Hello from file-backed mmap!");
-            munmap(file_mmap, 1024 * 1024);
+        if (ftruncate(fd, 1024 * 1024) == -1) {
+            fprintf(stderr, "ftruncate failed: %s\n", strerror(errno));
+            close(fd);
+        } else {
+            void *file_mmap = mmap(NULL, 1024 * 1024, PROT_READ | PROT_WRITE,
+                                  MAP_SHARED, fd, 0);
+            if (file_mmap != MAP_FAILED) {
+                printf("   File-backed mmap: 1 MB at %p\n", file_mmap);
+                strncpy((char*)file_mmap, "Hello from file-backed mmap!", 1024 * 1024 - 1);
+                ((char*)file_mmap)[1024 * 1024 - 1] = '\0';
+                munmap(file_mmap, 1024 * 1024);
+            } else {
+                fprintf(stderr, "file mmap failed: %s\n", strerror(errno));
+            }
+            close(fd);
         }
-        close(fd);
+    } else {
+        fprintf(stderr, "open failed: %s\n", strerror(errno));
     }
 
     printf("\nMemory allocated. Check /proc/%d/maps to see different regions.\n", getpid());

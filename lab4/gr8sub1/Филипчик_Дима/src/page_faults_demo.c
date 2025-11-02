@@ -6,6 +6,7 @@
 #include <sys/resource.h>
 #include <time.h>
 #include <sys/mman.h>
+#include <errno.h>
 
 #define PAGE_SIZE 4096
 #define MB (1024 * 1024)
@@ -16,6 +17,7 @@ void get_page_faults(long *minor, long *major) {
         *minor = usage.ru_minflt;
         *major = usage.ru_majflt;
     } else {
+        fprintf(stderr, "getrusage failed: %s\n", strerror(errno));
         *minor = 0;
         *major = 0;
     }
@@ -43,7 +45,7 @@ void demo_allocation_no_access() {
     char *ptr = malloc(size);
 
     if (!ptr) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         return;
     }
 
@@ -62,7 +64,7 @@ void demo_sequential_access() {
     char *ptr = malloc(size);
 
     if (!ptr) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         return;
     }
 
@@ -80,7 +82,6 @@ void demo_sequential_access() {
 
     size_t expected_faults = size / PAGE_SIZE;
     printf("Expected page faults: %zu (size / PAGE_SIZE)\n", expected_faults);
-    printf("Actual minor faults: %ld\n", start_minor);
 
     free(ptr);
 }
@@ -92,7 +93,7 @@ void demo_full_write() {
     char *ptr = malloc(size);
 
     if (!ptr) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         return;
     }
 
@@ -116,7 +117,7 @@ void demo_random_access() {
     char *ptr = malloc(size);
 
     if (!ptr) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         return;
     }
 
@@ -161,7 +162,7 @@ void demo_rereading() {
     char *ptr = malloc(size);
 
     if (!ptr) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         return;
     }
 
@@ -202,6 +203,8 @@ void demo_calloc_vs_malloc() {
         memset(ptr1, 0, size);
         print_page_fault_delta("After malloc + memset", start_minor, start_major);
         free(ptr1);
+    } else {
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
     }
 
     printf("\n");
@@ -214,7 +217,7 @@ void demo_calloc_vs_malloc() {
         printf("Reading from calloc memory...\n");
         unsigned long long sum = 0;
         for (size_t i = 0; i < size; i += PAGE_SIZE) {
-            sum += (unsigned char)ptr2[i];  // Чтение
+            sum += (unsigned char)ptr2[i];
         }
 
         print_page_fault_delta("After calloc + read", start_minor, start_major);
@@ -223,13 +226,15 @@ void demo_calloc_vs_malloc() {
 
         printf("Writing to calloc memory...\n");
         for (size_t i = 0; i < size; i += PAGE_SIZE) {
-            ptr2[i] = 1;  // Запись (вызовет copy-on-write)
+            ptr2[i] = 1;
         }
 
         print_page_fault_delta("After calloc + write", start_minor, start_major);
         printf("Note: Write operations cause Copy-on-Write faults.\n");
 
         free(ptr2);
+    } else {
+        fprintf(stderr, "calloc failed: %s\n", strerror(errno));
     }
 }
 
@@ -249,6 +254,8 @@ void demo_mmap_vs_malloc() {
         }
         print_page_fault_delta("After malloc + write", start_minor, start_major);
         free(ptr1);
+    } else {
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
     }
 
     printf("\n");
@@ -264,6 +271,8 @@ void demo_mmap_vs_malloc() {
         }
         print_page_fault_delta("After mmap + write", start_minor, start_major);
         munmap(ptr2, size);
+    } else {
+        fprintf(stderr, "mmap failed: %s\n", strerror(errno));
     }
 }
 

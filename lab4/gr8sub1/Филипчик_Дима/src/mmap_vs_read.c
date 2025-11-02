@@ -9,7 +9,8 @@
 #include <sys/resource.h>
 #include <time.h>
 #include <errno.h>
-#define BUFFER_SIZE (64 * 1024)  // 64 KB
+
+#define BUFFER_SIZE (64 * 1024)
 
 typedef struct {
     long minor_faults;
@@ -37,7 +38,10 @@ PageFaultStats get_page_faults() {
 
 double get_time() {
     struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) == -1) {
+        fprintf(stderr, "clock_gettime failed: %s\n", strerror(errno));
+        return 0;
+    }
     return ts.tv_sec + ts.tv_nsec / 1e9;
 }
 
@@ -47,13 +51,13 @@ TestResult read_with_syscalls(const char *filename) {
     TestResult result = {0};
     int fd = open(filename, O_RDONLY);
     if (fd == -1) {
-        perror("open failed");
+        fprintf(stderr, "open failed: %s\n", strerror(errno));
         return result;
     }
 
     struct stat sb;
     if (fstat(fd, &sb) == -1) {
-        perror("fstat failed");
+        fprintf(stderr, "fstat failed: %s\n", strerror(errno));
         close(fd);
         return result;
     }
@@ -62,7 +66,7 @@ TestResult read_with_syscalls(const char *filename) {
 
     char *buffer = malloc(BUFFER_SIZE);
     if (!buffer) {
-        perror("malloc failed");
+        fprintf(stderr, "malloc failed: %s\n", strerror(errno));
         close(fd);
         return result;
     }
@@ -82,7 +86,7 @@ TestResult read_with_syscalls(const char *filename) {
     }
 
     if (bytes_read == -1) {
-        perror("read failed");
+        fprintf(stderr, "read failed: %s\n", strerror(errno));
     }
 
     double end_time = get_time();
@@ -102,7 +106,6 @@ TestResult read_with_syscalls(const char *filename) {
 
     free(buffer);
     close(fd);
-
     return result;
 }
 
@@ -112,13 +115,13 @@ TestResult read_with_mmap(const char *filename) {
     TestResult result = {0};
     int fd = open(filename, O_RDONLY);
     if (fd == -1) {
-        perror("open failed");
+        fprintf(stderr, "open failed: %s\n", strerror(errno));
         return result;
     }
 
     struct stat sb;
     if (fstat(fd, &sb) == -1) {
-        perror("fstat failed");
+        fprintf(stderr, "fstat failed: %s\n", strerror(errno));
         close(fd);
         return result;
     }
@@ -127,7 +130,7 @@ TestResult read_with_mmap(const char *filename) {
 
     void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
     if (data == MAP_FAILED) {
-        perror("mmap failed");
+        fprintf(stderr, "mmap failed: %s\n", strerror(errno));
         close(fd);
         return result;
     }
@@ -158,7 +161,6 @@ TestResult read_with_mmap(const char *filename) {
 
     munmap(data, sb.st_size);
     close(fd);
-
     return result;
 }
 
@@ -168,13 +170,13 @@ TestResult read_with_mmap_sequential(const char *filename) {
     TestResult result = {0};
     int fd = open(filename, O_RDONLY);
     if (fd == -1) {
-        perror("open failed");
+        fprintf(stderr, "open failed: %s\n", strerror(errno));
         return result;
     }
 
     struct stat sb;
     if (fstat(fd, &sb) == -1) {
-        perror("fstat failed");
+        fprintf(stderr, "fstat failed: %s\n", strerror(errno));
         close(fd);
         return result;
     }
@@ -183,13 +185,13 @@ TestResult read_with_mmap_sequential(const char *filename) {
 
     void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
     if (data == MAP_FAILED) {
-        perror("mmap failed");
+        fprintf(stderr, "mmap failed: %s\n", strerror(errno));
         close(fd);
         return result;
     }
 
-if (madvise(data, sb.st_size, POSIX_MADV_SEQUENTIAL) == -1) {
-        perror("madvise failed");
+    if (madvise(data, sb.st_size, MADV_SEQUENTIAL) == -1) {
+        fprintf(stderr, "madvise failed: %s\n", strerror(errno));
     }
 
     PageFaultStats start_faults = get_page_faults();
@@ -218,7 +220,6 @@ if (madvise(data, sb.st_size, POSIX_MADV_SEQUENTIAL) == -1) {
 
     munmap(data, sb.st_size);
     close(fd);
-
     return result;
 }
 
@@ -227,7 +228,7 @@ void create_test_file(const char *filename, size_t size_mb) {
 
     int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) {
-        perror("open failed");
+        fprintf(stderr, "open failed: %s\n", strerror(errno));
         return;
     }
 
@@ -235,7 +236,7 @@ void create_test_file(const char *filename, size_t size_mb) {
     char buffer[4096];
 
     for (size_t i = 0; i < sizeof(buffer); i++) {
-        buffer[i] = (char)((i * 7) % 256);  
+        buffer[i] = (char)((i * 7) % 256);
     }
 
     size_t written = 0;
@@ -244,14 +245,14 @@ void create_test_file(const char *filename, size_t size_mb) {
                           (total_bytes - written) : sizeof(buffer);
         ssize_t result = write(fd, buffer, to_write);
         if (result == -1) {
-            perror("write failed");
+            fprintf(stderr, "write failed: %s\n", strerror(errno));
             break;
         }
         written += result;
     }
 
     if (fsync(fd) == -1) {
-        perror("fsync failed");
+        fprintf(stderr, "fsync failed: %s\n", strerror(errno));
     }
 
     close(fd);
@@ -297,10 +298,10 @@ int main(int argc, char *argv[]) {
     int clean_cache = 0;
 
     if (argc < 2) {
-        printf("Usage: %s <filename> [--create-file <size_mb>] [--clean-cache]\n", argv[0]);
-        printf("\nExamples:\n");
-        printf("  %s testfile.bin --create-file 100\n", argv[0]);
-        printf("  %s /path/to/existing/file.bin --clean-cache\n", argv[0]);
+        fprintf(stderr, "Usage: %s <filename> [--create-file <size_mb>] [--clean-cache]\n", argv[0]);
+        fprintf(stderr, "Examples:\n");
+        fprintf(stderr, "  %s testfile.bin --create-file 100\n", argv[0]);
+        fprintf(stderr, "  %s /path/to/existing/file.bin --clean-cache\n", argv[0]);
         return 1;
     }
 
@@ -330,9 +331,9 @@ int main(int argc, char *argv[]) {
     if (clean_cache) {
         printf("Clearing page cache (requires root)...\n");
         if (system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'") != 0) {
-            printf("Warning: Failed to clear page cache. Run with sudo for accurate results.\n");
+            fprintf(stderr, "Warning: Failed to clear page cache. Run with sudo for accurate results.\n");
         }
-        sleep(1); 
+        sleep(1);
     }
 
     printf("Comparing I/O methods for file: %s\n", filename);
@@ -341,13 +342,9 @@ int main(int argc, char *argv[]) {
     printf("===========================================\n");
 
     TestResult read_result = read_with_syscalls(filename);
-
     sleep(2);
-
     TestResult mmap_result = read_with_mmap(filename);
-
     sleep(2);
-
     TestResult mmap_seq_result = read_with_mmap_sequential(filename);
 
     printf("\n=== Verification ===\n");
@@ -364,6 +361,7 @@ int main(int argc, char *argv[]) {
     }
 
     print_comparison(read_result, mmap_result, mmap_seq_result);
+
     printf("\n=== Recommendations ===\n");
     printf("Use read() when:\n");
     printf("  - Working with small files\n");
