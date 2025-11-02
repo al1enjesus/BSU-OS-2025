@@ -1,4 +1,3 @@
-// src/io_benchmark.c
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -76,7 +75,7 @@ static void bench(const char* name, int (*fn)(size_t,const char*,size_t), size_t
 }
 
 int main(void){
-    const size_t TOTAL = 100UL*1024UL*1024UL; // 100 MB
+    const size_t TOTAL = 100UL*1024UL*1024UL;
     printf("I/O Benchmark, total %.1f MB\n", TOTAL/1024.0/1024.0);
 
     bench("stdio char-by-char (fputc)", (int(*)(size_t,const char*,size_t))write_stdio_char, TOTAL, "test_stdio_char.bin", 1);

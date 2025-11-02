@@ -1,4 +1,3 @@
-// src/io_monitor.c
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +12,6 @@
 static double now_sec() {
     struct timespec ts;
     if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0) {
-        // Фоллбек: если вдруг не получилось, используем CLOCK_REALTIME
         clock_gettime(CLOCK_REALTIME, &ts);
     }
     return ts.tv_sec + ts.tv_nsec / 1e9;
@@ -53,16 +51,14 @@ static int write_pattern(const char* path, size_t total, size_t buf_sz, int secs
             return -1;
         }
         if (rc == 0) {
-            // Неожиданно, но выйдем, чтобы не зависнуть
             break;
         }
         bytes += (size_t)rc;
     }
 
-    // Зафиксируем на диск
+
     if (fsync(fd) < 0) {
         perror("fsync");
-        // Не завершаем с ошибкой — просто логируем
     }
 
     if (close(fd) < 0) {
@@ -101,7 +97,7 @@ static int read_scan(const char* path, size_t buf_sz) {
             close(fd);
             return -1;
         }
-        if (rc == 0) break; // EOF
+        if (rc == 0) break; 
         bytes += (size_t)rc;
     }
 
@@ -118,18 +114,16 @@ static int read_scan(const char* path, size_t buf_sz) {
 
 int main(void) {
     const char* out = "test_io_load.bin";
-    const size_t total = 500UL * 1024UL * 1024UL; // 500 MB
-    const size_t buf = 128UL * 1024UL;            // 128 KB
-    const int secs = 10;                           // ограничение по времени на запись
+    const size_t total = 500UL * 1024UL * 1024UL; 
+    const size_t buf = 128UL * 1024UL;            
+    const int secs = 10;                           
 
-    // Выводим PID сразу — это важно для внешнего сбора метрик
     pid_t pid = getpid();
     printf("PID: %d\n", (int)pid);
 
     printf("Generating write load for %d s (up to %zu bytes, buf=%zu)...\n", secs, total, buf);
     if (write_pattern(out, total, buf, secs) != 0) {
         fprintf(stderr, "Write load FAILED\n");
-        // Продолжим, чтобы можно было всё равно посмотреть метрики чтения, если файл уже частично создан
     }
 
     printf("Now reading it back (buf=%zu)...\n", buf);
@@ -138,6 +132,6 @@ int main(void) {
     }
 
     printf("Done. Keep process alive for monitoring 5s...\n");
-    sleep(30);
+    sleep(5);
     return 0;
 }
