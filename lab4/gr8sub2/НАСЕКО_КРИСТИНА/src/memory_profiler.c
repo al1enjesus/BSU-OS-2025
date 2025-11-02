@@ -136,7 +136,9 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     }
 
     unsigned long minflt, majflt;
-    if (fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*lu %lu", &minflt, &majflt) != 2) {
+    // Исправленный формат без предупреждений
+    if (fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*u %*u %*u %*u %*u %*u %*u %*u %*u %*u %*u %lu", 
+               &minflt, &majflt) != 2) {
         fclose(f);
         return -1;
     }
@@ -174,6 +176,26 @@ int read_memory_map(pid_t pid, MemoryMapEntry **entries, int *count) {
         sscanf(line, "%lx-%lx %7s %lx %15s %lu %255[^\n]",
                &entry->start, &entry->end, entry->perms, &entry->offset,
                entry->dev, &entry->inode, entry->pathname);
+    }
+
+    fclose(f);
+    return 0;
+}
+
+// ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
+
+int get_process_name(pid_t pid, char *name, size_t len) {
+    char path[256];
+    snprintf(path, sizeof(path), "/proc/%d/comm", pid);
+
+    FILE *f = fopen(path, "r");
+    if (!f) {
+        snprintf(name, len, "unknown");
+        return -1;
+    }
+
+    if (fgets(name, len, f)) {
+        name[strcspn(name, "\n")] = 0;
     }
 
     fclose(f);
@@ -426,24 +448,6 @@ void print_size(unsigned long kb) {
     }
 }
 
-int get_process_name(pid_t pid, char *name, size_t len) {
-    char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/comm", pid);
-
-    FILE *f = fopen(path, "r");
-    if (!f) {
-        snprintf(name, len, "unknown");
-        return -1;
-    }
-
-    if (fgets(name, len, f)) {
-        name[strcspn(name, "\n")] = 0;
-    }
-
-    fclose(f);
-    return 0;
-}
-
 void print_process_info(pid_t pid) {
     char proc_name[256];
     get_process_name(pid, proc_name, sizeof(proc_name));
@@ -610,7 +614,13 @@ void interactive_mode() {
     
     printf("\nEnter process number (1-%d): ", count > 20 ? 20 : count);
     int choice;
-    scanf("%d", &choice);
+    if (scanf("%d", &choice) != 1) {
+        printf("Invalid input.\n");
+        // Очищаем буфер ввода
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+        return;
+    }
     
     if (choice < 1 || choice > count) {
         printf("Invalid choice.\n");
@@ -622,7 +632,10 @@ void interactive_mode() {
     print_process_info(selected_pid);
     
     printf("\nPress Enter to continue...");
-    getchar(); getchar();
+    // Очищаем буфер перед getchar()
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+    getchar();
 }
 
 int main(int argc, char *argv[]) {
@@ -682,19 +695,23 @@ int main(int argc, char *argv[]) {
             watch_mode = 1;
             if (i + 1 < argc && argv[i+1][0] != '-') {
                 watch_interval = atoi(argv[i + 1]);
+                i++;  // Skip the interval value
             }
         } else if (strcmp(argv[i], "--graph") == 0) {
             if (i + 1 < argc) {
                 graph_height = atoi(argv[i + 1]);
+                i++;  // Skip the height value
             }
         } else if (strcmp(argv[i], "--csv") == 0) {
             if (i + 1 < argc) {
                 csv_filename = argv[i + 1];
+                i++;  // Skip the filename
             }
         } else if (strcmp(argv[i], "--compare") == 0) {
             compare_mode = 1;
             if (i + 1 < argc) {
                 compare_pid = atoi(argv[i + 1]);
+                i++;  // Skip the PID value
             }
         }
     }
