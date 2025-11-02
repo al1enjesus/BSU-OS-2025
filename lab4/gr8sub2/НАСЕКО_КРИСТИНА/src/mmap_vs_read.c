@@ -1,230 +1,353 @@
 /*
- * memory_info.c - Базовый пример чтения информации о памяти процесса
+ * mmap_vs_read.c - Сравнение производительности mmap() vs read()
  *
- * Компиляция: gcc -Wall -Wextra -O2 memory_info.c -o memory_info
- * Использование: ./memory_info [PID]
+ * Компиляция: gcc -Wall -Wextra -O2 mmap_vs_read.c -o mmap_vs_read
+ * Использование: ./mmap_vs_read <filename> [--create-file <size_mb>]
  *
  * Демонстрирует:
- * - Чтение VSZ, RSS из /proc/[PID]/status
- * - Разные типы выделения памяти (stack, heap, mmap)
- * - Отображение карты памяти из /proc/[PID]/maps
+ * - Традиционный I/O через read()
+ * - Memory-mapped I/O через mmap()
+ * - Замер времени и page faults для обоих методов
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <sys/mman.h>
-#include <fcntl.h>
 #include <sys/stat.h>
+#include <sys/resource.h>
+#include <time.h>
+#include <errno.h>
 
-// Функция для красивого вывода размера
-void print_human_readable(unsigned long bytes) {
-    if (bytes < 1024) {
-        printf("%lu B", bytes);
-    } else if (bytes < 1024 * 1024) {
-        printf("%.1f KB", bytes / 1024.0);
-    } else if (bytes < 1024 * 1024 * 1024) {
-        printf("%.1f MB", bytes / (1024.0 * 1024.0));
-    } else {
-        printf("%.1f GB", bytes / (1024.0 * 1024.0 * 1024.0));
-    }
-}
+// Размер буфера для read()
+#define BUFFER_SIZE (4 * 1024)  // 4 KB
 
-// Реализовать функцию для чтения метрик из /proc/[PID]/status
-void print_memory_metrics(pid_t pid) {
-    char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/status", pid);
+// Структура для хранения статистики page faults
+typedef struct {
+    long minor_faults;
+    long major_faults;
+} PageFaultStats;
 
-    FILE *f = fopen(path, "r");
-    if (!f) {
-        perror("fopen failed");
-        return;
-    }
-
-    char line[256];
-    unsigned long vm_size = 0, vm_rss = 0, vm_data = 0, vm_stk = 0;
-    unsigned long vm_exe = 0, vm_lib = 0;
-
-    // Прочитать файл построчно и извлечь метрики
-    while (fgets(line, sizeof(line), f)) {
-        if (strncmp(line, "VmSize:", 7) == 0) {
-            sscanf(line, "VmSize: %lu kB", &vm_size);
-        } else if (strncmp(line, "VmRSS:", 6) == 0) {
-            sscanf(line, "VmRSS: %lu kB", &vm_rss);
-        } else if (strncmp(line, "VmData:", 7) == 0) {
-            sscanf(line, "VmData: %lu kB", &vm_data);
-        } else if (strncmp(line, "VmStk:", 6) == 0) {
-            sscanf(line, "VmStk: %lu kB", &vm_stk);
-        } else if (strncmp(line, "VmExe:", 6) == 0) {
-            sscanf(line, "VmExe: %lu kB", &vm_exe);
-        } else if (strncmp(line, "VmLib:", 6) == 0) {
-            sscanf(line, "VmLib: %lu kB", &vm_lib);
-        }
-    }
-
-    fclose(f);
-
-    printf("Memory Metrics for PID %d:\n", pid);
-    printf("  VSZ (Virtual):     "); print_human_readable(vm_size * 1024); printf("\n");
-    printf("  RSS (Resident):    "); print_human_readable(vm_rss * 1024); printf("\n");
-    printf("  Data/Heap:         "); print_human_readable(vm_data * 1024); printf("\n");
-    printf("  Stack:             "); print_human_readable(vm_stk * 1024); printf("\n");
-    printf("  Text (code):       "); print_human_readable(vm_exe * 1024); printf("\n");
-    printf("  Libraries:         "); print_human_readable(vm_lib * 1024); printf("\n");
-    printf("  Ratio RSS/VSZ:     %.1f%%\n", (vm_rss * 100.0) / vm_size);
-}
-
-// Реализовать функцию для вывода карты памяти
-void print_memory_map(pid_t pid) {
-    char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/maps", pid);
-
-    FILE *f = fopen(path, "r");
-    if (!f) {
-        perror("fopen failed");
-        return;
-    }
-
-    printf("\nMemory Map:\n");
-    printf("%-18s %-6s %10s  %s\n", "Address Range", "Perms", "Size", "Path");
-    printf("----------------------------------------------------------------\n");
-
-    char line[512];
-    int segment_count = 0;
-    unsigned long total_size = 0;
-
-    // Прочитать и распарсить каждую строку
-    while (fgets(line, sizeof(line), f)) {
-        unsigned long start, end;
-        char perms[5], path_str[256] = "";
-
-        // Распарсить строку
-        if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %255[^\n]", 
-                   &start, &end, perms, path_str) >= 3) {
-            
-            // Вычислить размер
-            unsigned long size = end - start;
-            total_size += size;
-
-            // Вывести информацию в красивом виде
-            printf("%08lx-%08lx %-6s ", start, end, perms);
-            print_human_readable(size);
-            printf("  %s\n", path_str[0] ? path_str : "(anonymous)");
-            
-            segment_count++;
-            if (segment_count >= 20) { // Ограничим вывод
-                printf("... (showing first 20 segments)\n");
-                break;
-            }
-        }
-    }
-
-    fclose(f);
+// Реализовать функцию для получения текущего количества page faults
+PageFaultStats get_page_faults() {
+    PageFaultStats stats = {0, 0};
+    struct rusage usage;
     
-    printf("\nTotal mapped memory: ");
-    print_human_readable(total_size);
-    printf(" in %d segments\n", segment_count);
+    if (getrusage(RUSAGE_SELF, &usage) == 0) {
+        stats.minor_faults = usage.ru_minflt;
+        stats.major_faults = usage.ru_majflt;
+    }
+    
+    return stats;
 }
 
-// Реализовать функцию, демонстрирующую разные типы памяти
-void demonstrate_memory_types() {
-    printf("\n=== Demonstrating Different Memory Types ===\n\n");
+// Реализовать функцию для замера времени (возвращает секунды)
+double get_time() {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec + ts.tv_nsec / 1e9;
+}
 
-    // 1. Стек (stack)
-    char stack_var[1024];  // Локальная переменная
-    memset(stack_var, 'S', sizeof(stack_var));
-    printf("1. Stack variable allocated: 1 KB at %p\n", (void*)stack_var);
+// Реализовать метод 1 - чтение через read()
+unsigned long long read_with_syscalls(const char *filename) {
+    printf("\n=== Method 1: read() syscall ===\n");
 
-    // 2. Heap (через malloc)
-    size_t heap_size = 10 * 1024 * 1024;  // 10 MB
-    char *heap_var = malloc(heap_size);
-    if (!heap_var) {
-        perror("malloc failed");
-        return;
-    }
-
-    // Заполнить память, чтобы вызвать page faults
-    memset(heap_var, 'H', heap_size);
-    printf("2. Heap allocated: 10 MB at %p\n", (void*)heap_var);
-
-    // 3. Anonymous mmap (аналог malloc для больших блоков)
-    size_t mmap_size = 50 * 1024 * 1024;  // 50 MB
-    void *mmap_var = mmap(NULL, mmap_size, PROT_READ | PROT_WRITE,
-                          MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (mmap_var == MAP_FAILED) {
-        perror("mmap failed");
-        free(heap_var);
-        return;
-    }
-    memset(mmap_var, 'M', mmap_size);
-    printf("3. Anonymous mmap: 50 MB at %p\n", mmap_var);
-
-    // 4. File-backed mmap
-    int fd = open("test_mmap_file.bin", O_RDWR | O_CREAT | O_TRUNC, 0644);
+    int fd = open(filename, O_RDONLY);
     if (fd == -1) {
         perror("open failed");
-        free(heap_var);
-        munmap(mmap_var, mmap_size);
-        return;
+        return 0;
     }
 
-    // Установить размер файла
-    if (ftruncate(fd, 5 * 1024 * 1024) == -1) {
-        perror("ftruncate failed");
+    // Получить размер файла
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
         close(fd);
-        free(heap_var);
-        munmap(mmap_var, mmap_size);
-        return;
+        return 0;
     }
 
-    void *file_mmap = mmap(NULL, 5 * 1024 * 1024, PROT_READ | PROT_WRITE,
-                          MAP_SHARED, fd, 0);
-    if (file_mmap == MAP_FAILED) {
-        perror("file mmap failed");
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    // Выделить буфер для чтения
+    char *buffer = malloc(BUFFER_SIZE);
+    if (!buffer) {
+        perror("malloc failed");
         close(fd);
-        free(heap_var);
-        munmap(mmap_var, mmap_size);
-        return;
+        return 0;
     }
-    memset(file_mmap, 'F', 5 * 1024 * 1024);
-    printf("4. File-backed mmap: 5 MB at %p\n", file_mmap);
 
-    printf("\nMemory allocated. Check /proc/%d/maps to see different regions.\n", getpid());
-    printf("Press Enter to see memory info and map...\n");
-    getchar();
+    // Начать замер
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
 
-    // Вывести информацию о текущем процессе
-    print_memory_metrics(getpid());
-    print_memory_map(getpid());
+    // Читать файл блоками и считать сумму всех байтов
+    unsigned long long sum = 0;
+    ssize_t bytes_read;
+    size_t total_read = 0;
 
-    printf("\nPress Enter to free memory and exit...\n");
-    getchar();
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0) {
+        for (ssize_t i = 0; i < bytes_read; i++) {
+            sum += (unsigned char)buffer[i];
+        }
+        total_read += bytes_read;
+    }
+
+    if (bytes_read == -1) {
+        perror("read failed");
+    }
+
+    // Закончить замер
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    // Вывести результаты
+    double elapsed = end_time - start_time;
+    printf("Time elapsed: %.3f seconds\n", elapsed);
+    printf("Throughput: %.2f MB/s\n", (total_read / (1024.0 * 1024.0)) / elapsed);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Checksum: %llu\n", sum);
+    printf("Read operations: %zu\n", (total_read + BUFFER_SIZE - 1) / BUFFER_SIZE);
 
     // Освободить ресурсы
-    free(heap_var);
-    munmap(mmap_var, mmap_size);
-    munmap(file_mmap, 5 * 1024 * 1024);
+    free(buffer);
     close(fd);
-    unlink("test_mmap_file.bin");
+
+    return sum;
+}
+
+// Реализовать метод 2 - чтение через mmap()
+unsigned long long read_with_mmap(const char *filename) {
+    printf("\n=== Method 2: mmap() ===\n");
+
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("open failed");
+        return 0;
+    }
+
+    // Получить размер файла
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
+        close(fd);
+        return 0;
+    }
+
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    // Отобразить файл в память
+    void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (data == MAP_FAILED) {
+        perror("mmap failed");
+        close(fd);
+        return 0;
+    }
+
+    // Начать замер
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
+
+    // Прочитать весь файл как массив байтов
+    unsigned long long sum = 0;
+    unsigned char *bytes = (unsigned char *)data;
+
+    for (off_t i = 0; i < sb.st_size; i++) {
+        sum += bytes[i];
+    }
+
+    // Закончить замер
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    // Вывести результаты
+    double elapsed = end_time - start_time;
+    printf("Time elapsed: %.3f seconds\n", elapsed);
+    printf("Throughput: %.2f MB/s\n", (sb.st_size / (1024.0 * 1024.0)) / elapsed);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Checksum: %llu\n", sum);
+    printf("Memory accesses: %ld\n", sb.st_size);
+
+    // Освободить ресурсы
+    munmap(data, sb.st_size);
+    close(fd);
+
+    return sum;
+}
+
+// Опционально - метод 3: mmap() с madvise
+unsigned long long read_with_mmap_sequential(const char *filename) {
+    printf("\n=== Method 3: mmap() + madvise(SEQUENTIAL) ===\n");
+
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("open failed");
+        return 0;
+    }
+
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
+        close(fd);
+        return 0;
+    }
+
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (data == MAP_FAILED) {
+        perror("mmap failed");
+        close(fd);
+        return 0;
+    }
+
+    // Подсказка ядру о последовательном доступе
+    if (madvise(data, sb.st_size, MADV_SEQUENTIAL) == -1) {
+        perror("madvise failed");
+    }
+
+    // Начать замер
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
+
+    unsigned long long sum = 0;
+    unsigned char *bytes = (unsigned char *)data;
+
+    for (off_t i = 0; i < sb.st_size; i++) {
+        sum += bytes[i];
+    }
+
+    // Закончить замер
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    // Вывести результаты
+    double elapsed = end_time - start_time;
+    printf("Time elapsed: %.3f seconds\n", elapsed);
+    printf("Throughput: %.2f MB/s\n", (sb.st_size / (1024.0 * 1024.0)) / elapsed);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Checksum: %llu\n", sum);
+    printf("Note: Used MADV_SEQUENTIAL hint\n");
+
+    munmap(data, sb.st_size);
+    close(fd);
+
+    return sum;
+}
+
+// Создать тестовый файл заданного размера
+void create_test_file(const char *filename, size_t size_mb) {
+    printf("Creating test file '%s' (%zu MB)...\n", filename, size_mb);
+
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1) {
+        perror("open failed");
+        return;
+    }
+
+    size_t total_bytes = size_mb * 1024 * 1024;
+    char buffer[4096];
+
+    // Заполнить буфер псевдослучайными данными
+    for (size_t i = 0; i < sizeof(buffer); i++) {
+        buffer[i] = (char)(i % 256);
+    }
+
+    // Записать данные в файл блоками
+    size_t written = 0;
+    while (written < total_bytes) {
+        size_t to_write = (total_bytes - written < sizeof(buffer)) ?
+                          (total_bytes - written) : sizeof(buffer);
+        ssize_t result = write(fd, buffer, to_write);
+        if (result == -1) {
+            perror("write failed");
+            break;
+        }
+        written += result;
+    }
+
+    close(fd);
+    printf("Test file created successfully: %zu bytes\n", written);
 }
 
 int main(int argc, char *argv[]) {
-    printf("Memory Info Demo\n");
-    printf("================\n");
+    const char *filename;
+    int create_file = 0;
+    size_t file_size_mb = 100;
 
-    if (argc == 2) {
-        // Режим: анализ заданного PID
-        pid_t pid = atoi(argv[1]);
-        printf("Analyzing process %d\n\n", pid);
-        print_memory_metrics(pid);
-        print_memory_map(pid);
-    } else {
-        // Режим: демонстрация на себе
-        printf("No PID specified. Running demonstration mode.\n");
-        printf("This will allocate different types of memory and show the results.\n\n");
-        demonstrate_memory_types();
+    // Парсинг аргументов
+    if (argc < 2) {
+        printf("Usage: %s <filename> [--create-file <size_mb>]\n", argv[0]);
+        printf("\nExamples:\n");
+        printf("  %s testfile.bin --create-file 100\n", argv[0]);
+        printf("  %s /path/to/existing/file.bin\n", argv[0]);
+        return 1;
     }
+
+    filename = argv[1];
+
+    if (argc >= 3 && strcmp(argv[2], "--create-file") == 0) {
+        create_file = 1;
+        if (argc >= 4) {
+            file_size_mb = atoi(argv[3]);
+        }
+    }
+
+    // Создать тестовый файл, если нужно
+    if (create_file) {
+        create_test_file(filename, file_size_mb);
+        printf("\n");
+    }
+
+    // Проверить существование файла
+    if (access(filename, F_OK) != 0) {
+        fprintf(stderr, "Error: File '%s' does not exist.\n", filename);
+        fprintf(stderr, "Use --create-file option to create a test file.\n");
+        return 1;
+    }
+
+    printf("Comparing I/O methods for file: %s\n", filename);
+    printf("===========================================\n");
+
+    // Для чистоты эксперимента можно очистить page cache (требует root):
+    // system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
+
+    // Метод 1: read()
+    unsigned long long sum1 = read_with_syscalls(filename);
+
+    // Небольшая пауза
+    sleep(1);
+
+    // Метод 2: mmap()
+    unsigned long long sum2 = read_with_mmap(filename);
+
+    // Небольшая пауза
+    sleep(1);
+
+    // Метод 3: mmap() с madvise
+    unsigned long long sum3 = read_with_mmap_sequential(filename);
+
+    // Проверка корректности (checksums должны совпадать)
+    printf("\n=== Verification ===\n");
+    if (sum1 == sum2 && sum2 == sum3) {
+        printf("✓ All checksums match: %llu\n", sum1);
+    } else {
+        printf("✗ Checksums differ!\n");
+        printf("  read(): %llu\n", sum1);
+        printf("  mmap(): %llu\n", sum2);
+        printf("  mmap()+madvise: %llu\n", sum3);
+    }
+
+    printf("\n=== Summary ===\n");
+    printf("Method comparison completed.\n");
+    printf("Key factors:\n");
+    printf("- read(): Good for streaming, predictable memory usage\n");
+    printf("- mmap(): Good for random access, lower syscall overhead\n");
+    printf("- madvise(): Can improve performance with access patterns\n");
 
     return 0;
 }
