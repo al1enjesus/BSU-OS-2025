@@ -122,9 +122,6 @@ double benchmark_fread(const char *filename) {
         return -1;
     }
 
-    // Переменная size больше не используется, но оставлена для ясности
-    // size_t size = sb.st_size;
-    
     char *buffer = malloc(65536); // 64KB buffer
     if (!buffer) {
         perror("malloc failed");
@@ -175,9 +172,6 @@ double benchmark_read(const char *filename) {
         return -1;
     }
 
-    // Переменная size больше не используется, но оставлена для ясности
-    // size_t size = sb.st_size;
-    
     char *buffer = malloc(65536);
     if (!buffer) {
         perror("malloc failed");
@@ -226,7 +220,6 @@ void benchmark_buffer_sizes(size_t file_size_mb) {
         snprintf(filename, sizeof(filename), "test_buffer_%zu.bin", buffer_sizes[i]);
 
         printf("Buffer: %7zu bytes -> ", buffer_sizes[i]);
-        // Результат benchmark_write игнорируется намеренно
         (void)benchmark_write(filename, file_size, buffer_sizes[i]);
 
         unlink(filename);
@@ -280,6 +273,8 @@ int main(int argc, char *argv[]) {
             i++;
         } else if (strcmp(argv[i], "--help") == 0) {
             printf("Usage: %s [--size SIZE_MB]\n", argv[0]);
+            printf("Note: For accurate results, manually clear caches with:\n");
+            printf("      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
             return 0;
         }
     }
@@ -288,13 +283,13 @@ int main(int argc, char *argv[]) {
     printf("==========================\n");
     printf("Test file size: %zu MB\n", size_mb);
 
-    // Очистка кеша для чистоты эксперимента
-    int ret1 = system("sync");
-    int ret2 = system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' 2>/dev/null");
+    // Безопасная очистка кеша - только sync
+    printf("Syncing file system...\n");
+    int ret = system("sync");
+    (void)ret; // Игнорируем возвращаемое значение
     
-    // Игнорируем возвращаемые значения system() намеренно
-    (void)ret1;
-    (void)ret2;
+    printf("Note: For more accurate results, run as root or manually clear caches:\n");
+    printf("      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n\n");
 
     benchmark_all_methods(size_mb);
     benchmark_buffer_sizes(size_mb);
