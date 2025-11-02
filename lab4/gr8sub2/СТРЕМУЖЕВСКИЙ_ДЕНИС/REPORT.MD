@@ -10,6 +10,17 @@
 - Освоить мониторинг I/O через /proc, iostat, iotop
 - Реализовать утилиту профилирования памяти
 
+## Требования
+Arch Linux
+```bash
+sudo pacman -S --needed base-devel sysstat strace iotop smem python python-matplotlib
+```
+Ubuntu / Debian
+```bash
+sudo apt update && sudo apt install -y build-essential sysstat strace iotop smem python3 python3-matplotlib
+```
+также gcc/g++ (C11/C++17)
+
 ## Ход работы (Вариант 2)
 ### Подготовка
 Скопируем нужные семплы себе в `src` следующей командой:

@@ -3,6 +3,30 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/mman.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+static unsigned long read_mem_available_kb(void) {
+    FILE *f = fopen("/proc/meminfo", "r");
+    if (!f) return 0;
+    unsigned long kb = 0;
+    char key[64];
+    unsigned long val;
+    char unit[16];
+    while (fscanf(f, "%63s %lu %15s", key, &val, unit) == 3) {
+        if (strcmp(key, "MemAvailable:") == 0) {
+            kb = val;
+            break;
+        }
+    }
+    fclose(f);
+    return kb;
+}
+
+static size_t page_align_down(size_t x) {
+    size_t pg = (size_t) sysconf(_SC_PAGESIZE);
+    return x - (x % pg);
+}
 
 static void print_memory_metrics(pid_t pid) {
     char path[256];
@@ -69,39 +93,72 @@ static void demonstrate_memory_types(void) {
     printf("1. Stack variable allocated: 1 KB at %p\n", (void *) stack_var);
 
     size_t heap_size = 10 * 1024 * 1024;
+    size_t mmap_size = 50 * 1024 * 1024;
+
+    unsigned long avail_kb = read_mem_available_kb();
+    size_t need_kb = (heap_size + mmap_size) / 1024;
+    if (avail_kb && need_kb > (avail_kb * 8) / 10) {
+        long extra_kb = (long) need_kb - (long) ((avail_kb * 8) / 10);
+        if (extra_kb > 0) {
+            size_t cut = (size_t) extra_kb * 1024;
+            if (cut >= mmap_size) {
+                mmap_size = 0;
+            } else {
+                mmap_size = page_align_down(mmap_size - cut);
+                if (mmap_size < 4 * 1024 * 1024) mmap_size = 0;
+            }
+        }
+    }
+
     char *heap_var = malloc(heap_size);
     if (!heap_var) {
         perror("malloc failed");
         return;
     }
 
-    for (size_t i = 0; i < heap_size; i += 4096) heap_var[i] = 1;
-    printf("2. Heap allocated & touched: 10 MB at %p\n", (void *) heap_var);
+    size_t pg = (size_t) sysconf(_SC_PAGESIZE);
+    for (size_t i = 0; i < heap_size; i += pg) heap_var[i] = 1;
+    printf("2. Heap allocated & touched: %.0f MB at %p\n", heap_size / (1024.0 * 1024.0), (void *) heap_var);
 
-    size_t mmap_size = 50 * 1024 * 1024;
-    void *mmap_var = mmap(NULL, mmap_size, PROT_READ | PROT_WRITE,
-                          MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (mmap_var == MAP_FAILED) {
-        perror("mmap failed");
-        free(heap_var);
-        return;
+    void *mmap_var = NULL;
+    if (mmap_size > 0) {
+        mmap_var = mmap(NULL, mmap_size, PROT_READ | PROT_WRITE,
+                        MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        if (mmap_var == MAP_FAILED) {
+            perror("mmap failed");
+            mmap_var = NULL;
+        } else {
+            for (size_t i = 0; i < mmap_size; i += pg) ((char *) mmap_var)[i] = 2;
+            printf("3. Anonymous mmap (touched): %.0f MB at %p\n", mmap_size / (1024.0 * 1024.0), mmap_var);
+        }
     }
 
-    for (size_t i = 0; i < mmap_size; i += 4096) ((char *) mmap_var)[i] = 2;
-    printf("3. Anonymous mmap (touched): 50 MB at %p\n", mmap_var);
-
-    printf("\nMemory allocated. Check /proc/%d/maps.\n", getpid());
-    printf("Press Enter to see memory info and map...\n");
-    getchar();
+    printf("\nMemory allocated. Check /proc/%d/maps to see different regions.\n", getpid());
+    if (isatty(STDIN_FILENO)) {
+        printf("Press Enter to see memory info and map...\n");
+        int ch;
+        while ((ch = getchar()) != '\n' && ch != EOF) {
+        }
+    } else {
+        printf("(Non-interactive stdin) continuing in 1s...\n");
+        sleep(1);
+    }
 
     print_memory_metrics(getpid());
     print_memory_map(getpid());
 
-    printf("\nPress Enter to free memory and exit...\n");
-    getchar();
+    if (isatty(STDIN_FILENO)) {
+        printf("\nPress Enter to free memory and exit...\n");
+        int ch;
+        while ((ch = getchar()) != '\n' && ch != EOF) {
+        }
+    } else {
+        printf("(Non-interactive stdin) exiting in 1s...\n");
+        sleep(1);
+    }
 
     free(heap_var);
-    munmap(mmap_var, mmap_size);
+    if (mmap_var && mmap_var != MAP_FAILED && mmap_size > 0) munmap(mmap_var, mmap_size);
 }
 
 int main(int argc, char *argv[]) {

@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <errno.h>
+#include <limits.h>
 
 #define DEFAULT_SIZE_MB 100
 
@@ -14,6 +15,23 @@ static double get_time(void) {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return ts.tv_sec + ts.tv_nsec / 1e9;
+}
+
+static ssize_t write_all(int fd, const void *buf, size_t count) {
+    const unsigned char *p = (const unsigned char *) buf;
+    size_t left = count;
+    while (left) {
+        ssize_t n = write(fd, p, left);
+        if (n > 0) {
+            p += (size_t) n;
+            left -= (size_t) n;
+        } else if (n < 0 && (errno == EINTR || errno == EAGAIN)) {
+            continue;
+        } else {
+            return -1;
+        }
+    }
+    return (ssize_t) count;
 }
 
 static double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
@@ -79,8 +97,7 @@ static double benchmark_write(const char *filename, size_t size, size_t buffer_s
 
     for (size_t written = 0; written < size; written += buffer_size) {
         size_t to_write = (size - written < buffer_size) ? (size - written) : buffer_size;
-        ssize_t w = write(fd, buffer, to_write);
-        if (w < 0) {
+        if (write_all(fd, buffer, to_write) < 0) {
             perror("write failed");
             break;
         }
@@ -120,8 +137,7 @@ static double benchmark_write_sync(const char *filename, size_t size, size_t buf
 
     for (size_t written = 0; written < size; written += buffer_size) {
         size_t to_write = (size - written < buffer_size) ? (size - written) : buffer_size;
-        ssize_t w = write(fd, buffer, to_write);
-        if (w < 0) {
+        if (write_all(fd, buffer, to_write) < 0) {
             perror("write failed");
             break;
         }
@@ -191,11 +207,19 @@ static void benchmark_buffer_sizes(size_t file_size_mb) {
     printf("File size: %zu MB\n", file_size_mb);
 
     for (int i = 0; i < num_sizes; i++) {
-        char filename[256];
-        snprintf(filename, sizeof(filename), "test_buffer_%zu.bin", buffer_sizes[i]);
+        char filename[PATH_MAX];
+        const char *tmpdir = getenv("TMPDIR");
+        if (!tmpdir || !*tmpdir) tmpdir = "/tmp";
+        snprintf(filename, sizeof(filename), "%s/io_bench_buf_XXXXXX", tmpdir);
 
-        double t = benchmark_write(filename, file_size, buffer_sizes[i]);
-        (void) t;
+        int tfd = mkstemp(filename);
+        if (tfd < 0) {
+            perror("mkstemp");
+            continue;
+        }
+        close(tfd);
+
+        (void) benchmark_write(filename, file_size, buffer_sizes[i]);
         unlink(filename);
         sleep(1);
     }
@@ -212,21 +236,63 @@ static void benchmark_all_methods(size_t file_size_mb) {
     printf("\nFile size: %zu MB\n", file_size_mb);
     printf("Buffer size: %zu KB (for fwrite/write)\n", optimal_buffer / 1024);
 
-    benchmark_fwrite("test_fwrite.bin", file_size, optimal_buffer);
-    unlink("test_fwrite.bin");
+    const char *td = getenv("TMPDIR");
+    if (!td || !*td) td = "/tmp";
+
+    // fwrite
+    {
+        char p[PATH_MAX];
+        snprintf(p, sizeof(p), "%s/io_bench_fwrite_XXXXXX", td);
+        int fd = mkstemp(p);
+        if (fd < 0) perror("mkstemp");
+        else {
+            close(fd);
+            benchmark_fwrite(p, file_size, optimal_buffer);
+            unlink(p);
+        }
+    }
     sleep(1);
 
-    benchmark_write("test_write.bin", file_size, optimal_buffer);
-    unlink("test_write.bin");
+    // write
+    {
+        char p[PATH_MAX];
+        snprintf(p, sizeof(p), "%s/io_bench_write_XXXXXX", td);
+        int fd = mkstemp(p);
+        if (fd < 0) perror("mkstemp");
+        else {
+            close(fd);
+            benchmark_write(p, file_size, optimal_buffer);
+            unlink(p);
+        }
+    }
     sleep(1);
 
-    // медленно
-    benchmark_write_sync("test_write_sync.bin", file_size, optimal_buffer);
-    unlink("test_write_sync.bin");
+    // write + O_SYNC
+    {
+        char p[PATH_MAX];
+        snprintf(p, sizeof(p), "%s/io_bench_sync_XXXXXX", td);
+        int fd = mkstemp(p);
+        if (fd < 0) perror("mkstemp");
+        else {
+            close(fd);
+            benchmark_write_sync(p, file_size, optimal_buffer);
+            unlink(p);
+        }
+    }
     sleep(1);
 
-    benchmark_mmap("test_mmap.bin", file_size);
-    unlink("test_mmap.bin");
+    // mmap
+    {
+        char p[PATH_MAX];
+        snprintf(p, sizeof(p), "%s/io_bench_mmap_XXXXXX", td);
+        int fd = mkstemp(p);
+        if (fd < 0) perror("mkstemp");
+        else {
+            close(fd);
+            benchmark_mmap(p, file_size);
+            unlink(p);
+        }
+    }
 
     printf("\n=== Summary ===\n");
     printf("Смотри тайминги выше. В общем случае:\n");
@@ -365,26 +431,37 @@ int main(int argc, char *argv[]) {
     benchmark_buffer_sizes(size_mb);
 
     {
-        const char *tf = "rb_file.bin";
-        size_t bytes = size_mb * 1024 * 1024;
-        int fd = open(tf, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-        if (fd >= 0) {
+        char tf[PATH_MAX];
+        const char *td = getenv("TMPDIR");
+        if (!td || !*td) td = "/tmp";
+        snprintf(tf, sizeof(tf), "%s/io_bench_read_XXXXXX", td);
+
+        int tfd = mkstemp(tf);
+        if (tfd < 0) {
+            perror("mkstemp");
+        } else {
+            size_t bytes = size_mb * 1024 * 1024;
             const size_t BUF = 64 * 1024;
             char *b = (char *) malloc(BUF);
-            memset(b, 0x5A, BUF);
-            size_t w = 0;
-            while (w < bytes) {
-                size_t t = (bytes - w < BUF ? bytes - w : BUF);
-                if (write(fd, b, t) < 0) {
-                    perror("write");
-                    break;
+            if (!b) {
+                perror("malloc");
+                close(tfd);
+            } else {
+                memset(b, 0x5A, BUF);
+                size_t w = 0;
+                while (w < bytes) {
+                    size_t t = (bytes - w < BUF ? bytes - w : BUF);
+                    if (write_all(tfd, b, t) < 0) {
+                        perror("write");
+                        break;
+                    }
+                    w += t;
                 }
-                w += t;
+                free(b);
+                close(tfd);
+                benchmark_read_methods(tf);
+                unlink(tf);
             }
-            free(b);
-            close(fd);
-            benchmark_read_methods(tf);
-            unlink(tf);
         }
     }
 
@@ -392,43 +469,3 @@ int main(int argc, char *argv[]) {
         "\n========================================\nBenchmark completed!\n========================================\n");
     return 0;
 }
-
-/*
- * ЗАДАНИЯ для студента:
- *
- * 1. Реализуйте все TODO функции
- *
- * 2. Запустите бенчмарк с разными размерами:
- *    $ ./io_benchmark --size 100
- *    $ ./io_benchmark --size 500
- *
- * 3. Для чистого эксперимента очистите page cache перед запуском:
- *    $ sync
- *    $ sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
- *    $ ./io_benchmark
- *
- * 4. Проанализируйте результаты:
- *    - Какой метод самый быстрый для записи?
- *    - Как влияет размер буфера на производительность?
- *    - Есть ли "оптимальный" размер буфера?
- *    - Почему очень маленький буфер (512 байт) медленный?
- *    - Почему очень большой буфер (1 MB) не даёт пропорционального ускорения?
- *
- * 5. Дополнительные эксперименты:
- *    - Реализуйте benchmark_write_sync() и сравните (будет ОЧЕНЬ медленно!)
- *    - Реализуйте benchmark_read_methods() для сравнения чтения
- *    - Измерьте разницу на HDD vs SSD (если доступно)
- *    - Попробуйте O_DIRECT (прямой I/O минуя page cache)
- *    - Используйте strace для подсчёта системных вызовов:
- *      $ strace -c ./io_benchmark --size 10
- *
- * 6. Постройте графики:
- *    - Размер буфера (ось X) vs Throughput MB/s (ось Y)
- *    - Сравнение методов (столбчатая диаграмма)
- *
- * 7. В отчёте объясните:
- *    - Почему fwrite может быть быстрее write несмотря на дополнительный слой?
- *    - Что такое page cache и как он влияет на результаты?
- *    - Когда имеет смысл использовать каждый метод?
- *    - Как файловая система влияет на производительность?
- */
