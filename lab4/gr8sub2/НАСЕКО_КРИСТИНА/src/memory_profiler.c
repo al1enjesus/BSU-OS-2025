@@ -178,7 +178,7 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     }
 
     return 0;
-
+}
 
 int read_memory_map(pid_t pid, MemoryMapEntry **entries, int *count) {
     char path[256];
@@ -471,15 +471,87 @@ void print_ascii_graph(MemoryHistory *history, int height, int width) {
     printf("  Time → (last %d samples)\n", history->count);
 }
 
-// Строка 164 - исправленная функция
-void save_to_csv(pid_t pid, MemoryHistory *history, const char *filename) {
-    // Проверка существования файла
-    if (access(filename, F_OK) == 0) {
-        printf("Warning: File '%s' already exists. Overwriting...\n", filename);
-       
+// Безопасное создание временного файла для mmap
+int create_temp_mmap_file(void) {
+    char filename[256];
+    
+    // Генерация уникального имени файла с временной меткой и PID
+    time_t now = time(NULL);
+    struct tm *tm_info = localtime(&now);
+    char timestamp[32];
+    strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", tm_info);
+    
+    // Создаем уникальное имя с временной меткой и PID процесса
+    snprintf(filename, sizeof(filename), "test_mmap_file_%s_%d.bin", timestamp, getpid());
+    
+    // Проверяем, не существует ли уже файл (маловероятно, но для безопасности)
+    int counter = 0;
+    char unique_filename[256];
+    strcpy(unique_filename, filename);
+    
+    while (access(unique_filename, F_OK) == 0 && counter < 100) {
+        // Если файл существует, добавляем суффикс
+        snprintf(unique_filename, sizeof(unique_filename), 
+                 "test_mmap_file_%s_%d_%d.bin", timestamp, getpid(), counter);
+        counter++;
     }
     
-    FILE *f = fopen(filename, "w");
+    if (counter >= 100) {
+        fprintf(stderr, "Error: Could not create unique temporary file name\n");
+        return -1;
+    }
+    
+    printf("Creating temporary file: %s\n", unique_filename);
+    
+    // Создаем файл с проверкой на существование (O_EXCL)
+    int fd = open(unique_filename, O_RDWR | O_CREAT | O_EXCL, 0644);
+    
+    if (fd == -1) {
+        perror("Failed to create temporary file");
+        return -1;
+    }
+    
+    return fd;
+}
+
+// Безопасное сохранение в CSV с уникальными именами
+void save_to_csv(pid_t pid, MemoryHistory *history, const char *filename) {
+    // Проверка существования файла с опцией переименования
+    char final_filename[512];
+    strncpy(final_filename, filename, sizeof(final_filename) - 1);
+    final_filename[sizeof(final_filename) - 1] = '\0';
+    
+    if (access(final_filename, F_OK) == 0) {
+        // Файл существует, создаем уникальное имя с временной меткой
+        time_t now = time(NULL);
+        struct tm *tm_info = localtime(&now);
+        char timestamp[32];
+        strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", tm_info);
+        
+        // Создаем новое имя файла
+        char base_name[256];
+        char extension[32];
+        
+        // Разделяем имя файла и расширение
+        char *dot = strrchr(final_filename, '.');
+        if (dot != NULL) {
+            size_t base_len = dot - final_filename;
+            strncpy(base_name, final_filename, base_len);
+            base_name[base_len] = '\0';
+            strncpy(extension, dot, sizeof(extension) - 1);
+        } else {
+            strncpy(base_name, final_filename, sizeof(base_name) - 1);
+            strcpy(extension, "");
+        }
+        
+        snprintf(final_filename, sizeof(final_filename), "%s_%s%s", 
+                 base_name, timestamp, extension);
+        
+        printf("File '%s' already exists. Using unique name: '%s'\n", 
+               filename, final_filename);
+    }
+    
+    FILE *f = fopen(final_filename, "w");
     if (!f) {
         perror("Failed to open CSV file");
         return;
@@ -499,8 +571,12 @@ void save_to_csv(pid_t pid, MemoryHistory *history, const char *filename) {
                 history->pss_values[idx] / 1024.0);
     }
     
-    fclose(f);
-    printf("Data saved to %s\n", filename);
+    if (fclose(f) != 0) {
+        perror("Failed to close CSV file");
+        return;
+    }
+    
+    printf("Data saved to %s\n", final_filename);
 }
 
 // ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
