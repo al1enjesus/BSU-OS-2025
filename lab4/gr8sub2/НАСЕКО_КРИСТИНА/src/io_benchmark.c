@@ -9,6 +9,8 @@
 #include <errno.h>
 
 #define DEFAULT_SIZE_MB 100
+#define BUFFER_SIZE_64KB 65536
+#define MAX_FILENAME_LEN 256
 
 double get_time() {
     struct timespec ts;
@@ -46,7 +48,10 @@ double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
         written += to_write;
     }
 
-    fflush(f);
+    if (fflush(f) != 0) {
+        perror("fflush failed");
+    }
+
     double end = get_time();
     double elapsed = end - start;
 
@@ -55,7 +60,10 @@ double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
     printf("Operations: %zu\n", (size + buffer_size - 1) / buffer_size);
 
     free(buffer);
-    fclose(f);
+    
+    if (fclose(f) != 0) {
+        perror("fclose failed");
+    }
 
     return elapsed;
 }
@@ -91,7 +99,10 @@ double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
         written += result;
     }
 
-    fsync(fd);
+    if (fsync(fd) == -1) {
+        perror("fsync failed");
+    }
+
     double end = get_time();
     double elapsed = end - start;
 
@@ -100,7 +111,10 @@ double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
     printf("Syscalls: %zu\n", (size + buffer_size - 1) / buffer_size);
 
     free(buffer);
-    close(fd);
+    
+    if (close(fd) == -1) {
+        perror("close failed");
+    }
 
     return elapsed;
 }
@@ -122,7 +136,7 @@ double benchmark_fread(const char *filename) {
         return -1;
     }
 
-    char *buffer = malloc(65536); // 64KB buffer
+    char *buffer = malloc(BUFFER_SIZE_64KB);
     if (!buffer) {
         perror("malloc failed");
         fclose(f);
@@ -134,7 +148,11 @@ double benchmark_fread(const char *filename) {
     unsigned long long checksum = 0;
 
     while (!feof(f)) {
-        size_t bytes_read = fread(buffer, 1, 65536, f);
+        size_t bytes_read = fread(buffer, 1, BUFFER_SIZE_64KB, f);
+        if (ferror(f)) {
+            perror("fread error");
+            break;
+        }
         if (bytes_read == 0) break;
         
         for (size_t i = 0; i < bytes_read; i++) {
@@ -151,7 +169,11 @@ double benchmark_fread(const char *filename) {
     printf("Checksum: %llu\n", checksum);
 
     free(buffer);
-    fclose(f);
+    
+    if (fclose(f) != 0) {
+        perror("fclose failed");
+    }
+
     return elapsed;
 }
 
@@ -172,7 +194,7 @@ double benchmark_read(const char *filename) {
         return -1;
     }
 
-    char *buffer = malloc(65536);
+    char *buffer = malloc(BUFFER_SIZE_64KB);
     if (!buffer) {
         perror("malloc failed");
         close(fd);
@@ -184,11 +206,15 @@ double benchmark_read(const char *filename) {
     unsigned long long checksum = 0;
     ssize_t bytes_read;
 
-    while ((bytes_read = read(fd, buffer, 65536)) > 0) {
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE_64KB)) > 0) {
         for (ssize_t i = 0; i < bytes_read; i++) {
             checksum += (unsigned char)buffer[i];
         }
         total_read += bytes_read;
+    }
+
+    if (bytes_read == -1) {
+        perror("read failed");
     }
 
     double end = get_time();
@@ -199,7 +225,11 @@ double benchmark_read(const char *filename) {
     printf("Checksum: %llu\n", checksum);
 
     free(buffer);
-    close(fd);
+    
+    if (close(fd) == -1) {
+        perror("close failed");
+    }
+
     return elapsed;
 }
 
@@ -216,13 +246,20 @@ void benchmark_buffer_sizes(size_t file_size_mb) {
     printf("File size: %zu MB\n\n", file_size_mb);
 
     for (int i = 0; i < num_sizes; i++) {
-        char filename[256];
-        snprintf(filename, sizeof(filename), "test_buffer_%zu.bin", buffer_sizes[i]);
+        char filename[MAX_FILENAME_LEN];
+        int snprintf_result = snprintf(filename, sizeof(filename), "test_buffer_%zu.bin", buffer_sizes[i]);
+        if (snprintf_result < 0 || (size_t)snprintf_result >= sizeof(filename)) {
+            fprintf(stderr, "Filename too long for buffer size %zu\n", buffer_sizes[i]);
+            continue;
+        }
 
         printf("Buffer: %7zu bytes -> ", buffer_sizes[i]);
-        (void)benchmark_write(filename, file_size, buffer_sizes[i]);
+        double time = benchmark_write(filename, file_size, buffer_sizes[i]);
+        (void)time; // Результат игнорируется намеренно
 
-        unlink(filename);
+        if (unlink(filename) == -1) {
+            perror("unlink failed");
+        }
         sleep(1);
     }
 }
@@ -242,12 +279,20 @@ void benchmark_all_methods(size_t file_size_mb) {
     for (int i = 0; i < num_sizes; i++) {
         printf("--- Testing with %zu byte buffer ---\n", buffer_sizes[i]);
         
-        benchmark_fwrite("test_fwrite.bin", file_size, buffer_sizes[i]);
-        unlink("test_fwrite.bin");
+        double result1 = benchmark_fwrite("test_fwrite.bin", file_size, buffer_sizes[i]);
+        (void)result1;
+        
+        if (unlink("test_fwrite.bin") == -1) {
+            perror("unlink test_fwrite.bin failed");
+        }
         sleep(1);
 
-        benchmark_write("test_write.bin", file_size, buffer_sizes[i]);
-        unlink("test_write.bin");
+        double result2 = benchmark_write("test_write.bin", file_size, buffer_sizes[i]);
+        (void)result2;
+        
+        if (unlink("test_write.bin") == -1) {
+            perror("unlink test_write.bin failed");
+        }
         sleep(1);
         
         printf("\n");
@@ -256,26 +301,62 @@ void benchmark_all_methods(size_t file_size_mb) {
     // Тестируем чтение
     printf("--- Testing Read Methods ---\n");
     // Создаем файл для чтения
-    benchmark_write("test_read.bin", file_size, 65536);
+    double write_result = benchmark_write("test_read.bin", file_size, BUFFER_SIZE_64KB);
+    (void)write_result;
     
-    benchmark_fread("test_read.bin");
-    benchmark_read("test_read.bin");
+    double read1_result = benchmark_fread("test_read.bin");
+    (void)read1_result;
     
-    unlink("test_read.bin");
+    double read2_result = benchmark_read("test_read.bin");
+    (void)read2_result;
+    
+    if (unlink("test_read.bin") == -1) {
+        perror("unlink test_read.bin failed");
+    }
+}
+
+int clear_system_cache(void) {
+    printf("Syncing file system...\n");
+    
+    // Используем прямой системный вызов вместо system()
+    sync();
+    
+    printf("Note: For more accurate results, run as root or manually clear caches:\n");
+    printf("      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n\n");
+    
+    return 0;
+}
+
+void print_usage(const char *program_name) {
+    printf("Usage: %s [--size SIZE_MB]\n", program_name);
+    printf("Options:\n");
+    printf("  --size SIZE_MB    Set test file size in MB (default: %d)\n", DEFAULT_SIZE_MB);
+    printf("  --help            Show this help message\n");
+    printf("\nNote: For accurate results, manually clear caches with:\n");
+    printf("      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
 }
 
 int main(int argc, char *argv[]) {
     size_t size_mb = DEFAULT_SIZE_MB;
 
+    // Парсинг аргументов командной строки
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--size") == 0 && i + 1 < argc) {
-            size_mb = atoi(argv[i + 1]);
+            char *endptr;
+            long value = strtol(argv[i + 1], &endptr, 10);
+            if (*endptr != '\0' || value <= 0) {
+                fprintf(stderr, "Error: Invalid size value '%s'\n", argv[i + 1]);
+                return 1;
+            }
+            size_mb = (size_t)value;
             i++;
         } else if (strcmp(argv[i], "--help") == 0) {
-            printf("Usage: %s [--size SIZE_MB]\n", argv[0]);
-            printf("Note: For accurate results, manually clear caches with:\n");
-            printf("      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
+            print_usage(argv[0]);
             return 0;
+        } else {
+            fprintf(stderr, "Error: Unknown option '%s'\n", argv[i]);
+            print_usage(argv[0]);
+            return 1;
         }
     }
 
@@ -283,13 +364,10 @@ int main(int argc, char *argv[]) {
     printf("==========================\n");
     printf("Test file size: %zu MB\n", size_mb);
 
-    // Безопасная очистка кеша - только sync
-    printf("Syncing file system...\n");
-    int ret = system("sync");
-    (void)ret; // Игнорируем возвращаемое значение
-    
-    printf("Note: For more accurate results, run as root or manually clear caches:\n");
-    printf("      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n\n");
+    // Безопасная очистка кеша
+    if (clear_system_cache() != 0) {
+        printf("Warning: Cache clearing failed, results may be affected by cached data\n\n");
+    }
 
     benchmark_all_methods(size_mb);
     benchmark_buffer_sizes(size_mb);
