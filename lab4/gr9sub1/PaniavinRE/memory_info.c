@@ -152,6 +152,6 @@ int main(int argc, char *argv[]) {
         printf("This will allocate different types of memory and show the results.\n\n");
         demonstrate_memory_types();
     }
-
+    remove("testfile.bin");
     return 0;
 }

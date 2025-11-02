@@ -42,7 +42,6 @@ void create_test_file(const char *filename, size_t size_mb) {
         if (write(fd, buf, to_write) != (ssize_t)to_write) {
             perror("write failed");
             free(buf);
-            free(buf);
             close(fd);
             exit(1);
         }
@@ -118,42 +117,6 @@ void benchmark_mmap(const char *filename, size_t file_size) {
     printf("mmap(): %.2f s, %.2f MB/s (sink=%d)\n", elapsed, speed, sink);
 }
 
-void benchmark_read_madvise(const char *filename, size_t file_size) {
-    printf("\n=== Benchmark: read() + madvise(MADV_SEQUENTIAL) ===\n");
-
-    int fd = open(filename, O_RDONLY);
-    if (fd == -1) {
-        perror("open failed");
-        return;
-    }
-
-    char *buffer = malloc(file_size);
-    if (!buffer) {
-        perror("malloc failed");
-        close(fd);
-        return;
-    }
-
-    if (madvise(buffer, file_size, MADV_SEQUENTIAL) == -1) {
-        perror("madvise failed");
-    }
-
-    double start = get_time();
-    ssize_t n = read(fd, buffer, file_size);
-    double end = get_time();
-
-    if (n != (ssize_t)file_size) {
-        fprintf(stderr, "read failed: expected %zu, got %zd\n", file_size, n);
-    }
-
-    close(fd);
-    free(buffer);
-
-    double elapsed = end - start;
-    double speed = file_size / (1024.0 * 1024.0) / elapsed;
-    printf("read() + madvise: %.2f s, %.2f MB/s\n", elapsed, speed);
-}
-
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <filename> [--create-file <MB>]\n", argv[0]);
@@ -189,7 +152,6 @@ int main(int argc, char *argv[]) {
 
     benchmark_read(filename, file_size);
     benchmark_mmap(filename, file_size);
-    benchmark_read_madvise(filename, file_size);
 
     printf("\n=== Summary ===\n");
     printf("mmap() часто быстрее для:\n");
