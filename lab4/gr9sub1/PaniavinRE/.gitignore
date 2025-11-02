@@ -1,0 +1,36 @@
+# Compiled binaries
+memory_info
+mmap_vs_read
+page_faults_demo
+io_benchmark
+memory_profiler
+
+# Object files
+*.o
+*.obj
+
+# Test files
+test*.bin
+testfile.bin
+largefile.bin
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
