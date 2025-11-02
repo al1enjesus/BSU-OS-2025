@@ -1,0 +1,69 @@
+Page Faults Demonstration
+==========================
+Page size: 4096 bytes
+Initial page faults: minor=117, major=0
+
+=== Demo 1: Allocation without access ===
+Allocated 104857600 bytes (100.0 MB)
+After malloc (no access):
+  Minor faults: 120 (+3)
+  Major faults: 0 (+0)
+
+=== Demo 2: Sequential access ===
+Allocated 104857600 bytes (100.0 MB)
+After sequential write (one byte per page):
+  Minor faults: 25720 (+25599)
+  Major faults: 0 (+0)
+Expected page faults: 25600 (size / PAGE_SIZE)
+
+=== Demo 3: Full memory write ===
+Allocated 52428800 bytes (50.0 MB)
+After memset:
+  Minor faults: 25721 (+0)
+  Major faults: 0 (+0)
+
+=== Demo 4: Random access ===
+Allocated 104857600 bytes (100.0 MB)
+After random writes:
+  Minor faults: 34049 (+8325)
+  Major faults: 0 (+0)
+Random accesses performed: 10000
+Note: Some pages may have been accessed multiple times.
+
+=== Demo 5: Re-reading memory ===
+First pass: writing memory...
+After first write:
+  Minor faults: 46850 (+12800)
+  Major faults: 0 (+0)
+
+Second pass: reading memory...
+After second read:
+  Minor faults: 46850 (+0)
+  Major faults: 0 (+0)
+Checksum: 3565158400 (to prevent optimization)
+Note: No new page faults expected (pages already in memory).
+
+=== Demo 6: calloc vs malloc ===
+Method 1: malloc + memset
+After malloc + memset:
+  Minor faults: 46851 (+1)
+  Major faults: 0 (+0)
+
+Method 2: calloc
+After calloc + read:
+  Minor faults: 59651 (+12800)
+  Major faults: 0 (+0)
+After calloc + write:
+  Minor faults: 72450 (+12799)
+  Major faults: 0 (+0)
+
+=== Summary ===
+Total page faults: minor=72450, major=0
+
+Key observations:
+1. malloc() alone doesn't cause page faults (memory is virtual)
+2. First write to a page causes a minor page fault
+3. Subsequent accesses to the same page don't cause faults
+4. Major faults occur only when loading from disk (swap, files)
+5. calloc() may use optimizations (zero page, CoW)
+

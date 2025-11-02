@@ -1,13 +1,13 @@
 /*
- * io_benchmark.c - Бенчмарк различных методов файлового I/O
+ * mmap_vs_read.c - Сравнение производительности mmap() vs read()
  *
- * Компиляция: gcc -Wall -Wextra -O2 io_benchmark.c -o io_benchmark
- * Использование: ./io_benchmark [--size SIZE_MB]
+ * Компиляция: gcc -Wall -Wextra -O2 mmap_vs_read.c -o mmap_vs_read
+ * Использование: ./mmap_vs_read <filename>
  *
  * Демонстрирует:
- * - Сравнение fwrite() vs write() vs mmap()
- * - Влияние размера буфера на производительность
- * - Буферизованный vs небуферизованный I/O
+ * - Традиционный I/O через read()
+ * - Memory-mapped I/O через mmap()
+ * - Замер времени и page faults для обоих методов
  */
 
 #include <stdio.h>
@@ -17,331 +17,421 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <sys/resource.h>
 #include <time.h>
 #include <errno.h>
 
-#define DEFAULT_SIZE_MB 100
+#define BUFFER_SIZE (4 * 1024)  // 4 KB
 
-// TODO: Реализовать функцию замера времени
+typedef struct {
+    long minor_faults;
+    long major_faults;
+} PageFaultStats;
+
+PageFaultStats get_page_faults() {
+    PageFaultStats stats = {0, 0};
+    struct rusage usage;
+    
+    if (getrusage(RUSAGE_SELF, &usage) == 0) {
+        stats.minor_faults = usage.ru_minflt;
+        stats.major_faults = usage.ru_majflt;
+    }
+    
+    return stats;
+}
+
 double get_time() {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return ts.tv_sec + ts.tv_nsec / 1e9;
 }
 
-// TODO: Метод 1 - fwrite() (stdio, буферизованный)
-double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size) {
-    printf("\n=== fwrite() with buffer=%zu bytes ===\n", buffer_size);
+unsigned long long read_with_syscalls(const char *filename) {
+    printf("\n=== Method 1: read() syscall ===\n");
 
-    FILE *f = fopen(filename, "wb");
-    if (!f) {
-        perror("fopen failed");
-        return -1;
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("open failed");
+        return 0;
     }
 
-    // Подготовить буфер с данными
-    char *buffer = malloc(buffer_size);
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
+        close(fd);
+        return 0;
+    }
+
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    char *buffer = malloc(BUFFER_SIZE);
     if (!buffer) {
         perror("malloc failed");
-        fclose(f);
-        return -1;
+        close(fd);
+        return 0;
     }
-    memset(buffer, 'A', buffer_size);
 
-    // TODO: Замерить время записи
-    double start = get_time();
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
 
-    // for (size_t written = 0; written < size; written += buffer_size) {
-    //     size_t to_write = (size - written < buffer_size) ? (size - written) : buffer_size;
-    //     if (fwrite(buffer, 1, to_write, f) != to_write) {
-    //         perror("fwrite failed");
-    //         break;
-    //     }
-    // }
+    unsigned long long sum = 0;
+    ssize_t bytes_read;
 
-    double end = get_time();
-    double elapsed = end - start;
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0) {
+        for (ssize_t i = 0; i < bytes_read; i++) {
+            sum += (unsigned char)buffer[i];
+        }
+    }
 
-    printf("Time: %.3f seconds\n", elapsed);
-    printf("Throughput: %.2f MB/s\n", (size / (1024.0 * 1024.0)) / elapsed);
+    if (bytes_read == -1) {
+        perror("read failed");
+    }
+
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    printf("Time elapsed: %.6f seconds\n", end_time - start_time);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Checksum: %llu\n", sum);
 
     free(buffer);
-    fclose(f);
+    close(fd);
 
-    return elapsed;
+    return sum;
 }
 
-// TODO: Метод 2 - write() (системный вызов, небуферизованный на уровне stdio)
-double benchmark_write(const char *filename, size_t size, size_t buffer_size) {
-    printf("\n=== write() with buffer=%zu bytes ===\n", buffer_size);
+unsigned long long read_with_mmap(const char *filename) {
+    printf("\n=== Method 2: mmap() ===\n");
+
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("open failed");
+        return 0;
+    }
+
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
+        close(fd);
+        return 0;
+    }
+
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (data == MAP_FAILED) {
+        perror("mmap failed");
+        close(fd);
+        return 0;
+    }
+
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
+
+    unsigned long long sum = 0;
+    unsigned char *bytes = (unsigned char *)data;
+
+    for (off_t i = 0; i < sb.st_size; i++) {
+        sum += bytes[i];
+    }
+
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    printf("Time elapsed: %.6f seconds\n", end_time - start_time);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Checksum: %llu\n", sum);
+
+    if (data != MAP_FAILED) {
+        munmap(data, sb.st_size);
+    }
+    close(fd);
+
+    return sum;
+}
+
+unsigned long long read_with_mmap_sequential(const char *filename) {
+    printf("\n=== Method 3: mmap() + madvise(SEQUENTIAL) ===\n");
+
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("open failed");
+        return 0;
+    }
+
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
+        close(fd);
+        return 0;
+    }
+
+    if (sb.st_size == 0) {
+        printf("File is empty\n");
+        close(fd);
+        return 0;
+    }
+
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (data == MAP_FAILED) {
+        perror("mmap failed");
+        close(fd);
+        return 0;
+    }
+
+    // Подсказка ядру, что мы будем читать файл последовательно
+    // Ядро может начать prefetch следующих страниц
+    if (madvise(data, sb.st_size, MADV_SEQUENTIAL) == -1) {
+        perror("madvise failed");
+        // Продолжаем выполнение даже если madvise не сработал
+    }
+
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
+
+    unsigned long long sum = 0;
+    unsigned char *bytes = (unsigned char *)data;
+
+    for (off_t i = 0; i < sb.st_size; i++) {
+        sum += bytes[i];
+    }
+
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    printf("Time elapsed: %.6f seconds\n", end_time - start_time);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Checksum: %llu\n", sum);
+
+    if (data != MAP_FAILED) {
+        munmap(data, sb.st_size);
+    }
+    close(fd);
+
+    return sum;
+}
+
+unsigned long long read_with_mmap_random(const char *filename) {
+    printf("\n=== Method 4: mmap() + random access ===\n");
+
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("open failed");
+        return 0;
+    }
+
+    struct stat sb;
+    if (fstat(fd, &sb) == -1) {
+        perror("fstat failed");
+        close(fd);
+        return 0;
+    }
+
+    if (sb.st_size == 0) {
+        printf("File is empty\n");
+        close(fd);
+        return 0;
+    }
+
+    printf("File size: %ld bytes (%.2f MB)\n", sb.st_size, sb.st_size / (1024.0 * 1024.0));
+
+    void *data = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (data == MAP_FAILED) {
+        perror("mmap failed");
+        close(fd);
+        return 0;
+    }
+
+    // Подсказка ядру, что доступ будет случайным
+    if (madvise(data, sb.st_size, MADV_RANDOM) == -1) {
+        perror("madvise failed");
+    }
+
+    PageFaultStats start_faults = get_page_faults();
+    double start_time = get_time();
+
+    unsigned long long sum = 0;
+    unsigned char *bytes = (unsigned char *)data;
+
+    // Случайный доступ к данным
+    srand(time(NULL));
+    int num_accesses = 100000;  // Количество случайных обращений
+    for (int i = 0; i < num_accesses; i++) {
+        off_t random_offset = rand() % sb.st_size;
+        sum += bytes[random_offset];
+    }
+
+    double end_time = get_time();
+    PageFaultStats end_faults = get_page_faults();
+
+    printf("Time elapsed: %.6f seconds\n", end_time - start_time);
+    printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
+    printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
+    printf("Random accesses: %d\n", num_accesses);
+    printf("Checksum: %llu\n", sum);
+
+    if (data != MAP_FAILED) {
+        munmap(data, sb.st_size);
+    }
+    close(fd);
+
+    return sum;
+}
+
+void create_test_file(const char *filename, size_t size_mb) {
+    printf("Creating test file '%s' (%zu MB)...\n", filename, size_mb);
 
     int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) {
         perror("open failed");
-        return -1;
-    }
-
-    // Подготовить буфер
-    char *buffer = malloc(buffer_size);
-    if (!buffer) {
-        perror("malloc failed");
-        close(fd);
-        return -1;
-    }
-    memset(buffer, 'B', buffer_size);
-
-    // TODO: Замерить время записи
-    double start = get_time();
-
-    // for (size_t written = 0; written < size; written += buffer_size) {
-    //     size_t to_write = (size - written < buffer_size) ? (size - written) : buffer_size;
-    //     if (write(fd, buffer, to_write) != (ssize_t)to_write) {
-    //         perror("write failed");
-    //         break;
-    //     }
-    // }
-
-    double end = get_time();
-    double elapsed = end - start;
-
-    printf("Time: %.3f seconds\n", elapsed);
-    printf("Throughput: %.2f MB/s\n", (size / (1024.0 * 1024.0)) / elapsed);
-
-    free(buffer);
-    close(fd);
-
-    return elapsed;
-}
-
-// TODO: Метод 3 - write() с O_SYNC (синхронная запись)
-double benchmark_write_sync(const char *filename, size_t size, size_t buffer_size) {
-    printf("\n=== write() with O_SYNC (buffer=%zu bytes) ===\n", buffer_size);
-
-    // TODO: Открыть с флагом O_SYNC
-    // int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_SYNC, 0644);
-    // O_SYNC означает, что каждый write() ждёт физической записи на диск
-
-    printf("(Not implemented yet - would be VERY slow!)\n");
-    return -1;
-}
-
-// TODO: Метод 4 - mmap() (memory-mapped I/O)
-double benchmark_mmap(const char *filename, size_t size) {
-    printf("\n=== mmap() ===\n");
-
-    int fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0644);
-    if (fd == -1) {
-        perror("open failed");
-        return -1;
-    }
-
-    // TODO: Установить размер файла
-    // if (ftruncate(fd, size) == -1) {
-    //     perror("ftruncate failed");
-    //     close(fd);
-    //     return -1;
-    // }
-
-    // TODO: Отобразить файл в память
-    // void *data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    // if (data == MAP_FAILED) {
-    //     perror("mmap failed");
-    //     close(fd);
-    //     return -1;
-    // }
-
-    void *data = NULL;  // TODO: убрать
-
-    // TODO: Замерить время записи
-    double start = get_time();
-
-    // memset(data, 'C', size);
-
-    // Опционально: принудительно записать на диск
-    // msync(data, size, MS_SYNC);
-
-    double end = get_time();
-    double elapsed = end - start;
-
-    printf("Time: %.3f seconds\n", elapsed);
-    printf("Throughput: %.2f MB/s\n", (size / (1024.0 * 1024.0)) / elapsed);
-
-    if (data) {
-        // munmap(data, size);
-    }
-    close(fd);
-
-    return elapsed;
-}
-
-// TODO: Сравнение разных размеров буфера для write()
-void benchmark_buffer_sizes(size_t file_size_mb) {
-    printf("\n========================================\n");
-    printf("Benchmark: Buffer Size Impact\n");
-    printf("========================================\n");
-
-    size_t file_size = file_size_mb * 1024 * 1024;
-    size_t buffer_sizes[] = {512, 1024, 4096, 8192, 16384, 65536, 1024*1024};
-    int num_sizes = sizeof(buffer_sizes) / sizeof(buffer_sizes[0]);
-
-    printf("\nTesting write() with different buffer sizes:\n");
-    printf("File size: %zu MB\n", file_size_mb);
-
-    for (int i = 0; i < num_sizes; i++) {
-        char filename[256];
-        snprintf(filename, sizeof(filename), "test_buffer_%zu.bin", buffer_sizes[i]);
-
-        double time = benchmark_write(filename, file_size, buffer_sizes[i]);
-
-        // Удалить файл после теста
-        unlink(filename);
-
-        // Небольшая пауза между тестами
-        sleep(1);
-    }
-}
-
-// TODO: Главное сравнение всех методов
-void benchmark_all_methods(size_t file_size_mb) {
-    printf("\n========================================\n");
-    printf("Benchmark: I/O Methods Comparison\n");
-    printf("========================================\n");
-
-    size_t file_size = file_size_mb * 1024 * 1024;
-    size_t optimal_buffer = 64 * 1024;  // 64 KB
-
-    printf("\nFile size: %zu MB\n", file_size_mb);
-    printf("Buffer size: %zu KB (for fwrite/write)\n", optimal_buffer / 1024);
-
-    // Метод 1: fwrite
-    benchmark_fwrite("test_fwrite.bin", file_size, optimal_buffer);
-    unlink("test_fwrite.bin");
-    sleep(1);
-
-    // Метод 2: write
-    benchmark_write("test_write.bin", file_size, optimal_buffer);
-    unlink("test_write.bin");
-    sleep(1);
-
-    // Метод 3: mmap
-    benchmark_mmap("test_mmap.bin", file_size);
-    unlink("test_mmap.bin");
-
-    printf("\n=== Summary ===\n");
-    printf("Fastest method: (compare results above)\n");
-    printf("\nFactors affecting performance:\n");
-    printf("- stdio (fwrite) has user-space buffering\n");
-    printf("- write() goes directly to kernel, but still uses page cache\n");
-    printf("- mmap() allows direct memory access, lazy writes\n");
-    printf("- Actual disk speed depends on: HDD vs SSD, filesystem, etc.\n");
-}
-
-// TODO: Бенчмарк чтения
-void benchmark_read_methods(const char *filename) {
-    printf("\n========================================\n");
-    printf("Benchmark: Reading Methods\n");
-    printf("========================================\n");
-
-    struct stat sb;
-    if (stat(filename, &sb) == -1) {
-        perror("stat failed");
         return;
     }
 
-    size_t file_size = sb.st_size;
-    printf("File: %s\n", filename);
-    printf("Size: %.2f MB\n", file_size / (1024.0 * 1024.0));
+    size_t total_bytes = size_mb * 1024 * 1024;
+    char buffer[4096];
 
-    // TODO: Метод 1 - fread()
-    printf("\n--- fread() ---\n");
-    // Реализовать чтение через fread() с замером времени
+    // Заполняем буфер псевдослучайными данными
+    for (int i = 0; i < 4096; i++) {
+        buffer[i] = (char)(i % 256);
+    }
 
-    // TODO: Метод 2 - read()
-    printf("\n--- read() ---\n");
-    // Реализовать чтение через read() с замером времени
+    size_t written = 0;
+    while (written < total_bytes) {
+        size_t to_write = (total_bytes - written < sizeof(buffer)) ?
+                          (total_bytes - written) : sizeof(buffer);
+        ssize_t result = write(fd, buffer, to_write);
+        if (result == -1) {
+            perror("write failed");
+            break;
+        }
+        written += result;
+    }
 
-    // TODO: Метод 3 - mmap()
-    printf("\n--- mmap() ---\n");
-    // Реализовать чтение через mmap() с замером времени
+    close(fd);
+    printf("Test file created successfully (%zu bytes).\n", written);
+}
+
+void clear_page_cache() {
+    printf("Clearing page cache...\n");
+    system("sync");
+    if (system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'") != 0) {
+        printf("Warning: Failed to clear page cache (need root privileges)\n");
+    }
 }
 
 int main(int argc, char *argv[]) {
-    size_t size_mb = DEFAULT_SIZE_MB;
+    const char *filename;
+    int create_file = 0;
+    size_t file_size_mb = 100;
+    int clear_cache = 0;
 
     // Парсинг аргументов
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "--size") == 0 && i + 1 < argc) {
-            size_mb = atoi(argv[i + 1]);
-            i++;
-        } else if (strcmp(argv[i], "--help") == 0) {
-            printf("Usage: %s [--size SIZE_MB]\n", argv[0]);
-            printf("\nOptions:\n");
-            printf("  --size SIZE_MB   Size of test file in megabytes (default: %d)\n", DEFAULT_SIZE_MB);
-            printf("\nExamples:\n");
-            printf("  %s                 # Use default size (100 MB)\n", argv[0]);
-            printf("  %s --size 500      # Test with 500 MB file\n", argv[0]);
-            return 0;
+    if (argc < 2) {
+        printf("Usage: %s <filename> [--create-file <size_mb>] [--clear-cache]\n", argv[0]);
+        printf("\nExamples:\n");
+        printf("  %s testfile.bin --create-file 100\n", argv[0]);
+        printf("  %s /path/to/existing/file.bin --clear-cache\n", argv[0]);
+        printf("  %s testfile.bin --create-file 50 --clear-cache\n", argv[0]);
+        return 1;
+    }
+
+    filename = argv[1];
+
+    for (int i = 2; i < argc; i++) {
+        if (strcmp(argv[i], "--create-file") == 0 && i + 1 < argc) {
+            create_file = 1;
+            file_size_mb = atoi(argv[++i]);
+        } else if (strcmp(argv[i], "--clear-cache") == 0) {
+            clear_cache = 1;
         }
     }
 
-    printf("I/O Benchmark\n");
-    printf("=============\n");
-    printf("Test file size: %zu MB\n", size_mb);
+    if (create_file) {
+        create_test_file(filename, file_size_mb);
+        printf("\n");
+    }
 
-    // TODO: Для чистоты эксперимента можно очистить page cache
-    // system("sync");  // Сбросить буферы на диск
-    // system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'");  // Очистить cache
+    if (access(filename, F_OK) != 0) {
+        fprintf(stderr, "Error: File '%s' does not exist.\n", filename);
+        fprintf(stderr, "Use --create-file option to create a test file.\n");
+        return 1;
+    }
 
-    // Запустить бенчмарки
-    benchmark_all_methods(size_mb);
+    printf("Comparing I/O methods for file: %s\n", filename);
+    printf("===========================================\n");
 
-    printf("\n");
+    if (clear_cache) {
+        clear_page_cache();
+        printf("\n");
+    }
 
-    benchmark_buffer_sizes(size_mb);
+    // Метод 1: read()
+    unsigned long long sum1 = read_with_syscalls(filename);
 
-    printf("\n========================================\n");
-    printf("Benchmark completed!\n");
-    printf("========================================\n");
+    sleep(1);  // Небольшая пауза
+
+    if (clear_cache) {
+        clear_page_cache();
+    }
+
+    // Метод 2: mmap()
+    unsigned long long sum2 = read_with_mmap(filename);
+
+    sleep(1);
+
+    if (clear_cache) {
+        clear_page_cache();
+    }
+
+    // Метод 3: mmap() + madvise(SEQUENTIAL)
+    unsigned long long sum3 = read_with_mmap_sequential(filename);
+
+    sleep(1);
+
+    if (clear_cache) {
+        clear_page_cache();
+    }
+
+    // Метод 4: mmap() + random access
+    unsigned long long sum4 = read_with_mmap_random(filename);
+
+    printf("\n=== Verification ===\n");
+  
+    int all_match = 1;
+    
+    // Для методов с последовательным чтением суммы должны совпадать
+    if (sum1 == sum2 && sum2 == sum3) {
+        printf("✓ Methods 1-3 (sequential reads) checksums match: %llu\n", sum1);
+    } else {
+        printf("✗ Sequential read checksums differ! read(): %llu, mmap: %llu, mmap+seq: %llu\n", 
+               sum1, sum2, sum3);
+        all_match = 0;
+    }
+    
+    // Для случайного доступа сумма будет другой, но мы проверяем что он работает
+    if (sum4 > 0) {
+        printf("✓ Method 4 (random access) completed successfully: %llu\n", sum4);
+    } else {
+        printf("✗ Method 4 (random access) failed\n");
+        all_match = 0;
+    }
+    
+    if (all_match) {
+        printf("All methods completed successfully!\n");
+    }
+
+    printf("\n=== Performance Summary ===\n");
+    printf("Key observations:\n");
+    printf("1. read() uses system calls but has predictable memory usage\n");
+    printf("2. mmap() has fewer system calls but may cause more page faults\n");
+    printf("3. madvise() can optimize access patterns\n");
+    printf("4. Random access favors mmap() due to on-demand loading\n");
+    printf("5. Results depend on file size, cache state, and storage type\n");
 
     return 0;
 }
-
-/*
- * ЗАДАНИЯ для студента:
- *
- * 1. Реализуйте все TODO функции
- *
- * 2. Запустите бенчмарк с разными размерами:
- *    $ ./io_benchmark --size 100
- *    $ ./io_benchmark --size 500
- *
- * 3. Для чистого эксперимента очистите page cache перед запуском:
- *    $ sync
- *    $ sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
- *    $ ./io_benchmark
- *
- * 4. Проанализируйте результаты:
- *    - Какой метод самый быстрый для записи?
- *    - Как влияет размер буфера на производительность?
- *    - Есть ли "оптимальный" размер буфера?
- *    - Почему очень маленький буфер (512 байт) медленный?
- *    - Почему очень большой буфер (1 MB) не даёт пропорционального ускорения?
- *
- * 5. Дополнительные эксперименты:
- *    - Реализуйте benchmark_write_sync() и сравните (будет ОЧЕНЬ медленно!)
- *    - Реализуйте benchmark_read_methods() для сравнения чтения
- *    - Измерьте разницу на HDD vs SSD (если доступно)
- *    - Попробуйте O_DIRECT (прямой I/O минуя page cache)
- *    - Используйте strace для подсчёта системных вызовов:
- *      $ strace -c ./io_benchmark --size 10
- *
- * 6. Постройте графики:
- *    - Размер буфера (ось X) vs Throughput MB/s (ось Y)
- *    - Сравнение методов (столбчатая диаграмма)
- *
- * 7. В отчёте объясните:
- *    - Почему fwrite может быть быстрее write несмотря на дополнительный слой?
- *    - Что такое page cache и как он влияет на результаты?
- *    - Когда имеет смысл использовать каждый метод?
- *    - Как файловая система влияет на производительность?
- */
