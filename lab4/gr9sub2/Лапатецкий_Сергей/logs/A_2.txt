@@ -1,0 +1,37 @@
+    PID COMMAND            VSZ   RSS
+   6013 memory_info      64124 62872
+VmPeak:	   64124 kB
+VmSize:	   64124 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	   62872 kB
+VmRSS:	   62872 kB
+VmData:	   61668 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+VmPTE:	     168 kB
+VmSwap:	       0 kB
+5ba16064d000-7ffd91cff000 ---p 00000000 00:00 0                          [rollup]
+Rss:               63036 kB
+Pss:               61563 kB
+Pss_Dirty:         61540 kB
+Pss_Anon:          61540 kB
+Pss_File:             23 kB
+Pss_Shmem:             0 kB
+Shared_Clean:       1484 kB
+Shared_Dirty:          0 kB
+Private_Clean:        12 kB
+Private_Dirty:     61540 kB
+Referenced:        63036 kB
+Anonymous:         61540 kB
+KSM:                   0 kB
+LazyFree:              0 kB
+AnonHugePages:         0 kB
+ShmemPmdMapped:        0 kB
+FilePmdMapped:         0 kB
+Shared_Hugetlb:        0 kB
+Private_Hugetlb:       0 kB
+Swap:                  0 kB
+SwapPss:               0 kB
+Locked:                0 kB
