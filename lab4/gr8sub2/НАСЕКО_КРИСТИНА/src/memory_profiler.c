@@ -137,19 +137,48 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
         return -1;
     }
 
-    unsigned long minflt, majflt;
-    // Исправленный формат без предупреждений
-    if (fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*u %*u %*u %*u %*u %*u %*u %*u %*u %*u %*u %lu", 
-               &minflt, &majflt) != 2) {
+    // Упрощенный парсинг - читаем всю строку и разбираем поля
+    char line[1024];
+    if (!fgets(line, sizeof(line), f)) {
         fclose(f);
         return -1;
     }
-    faults->minor_faults = minflt;
-    faults->major_faults = majflt;
-
+    
     fclose(f);
+
+    // Разбиваем строку на поля
+    char *tokens[64]; // Максимум 64 поля
+    int field_count = 0;
+    char *token = strtok(line, " ");
+    
+    while (token != NULL && field_count < 64) {
+        tokens[field_count++] = token;
+        token = strtok(NULL, " ");
+    }
+    
+    // Проверяем, что есть достаточно полей (minflt - поле 9, majflt - поле 11)
+    if (field_count < 12) {
+        fprintf(stderr, "Invalid /proc/stat format: not enough fields\n");
+        return -1;
+    }
+    
+    // Парсим нужные поля (индексы начинаются с 0)
+    // minflt - поле 9 (индекс 8), majflt - поле 11 (индекс 10)
+    char *endptr;
+    faults->minor_faults = strtoul(tokens[9], &endptr, 10);
+    if (*endptr != '\0') {
+        fprintf(stderr, "Invalid minor faults value: %s\n", tokens[9]);
+        return -1;
+    }
+    
+    faults->major_faults = strtoul(tokens[11], &endptr, 10);
+    if (*endptr != '\0') {
+        fprintf(stderr, "Invalid major faults value: %s\n", tokens[11]);
+        return -1;
+    }
+
     return 0;
-}
+
 
 int read_memory_map(pid_t pid, MemoryMapEntry **entries, int *count) {
     char path[256];
