@@ -1,5 +1,4 @@
-// memory_profiler.c — профилировщик памяти процессов для LAB4
-// Компиляция: gcc -Wall -Wextra -O2 memory_profiler.c -o memory_profiler
+// memory_profiler.c — профилировщик памяти процессов для LAB4, полный исправленный файл
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +8,6 @@
 #include <sys/types.h>
 
 #define STATUS_BUF_SIZE 256
-#define MAPS_BUF_SIZE 512
 #define SMAPS_BUF_SIZE 512
 
 typedef struct {
@@ -48,7 +46,7 @@ int read_pss(pid_t pid, MemoryMetrics *metrics) {
     snprintf(path, sizeof(path), "/proc/%d/smaps_rollup", pid);
     FILE *f = fopen(path, "r");
     if (!f) {
-        // smaps_rollup отсутствует, можно попробовать /proc/[pid]/smaps
+        // smaps_rollup отсутствует - можно реализовать /proc/[pid]/smaps парсинг
         return -1;
     }
     while (fgets(line, sizeof(line), f)) {
@@ -75,16 +73,22 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
         fclose(f);
         return -1;
     }
-    // minflt - 10 поле, majflt - 12 поле (считаем по пробелам)
-    if (sscanf(buf,
-           "%*d %*s %*c %*d %*d %*d %*d %*d %*u"
-           " %lu %*lu %lu",
-           &faults->minor_faults, &faults->major_faults) != 2) {
-        fprintf(stderr, "Failed to parse page fault fields\n");
-        fclose(f);
+    fclose(f);
+
+    unsigned long minflt = 0, majflt = 0;
+    char comm[256], state;
+
+    int ret = sscanf(buf,
+        "%*d (%[^)]) %c %*d %*d %*d %*d %*d %*u %lu %*u %lu",
+        comm, &state, &minflt, &majflt);
+
+    if (ret != 4) {
+        fprintf(stderr, "Failed to parse /proc stat fields\n");
         return -1;
     }
-    fclose(f);
+
+    faults->minor_faults = minflt;
+    faults->major_faults = majflt;
     return 0;
 }
 
@@ -101,19 +105,18 @@ int get_process_name(pid_t pid, char *name, size_t len) {
         fclose(f);
         return -1;
     }
-    name[strcspn(name, "\n")] = 0; // убираем \n
+    name[strcspn(name, "\n")] = 0; // Remove newline
     fclose(f);
     return 0;
 }
 
 void print_size(unsigned long kb) {
-    if (kb < 1024) {
+    if (kb < 1024)
         printf("%lu KB", kb);
-    } else if (kb < 1024*1024) {
+    else if (kb < 1024 * 1024)
         printf("%.1f MB", kb / 1024.0);
-    } else {
-        printf("%.2f GB", kb / (1024.0*1024.0));
-    }
+    else
+        printf("%.2f GB", kb / (1024.0 * 1024.0));
 }
 
 void print_process_info(pid_t pid) {
