@@ -1,15 +1,3 @@
-/*
- * mmap_vs_read.c - Сравнение производительности mmap() vs read()
- *
- * Компиляция: gcc -Wall -Wextra -O2 mmap_vs_read.c -o mmap_vs_read
- * Использование: ./mmap_vs_read <filename>
- *
- * Демонстрирует:
- * - Традиционный I/O через read()
- * - Memory-mapped I/O через mmap()
- * - Замер времени и page faults для обоих методов
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,8 +9,7 @@
 #include <time.h>
 #include <errno.h>
 
-// Размер буфера для read()
-#define BUFFER_SIZE (4 * 1024)  // 4 KB
+#define BUFFER_SIZE (4 * 1024)
 
 void create_test_file(const char *filename, size_t size_mb) {
     printf("Creating test file: %s (%zu MB)\n", filename, size_mb);
@@ -34,19 +21,17 @@ void create_test_file(const char *filename, size_t size_mb) {
     }
 
     size_t total_size = size_mb * 1024 * 1024;
-    char *buffer = malloc(1024 * 1024); // 1MB buffer
+    char *buffer = malloc(1024 * 1024);
     if (!buffer) {
         perror("malloc failed");
         close(fd);
         exit(1);
     }
 
-    // Заполняем буфер случайными данными
     for (size_t i = 0; i < 1024 * 1024; i++) {
         buffer[i] = rand() % 256;
     }
 
-    // Пишем данные в файл
     for (size_t written = 0; written < total_size; written += 1024 * 1024) {
         ssize_t result = write(fd, buffer, 1024 * 1024);
         if (result == -1) {
@@ -60,7 +45,6 @@ void create_test_file(const char *filename, size_t size_mb) {
     printf("Test file created successfully\n");
 }
 
-// Структура для хранения статистики page faults
 typedef struct {
     long minor_faults;
     long major_faults;
@@ -92,7 +76,6 @@ unsigned long long read_with_syscalls(const char *filename) {
         return 0;
     }
 
-    // Получить размер файла
     struct stat sb;
     if (fstat(fd, &sb) == -1) {
         perror("fstat failed");
@@ -109,7 +92,6 @@ unsigned long long read_with_syscalls(const char *filename) {
         return 0;
     }
 
-    // Начать замер
     PageFaultStats start_faults = get_page_faults();
     double start_time = get_time();
 
@@ -126,17 +108,14 @@ unsigned long long read_with_syscalls(const char *filename) {
          perror("read failed");
      }
 
-    // Закончить замер
     double end_time = get_time();
     PageFaultStats end_faults = get_page_faults();
 
-    // Вывести результаты
     printf("Time elapsed: %.3f seconds\n", end_time - start_time);
     printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
     printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
     printf("Checksum: %llu\n", sum);
 
-    // Освободить ресурсы
     free(buffer);
     close(fd);
 
@@ -152,7 +131,6 @@ unsigned long long read_with_mmap(const char *filename) {
         return 0;
     }
 
-    // Получить размер файла
     struct stat sb;
     if (fstat(fd, &sb) == -1) {
         perror("fstat failed");
@@ -169,7 +147,6 @@ unsigned long long read_with_mmap(const char *filename) {
         return 0;
     }
 
-    // Начать замер
     PageFaultStats start_faults = get_page_faults();
     double start_time = get_time();
 
@@ -180,17 +157,14 @@ unsigned long long read_with_mmap(const char *filename) {
         sum += bytes[i];
     }
 
-    // Закончить замер
     double end_time = get_time();
     PageFaultStats end_faults = get_page_faults();
 
-    // Вывести результаты
     printf("Time elapsed: %.3f seconds\n", end_time - start_time);
     printf("Minor page faults: %ld\n", end_faults.minor_faults - start_faults.minor_faults);
     printf("Major page faults: %ld\n", end_faults.major_faults - start_faults.major_faults);
     printf("Checksum: %llu\n", sum);
 
-    // Освободить ресурсы
     if (data) {
         munmap(data, sb.st_size);
     }
@@ -204,7 +178,6 @@ int main(int argc, char *argv[]) {
     int create_file = 0;
     size_t file_size_mb = 100;
 
-    // Парсинг аргументов
     if (argc < 2) {
         printf("Usage: %s <filename> [--create-file <size_mb>]\n", argv[0]);
         printf("\nExamples:\n");
@@ -222,13 +195,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Создать тестовый файл, если нужно
     if (create_file) {
         create_test_file(filename, file_size_mb);
         printf("\n");
     }
 
-    // Проверить существование файла
     if (access(filename, F_OK) != 0) {
         fprintf(stderr, "Error: File '%s' does not exist.\n", filename);
         fprintf(stderr, "Use --create-file option to create a test file.\n");
@@ -238,18 +209,14 @@ int main(int argc, char *argv[]) {
     printf("Comparing I/O methods for file: %s\n", filename);
     printf("===========================================\n");
 
-    system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
+    system("sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
 
-    // Метод 1: read()
     unsigned long long sum1 = read_with_syscalls(filename);
 
-    // Небольшая пауза
     sleep(1);
 
-    // Метод 2: mmap()
     unsigned long long sum2 = read_with_mmap(filename);
 
-    // Проверка корректности (checksums должны совпадать)
     printf("\n=== Verification ===\n");
     if (sum1 == sum2) {
         printf("✓ Checksums match: %llu\n", sum1);
@@ -259,37 +226,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
-/*
- * ЗАДАНИЯ для студента:
- *
- * 1. Реализуйте все функции, помеченные TODO
- *
- * 2. Создайте тестовый файл и запустите программу:
- *    $ ./mmap_vs_read testfile.bin --create-file 100
- *
- * 3. Для чистого эксперимента перед каждым запуском очищайте page cache:
- *    $ sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
- *    $ ./mmap_vs_read testfile.bin
- *
- * 4. Запустите несколько раз и усредните результаты
- *
- * 5. Проанализируйте:
- *    - Какой метод быстрее? Почему?
- *    - Сколько page faults у каждого метода?
- *    - Как влияет размер файла на разницу?
- *    - Что происходит при повторном запуске (когда файл в page cache)?
- *
- * 6. Дополнительные эксперименты:
- *    - Измените BUFFER_SIZE (512 bytes, 64 KB, 1 MB) и сравните
- *    - Реализуйте метод 3 с madvise(MADV_SEQUENTIAL)
- *    - Попробуйте случайное чтение вместо последовательного
- *    - Сравните на HDD vs SSD (если есть доступ к разным дискам)
- *
- * 7. Постройте график: размер файла vs время выполнения для обоих методов
- *
- * 8. В отчёте объясните:
- *    - Что такое page cache и как он влияет на результаты
- *    - Почему mmap может быть быстрее/медленнее read()
- *    - Когда стоит использовать каждый метод
- */
