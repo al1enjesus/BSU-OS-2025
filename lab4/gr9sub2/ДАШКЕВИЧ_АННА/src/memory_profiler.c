@@ -30,15 +30,15 @@ static void print_usage(const char* prog) {
         "Memory Profiler\n\n"
         "Usage:\n"
         "  %s PID\n"
-        "  %s --watch PID\n"
+        "  %s --watch PID [--no-clear]\n"
         "  %s --compare PID1 PID2\n"
         "  %s --help\n\n"
         "Examples:\n"
         "  %s $$                  # Показать метрики для текущего процесса\n"
         "  %s --watch 1234        # Мониторинг процесса 1234 (обновление каждую секунду)\n"
-        "  %s --compare 1234 
-        678 # Сравнить два процесса\n\n",
-        prog, prog, prog, prog, prog, prog, prog
+        "  %s --watch 1234 --no-clear  # Мониторинг без очистки экрана\n"
+        "  %s --compare 1234 678  # Сравнить два процесса\n\n",
+        prog, prog, prog, prog, prog, prog, prog, prog
     );
 }
 
@@ -231,7 +231,7 @@ int main(int argc, char** argv) {
         return (argc < 2) ? 1 : 0;
     }
 
-    int watch = 0, compare = 0;
+    int watch = 0, compare = 0, no_clear = 0;
     pid_t pid1 = 0, pid2 = 0;
 
     if (strcmp(argv[1], "--watch") == 0) {
@@ -242,6 +242,9 @@ int main(int argc, char** argv) {
         }
         watch = 1;
         pid1 = (pid_t)atoi(argv[2]);
+        for (int i = 3; i < argc; ++i) {
+            if (strcmp(argv[i], "--no-clear") == 0) no_clear = 1;
+        }
     } else if (strcmp(argv[1], "--compare") == 0) {
         if (argc < 4 || !is_positive_number(argv[2]) || !is_positive_number(argv[3])) {
             fprintf(stderr, "Error: --compare requires two positive PIDs.\n");
@@ -304,10 +307,17 @@ int main(int argc, char** argv) {
                 fprintf(stderr, "Process ended or /proc not accessible\n");
                 return 3;
             }
-            printf("\033[2J\033[H"); 
+
+            if (!no_clear && isatty(STDOUT_FILENO)) {
+                fflush(stdout);
+                fputs("\033[2J\033[H", stdout);
+            }
+
             if (first) print_stats(pid1, &cur, NULL, comm);
             else print_stats(pid1, &cur, &prev, comm);
+
             group_maps(pid1);
+
             prev = cur;
             fflush(stdout);
             sleep(1);

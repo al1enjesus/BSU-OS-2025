@@ -131,7 +131,7 @@ int main(void) {
         fprintf(stderr, "Read scan FAILED\n");
     }
 
-    printf("Done. Keep process alive for monitoring 5s...\n");
-    sleep(5);
+    printf("Done. Keep process alive for monitoring 1s...\n");
+    sleep(1);
     return 0;
 }
