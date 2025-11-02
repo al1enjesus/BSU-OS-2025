@@ -209,7 +209,8 @@ int main(int argc, char *argv[]) {
     printf("Comparing I/O methods for file: %s\n", filename);
     printf("===========================================\n");
 
-    system("sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
+    //system("sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
+    printf("Для корректного тестирования выполните: sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
 
     unsigned long long sum1 = read_with_syscalls(filename);
 

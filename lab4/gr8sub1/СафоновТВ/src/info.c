@@ -140,21 +140,20 @@ void demonstrate_memory_types() {
 
     const char* temp_filename = "/tmp/memory_info_demo.dat";
     size_t file_size = 5 * 1024 * 1024;
+    void *file_mmap = MAP_FAILED;
+    int fd = -1;
     
-    int fd = create_temp_file(temp_filename, file_size);
+    fd = create_temp_file(temp_filename, file_size);
     if (fd != -1) {
-        void *file_mmap = mmap(NULL, file_size, PROT_READ | PROT_WRITE, 
+        file_mmap = mmap(NULL, file_size, PROT_READ | PROT_WRITE, 
                               MAP_SHARED, fd, 0);
         if (file_mmap != MAP_FAILED) {
             memset(file_mmap, 'F', file_size);
             printf("4. File-backed mmap: 5 MB at %p (file: %s)\n", file_mmap, temp_filename);
-            
-            close(fd);
-            
         } else {
             perror("file mmap failed");
-            close(fd);
         }
+        close(fd);
     }
 
     printf("\nMemory allocated. Check /proc/%d/maps to see different regions.\n", getpid());
@@ -168,7 +167,16 @@ void demonstrate_memory_types() {
     getchar();
 
     free(heap_var);
-    munmap(mmap_var, mmap_size);
+    
+    if (munmap(mmap_var, mmap_size) == -1) {
+        perror("munmap anonymous failed");
+    }
+    
+    if (file_mmap != MAP_FAILED) {
+        if (munmap(file_mmap, file_size) == -1) {
+            perror("munmap file-backed failed");
+        }
+    }
 }
 
 void print_detailed_memory_metrics(pid_t pid) {
