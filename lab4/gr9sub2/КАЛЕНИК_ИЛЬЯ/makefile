@@ -17,4 +17,5 @@ memory_profiler: src/memory_profiler.c
 
 
 clean:
-	rm -f memory_info io_benchmark page_faults_demo
+    rm -f memory_info io_benchmark page_faults_demo memory_profiler
+
