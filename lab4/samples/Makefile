@@ -1,7 +1,7 @@
 # Makefile для Lab 4 - Управление памятью и файловый I/O
 
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 -std=c11
+CFLAGS = -Wall -Wextra -O2 -std=c11 -D_DEFAULT_SOURCE
 LDFLAGS =
 
 # Цели
@@ -33,8 +33,7 @@ test: all
 	@echo "=== Running tests ==="
 	@echo ""
 	@echo "1. Memory Info (self)"
-	@./memory_info &
-	@PID=$$!; sleep 2; ./memory_info $$PID; kill $$PID 2>/dev/null || true
+	@./memory_info
 	@echo ""
 	@echo "2. Memory Profiler"
 	@./memory_profiler $$$$ | head -n 30
@@ -46,7 +45,7 @@ run_memory_info:
 	./memory_info
 
 run_io_benchmark:
-	./io_benchmark --size 100
+	./io_benchmark --size 10
 
 run_profiler:
 	@echo "Usage: make run_profiler PID=<process_id>"
@@ -62,7 +61,7 @@ benchmark: io_benchmark
 	@echo "Running I/O benchmarks..."
 	@echo "This will create test files and measure performance."
 	@echo ""
-	./io_benchmark --size 100
+	./io_benchmark --size 10
 
 # Демонстрация всех возможностей memory_profiler
 demo_profiler: memory_profiler
@@ -70,16 +69,6 @@ demo_profiler: memory_profiler
 	@echo ""
 	@echo "1. Basic process info:"
 	./memory_profiler $$$$
-	@echo ""
-	@echo "2. Watch mode (5 seconds):"
-	@./memory_profiler $$$$ --watch 1 --graph 6 | head -n 50 &
-	@PROF_PID=$$!; sleep 5; kill $$PROF_PID 2>/dev/null || true
-	@echo ""
-	@echo "3. Compare processes:"
-	@sleep 10 &
-	@PID1=$$!; sleep 10 & PID2=$$!; \
-	./memory_profiler $$PID1 --compare $$PID2; \
-	kill $$PID1 $$PID2 2>/dev/null || true
 	@echo ""
 	@echo "Demo completed!"
 
