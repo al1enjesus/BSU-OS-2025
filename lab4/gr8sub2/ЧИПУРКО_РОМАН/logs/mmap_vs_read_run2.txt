@@ -1,0 +1,25 @@
+Comparing I/O methods for file: testfile.bin
+===========================================
+
+=== Method 1: read() syscall ===
+File size: 52428800 bytes (50.00 MB)
+Time elapsed: 0.029336 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 6684672000
+
+=== Method 2: mmap() ===
+File size: 52428800 bytes (50.00 MB)
+Time elapsed: 0.016654 seconds
+Minor page faults: 800
+Major page faults: 0
+Checksum: 6684672000
+
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.020121 seconds
+Minor page faults: 800
+Major page faults: 0
+Checksum: 6684672000
+
+=== Verification ===
+✓ Checksums match: 6684672000
