@@ -122,7 +122,9 @@ double benchmark_fread(const char *filename) {
         return -1;
     }
 
-    size_t size = sb.st_size;
+    // Переменная size больше не используется, но оставлена для ясности
+    // size_t size = sb.st_size;
+    
     char *buffer = malloc(65536); // 64KB buffer
     if (!buffer) {
         perror("malloc failed");
@@ -173,7 +175,9 @@ double benchmark_read(const char *filename) {
         return -1;
     }
 
-    size_t size = sb.st_size;
+    // Переменная size больше не используется, но оставлена для ясности
+    // size_t size = sb.st_size;
+    
     char *buffer = malloc(65536);
     if (!buffer) {
         perror("malloc failed");
@@ -222,7 +226,8 @@ void benchmark_buffer_sizes(size_t file_size_mb) {
         snprintf(filename, sizeof(filename), "test_buffer_%zu.bin", buffer_sizes[i]);
 
         printf("Buffer: %7zu bytes -> ", buffer_sizes[i]);
-        double time = benchmark_write(filename, file_size, buffer_sizes[i]);
+        // Результат benchmark_write игнорируется намеренно
+        (void)benchmark_write(filename, file_size, buffer_sizes[i]);
 
         unlink(filename);
         sleep(1);
@@ -284,8 +289,12 @@ int main(int argc, char *argv[]) {
     printf("Test file size: %zu MB\n", size_mb);
 
     // Очистка кеша для чистоты эксперимента
-    system("sync");
-    system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' 2>/dev/null");
+    int ret1 = system("sync");
+    int ret2 = system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' 2>/dev/null");
+    
+    // Игнорируем возвращаемые значения system() намеренно
+    (void)ret1;
+    (void)ret2;
 
     benchmark_all_methods(size_mb);
     benchmark_buffer_sizes(size_mb);
