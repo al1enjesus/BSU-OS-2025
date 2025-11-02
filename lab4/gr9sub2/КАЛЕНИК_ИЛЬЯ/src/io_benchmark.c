@@ -23,6 +23,8 @@
 #include <sys/stat.h>
 #include <time.h>
 
+#define BUFFER_SIZE 65536  // 64 КБ
+
 // Получить текущее время с точностью до секунд (дробное)
 double get_time() {
     struct timespec ts;
@@ -38,8 +40,7 @@ size_t read_with_syscalls(const char *filename, double* elapsed) {
         exit(EXIT_FAILURE);
     }
 
-    const size_t buf_size = 4096;
-    unsigned char *buffer = malloc(buf_size);
+    unsigned char *buffer = malloc(BUFFER_SIZE);
     if (!buffer) {
         perror("malloc");
         close(fd);
@@ -50,7 +51,7 @@ size_t read_with_syscalls(const char *filename, double* elapsed) {
     ssize_t bytes_read;
 
     double start = get_time();
-    while ((bytes_read = read(fd, buffer, buf_size)) > 0) {
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0) {
         for (ssize_t i = 0; i < bytes_read; i++) {
             sum += buffer[i];
         }
@@ -110,6 +111,7 @@ size_t read_with_mmap(const char* filename, double* elapsed) {
     return 0;
 }
 
+
 int main(int argc, char** argv) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s testfile.bin\n", argv[0]);
@@ -135,3 +137,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+

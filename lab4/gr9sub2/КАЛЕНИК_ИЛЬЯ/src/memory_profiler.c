@@ -1,4 +1,4 @@
-// memory_profiler.c — профилировщик памяти процессов для LAB4, полный исправленный файл
+// memory_profiler.c — профилировщик памяти процессов для LAB4, с ограничением размера в sscanf
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -79,7 +79,7 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     char comm[256], state;
 
     int ret = sscanf(buf,
-        "%*d (%[^)]) %c %*d %*d %*d %*d %*d %*u %lu %*u %lu",
+        "%*d (%255[^)]) %c %*d %*d %*d %*d %*d %*u %lu %*u %lu",
         comm, &state, &minflt, &majflt);
 
     if (ret != 4) {
