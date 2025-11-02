@@ -1,0 +1,25 @@
+=== Memory Profiler ===
+Процесс: bash
+VSZ:  0.00 MB
+RSS:  0.00 MB
+Page Faults:
+  Minor: 2617
+  Major: 0
+
+=== Карта памяти (первые 15 строк) ===
+55b5d50eb000-55b5d511a000 r--p 00000000 08:01 784235                     /usr/bin/bash
+55b5d511a000-55b5d51e3000 r-xp 0002f000 08:01 784235                     /usr/bin/bash
+55b5d51e3000-55b5d521b000 r--p 000f8000 08:01 784235                     /usr/bin/bash
+55b5d521b000-55b5d521f000 r--p 00130000 08:01 784235                     /usr/bin/bash
+55b5d521f000-55b5d5228000 rw-p 00134000 08:01 784235                     /usr/bin/bash
+55b5d5228000-55b5d5233000 rw-p 00000000 00:00 0 
+55b5e2d9e000-55b5e2fa6000 rw-p 00000000 00:00 0                          [heap]
+7faa5de00000-7faa5e078000 r--p 00000000 08:01 1058042                    /usr/lib/locale/aa_DJ.utf8/LC_COLLATE
+7faa5e08f000-7faa5e0e9000 r--p 00000000 08:01 1058043                    /usr/lib/locale/aa_DJ.utf8/LC_CTYPE
+7faa5e0e9000-7faa5e0ec000 rw-p 00000000 00:00 0 
+7faa5e0ec000-7faa5e114000 r--p 00000000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7faa5e114000-7faa5e279000 r-xp 00028000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7faa5e279000-7faa5e2cf000 r--p 0018d000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7faa5e2cf000-7faa5e2d3000 r--p 001e2000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7faa5e2d3000-7faa5e2d5000 rw-p 001e6000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+... (обрезано)

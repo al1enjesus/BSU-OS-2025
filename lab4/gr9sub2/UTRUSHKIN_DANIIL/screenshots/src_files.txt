@@ -1,0 +1,7 @@
+total 28
+drwxrwxr-x 2 user user 4096 Nov  2 17:30 .
+drwxrwxr-x 5 user user 4096 Nov  2 18:51 ..
+-rw-rw-r-- 1 user user 3239 Nov  2 17:13 memory_analysis.c
+-rw-rw-r-- 1 user user 3788 Nov  2 17:30 memory_profiler.c
+-rw-rw-r-- 1 user user 4335 Nov  2 17:15 mmap_vs_read.c
+-rw-rw-r-- 1 user user 3102 Nov  2 17:19 page_faults.c

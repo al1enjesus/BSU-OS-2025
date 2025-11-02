@@ -1,0 +1,12 @@
+total 116
+drwxrwxr-x 5 user user  4096 Nov  2 18:51 .
+drwxrwxr-x 3 user user  4096 Nov  2 16:12 ..
+drwxrwxr-x 2 user user  4096 Nov  2 16:13 logs
+-rw-rw-r-- 1 user user   913 Nov  2 16:51 Makefile
+-rwxrwxr-x 1 user user 16784 Nov  2 17:13 memory_analysis
+-rwxrwxr-x 1 user user 16832 Nov  2 17:31 memory_profiler
+-rwxrwxr-x 1 user user 16920 Nov  2 17:15 mmap_vs_read
+-rwxrwxr-x 1 user user 16552 Nov  2 17:20 page_faults
+-rw-rw-r-- 1 user user 10864 Nov  2 17:40 REPORT.MD
+drwxrwxr-x 2 user user  4096 Nov  2 18:52 screenshots
+drwxrwxr-x 2 user user  4096 Nov  2 17:30 src
