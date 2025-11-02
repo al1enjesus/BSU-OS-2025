@@ -1,0 +1,79 @@
+Process: memory_demo (PID 13023)
+=====================================
+
+Memory Metrics:
+  VSZ (Virtual):        4.6 MB
+  RSS (Resident):       3.5 MB
+  PSS (Proportional):   2.1 MB (more accurate)
+  USS (Unique):         2.1 MB
+
+Memory Breakdown:
+  Shared (clean):       1.5 MB
+  Shared (dirty):       0 KB
+  Private (clean):     12 KB
+  Private (dirty):      2.1 MB
+
+Regions:
+  Text (code):          4 KB
+  Data + Heap:          2.2 MB
+  Stack:              132 KB
+  Libraries:            1.7 MB
+
+Page Faults:
+  Minor: 638
+  Major: 0
+
+Memory Map Summary:
+  Heap:       132 KB
+  Stack:      132 KB
+  Libs:         2.2 MB
+  Executable:   4 KB
+  [vdso]:       8 KB
+  [vvar]:       8 KB
+  Anonymous:    2.1 MB
+  Other:       16 KB
+
+Top-10 largest segments:
+Address Range      Perms        Size  Path
+----------------------------------------------------------------
+7e8855628000-7e88557b0000 r-xp      1.5 MB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e8855816000-7e885591a000 rw-p      1.0 MB  (anonymous)
+7e8855500000-7e8855600000 rw-p      1.0 MB  (anonymous)
+7e88557b0000-7e88557ff000 r--p    316 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e8855931000-7e885595c000 r-xp    172 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7e8855600000-7e8855628000 r--p    160 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+58c2436d3000-58c2436f4000 rw-p    132 KB  [heap]
+7ffdb24e2000-7ffdb2503000 rw-p    132 KB  [stack]
+7e8855805000-7e8855812000 rw-p     52 KB  (anonymous)
+7e885595c000-7e8855966000 r--p     40 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+
+Memory Map (25 segments):
+Address Range      Perms        Size  Path
+----------------------------------------------------------------
+58c213d39000-58c213d3a000 r--p      4 KB  /home/yuzefita/BSU-OS-2025/lab4/gr8sub1/ПАВЛЮЧУК_ЮЛИЯ/src/memory_demo
+58c213d3a000-58c213d3b000 r-xp      4 KB  /home/yuzefita/BSU-OS-2025/lab4/gr8sub1/ПАВЛЮЧУК_ЮЛИЯ/src/memory_demo
+58c213d3b000-58c213d3c000 r--p      4 KB  /home/yuzefita/BSU-OS-2025/lab4/gr8sub1/ПАВЛЮЧУК_ЮЛИЯ/src/memory_demo
+58c213d3c000-58c213d3d000 r--p      4 KB  /home/yuzefita/BSU-OS-2025/lab4/gr8sub1/ПАВЛЮЧУК_ЮЛИЯ/src/memory_demo
+58c213d3d000-58c213d3e000 rw-p      4 KB  /home/yuzefita/BSU-OS-2025/lab4/gr8sub1/ПАВЛЮЧУК_ЮЛИЯ/src/memory_demo
+58c2436d3000-58c2436f4000 rw-p    132 KB  [heap]
+7e8855500000-7e8855600000 rw-p      1.0 MB  (anonymous)
+7e8855600000-7e8855628000 r--p    160 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e8855628000-7e88557b0000 r-xp      1.5 MB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e88557b0000-7e88557ff000 r--p    316 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e88557ff000-7e8855803000 r--p     16 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e8855803000-7e8855805000 rw-p      8 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7e8855805000-7e8855812000 rw-p     52 KB  (anonymous)
+7e8855816000-7e885591a000 rw-p      1.0 MB  (anonymous)
+7e8855928000-7e885592a000 rw-p      8 KB  (anonymous)
+7e885592a000-7e885592c000 r--p      8 KB  [vvar]
+7e885592c000-7e885592e000 r--p      8 KB  [vvar_vclock]
+7e885592e000-7e8855930000 r-xp      8 KB  [vdso]
+7e8855930000-7e8855931000 r--p      4 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7e8855931000-7e885595c000 r-xp    172 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+... (5 more segments)
+
+Shared Libraries (top 2):
+Rank   SharedBy   SelfSize   Path
+1      97            2.0 MB  /usr/lib/x86_64-linux-gnu/libc.so.6
+2      97          232 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+
