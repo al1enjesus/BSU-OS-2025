@@ -9,6 +9,12 @@
 #include <errno.h>
 
 #define DEFAULT_SIZE_MB 100
+#define PAGE_SIZE 4096
+#define BYTES_IN_MB 1024*1024
+#define BYTES_IN_MB_FLOAT 1024.0*1024.0
+
+size_t buffer_sizes[] = {512, 1024, 4096, 8192, 16384, 65536, BYTES_IN_MB, 4*BYTES_IN_MB};
+int num_sizes = sizeof(buffer_sizes) / sizeof(buffer_sizes[0]);
 
 double get_time() {
     struct timespec ts;
@@ -61,7 +67,7 @@ double benchmark_fwrite(const char *filename, size_t size, size_t buffer_size, l
 
     printf("Time: %.3f seconds\n", elapsed);
     printf("Syscalls (fwrite + fflush): %lld\n", *libcall_count_out);
-    printf("Throughput: %.2f MB/s\n", (total_written / (1024.0 * 1024.0)) / elapsed);
+    printf("Throughput: %.2f MB/s\n", (total_written / (BYTES_IN_MB_FLOAT)) / elapsed);
 
     free(buffer);
     fclose(f);
@@ -116,7 +122,7 @@ double benchmark_write(const char *filename, size_t size, size_t buffer_size, lo
     (*syscall_count_out)++;
     
     printf("Syscalls (open + N*write + close): %lld\n", *syscall_count_out);
-    printf("Throughput: %.2f MB/s\n", (total_written / (1024.0 * 1024.0)) / elapsed);
+    printf("Throughput: %.2f MB/s\n", (total_written / (BYTES_IN_MB_FLOAT)) / elapsed);
 
     free(buffer);
     return elapsed;
@@ -149,7 +155,7 @@ double benchmark_fread(const char *filename, size_t file_size, size_t buffer_siz
     
     printf("Time: %.3f seconds\n", elapsed);
     printf("Syscalls (N*fread): %lld\n", *libcall_count_out);
-    printf("Throughput: %.2f MB/s\n", (file_size / (1024.0 * 1024.0)) / elapsed);
+    printf("Throughput: %.2f MB/s\n", (file_size / (BYTES_IN_MB_FLOAT)) / elapsed);
     
     free(buffer);
     fclose(f);
@@ -188,64 +194,18 @@ double benchmark_read(const char *filename, size_t file_size, size_t buffer_size
     (*syscall_count_out)++;
 
     printf("Syscalls (open + N*read + close): %lld\n", *syscall_count_out);
-    printf("Throughput: %.2f MB/s\n", (file_size / (1024.0 * 1024.0)) / elapsed);
+    printf("Throughput: %.2f MB/s\n", (file_size / (BYTES_IN_MB_FLOAT)) / elapsed);
     
     free(buffer);
     return elapsed;
 }
-
-double benchmark_mmap_read(const char *filename, size_t file_size, long long *syscall_count_out) {
-    printf("\n--- mmap() ---\n");
-    *syscall_count_out = 0;
-    
-    int fd = open(filename, O_RDONLY);
-    if (fd == -1) {
-        perror("open mmap read");
-        return -1;
-    }
-    (*syscall_count_out)++;
-
-    void *data = mmap(NULL, file_size, PROT_READ, MAP_PRIVATE, fd, 0);
-    if (data == MAP_FAILED) {
-        perror("mmap read");
-        close(fd);
-        return -1;
-    }
-    (*syscall_count_out)++;
-
-    double start = get_time();
-    
-    volatile long long sum = 0;
-    char *p = (char*)data;
-    size_t page_size = 4096;
-    for (size_t i = 0; i < file_size; i += page_size) {
-        sum += p[i];
-    }
-
-    double end = get_time();
-    double elapsed = end - start;
-    printf("Time: %.3f seconds (Page touch sum: %lld)\n", elapsed, sum);
-    
-    munmap(data, file_size);
-    (*syscall_count_out)++;
-    
-    close(fd);
-    (*syscall_count_out)++;
-
-    printf("Syscalls (open, mmap, munmap, close): %lld\n", *syscall_count_out);
-    printf("Throughput: %.2f MB/s\n", (file_size / (1024.0 * 1024.0)) / elapsed);
-    return elapsed;
-}
-
 
 void benchmark_buffer_sizes(size_t file_size_mb) {
     printf("\n========================================\n");
     printf("Benchmark: Write Buffer Size Impact\n");
     printf("========================================\n");
 
-    size_t file_size = file_size_mb * 1024 * 1024;
-    size_t buffer_sizes[] = {512, 1024, 4096, 8192, 16384, 65536, 1024*1024, 4*1024*1024};
-    int num_sizes = sizeof(buffer_sizes) / sizeof(buffer_sizes[0]);
+    size_t file_size = file_size_mb * BYTES_IN_MB;
 
     printf("\nTesting write() with different buffer sizes:\n");
     printf("File size: %zu MB\n", file_size_mb);
@@ -267,7 +227,7 @@ void benchmark_all_methods(size_t file_size_mb) {
     printf("Benchmark: I/O Write Methods Comparison\n");
     printf("========================================\n");
 
-    size_t file_size = file_size_mb * 1024 * 1024;
+    size_t file_size = file_size_mb * BYTES_IN_MB;
     size_t optimal_buffer = 64 * 1024;  // 64 KB
     long long calls_count = 0;
 
@@ -303,7 +263,7 @@ void benchmark_read_methods(const char *filename) {
     }
     
     printf("File: %s\n", filename);
-    printf("Size: %.2f MB\n", file_size / (1024.0 * 1024.0));
+    printf("Size: %.2f MB\n", file_size / (BYTES_IN_MB_FLOAT));
     
     size_t optimal_buffer = 65536; // 64K
     long long calls_count = 0;
@@ -329,11 +289,8 @@ void benchmark_read_buffer_sizes(const char *filename) {
         return;
     }
 
-    size_t buffer_sizes[] = {512, 1024, 4096, 8192, 16384, 65536, 1024*1024, 4*1024*1024};
-    int num_sizes = sizeof(buffer_sizes) / sizeof(buffer_sizes[0]);
-
     printf("\nTesting read() with different buffer sizes:\n");
-    printf("File size: %.2f MB\n", file_size / (1024.0 * 1024.0));
+    printf("File size: %.2f MB\n", file_size / (BYTES_IN_MB_FLOAT));
     
     long long syscalls = 0;
 
@@ -371,9 +328,15 @@ int main(int argc, char *argv[]) {
     printf("\nAttempting to sync filesystem...\n");
     int ret;
     ret = system("sync");
-    if(ret == -1) perror("sync");
+    if(ret != 0) {
+      perror("sync");
+      return 1;
+    }
     ret = system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
-    if(ret == -1) perror("drop_caches");
+    if(ret != 0) {
+      perror("drop_caches");
+      return 1;
+    }
 
     benchmark_all_methods(size_mb);
     benchmark_buffer_sizes(size_mb);
@@ -381,13 +344,19 @@ int main(int argc, char *argv[]) {
     const char *read_test_file = "read_test_file.bin";
     printf("\nCreating test file '%s' for reading benchmark...\n", read_test_file);
     long long temp_calls;
-    benchmark_fwrite(read_test_file, size_mb * 1024 * 1024, 65536, &temp_calls);
+    benchmark_fwrite(read_test_file, size_mb * BYTES_IN_MB, 65536, &temp_calls);
     
     printf("\nAttempting to sync filesystem...\n");
     ret = system("sync");
-    if(ret == -1) perror("sync");
+    if(ret != 0) {
+      perror("sync");
+      return 1;
+    }
     ret = system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'");
-    if(ret == -1) perror("drop_caches");
+    if(ret != 0) {
+      perror("drop_caches");
+      return 1;
+    }
 
     benchmark_read_methods(read_test_file);
     benchmark_read_buffer_sizes(read_test_file);
