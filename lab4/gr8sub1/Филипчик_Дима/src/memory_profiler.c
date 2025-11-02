@@ -44,13 +44,13 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        fprintf(stderr, "Failed to open /proc/[PID]/status\n");
+        fprintf(stderr, "Failed to open /proc/[PID]/status: %s\n", strerror(errno));
         return -1;
     }
 
     memset(metrics, 0, sizeof(MemoryMetrics));
 
-    char line[256];
+    char line[512];
     while (fgets(line, sizeof(line), f)) {
         if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) continue;
         if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) continue;
@@ -75,7 +75,7 @@ int read_pss(pid_t pid, MemoryMetrics *metrics) {
         return -1;
     }
 
-    char line[256];
+    char line[512];
     while (fgets(line, sizeof(line), f)) {
         if (sscanf(line, "Pss: %lu kB", &metrics->pss) == 1) continue;
         if (sscanf(line, "Shared_Clean: %lu kB", &metrics->shared_clean) == 1) continue;
@@ -96,7 +96,7 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        fprintf(stderr, "Failed to open /proc/[PID]/stat\n");
+        fprintf(stderr, "Failed to open /proc/[PID]/stat: %s\n", strerror(errno));
         return -1;
     }
 
@@ -104,6 +104,9 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
     if (fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*lu %lu", &minflt, &majflt) == 2) {
         faults->minor_faults = minflt;
         faults->major_faults = majflt;
+    } else {
+        fclose(f);
+        return -1;
     }
 
     fclose(f);
@@ -116,14 +119,14 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        fprintf(stderr, "Failed to open /proc/[PID]/maps\n");
+        fprintf(stderr, "Failed to open /proc/[PID]/maps: %s\n", strerror(errno));
         return -1;
     }
 
     *segments = NULL;
     *count = 0;
 
-    char line[512];
+    char line[1024];
     while (fgets(line, sizeof(line), f)) {
         (*count)++;
     }
@@ -131,6 +134,12 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
     rewind(f);
 
     *segments = malloc(*count * sizeof(MemorySegment));
+    if (!*segments) {
+        fprintf(stderr, "malloc failed for memory segments\n");
+        fclose(f);
+        return -1;
+    }
+
     int i = 0;
     while (fgets(line, sizeof(line), f) && i < *count) {
         MemorySegment *seg = &(*segments)[i];

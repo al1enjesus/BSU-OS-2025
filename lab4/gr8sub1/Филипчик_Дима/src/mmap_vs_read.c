@@ -159,7 +159,9 @@ TestResult read_with_mmap(const char *filename) {
     printf("Major page faults: %ld\n", result.major_faults);
     printf("Checksum: %llu\n", result.checksum);
 
-    munmap(data, sb.st_size);
+    if (munmap(data, sb.st_size) == -1) {
+        fprintf(stderr, "munmap failed: %s\n", strerror(errno));
+    }
     close(fd);
     return result;
 }
@@ -218,7 +220,9 @@ TestResult read_with_mmap_sequential(const char *filename) {
     printf("Major page faults: %ld\n", result.major_faults);
     printf("Checksum: %llu\n", result.checksum);
 
-    munmap(data, sb.st_size);
+    if (munmap(data, sb.st_size) == -1) {
+        fprintf(stderr, "munmap failed: %s\n", strerror(errno));
+    }
     close(fd);
     return result;
 }
@@ -329,9 +333,11 @@ int main(int argc, char *argv[]) {
     }
 
     if (clean_cache) {
-        printf("Clearing page cache (requires root)...\n");
+        printf("Clearing page cache (requires root privileges)...\n");
+        printf("Warning: This command requires sudo access. You may be prompted for password.\n");
         if (system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'") != 0) {
-            fprintf(stderr, "Warning: Failed to clear page cache. Run with sudo for accurate results.\n");
+            fprintf(stderr, "Failed to clear page cache. Run with sudo for accurate results.\n");
+            fprintf(stderr, "You can also run manually: sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
         }
         sleep(1);
     }
