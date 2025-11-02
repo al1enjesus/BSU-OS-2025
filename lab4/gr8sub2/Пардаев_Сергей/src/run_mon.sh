@@ -73,22 +73,6 @@ else
   PDP=
 fi
 
-if [[ "$WITH_IOTOP" == "1" ]]; then
-  echo "====== IOTOP (every 1s, ${DURATION}s) ======"
-  if has iotop; then
-    sudo -n stdbuf -oL -eL iotop -b -d 1 -n "$DURATION" 2>/dev/null | sed -u 's/^/[iotop] /' &
-    TOPP=$! || {
-      echo "[iotop] need root (NOPASSWD) — skipping"
-      TOPP=
-    }
-  else
-    echo "[iotop] not found — skipping"
-    TOPP=
-  fi
-else
-  TOPP=
-fi
-
 elapsed=0
 while kill -0 "$CMDPID" 2>/dev/null && [[ $elapsed -lt $DURATION ]]; do
   sleep 1
