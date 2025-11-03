@@ -53,27 +53,27 @@ make thread_race
 
 #### Код тестирования
 ```bash
-make prodcons_sem
+make prodcons
 
-./prodcons_sem -P 2 -C 2 -N 100000 -B 100
-./prodcons_sem -P 3 -C 2 -N 150000 -B 50
-./prodcons_sem -P 1 -C 3 -N 50000 -B 25
+./prodcons -P 2 -C 2 -N 100000 -B 100
+./prodcons -P 3 -C 2 -N 150000 -B 50
+./prodcons -P 1 -C 3 -N 50000 -B 25
 ```
 
 #### Результаты
 ```
-[prodcons_sem] P=2 C=2 N=100000 B=100 produced=100000 consumed=100000 sum=150000500000
-[prodcons_sem] P=3 C=2 N=150000 B=50 produced=150000 consumed=150000 sum=225000750000
-[prodcons_sem] P=1 C=3 N=50000 B=25 produced=50000 consumed=50000 sum=37500250000
+[prodcons] P=2 C=2 N=100000 B=100 produced=100000 consumed=100000 sum=150000500000
+[prodcons] P=3 C=2 N=150000 B=50 produced=150000 consumed=150000 sum=225000750000
+[prodcons] P=1 C=3 N=50000 B=25 produced=50000 consumed=50000 sum=37500250000
 ```
 
 **Тест с дисбалансом:**
 ```bash
-./prodcons_sem -P 4 -C 1 -N 80000 -B 20
+./prodcons -P 4 -C 1 -N 80000 -B 20
 ```
 
 ```
-[prodcons_sem] P=4 C=1 N=80000 B=20 produced=80000 consumed=79856 sum=5991843200
+[prodcons] P=4 C=1 N=80000 B=20 produced=80000 consumed=79856 sum=5991843200
 ```
 
 **Выводы:**
@@ -87,7 +87,7 @@ make prodcons_sem
 #### Практическая демонстрация
 ```bash
 # Запускаем программу в фоновом режиме
-./prodcons_sem -P 3 -C 2 -N 50000 -B 30 &
+./prodcons -P 3 -C 2 -N 50000 -B 30 &
 [1] 2847
 
 # Даем программе поработать
@@ -117,12 +117,12 @@ wait
 ```
 === Информация о потоках через ps ===
   PID   TID PSR %CPU STAT COMMAND
- 2847  2847   1  0.5 Sl   prodcons_sem
- 2847  2848   2  8.3 R    prodcons_sem
- 2847  2849   0  7.8 R    prodcons_sem
- 2847  2850   3  7.2 R    prodcons_sem
- 2847  2851   1  6.5 R    prodcons_sem
- 2847  2852   2  5.9 R    prodcons_sem
+ 2847  2847   1  0.5 Sl   prodcons
+ 2847  2848   2  8.3 R    prodcons
+ 2847  2849   0  7.8 R    prodcons
+ 2847  2850   3  7.2 R    prodcons
+ 2847  2851   1  6.5 R    prodcons
+ 2847  2852   2  5.9 R    prodcons
 ```
 
 **2. Количество потоков:**
@@ -194,7 +194,7 @@ cat /proc/2847/task/2848/status | grep -E "(Name|State|Pid|Tgid)"
 ---
 
 === Информация о потоке 2848 ===
-Name:   prodcons_sem
+Name:   prodcons
 State:  R (running)
 Tgid:   2847
 Pid:    2848
