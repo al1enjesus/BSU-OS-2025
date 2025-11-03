@@ -1,0 +1,60 @@
+Process: bash (PID 4087)
+=====================================
+
+Memory Metrics:
+  VSZ (Virtual):         11.9 MB
+  RSS (Resident):         5.7 MB
+  PSS (Proportional):     3.2 MB
+  USS (Unique):           2.5 MB
+
+Memory Breakdown:
+  Shared (clean):         3.9 MB
+  Shared (dirty):           0 KB
+  Private (clean):          4 KB
+  Private (dirty):        2.5 MB
+
+Memory Regions:
+  Text (code):            956 KB
+  Data + Heap:            2.5 MB
+  Stack:                  132 KB
+  Libraries:              1.8 MB
+
+Page Faults:
+  Minor: 4118
+  Major: 2
+
+Memory Map (32 segments):
+Address Range             Perms        Size  Path
+----------------------------------------------------------------
+5d234265b000-5d234268b000 r--p       192 KB  /usr/bin/bash
+5d234268b000-5d234277a000 r-xp       956 KB  /usr/bin/bash
+5d234277a000-5d23427af000 r--p       212 KB  /usr/bin/bash
+5d23427af000-5d23427b3000 r--p        16 KB  /usr/bin/bash
+5d23427b3000-5d23427bc000 rw-p        36 KB  /usr/bin/bash
+5d23427bc000-5d23427c7000 rw-p        44 KB  (anonymous)
+5d235be80000-5d235c04e000 rw-p       1.8 MB  [heap]
+7094d2a00000-7094d2f75000 r--p       5.5 MB  /usr/lib/locale/locale-archive
+7094d3000000-7094d3028000 r--p       160 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7094d3028000-7094d31b0000 r-xp       1.5 MB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7094d31b0000-7094d31ff000 r--p       316 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7094d31ff000-7094d3203000 r--p        16 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7094d3203000-7094d3205000 rw-p         8 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+7094d3205000-7094d3212000 rw-p        52 KB  (anonymous)
+7094d32ea000-7094d336e000 rw-p       528 KB  (anonymous)
+7094d336e000-7094d337c000 r--p        56 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7094d337c000-7094d338f000 r-xp        76 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7094d338f000-7094d339d000 r--p        56 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7094d339d000-7094d33a1000 r--p        16 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7094d33a1000-7094d33a2000 rw-p         4 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.4
+7094d33ae000-7094d33b5000 r--s        28 KB  /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7094d33b5000-7094d33b7000 rw-p         8 KB  (anonymous)
+7094d33b7000-7094d33b9000 r--p         8 KB  [vvar]
+7094d33b9000-7094d33bb000 r--p         8 KB  [vvar_vclock]
+7094d33bb000-7094d33bd000 r-xp         8 KB  [vdso]
+7094d33bd000-7094d33be000 r--p         4 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7094d33be000-7094d33e9000 r-xp       172 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7094d33e9000-7094d33f3000 r--p        40 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7094d33f3000-7094d33f5000 r--p         8 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7094d33f5000-7094d33f7000 rw-p         8 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffff4e8e000-7ffff4eaf000 rw-p       132 KB  [stack]
+ffffffffff600000-ffffffffff601000 --xp         4 KB  [vsyscall]
