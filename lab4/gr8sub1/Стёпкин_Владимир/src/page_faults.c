@@ -11,6 +11,7 @@ void print_page_faults() {
 }
 
 int main() {
+    srand(time(NULL));
     size_t size = 100 * 1024 * 1024;  // 100 MB
     char *arr = malloc(size);
 

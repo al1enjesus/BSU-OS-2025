@@ -1,13 +1,13 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2
 
-TARGETS = memory_profile file_analyzer page_faults
+TARGETS = memory_profiler file_analyzer page_faults
 
-SRCS = memory_profile.c file_analyzer.c page_faults.c
+SRCS = memory_profiler.c file_analyzer.c page_faults.c
 
 all: $(TARGETS)
 
-memory_profile: memory_profile.c
+memory_profiler: memory_profiler.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 file_analyzer: file_analyzer.c
@@ -20,8 +20,8 @@ clean:
 	rm -f $(TARGETS) *.o
 
 run: all
-	@echo "Запуск memory_profile"
-	./memory_profile
+	@echo "Запуск memory_profiler"
+	./memory_profiler
 	@echo "Запуск file_analyzer"
 	./file_analyzer
 	@echo "Запуск page_faults"
