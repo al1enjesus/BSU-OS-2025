@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -O2 -pthread
 TARGETS = thread_race prodcons
 
-all: $(TARGETS)
+all: $(TARGETS) 
 
 thread_race: thread_race.c
 	$(CC) $(CFLAGS) -o $@ $<
