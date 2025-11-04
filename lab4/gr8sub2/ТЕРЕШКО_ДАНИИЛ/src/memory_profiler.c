@@ -142,7 +142,7 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
     int i = 0;
     while (fgets(line, sizeof(line), f) && i < *count) {
         MemorySegment *seg = &(*segments)[i];
-    if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %254[^\n]", 
+    if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %255s", 
            &seg->start, &seg->end, seg->perms, seg->path) >= 3) {
             i++;
         }
