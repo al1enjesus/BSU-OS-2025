@@ -334,9 +334,9 @@ int main(int argc, char *argv[]) {
     if (clean_cache) {
         printf("Clearing page cache (requires root privileges)...\n");
         printf("Warning: This command requires sudo access. You may be prompted for password.\n");
-        if (system("sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'") != 0) {
-            fprintf(stderr, "Failed to clear page cache. Run with sudo for accurate results.\n");
-            fprintf(stderr, "You can also run manually: sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
+        if (system("sudo -n sh -c 'echo 3 > /proc/sys/vm/drop_caches' 2>/dev/null") != 0) {
+            fprintf(stderr, "Failed to clear page cache. Continuing without cache clearing.\n");
+            fprintf(stderr, "You can run manually: sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
         }
         sleep(1);
     }

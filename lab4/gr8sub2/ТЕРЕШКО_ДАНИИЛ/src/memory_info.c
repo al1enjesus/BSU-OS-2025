@@ -109,8 +109,8 @@ void print_memory_map(pid_t pid) {
         unsigned long start, end;
         char perms[5], path_str[256] = "";
 
-        if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %255[^\n]", 
-                   &start, &end, perms, path_str) >= 3) {
+    if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %254[^\n]", 
+           &start, &end, perms, path_str) >= 3) {
             
             unsigned long size_kb = (end - start) / 1024;
             const char *display_path = path_str[0] ? path_str : "[anonymous]";
