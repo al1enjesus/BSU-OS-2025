@@ -332,13 +332,11 @@ int main(int argc, char *argv[]) {
     }
 
     if (clean_cache) {
-        printf("Clearing page cache (requires root privileges)...\n");
-        printf("Warning: This command requires sudo access. You may be prompted for password.\n");
-        if (system("sudo -n sh -c 'echo 3 > /proc/sys/vm/drop_caches' 2>/dev/null") != 0) {
-            fprintf(stderr, "Failed to clear page cache. Continuing without cache clearing.\n");
-            fprintf(stderr, "You can run manually: sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
-        }
-        sleep(1);
+        printf("Page cache clearing requires root privileges.\n");
+        printf("To clear cache before testing, run manually as root:\n");
+        printf("  sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'\n");
+        printf("Then run this program WITHOUT --clean-cache option.\n");
+        printf("Continuing without clearing cache...\n");
     }
 
     printf("Comparing I/O methods for file: %s\n", filename);

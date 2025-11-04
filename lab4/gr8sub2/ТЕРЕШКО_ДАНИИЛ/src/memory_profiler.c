@@ -142,7 +142,7 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
     int i = 0;
     while (fgets(line, sizeof(line), f) && i < *count) {
         MemorySegment *seg = &(*segments)[i];
-    if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %255s", 
+    if (sscanf(line, "%lx-%lx %4s %*s %*s %*s %254[^\n]", 
            &seg->start, &seg->end, seg->perms, seg->path) >= 3) {
             i++;
         }
@@ -286,8 +286,11 @@ void watch_process(pid_t pid, int interval) {
         time_t now = time(NULL);
         printf("Time: %s", ctime(&now));
         char proc_name[256];
-        get_process_name(pid, proc_name, sizeof(proc_name));
-        printf("Process: %s (PID %d)\n", proc_name, pid);
+        if (get_process_name(pid, proc_name, sizeof(proc_name)) == 0) {
+            printf("Process: %s (PID %d)\n", proc_name, pid);
+        } else {
+            printf("Process: [unknown] (PID %d)\n", pid);
+        }
         printf("----------------------------------------\n");
 
         MemoryMetrics metrics;
