@@ -141,7 +141,7 @@ static map_segment_t *read_maps(pid_t pid) {
                 // trim leading spaces
                 char *s = rest;
                 while (*s && isspace((unsigned char)*s)) s++;
-                strncpy(m->pathname, s, sizeof(m->pathname)-1);
+                snprintf(m->pathname, s, sizeof(m->pathname)-1);
             } else m->pathname[0]=0;
             m->next = NULL;
             if (!head) head = tail = m; else { tail->next = m; tail = m; }

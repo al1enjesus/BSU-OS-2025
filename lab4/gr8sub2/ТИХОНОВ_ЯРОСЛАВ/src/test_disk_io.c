@@ -69,6 +69,7 @@ void read_file() {
 }
 
 int main() {
+	srand(time(NULL));
     printf("PID: %d\n", getpid());
     printf("Программа активно пишет и читает с диска.\n");
     printf("Открой другой терминал и наблюдай:\n");
