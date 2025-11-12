@@ -8,7 +8,7 @@ all: $(TARGETS)
 mem_analyze: mem_analyze.c
 	$(CC) $(CFLAGS) mem_analyze.c -o mem_analyze
 
-disk_io_test: disk_io_test.c
+disk_io_test: test_disk_io.c
 	$(CC) $(CFLAGS) test_disk_io.c -o disk_io_test
 
 run_mem:

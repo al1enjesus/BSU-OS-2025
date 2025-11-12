@@ -134,14 +134,15 @@ static map_segment_t *read_maps(pid_t pid) {
         unsigned long start=0,end=0; char perms[8]=""; char rest[MAX_LINE];
         // line format: addr perms offset dev inode pathname
         // We'll parse start-end and perms, then the rest (we'll extract pathname if any)
-        if (sscanf(line, "%lx-%lx %7s %*s %*s %*s %[^\n]", &start, &end, perms, rest) >= 3) {
+        if (sscanf(line, "%lx-%lx %7s %*s %*s %*s %4095[^\n]", &start, &end, perms, rest) >= 3) {
+            rest[4095] = '\0'; // на всякий случай гарантируем null-терминатор
             map_segment_t *m = calloc(1, sizeof(map_segment_t));
             m->start = start; m->end = end; strncpy(m->perms, perms, sizeof(m->perms)-1);
             if (strlen(rest) > 0) {
                 // trim leading spaces
                 char *s = rest;
                 while (*s && isspace((unsigned char)*s)) s++;
-                snprintf(m->pathname, s, sizeof(m->pathname)-1);
+                snprintf(m->pathname, sizeof(m->pathname)-1, "%s", s);
             } else m->pathname[0]=0;
             m->next = NULL;
             if (!head) head = tail = m; else { tail->next = m; tail = m; }
@@ -247,69 +248,104 @@ static int compare_maps(pid_t a, pid_t b) {
     map_segment_t *mb = read_maps(b);
     if (!ma || !mb) {
         fprintf(stderr, "Cannot read maps for one of the PIDs (permission?).\n");
-        free_maps(ma); free_maps(mb);
+        free_maps(ma);
+        free_maps(mb);
         return -1;
     }
-    // Build sets of pathnames (only non-empty, unique)
-    // For simplicity use dynamic arrays with strdup
-    char **A = NULL, **B = NULL; size_t an=0,bn=0;
+
+    char **A = NULL, **B = NULL;
+    size_t an = 0, bn = 0;
     map_segment_t *m;
-    for (m=ma;m;m=m->next) {
-        if (m->pathname[0]==0) continue;
-        // trim newline
-        char *p = m->pathname;
-        while (*p && (*p==' '||*p=='\t')) p++;
-        if (*p==0) continue;
-        // avoid duplicates
-        int found=0;
-        for (size_t i=0;i<an;i++) if (strcmp(A[i], p)==0) { found=1; break; }
-        if (!found) { A = realloc(A, (an+1)*sizeof(char*)); A[an++] = strdup(p); }
-    }
-    for (m=mb;m;m=m->next) {
-        if (m->pathname[0]==0) continue;
-        char *p = m->pathname;
-        while (*p && (*p==' '||*p=='\t')) p++;
-        if (*p==0) continue;
-        int found=0;
-        for (size_t i=0;i<bn;i++) if (strcmp(B[i], p)==0) { found=1; break; }
-        if (!found) { B = realloc(B, (bn+1)*sizeof(char*)); B[bn++] = strdup(p); }
+
+    // Вспомогательная функция для добавления пути в массив с проверкой уникальности
+    auto int add_unique(char ***arr, size_t *count, const char *path) {
+        for (size_t i = 0; i < *count; i++) {
+            if (strcmp((*arr)[i], path) == 0) return 0; // уже есть
+        }
+        char **tmp = realloc(*arr, (*count + 1) * sizeof(char *));
+        if (!tmp) return -1; // ошибка выделения памяти
+        *arr = tmp;
+        char *copy = strdup(path);
+        if (!copy) return -1; // ошибка выделения памяти
+        (*arr)[(*count)++] = copy;
+        return 0;
     }
 
-    // Intersection
-    printf("\n--- Compare PID %d vs PID %d ---\n", a, b);
-    size_t common=0;
-    for (size_t i=0;i<an;i++) {
-        for (size_t j=0;j<bn;j++) if (strcmp(A[i], B[j])==0) { common++; break; }
+    // Заполняем массив A
+    for (m = ma; m; m = m->next) {
+        if (m->pathname[0] == 0) continue;
+        char *p = m->pathname;
+        while (*p && isspace((unsigned char)*p)) p++;
+        if (*p == 0) continue;
+        if (add_unique(&A, &an, p) != 0) {
+            fprintf(stderr, "Memory allocation failed for PID %d\n", a);
+            goto cleanup_error;
+        }
     }
+
+    // Заполняем массив B
+    for (m = mb; m; m = m->next) {
+        if (m->pathname[0] == 0) continue;
+        char *p = m->pathname;
+        while (*p && isspace((unsigned char)*p)) p++;
+        if (*p == 0) continue;
+        if (add_unique(&B, &bn, p) != 0) {
+            fprintf(stderr, "Memory allocation failed for PID %d\n", b);
+            goto cleanup_error;
+        }
+    }
+
+    // Подсчёт пересечения
+    size_t common = 0;
+    for (size_t i = 0; i < an; i++) {
+        for (size_t j = 0; j < bn; j++) {
+            if (strcmp(A[i], B[j]) == 0) { common++; break; }
+        }
+    }
+
+    printf("\n--- Compare PID %d vs PID %d ---\n", a, b);
     printf("mapped entries: PID %d => %zu, PID %d => %zu, common => %zu\n", a, an, b, bn, common);
 
-    // Print few examples
+    // Вывод примеров
     printf("\nCommon libraries (sample up to 20):\n");
-    size_t shown=0;
-    for (size_t i=0;i<an && shown<20;i++) {
-        for (size_t j=0;j<bn;j++) if (strcmp(A[i], B[j])==0) { printf("  %s\n", A[i]); shown++; break; }
+    size_t shown = 0;
+    for (size_t i = 0; i < an && shown < 20; i++) {
+        for (size_t j = 0; j < bn; j++) {
+            if (strcmp(A[i], B[j]) == 0) { printf("  %s\n", A[i]); shown++; break; }
+        }
     }
+
     printf("\nUnique to %d (sample up to 10):\n", a);
-    shown=0;
-    for (size_t i=0;i<an && shown<10;i++) {
-        int found=0;
-        for (size_t j=0;j<bn;j++) if (strcmp(A[i], B[j])==0) { found=1; break; }
+    shown = 0;
+    for (size_t i = 0; i < an && shown < 10; i++) {
+        int found = 0;
+        for (size_t j = 0; j < bn; j++) if (strcmp(A[i], B[j]) == 0) { found = 1; break; }
         if (!found) { printf("  %s\n", A[i]); shown++; }
     }
+
     printf("\nUnique to %d (sample up to 10):\n", b);
-    shown=0;
-    for (size_t i=0;i<bn && shown<10;i++) {
-        int found=0;
-        for (size_t j=0;j<an;j++) if (strcmp(B[i], A[j])==0) { found=1; break; }
+    shown = 0;
+    for (size_t i = 0; i < bn && shown < 10; i++) {
+        int found = 0;
+        for (size_t j = 0; j < an; j++) if (strcmp(B[i], A[j]) == 0) { found = 1; break; }
         if (!found) { printf("  %s\n", B[i]); shown++; }
     }
 
-    for (size_t i=0;i<an;i++) free(A[i]);
-    for (size_t i=0;i<bn;i++) free(B[i]);
+cleanup:
+    for (size_t i = 0; i < an; i++) free(A[i]);
+    for (size_t i = 0; i < bn; i++) free(B[i]);
     free(A); free(B);
     free_maps(ma); free_maps(mb);
     return 0;
+
+cleanup_error:
+    for (size_t i = 0; i < an; i++) free(A[i]);
+    for (size_t i = 0; i < bn; i++) free(B[i]);
+    free(A); free(B);
+    free_maps(ma); free_maps(mb);
+    return -1;
 }
+
 
 int main(int argc, char **argv) {
     if (argc < 2) {
