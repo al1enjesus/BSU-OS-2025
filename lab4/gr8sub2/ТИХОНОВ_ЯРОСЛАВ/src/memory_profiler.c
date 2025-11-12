@@ -134,7 +134,7 @@ static map_segment_t *read_maps(pid_t pid) {
         unsigned long start=0,end=0; char perms[8]=""; char rest[MAX_LINE];
         // line format: addr perms offset dev inode pathname
         // We'll parse start-end and perms, then the rest (we'll extract pathname if any)
-        if (sscanf(line, "%lx-%lx %7s %*s %*s %*s %4094[^\n]", &start, &end, perms, rest) >= 3) {
+        sscanf(line, "%lx-%lx %7s %*s %*s %*s %4093[^\n]", &start, &end, perms, rest) >= 3) {
             rest[4095] = '\0'; // на всякий случай гарантируем null-терминатор
             map_segment_t *m = calloc(1, sizeof(map_segment_t));
             m->start = start; m->end = end; strncpy(m->perms, perms, sizeof(m->perms)-1);
