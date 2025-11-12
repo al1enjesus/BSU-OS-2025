@@ -28,6 +28,7 @@ void test_stdio() {
     }
 
     char *buf = malloc(64 * 1024);
+	if (!buf) { perror("malloc"); exit(1); }
     memset(buf, 'A', 64 * 1024);
 
     double start = now_sec();
@@ -53,6 +54,7 @@ void test_syscall(size_t buf_size) {
     }
 
     char *buf = malloc(buf_size);
+	if (!buf) { perror("malloc"); exit(1); }
     memset(buf, 'A', buf_size);
 
     double start = now_sec();

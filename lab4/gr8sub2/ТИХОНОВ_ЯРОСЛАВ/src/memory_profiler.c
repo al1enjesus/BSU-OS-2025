@@ -127,39 +127,57 @@ static map_segment_t *read_maps(pid_t pid) {
     snprintf(path, sizeof(path), "/proc/%d/maps", pid);
     FILE *f = fopen(path, "r");
     if (!f) return NULL;
+
     char *line = NULL;
     size_t ln = 0;
     map_segment_t *head = NULL, *tail = NULL;
+
     while (getline(&line, &ln, f) > 0) {
-        unsigned long start=0,end=0; char perms[8]=""; char rest[MAX_LINE];
-        // line format: addr perms offset dev inode pathname
-        // We'll parse start-end and perms, then the rest (we'll extract pathname if any)
-        sscanf(line, "%lx-%lx %7s %*s %*s %*s %4093[^\n]", &start, &end, perms, rest) >= 3) {
-            rest[4095] = '\0'; // на всякий случай гарантируем null-терминатор
+        unsigned long start = 0, end = 0;
+        char perms[8] = "";
+        char rest[MAX_LINE] = "";
+
+        // безопасный sscanf: читаем до sizeof(rest)-1 символов, оставляем место для \0
+        if (sscanf(line, "%lx-%lx %7s %*s %*s %*s %4095[^\n]", &start, &end, perms, rest) >= 3) {
+            rest[MAX_LINE-1] = '\0'; // гарантируем null-терминатор
+
             map_segment_t *m = calloc(1, sizeof(map_segment_t));
-            m->start = start; m->end = end; strncpy(m->perms, perms, sizeof(m->perms)-1);
-            if (strlen(rest) > 0) {
-                // trim leading spaces
+            if (!m) continue; // защита от calloc failure
+            m->start = start;
+            m->end = end;
+            strncpy(m->perms, perms, sizeof(m->perms)-1);
+            m->perms[sizeof(m->perms)-1] = '\0';
+
+            if (rest[0] != '\0') {
                 char *s = rest;
-                while (*s && isspace((unsigned char)*s)) s++;
+                while (*s && isspace((unsigned char)*s)) s++; // убираем ведущие пробелы
                 snprintf(m->pathname, sizeof(m->pathname), "%s", s);
-            } else m->pathname[0]=0;
+            } else {
+                m->pathname[0] = '\0';
+            }
             m->next = NULL;
             if (!head) head = tail = m; else { tail->next = m; tail = m; }
         } else {
-            // Try simpler parse without pathname
+            // simpler parse without pathname
             if (sscanf(line, "%lx-%lx %7s", &start, &end, perms) >= 3) {
                 map_segment_t *m = calloc(1, sizeof(map_segment_t));
-                m->start = start; m->end = end; strncpy(m->perms, perms, sizeof(m->perms)-1);
-                m->pathname[0]=0; m->next=NULL;
+                if (!m) continue;
+                m->start = start;
+                m->end = end;
+                strncpy(m->perms, perms, sizeof(m->perms)-1);
+                m->perms[sizeof(m->perms)-1] = '\0';
+                m->pathname[0] = '\0';
+                m->next = NULL;
                 if (!head) head = tail = m; else { tail->next = m; tail = m; }
             }
         }
     }
+
     free(line);
     fclose(f);
     return head;
 }
+
 
 static void free_maps(map_segment_t *m) {
     while (m) { map_segment_t *n = m->next; free(m); m = n; }
