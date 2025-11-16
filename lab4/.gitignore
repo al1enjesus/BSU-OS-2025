@@ -9,6 +9,9 @@ memory_profiler
 *.o
 *.obj
 
+
+*.bin
+
 # Test files
 test*.bin
 testfile.bin
