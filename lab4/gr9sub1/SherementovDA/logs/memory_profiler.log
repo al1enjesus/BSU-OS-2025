@@ -1,0 +1,25 @@
+Process: firefox (PID 26887)
+==================================================
+VSZ: 11507.4 MB
+RSS: 460.0 MB
+PSS: 0.0 MB
+USS: 358.2 MB
+
+Memory Segments:
+  anonymous       10969.7 MB
+  files            289.6 MB
+  libraries        248.0 MB
+  stack              0.1 MB
+
+Page Faults:
+  Minor: 1700479
+  Major: 881
+
+Shared Libraries:
+   157.8 MB - libxul.so
+    28.1 MB - libicudata.so.70.1
+     8.3 MB - libgtk-3.so.0.2406.32
+     8.1 MB - libgkcodecs.so
+     4.9 MB - librsvg-2.so.2.48.0
+^C
+Monitoring stopped
