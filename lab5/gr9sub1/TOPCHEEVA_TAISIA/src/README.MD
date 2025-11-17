@@ -1,6 +1,21 @@
 
 # Лабораторная работа 5 - Модули ядра Linux
 ## Группа: 9, Подгруппа: 1
+# Проверка версии ядра
+uname -r
+
+# Проверка наличия заголовков ядра
+ls /lib/modules/$(uname -r)/build
+
+# Установка необходимых пакетов (Ubuntu/Debian)
+sudo apt update
+sudo apt install -y build-essential linux-headers-$(uname -r) kmod
+
+## Поддерживаемые версии ядра
+- 6.14.0-34-generic (протестировано)
+- 6.x.x-generic (должны работать)
+- 5.x.x (возможны различия в API)
+
 ## Структура проекта
 gr9sub1-lab5-TopcheevaTR/
 ├── src/                 # Исходные коды модулей

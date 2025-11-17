@@ -1,3 +1,4 @@
+
 obj-m += hello_module.o
 obj-m += proc_module.o
 obj-m += stats_module.o
@@ -10,6 +11,8 @@ all:
 
 clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
+	rm -f *.ko *.mod* *.o *.symvers *.order .*.cmd
+	rm -rf .tmp_versions modules.order Module.symvers
 
 install:
 	sudo insmod hello_module.ko
@@ -17,10 +20,7 @@ install:
 	sudo insmod stats_module.ko
 
 uninstall:
-	sudo rmmod hello_module
-	sudo rmmod proc_module
-	sudo rmmod stats_module
+	sudo rmmod stats_module proc_module hello_module
 
 .PHONY: all clean install uninstall
-
 
