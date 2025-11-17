@@ -4,6 +4,7 @@
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 #include <linux/string.h>
+#include <linux/slab.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("tayjie");
@@ -12,8 +13,8 @@ MODULE_DESCRIPTION("Proc module with read/write for lab5");
 #define MAX_BUF_SIZE 256
 
 static struct proc_dir_entry *proc_file;
-static char proc_data[MAX_BUF_SIZE] = "default";
-static size_t data_size = 7; // strlen("default")
+static char *proc_data = NULL;
+static size_t data_size = 0;
 
 
 static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, loff_t *ppos) {
@@ -28,20 +29,39 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
     return data_size;
 }
 
-
 static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t count, loff_t *ppos) {
-    if (count >= MAX_BUF_SIZE) {
+    char *new_data;
+  
+    if (count == 0) {
         return -EINVAL;
     }
+    
+    if (count >= MAX_BUF_SIZE) {
+        printk(KERN_WARNING "proc_module: write too large (%zu bytes)\n", count);
+        return -EFBIG;
+    }
 
-    if (copy_from_user(proc_data, ubuf, count)) {
+    new_data = kmalloc(count + 1, GFP_KERNEL);
+    if (!new_data) {
+        printk(KERN_ERR "proc_module: kmalloc failed\n");
+        return -ENOMEM;
+    }
+
+    if (copy_from_user(new_data, ubuf, count)) {
+        kfree(new_data);
         return -EFAULT;
     }
 
-    data_size = count;
-    proc_data[data_size] = '\0'; // Ensure null termination
+    new_data[count] = '\0';
 
-    printk(KERN_INFO "proc_module: wrote '%s'\n", proc_data);
+ 
+    if (proc_data) {
+        kfree(proc_data);
+    }
+    proc_data = new_data;
+    data_size = count;
+
+    printk(KERN_INFO "proc_module: wrote '%s' (%zu bytes)\n", proc_data, data_size);
     return count;
 }
 
@@ -51,8 +71,17 @@ static const struct proc_ops proc_fops = {
 };
 
 static int __init proc_init(void) {
-    proc_file = proc_create("my_config", 0666, NULL, &proc_fops);
+
+    proc_data = kmalloc(strlen("default") + 1, GFP_KERNEL);
+    if (!proc_data) {
+        return -ENOMEM;
+    }
+    strcpy(proc_data, "default");
+    data_size = strlen("default");
+   
+    proc_file = proc_create("my_config", 0644, NULL, &proc_fops);
     if (!proc_file) {
+        kfree(proc_data);
         printk(KERN_ERR "proc_module: Failed to create /proc/my_config\n");
         return -ENOMEM;
     }
@@ -63,6 +92,9 @@ static int __init proc_init(void) {
 
 static void __exit proc_exit(void) {
     proc_remove(proc_file);
+    if (proc_data) {
+        kfree(proc_data);
+    }
     printk(KERN_INFO "proc_module: unloaded\n");
 }
 
