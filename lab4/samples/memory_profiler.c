@@ -32,13 +32,11 @@ typedef struct {
     unsigned long private_dirty;// Грязная приватная память (KB)
 } MemoryMetrics;
 
-// Структура для page faults
 typedef struct {
     unsigned long minor_faults;
     unsigned long major_faults;
 } PageFaults;
 
-// Структура для сегмента памяти
 typedef struct {
     unsigned long start;
     unsigned long end;
@@ -46,7 +44,6 @@ typedef struct {
     char path[256];
 } MemorySegment;
 
-// TODO: Реализовать чтение метрик из /proc/[PID]/status
 int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/status", pid);
@@ -60,44 +57,55 @@ int read_memory_metrics(pid_t pid, MemoryMetrics *metrics) {
     memset(metrics, 0, sizeof(MemoryMetrics));
 
     char line[256];
-    // TODO: Читать файл построчно и извлечь:
-    // VmSize, VmRSS, VmData, VmStk, VmExe, VmLib
-    //
-    // while (fgets(line, sizeof(line), f)) {
-    //     if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) continue;
-    //     if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) continue;
-    //     // ... и так далее
-    // }
+    
+    while (fgets(line, sizeof(line), f)) {
+        if (sscanf(line, "VmSize: %lu kB", &metrics->vm_size) == 1) continue;
+        if (sscanf(line, "VmRSS: %lu kB", &metrics->vm_rss) == 1) continue;
+		if (sscanf(line, "VmData: %lu kB", &metrics->vm_data) == 1) continue;
+		if (sscanf(line, "VmStk: %lu kB", &metrics->vm_stk) == 1) continue;
+		if (sscanf(line, "VmExe: %lu kB", &metrics->vm_exe) ==1) continue;
+		if (sscanf(line, "VmLib: %lu kB", &metrics->vm_lib) ==1) continue;
+	}
+
 
     fclose(f);
     return 0;
 }
 
-// TODO: Реализовать чтение PSS из /proc/[PID]/smaps_rollup
 int read_pss(pid_t pid, MemoryMetrics *metrics) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/smaps_rollup", pid);
 
     FILE *f = fopen(path, "r");
     if (!f) {
-        // smaps_rollup может не существовать на старых ядрах
-        // В этом случае нужно парсить /proc/[PID]/smaps и суммировать
+		printf("Your core is too old, parcing: /proc/[PID]/smaps");
+		
+		char line[256];
+		int summurize;
+		while(fgets(line, sizeof(line), f))
+		{
+			int temp;
+			if(sscanf(line, "Pss: %lu kB", temp) == 1) continue;		
+			summurize+=temp;
+		}
+		printf("Your summurise from smaps: %lu", summurize);
         return -1;
     }
 
     char line[256];
-    // TODO: Извлечь Pss, Shared_Clean, Shared_Dirty, Private_Clean, Private_Dirty
-    //
-    // while (fgets(line, sizeof(line), f)) {
-    //     if (sscanf(line, "Pss: %lu kB", &metrics->pss) == 1) continue;
-    //     // ...
-    // }
+
+    while (fgets(line, sizeof(line), f)) {
+	    if (sscanf(line, "Pss: %lu kB", &metrics->pss) == 1) continue;
+	    if (sscanf(line, "Shared_Clean: %lu kB", &metrics->shared_clean) == 1) continue;
+		if (sscanf(line, "Shared_Dirty: %lu kB", &metrics->shared_dirty) == 1) continue;
+		if (sscanf(line, "Private_Clean: %lu kB", &metrics->private_clean) == 1) continue;
+		if (sscanf(line, "Private_Dirty: %lu kB", &metrics->private_dirty) == 1) continue;
+   }
 
     fclose(f);
     return 0;
 }
 
-// TODO: Реализовать чтение page faults из /proc/[PID]/stat
 int read_page_faults(pid_t pid, PageFaults *faults) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/stat", pid);
@@ -108,25 +116,20 @@ int read_page_faults(pid_t pid, PageFaults *faults) {
         return -1;
     }
 
-    // Формат /proc/[PID]/stat довольно сложный
-    // Поля разделены пробелами, но comm может содержать пробелы
-    // Нужные поля:
-    // 10 - minflt (minor page faults)
-    // 12 - majflt (major page faults)
-
-    // TODO: Прочитать и распарсить
-    // Подсказка: можно использовать fscanf с форматом, пропуская ненужные поля
-    //
-    // unsigned long minflt, majflt;
-    // fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*lu %lu", &minflt, &majflt);
-    // faults->minor_faults = minflt;
-    // faults->major_faults = majflt;
+    unsigned long minflt, majflt;
+    if(fscanf(f, "%*d %*s %*c %*d %*d %*d %*d %*d %*u %lu %*lu %lu", &minflt, &majflt) != 2)
+		{
+			fclose(f);
+			return -1;
+		}
+    faults->minor_faults = minflt;
+    faults->major_faults = majflt;
 
     fclose(f);
     return 0;
 }
 
-// TODO: Реализовать чтение карты памяти из /proc/[PID]/maps
+
 int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/maps", pid);
@@ -137,34 +140,34 @@ int read_memory_map(pid_t pid, MemorySegment **segments, int *count) {
         return -1;
     }
 
-    // TODO: Подсчитать количество строк (сегментов)
-    // Выделить память для массива сегментов
-    // Прочитать и распарсить каждую строку
-
     *segments = NULL;
     *count = 0;
 
-    // char line[512];
-    // while (fgets(line, sizeof(line), f)) {
-    //     (*count)++;
-    // }
-    //
-    // rewind(f);
-    //
-    // *segments = malloc(*count * sizeof(MemorySegment));
-    // int i = 0;
-    // while (fgets(line, sizeof(line), f) && i < *count) {
-    //     MemorySegment *seg = &(*segments)[i];
-    //     sscanf(line, "%lx-%lx %4s %*s %*s %*s %255[^\n]",
-    //            &seg->start, &seg->end, seg->perms, seg->path);
-    //     i++;
-    // }
+     char line[512];
+     while (fgets(line, sizeof(line), f)) {
+         (*count)++;
+     }
+    
+     rewind(f);
+    
+     *segments = malloc(*count * sizeof(MemorySegment));
+	 if(!*segments){
+		 fclose(f);
+		 return -1;
+	 }
+
+     int i = 0;
+     while (fgets(line, sizeof(line), f) && i < *count) {
+         MemorySegment *seg = &(*segments)[i];
+         sscanf(line, "%lx-%lx %4s %*s %*s %*s %255[^\n]",
+                &seg->start, &seg->end, seg->perms, seg->path);
+         i++;
+     }
 
     fclose(f);
     return 0;
 }
 
-// TODO: Функция для красивого вывода размера
 void print_size(unsigned long kb) {
     if (kb < 1024) {
         printf("%4lu KB", kb);
@@ -175,7 +178,6 @@ void print_size(unsigned long kb) {
     }
 }
 
-// TODO: Функция для получения имени процесса
 int get_process_name(pid_t pid, char *name, size_t len) {
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d/comm", pid);
@@ -187,15 +189,14 @@ int get_process_name(pid_t pid, char *name, size_t len) {
     }
 
     if (fgets(name, len, f)) {
-        // Убрать \n в конце
         name[strcspn(name, "\n")] = 0;
-    }
-
+    }else{
+		snprintf(name, len, "unknown");
+	}
     fclose(f);
     return 0;
 }
 
-// TODO: Главная функция вывода информации о процессе
 void print_process_info(pid_t pid) {
     char proc_name[256];
     get_process_name(pid, proc_name, sizeof(proc_name));
@@ -203,14 +204,12 @@ void print_process_info(pid_t pid) {
     printf("Process: %s (PID %d)\n", proc_name, pid);
     printf("=====================================\n\n");
 
-    // Метрики памяти
     MemoryMetrics metrics;
     if (read_memory_metrics(pid, &metrics) == 0) {
         printf("Memory Metrics:\n");
         printf("  VSZ (Virtual):     "); print_size(metrics.vm_size); printf("\n");
         printf("  RSS (Resident):    "); print_size(metrics.vm_rss); printf("\n");
 
-        // TODO: Если удалось прочитать PSS
         if (read_pss(pid, &metrics) == 0) {
             printf("  PSS (Proportional):"); print_size(metrics.pss); printf(" (more accurate)\n");
 
@@ -233,21 +232,20 @@ void print_process_info(pid_t pid) {
         printf("  Libraries:         "); print_size(metrics.vm_lib); printf("\n");
     }
 
-    // Page faults
     printf("\n");
     PageFaults faults;
     if (read_page_faults(pid, &faults) == 0) {
         printf("Page Faults:\n");
         printf("  Minor: %lu\n", faults.minor_faults);
         printf("  Major: %lu\n", faults.major_faults);
-    }
-
-    // TODO: Опционально - показать карту памяти
-    // printf("\n");
-    // print_memory_map_summary(pid);
+    }else{
+		printf("Failed to read page faults\n");
+	}
+	
+    printf("\n");
+    print_memory_map_summary(pid);
 }
 
-// TODO: Функция для вывода карты памяти
 void print_memory_map_summary(pid_t pid) {
     MemorySegment *segments = NULL;
     int count = 0;
@@ -260,15 +258,6 @@ void print_memory_map_summary(pid_t pid) {
     printf("%-18s %-6s %10s  %s\n", "Address Range", "Perms", "Size", "Path");
     printf("----------------------------------------------------------------\n");
 
-    // TODO: Группировать сегменты по типу
-    // - [heap]
-    // - [stack]
-    // - [vdso], [vvar]
-    // - библиотеки (.so)
-    // - anonymous
-    // - исполняемый файл
-
-    // Пример вывода первых 20 сегментов
     for (int i = 0; i < count && i < 20; i++) {
         MemorySegment *seg = &segments[i];
         unsigned long size_kb = (seg->end - seg->start) / 1024;
@@ -285,7 +274,6 @@ void print_memory_map_summary(pid_t pid) {
     free(segments);
 }
 
-// TODO: Режим мониторинга (--watch)
 void watch_process(pid_t pid, int interval) {
     printf("Monitoring PID %d (update every %d sec, Ctrl+C to stop)\n\n", pid, interval);
 
@@ -295,14 +283,11 @@ void watch_process(pid_t pid, int interval) {
     int first_iteration = 1;
 
     while (1) {
-        // Очистить экран (опционально)
-        // printf("\033[2J\033[H");  // ANSI escape codes
 
         printf("\n========================================\n");
         time_t now = time(NULL);
         printf("Time: %s", ctime(&now));
 
-        // Текущие метрики
         MemoryMetrics metrics;
         PageFaults faults;
 
@@ -314,7 +299,6 @@ void watch_process(pid_t pid, int interval) {
         read_pss(pid, &metrics);
         read_page_faults(pid, &faults);
 
-        // Вывести метрики
         char proc_name[256];
         get_process_name(pid, proc_name, sizeof(proc_name));
         printf("Process: %s (PID %d)\n\n", proc_name, pid);
@@ -337,7 +321,19 @@ void watch_process(pid_t pid, int interval) {
         }
         printf("\n");
 
-        // TODO: Вывести PSS, если доступно
+		    if(metrics.pss > 0)
+	    	{
+		    	printf("PSS: "); 
+		    	print_size(metrics.pss);
+			    if(!first_iteration && prev_metrics.pss > 0) {
+		  	  	long delta = (long)metrics.pss - (long)prev_metrics.pss;
+  			  	if(delta != 0)
+  			  	{
+  			  		printf(" (%+ld KB)", delta);
+  			  	}
+  			  }
+  		  	printf("\n");
+    		}
 
         printf("\nPage Faults:\n");
         printf("  Minor: %lu", faults.minor_faults);
@@ -358,7 +354,6 @@ void watch_process(pid_t pid, int interval) {
         }
         printf("\n");
 
-        // Сохранить текущие значения
         prev_metrics = metrics;
         prev_faults = faults;
         first_iteration = 0;
@@ -367,7 +362,6 @@ void watch_process(pid_t pid, int interval) {
     }
 }
 
-// TODO: Режим сравнения двух процессов (--compare)
 void compare_processes(pid_t pid1, pid_t pid2) {
     printf("Comparing processes: %d vs %d\n", pid1, pid2);
     printf("=====================================\n\n");
@@ -387,12 +381,31 @@ void compare_processes(pid_t pid1, pid_t pid2) {
     read_pss(pid1, &m1);
     read_pss(pid2, &m2);
 
-    // TODO: Вывести сравнительную таблицу
-    printf("%-20s %15s %15s\n", "Metric", "PID 1", "PID 2");
+    printf("%-15s %-15s %-15s\n", "Metric", "PID 1", "PID 2");
     printf("--------------------------------------------------------\n");
 
-    // printf("%-20s ", "VSZ"); print_size(m1.vm_size); printf(" "); print_size(m2.vm_size); printf("\n");
-    // ... и так далее
+    printf("%-20s ", "VSZ"); 
+	print_size(m1.vm_size); printf(" "); 
+	print_size(m2.vm_size); printf(" ");
+	printf("\n");
+
+	 printf("%-20s ", "RSS"); 
+	print_size(m1.vm_rss); printf(" "); 
+	print_size(m2.vm_rss); printf(" ");
+	printf("\n");
+
+	if(m1.pss != 0 && m2.pss != 0){	
+    printf("%-20s ", "RSS"); 
+	print_size(m1.pss); printf(" "); 
+	print_size(m2.pss); printf(" ");
+	printf("\n");
+	}
+
+printf("%-20s %15lu %15lu %10ld\n", "Minor Faults", 
+           m1.vm_size > 0 ? 0UL : 0UL,  // Placeholder - нужно читать faults
+           m2.vm_size > 0 ? 0UL : 0UL, 0L);
+
+		
 }
 
 int main(int argc, char *argv[]) {
@@ -413,7 +426,6 @@ int main(int argc, char *argv[]) {
 
     pid_t pid = atoi(argv[1]);
 
-    // Проверить существование процесса
     char path[256];
     snprintf(path, sizeof(path), "/proc/%d", pid);
     if (access(path, F_OK) != 0) {
@@ -421,7 +433,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Парсинг опций
     int watch_mode = 0;
     int watch_interval = 1;
     int compare_mode = 0;
@@ -444,13 +455,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Выполнить нужный режим
     if (compare_mode) {
         compare_processes(pid, compare_pid);
     } else if (watch_mode) {
         watch_process(pid, watch_interval);
     } else {
-        // Обычный режим - показать информацию один раз
         print_process_info(pid);
 
         if (show_map) {

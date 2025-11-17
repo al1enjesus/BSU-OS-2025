@@ -1,0 +1,55 @@
+Memory Info Demo
+================
+
+No PID specified. Running demonstration mode.
+This will allocate different types of memory and show the results.
+
+
+=== Demonstrating Different Memory Types ===
+
+1. Stack variable allocated: 1 KB at 0x7fff23294940
+2. Heap allocated: 10 MB at 0x785463bff010
+3. Anonymous mmap: 50 MB at 0x785460800000
+4. File-backed mmap: 2 MB at 0x785460600000 (file: /tmp/memory_info_demo.dat)
+
+Memory allocated. Check /proc/21241/maps to see different regions.
+Press Enter to see memory info and map...
+
+Memory Metrics for PID 21241:
+  VSZ (Virtual):  64124 KB (62.6 MB)
+  RSS (Resident): 11612 KB (11.3 MB)
+  Data/Heap:      61668 KB (60.2 MB)
+  Stack:          132 KB (0.1 MB)
+
+Memory Map:
+---------------------------------------------------------------------------------------------------------------
+| Address Range             | Perms| Size           | Path                                                    |
+---------------------------------------------------------------------------------------------------------------
+| 5ea4806dc000-5ea4806dd000 | r--p | 4 KB           | /home/andrew/lab4/samples/memory_info                   | 
+| 5ea4806dd000-5ea4806de000 | r-xp | 4 KB           | /home/andrew/lab4/samples/memory_info                   | 
+| 5ea4806de000-5ea4806df000 | r--p | 4 KB           | /home/andrew/lab4/samples/memory_info                   | 
+| 5ea4806df000-5ea4806e0000 | r--p | 4 KB           | /home/andrew/lab4/samples/memory_info                   | 
+| 5ea4806e0000-5ea4806e1000 | rw-p | 4 KB           | /home/andrew/lab4/samples/memory_info                   | 
+| 5ea49679b000-5ea4967bc000 | rw-p | 132 KB         | [heap]                                                  | 
+| 785460800000-785463a00000 | rw-p | 50.0 MB        | [anonymous]                                             | 
+| 785463bff000-785464600000 | rw-p | 10.0 MB        | [anonymous]                                             | 
+| 785464600000-785464628000 | r--p | 160 KB         | /usr/lib/x86_64-linux-gnu/libc.so.6                     | 
+| 785464628000-7854647b0000 | r-xp | 1.5 MB         | /usr/lib/x86_64-linux-gnu/libc.so.6                     | 
+| 7854647b0000-7854647ff000 | r--p | 316 KB         | /usr/lib/x86_64-linux-gnu/libc.so.6                     | 
+| 7854647ff000-785464803000 | r--p | 16 KB          | /usr/lib/x86_64-linux-gnu/libc.so.6                     | 
+| 785464803000-785464805000 | rw-p | 8 KB           | /usr/lib/x86_64-linux-gnu/libc.so.6                     | 
+| 785464805000-785464812000 | rw-p | 52 KB          | [anonymous]                                             | 
+| 785464838000-78546483b000 | rw-p | 12 KB          | [anonymous]                                             | 
+| 785464856000-785464858000 | rw-p | 8 KB           | [anonymous]                                             | 
+| 785464858000-78546485a000 | r--p | 8 KB           | [vvar]                                                  | 
+| 78546485a000-78546485c000 | r--p | 8 KB           | [vvar_vclock]                                           | 
+| 78546485c000-78546485e000 | r-xp | 8 KB           | [vdso]                                                  | 
+| 78546485e000-78546485f000 | r--p | 4 KB           | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2          | 
+| 78546485f000-78546488a000 | r-xp | 172 KB         | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2          | 
+| 78546488a000-785464894000 | r--p | 40 KB          | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2          | 
+| 785464894000-785464896000 | r--p | 8 KB           | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2          | 
+| 785464896000-785464898000 | rw-p | 8 KB           | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2          | 
+| 7fff23275000-7fff23296000 | rw-p | 132 KB         | [stack]                                                 | 
+| ffffffffff600000-ffffffffff601000 | --xp | 4 KB           | [vsyscall]                                              | 
+---------------------------------------------------------------------------------------------------------------
+
