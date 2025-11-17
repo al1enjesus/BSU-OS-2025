@@ -1,0 +1,55 @@
+Memory Info Demo
+================
+
+No PID specified. Running demonstration mode.
+This will allocate different types of memory and show the results.
+
+
+=== Demonstrating Different Memory Types ===
+
+1. Stack variable allocated: 1 KB at 0x7ffe4aad4d80
+2. Heap allocated: 10 MB at 0x72b671fff010
+3. Anonymous mmap: 50 MB at 0x72b66ec00000
+4. File-backed mmap: 5 MB at 0x72b66e600000 (file: /tmp/memory_info_demo.dat)
+
+Memory allocated. Check /proc/8822/maps to see different regions.
+Press Enter to see memory info and map...
+
+Memory Metrics for PID 8822:
+  VSZ (Virtual):  69244 KB (67.6 MB)
+  RSS (Resident): 67992 KB (66.4 MB)
+  Data/Heap:      61668 KB (60.2 MB)
+  Stack:          132 KB (0.1 MB)
+
+Memory Map:
+Address Range      Perms  Size     Path
+----------------------------------------------------------------
+62834daee000-62834daef000 r--p   4.0KB    /home/vboxuser/forLinuxLabs/BSU-OS-2025/lab4/gr8sub1/СафоновТВ/bin/info
+62834daef000-62834daf0000 r-xp   4.0KB    /home/vboxuser/forLinuxLabs/BSU-OS-2025/lab4/gr8sub1/СафоновТВ/bin/info
+62834daf0000-62834daf1000 r--p   4.0KB    /home/vboxuser/forLinuxLabs/BSU-OS-2025/lab4/gr8sub1/СафоновТВ/bin/info
+62834daf1000-62834daf2000 r--p   4.0KB    /home/vboxuser/forLinuxLabs/BSU-OS-2025/lab4/gr8sub1/СафоновТВ/bin/info
+62834daf2000-62834daf3000 rw-p   4.0KB    /home/vboxuser/forLinuxLabs/BSU-OS-2025/lab4/gr8sub1/СафоновТВ/bin/info
+628367964000-628367985000 rw-p   132.0KB  [heap]
+72b66e600000-72b66eb00000 rw-s   5.0MB    /tmp/memory_info_demo.dat
+72b66ec00000-72b671e00000 rw-p   50.0MB   [anonymous]
+72b671fff000-72b672a00000 rw-p   10.0MB   [anonymous]
+72b672a00000-72b672a28000 r--p   160.0KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+72b672a28000-72b672bb0000 r-xp   1.5MB    /usr/lib/x86_64-linux-gnu/libc.so.6
+72b672bb0000-72b672bff000 r--p   316.0KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+72b672bff000-72b672c03000 r--p   16.0KB   /usr/lib/x86_64-linux-gnu/libc.so.6
+72b672c03000-72b672c05000 rw-p   8.0KB    /usr/lib/x86_64-linux-gnu/libc.so.6
+72b672c05000-72b672c12000 rw-p   52.0KB   [anonymous]
+72b672dfc000-72b672dff000 rw-p   12.0KB   [anonymous]
+72b672e0d000-72b672e0f000 rw-p   8.0KB    [anonymous]
+72b672e0f000-72b672e11000 r--p   8.0KB    [vvar]
+72b672e11000-72b672e13000 r--p   8.0KB    [vvar_vclock]
+72b672e13000-72b672e15000 r-xp   8.0KB    [vdso]
+72b672e15000-72b672e16000 r--p   4.0KB    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+72b672e16000-72b672e41000 r-xp   172.0KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+72b672e41000-72b672e4b000 r--p   40.0KB   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+72b672e4b000-72b672e4d000 r--p   8.0KB    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+72b672e4d000-72b672e4f000 rw-p   8.0KB    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffe4aab6000-7ffe4aad7000 rw-p   132.0KB  [stack]
+ffffffffff600000-ffffffffff601000 --xp   4.0KB    [vsyscall]
+
+Press Enter to free memory and exit...
