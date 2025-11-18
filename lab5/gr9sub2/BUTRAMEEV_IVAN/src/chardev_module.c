@@ -62,7 +62,7 @@ static ssize_t dev_write(struct file *file, const char __user *buf,
         return -EFAULT;
 
     buffer_size = bytes_to_write;
-    *off = 0;
+    // *off = 0;
     return bytes_to_write;
 }
 
@@ -114,7 +114,7 @@ module_init(chardev_init);
 module_exit(chardev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Your Name");
+MODULE_AUTHOR("Ivan Butrameev");
 MODULE_DESCRIPTION("Simple character device driver");
 MODULE_VERSION("1.0");
 

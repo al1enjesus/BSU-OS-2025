@@ -101,7 +101,7 @@ static int __init proc_module_init(void)
         return -ENOMEM;
     }
 
-    printk(KERN_INFO "proc_module: Created /proc/%s succesfully\n", PROC_NAME);
+    printk(KERN_INFO "proc_module: Created /proc/%s successfully\n", PROC_NAME);
 
     return 0;
 }
@@ -117,14 +117,14 @@ static void __exit proc_module_exit(void)
         printk(KERN_INFO "proc_module: Removed /proc/%s\n", PROC_NAME);
     }
 
-    printk(KERN_INFO "proc_module: Exiting succesfully\n");
+    printk(KERN_INFO "proc_module: Exiting successfully\n");
 }
 
 module_init(proc_module_init);
 module_exit(proc_module_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Ivan");  // TODO: Ваше имя
+MODULE_AUTHOR("Ivan Butrameev");  // TODO: Ваше имя
 MODULE_DESCRIPTION("Proc filesystem example");
 MODULE_VERSION("1.0");
 

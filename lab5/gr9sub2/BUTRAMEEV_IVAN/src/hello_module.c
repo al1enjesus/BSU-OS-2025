@@ -34,7 +34,7 @@ static int __init hello_init(void)
         printk(KERN_INFO "hello_module: Hello from Ivan module!\n");
     }
 
-    printk(KERN_INFO "hello_module: Module loaded succesfully\n");
+    printk(KERN_INFO "hello_module: Module loaded successfully\n");
 
     return 0;  // 0 = успех
 }
@@ -47,7 +47,7 @@ static void __exit hello_exit(void)
     //
     printk(KERN_INFO "hello_module: Goodbye from Ivan module!\n");
 
-    printk(KERN_INFO "hello_module: Module unloaded succesfully\n");
+    printk(KERN_INFO "hello_module: Module unloaded successfully\n");
 }
 
 // Регистрация функций init/exit

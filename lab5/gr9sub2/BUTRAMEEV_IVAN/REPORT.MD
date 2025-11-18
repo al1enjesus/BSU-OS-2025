@@ -15,7 +15,7 @@
 ```
 
 [ 1182.533491] hello_module: Hello from Ivan module!
-[ 1182.533496] hello_module: Module loaded succesfully
+[ 1182.533496] hello_module: Module loaded successfully
 
 ```
 
@@ -28,7 +28,7 @@
 ```
 
 [ 1195.324763] hello_module: Goodbye from Ivan module!
-[ 1195.324768] hello_module: Module unloaded succesfully
+[ 1195.324768] hello_module: Module unloaded successfully
 
 
 ```
@@ -44,7 +44,7 @@
 ``` 
 
 [ 1513.197516] hello_module: CustomGreeting
-[ 1513.197524] hello_module: Module loaded succesfully
+[ 1513.197524] hello_module: Module loaded successfully
 
 
 ```
@@ -63,7 +63,7 @@ CustomGreeting
 ```
 
 [ 1603.179350] hello_module: Goodbye from Ivan module!
-[ 1603.179354] hello_module: Module unloaded succesfully
+[ 1603.179354] hello_module: Module unloaded successfully
 
 ```
 
@@ -81,7 +81,7 @@ CustomGreeting
 ```
 
 [ 2684.634520] proc_module: Initializing
-[ 2684.634535] proc_module: Created /proc/student_info succesfully
+[ 2684.634535] proc_module: Created /proc/student_info successfully
 
 ```
 
@@ -131,7 +131,7 @@ Read count: 3
 ```
 
 [ 2720.560376] proc_module: Removed /proc/student_info
-[ 2720.560382] proc_module: Exiting succesfully
+[ 2720.560382] proc_module: Exiting successfully
 
 ```
 
@@ -153,11 +153,18 @@ Read count: 3
 
 ```
 
-### Создание узла устройства и выдача прав:
+### Создание узла устройства:
 
 ```
 
 sudo mknod /dev/mychardev c 240 0
+
+```
+
+### Выдача прав:
+
+```
+
 sudo chmod 666 /dev/mychardev
 
 ```
