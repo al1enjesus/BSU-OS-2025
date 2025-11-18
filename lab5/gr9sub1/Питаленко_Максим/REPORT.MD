@@ -85,7 +85,7 @@ sudo insmod hello_module.ko message='"Custom greeting from kernel!"'
 1. Loading module...
 2. Reading /proc/student_info:
 Name: Maxim Pitalenko
-Group: 6, Subgroup: 1
+Group: 9, Subgroup: 1
 Module loaded at: 4297221157 jiffies
 Read count: 1
 3. Reading again (counter should increase):
