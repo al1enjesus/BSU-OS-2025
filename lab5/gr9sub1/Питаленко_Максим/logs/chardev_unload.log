@@ -1,0 +1,7 @@
+[ 4070.565449] chardev: Initializing
+[ 4070.565465] chardev: Registered with major number 240
+[ 4070.565519] chardev: Device registered successfully
+[ 4070.565522] chardev: Create device with: mknod /dev/mychardev c 240 0
+[ 4070.677054] chardev: Device opened
+[ 4070.677084] chardev: Device closed
+[ 4070.727715] chardev: Device unregistered

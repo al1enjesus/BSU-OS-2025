@@ -1,0 +1,59 @@
+Module                  Size  Used by
+snd_seq_dummy          12288  0
+snd_hrtimer            12288  1
+qrtr                   53248  2
+intel_rapl_msr         20480  0
+intel_rapl_common      53248  1 intel_rapl_msr
+polyval_clmulni        12288  0
+polyval_generic        12288  1 polyval_clmulni
+ghash_clmulni_intel    16384  0
+sha256_ssse3           32768  0
+sha1_ssse3             32768  0
+aesni_intel           122880  0
+crypto_simd            16384  1 aesni_intel
+cryptd                 24576  2 crypto_simd,ghash_clmulni_intel
+binfmt_misc            24576  1
+snd_intel8x0           57344  1
+snd_ac97_codec        196608  1 snd_intel8x0
+ac97_bus               12288  1 snd_ac97_codec
+snd_pcm               196608  2 snd_intel8x0,snd_ac97_codec
+snd_seq_midi           24576  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+snd_rawmidi            57344  1 snd_seq_midi
+snd_seq               122880  9 snd_seq_midi,snd_seq_midi_event,snd_seq_dummy
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+snd_timer              53248  3 snd_seq,snd_hrtimer,snd_pcm
+vmwgfx                466944  18
+snd                   143360  11 snd_seq,snd_seq_device,snd_intel8x0,snd_timer,snd_ac97_codec,snd_pcm,snd_rawmidi
+drm_ttm_helper         16384  2 vmwgfx
+ttm                   118784  2 vmwgfx,drm_ttm_helper
+i2c_piix4              36864  0
+soundcore              16384  1 snd
+vboxguest              57344  0
+joydev                 32768  0
+i2c_smbus              20480  1 i2c_piix4
+input_leds             12288  0
+mac_hid                12288  0
+sch_fq_codel           24576  2
+msr                    12288  0
+parport_pc             53248  0
+ppdev                  24576  0
+lp                     28672  0
+parport                73728  3 parport_pc,lp,ppdev
+efi_pstore             12288  0
+nfnetlink              20480  1
+dmi_sysfs              24576  0
+ip_tables              36864  0
+x_tables               65536  1 ip_tables
+autofs4                57344  2
+hid_generic            12288  0
+video                  77824  0
+ahci                   49152  1
+wmi                    28672  1 video
+libahci                53248  1 ahci
+psmouse               221184  0
+pata_acpi              12288  0
+serio_raw              20480  0
+e1000                 184320  0
+usbhid                 77824  0
+hid                   266240  2 usbhid,hid_generic

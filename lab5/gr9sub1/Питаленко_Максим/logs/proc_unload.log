@@ -1,0 +1,3 @@
+[ 4070.325443] proc_module: Initializing
+[ 4070.325457] proc_module: Created /proc/student_info
+[ 4070.400580] proc_module: Removed /proc/student_info

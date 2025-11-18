@@ -1,0 +1,30 @@
+Building kernel modules...
+make: Entering directory '/usr/src/linux-headers-6.14.0-32-generic'
+make[1]: Entering directory '/home/maksick/lab5/gr9sub1/src'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-14 (Ubuntu 14.2.0-19ubuntu2) 14.2.0
+  You are using:           gcc-14 (Ubuntu 14.2.0-19ubuntu2) 14.2.0
+  CC [M]  hello_module.o
+  CC [M]  proc_module.o
+proc_module.c: In function ‘proc_read’:
+proc_module.c:38:1: warning: the frame size of 1032 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+   38 | }
+      | ^
+  CC [M]  chardev_module.o
+  MODPOST Module.symvers
+  CC [M]  hello_module.mod.o
+  CC [M]  .module-common.o
+  LD [M]  hello_module.ko
+  BTF [M] hello_module.ko
+Skipping BTF generation for hello_module.ko due to unavailability of vmlinux
+  CC [M]  proc_module.mod.o
+  LD [M]  proc_module.ko
+  BTF [M] proc_module.ko
+Skipping BTF generation for proc_module.ko due to unavailability of vmlinux
+  CC [M]  chardev_module.mod.o
+  LD [M]  chardev_module.ko
+  BTF [M] chardev_module.ko
+Skipping BTF generation for chardev_module.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/maksick/lab5/gr9sub1/src'
+make: Leaving directory '/usr/src/linux-headers-6.14.0-32-generic'
+✓ Modules built successfully!
