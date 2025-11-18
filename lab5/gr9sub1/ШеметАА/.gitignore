@@ -1,0 +1,37 @@
+# Объектные файлы и артефакты компиляции модулей ядра
+*.o
+*.o.d
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.order
+*.symvers
+
+# Служебные файлы сборки ядра
+.tmp_versions/
+*.cmd
+Module.symvers
+modules.order
+
+# Папка с исходниками - исключаем артефакты сборки
+src/*.o
+src/*.ko
+src/*.mod.c
+src/*.mod.o
+src/.*.cmd
+src/Module.symvers
+src/modules.order
+src/.tmp_versions/
+
+# Папка для логов (если не хотите коммитить сами логи)
+logs/
+
+# Резервные копии и временные файлы редакторов
+*~
+.*.swp
+.*.swo
+.DS_Store
+
+# Системные файлы
+.thumbs
