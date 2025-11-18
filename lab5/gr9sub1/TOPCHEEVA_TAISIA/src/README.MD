@@ -82,7 +82,7 @@ sudo rmmod stats_module proc_module hello_module
 - Использование jiffies и si_meminfo()
 
 ## Безопасность
- **ВНИМАНИЕ:** Код выполняется в kernel-space!
+- Код выполняется в kernel-space!
 - Обязательно использовать виртуальную машину
 - Ошибки могут вызвать kernel panic
 - Перед тестированием сделать snapshot VM
