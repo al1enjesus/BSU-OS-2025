@@ -24,8 +24,8 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
     read_count++;
 
     len = snprintf(buf, sizeof(buf),
-        "Name: Ivan Petrov\n"
-        "Group: 6, Subgroup: 1\n"
+        "Name: Maksim Pitalenko\n"
+        "Group: 9, Subgroup: 1\n"
         "Module loaded at: %lu jiffies\n"
         "Read count: %d\n",
         load_time, read_count);
