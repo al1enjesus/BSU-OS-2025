@@ -1,3 +1,4 @@
+
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -17,20 +18,26 @@ MODULE_DESCRIPTION("Proc module with read/write for lab5");
 static struct proc_dir_entry *proc_file;
 static char *proc_data = NULL;
 static size_t data_size = 0;
-static bool is_safe_string(const char *str, size_t len) 
-{
+static bool is_safe_string(const char *str, size_t len) {
     size_t i;
     
-    for (i = 0; i < len; i++) 
-    {
-        if (!isprint(str[i]) && !isspace(str[i]) && 
-            str[i] != '\n' && str[i] != '\r' && str[i] != '\t') 
-            {
-            return false;
+    for (i = 0; i < len; i++) {
+        unsigned char c = str[i];
+
+        if (isprint(c)) {
+            continue;
         }
+        
+        if (c == ' ' || c == '\t' || c == '\n' || c == '\r')
+        {
+            continue;
+        }
+
+        return false;
     }
     return true;
 }
+
 static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, loff_t *ppos) {
     if (*ppos > 0)
         return 0;
@@ -42,38 +49,56 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
     *ppos = data_size;
     return data_size;
 }
+
+static unsigned long last_write_time = 0;
+#define MIN_WRITE_INTERVAL (HZ / 10) 
+
+
 static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t count, loff_t *ppos) {
     char *new_data;
-    char kernel_buf[MAX_BUF_SIZE];  
+    char kernel_buf[MAX_BUF_SIZE];
+    unsigned long current_time;
+   
+    current_time = jiffies;
+    if (time_before(current_time, last_write_time + MIN_WRITE_INTERVAL)) {
+        printk(KERN_WARNING "proc_module: write rate limit exceeded\n");
+        return -EAGAIN;
+    }
+    last_write_time = current_time;
+  
     if (count < MIN_BUF_SIZE) {
         printk(KERN_WARNING "proc_module: write too small (%zu bytes)\n", count);
         return -EINVAL;
     }
+    
     if (count >= MAX_BUF_SIZE) {
         printk(KERN_WARNING "proc_module: write too large (%zu bytes)\n", count);
         return -EFBIG;
     }
-    if (copy_from_user(kernel_buf, ubuf, count))
+
+    if (copy_from_user(kernel_buf, ubuf, count)) 
     {
         return -EFAULT;
     }
-
-    if (count < MAX_BUF_SIZE - 1) 
-    {
+    
+    if (count < MAX_BUF_SIZE - 1) {
         kernel_buf[count] = '\0';
     } else {
         kernel_buf[MAX_BUF_SIZE - 1] = '\0';
     }
-    if (!is_safe_string(kernel_buf, count))
-    {
+
+    if (!is_safe_string(kernel_buf, count)) {
         printk(KERN_WARNING "proc_module: unsafe characters in input\n");
         return -EINVAL;
     }
+
     new_data = kmalloc(count + 1, GFP_KERNEL);
     if (!new_data) {
         printk(KERN_ERR "proc_module: kmalloc failed\n");
         return -ENOMEM;
     }
+
+
     memcpy(new_data, kernel_buf, count);
     new_data[count] = '\0';
 
@@ -83,7 +108,7 @@ static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t cou
     proc_data = new_data;
     data_size = count;
 
-    printk(KERN_INFO "proc_module: wrote safe data (%zu bytes)\n", data_size);
+    printk(KERN_DEBUG "proc_module: wrote safe data (%zu bytes)\n", data_size);
     return count;
 }
 
@@ -92,8 +117,8 @@ static const struct proc_ops proc_fops = {
     .proc_write = proc_write,
 };
 
-static int __init proc_init(void)
-{
+static int __init proc_init(void) {
+ 
     proc_data = kmalloc(strlen("default") + 1, GFP_KERNEL);
     if (!proc_data) {
         return -ENOMEM;

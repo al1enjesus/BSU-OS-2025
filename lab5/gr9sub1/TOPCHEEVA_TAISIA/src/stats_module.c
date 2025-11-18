@@ -1,4 +1,3 @@
-
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -14,6 +13,7 @@ MODULE_AUTHOR("tayjie");
 MODULE_DESCRIPTION("System stats module for lab5");
 
 static struct proc_dir_entry *proc_stats;
+
 static int count_processes(void) {
     struct task_struct *task;
     int count = 0;
@@ -36,15 +36,15 @@ static ssize_t stats_read(struct file *file, char __user *ubuf, size_t count, lo
         return 0;
 
     si_meminfo(&si);
-    
-
     len = snprintf(buf, sizeof(buf),
         "Processes: %d\n"
         "Memory Used: %lu MB\n"
-        "System Uptime: %u seconds\n", 
+        "System Uptime: %u seconds\n"
+        "Load Average: %lu.%02lu (stress tested)\n",
         count_processes(),
         (si.totalram - si.freeram) * si.mem_unit / (1024 * 1024),
-        (unsigned int)(jiffies_to_msecs(get_jiffies_64()) / 1000)  
+        (unsigned int)(jiffies_to_msecs(get_jiffies_64()) / 1000),
+        si.loads[0] / 65536, (si.loads[0] % 65536) * 100 / 65536
     );
 
     if (copy_to_user(ubuf, buf, len)) {
@@ -67,6 +67,7 @@ static int __init stats_init(void) {
     }
     
     printk(KERN_INFO "stats_module: loaded, /proc/sys_stats created\n");
+    printk(KERN_DEBUG "stats_module: stress testing ready\n");
     return 0;
 }
 
