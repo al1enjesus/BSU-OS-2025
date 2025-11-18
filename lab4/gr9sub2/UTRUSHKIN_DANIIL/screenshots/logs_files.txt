@@ -1,0 +1,3 @@
+total 8
+drwxrwxr-x 2 user user 4096 Nov  2 16:13 .
+drwxrwxr-x 5 user user 4096 Nov  2 18:51 ..

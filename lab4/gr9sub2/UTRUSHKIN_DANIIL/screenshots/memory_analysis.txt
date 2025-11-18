@@ -1,0 +1,44 @@
+PID: 137430
+=== Начальное состояние ===
+=== Memory Metrics from /proc/self/status ===
+VmPeak:	    3464 kB
+VmSize:	    3464 kB
+VmHWM:	    1632 kB
+VmRSS:	    1632 kB
+
+Нажмите Enter чтобы продолжить...1. Выделяем 1 MB в стеке...
+2. Выделяем 2 MB в куче (malloc)...
+3. Выделяем 3 MB через mmap (анонимный)...
+
+=== После выделения памяти ===
+=== Memory Metrics from /proc/self/status ===
+VmPeak:	    8588 kB
+VmSize:	    8588 kB
+VmHWM:	    7776 kB
+VmRSS:	    7776 kB
+
+Нажмите Enter чтобы увидеть карту памяти...=== Memory Map (первые 20 строк) ===
+556c8b3ed000-556c8b3ee000 r--p 00000000 08:01 392688                     /home/user/lab4/gr9sub2/UTRUSHKIN_DANIIL/memory_analysis
+556c8b3ee000-556c8b3ef000 r-xp 00001000 08:01 392688                     /home/user/lab4/gr9sub2/UTRUSHKIN_DANIIL/memory_analysis
+556c8b3ef000-556c8b3f0000 r--p 00002000 08:01 392688                     /home/user/lab4/gr9sub2/UTRUSHKIN_DANIIL/memory_analysis
+556c8b3f0000-556c8b3f1000 r--p 00002000 08:01 392688                     /home/user/lab4/gr9sub2/UTRUSHKIN_DANIIL/memory_analysis
+556c8b3f1000-556c8b3f2000 rw-p 00003000 08:01 392688                     /home/user/lab4/gr9sub2/UTRUSHKIN_DANIIL/memory_analysis
+556c8e442000-556c8e463000 rw-p 00000000 00:00 0                          [heap]
+7f190c1e8000-7f190c6ec000 rw-p 00000000 00:00 0 
+7f190c6ec000-7f190c714000 r--p 00000000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f190c714000-7f190c879000 r-xp 00028000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f190c879000-7f190c8cf000 r--p 0018d000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f190c8cf000-7f190c8d3000 r--p 001e2000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f190c8d3000-7f190c8d5000 rw-p 001e6000 08:01 786238                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f190c8d5000-7f190c8e2000 rw-p 00000000 00:00 0 
+7f190c8f5000-7f190c8f7000 rw-p 00000000 00:00 0 
+7f190c8f7000-7f190c8fb000 r--p 00000000 00:00 0                          [vvar]
+7f190c8fb000-7f190c8fd000 r-xp 00000000 00:00 0                          [vdso]
+7f190c8fd000-7f190c8fe000 r--p 00000000 08:01 786233                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f190c8fe000-7f190c926000 r-xp 00001000 08:01 786233                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f190c926000-7f190c931000 r--p 00029000 08:01 786233                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7f190c931000-7f190c933000 r--p 00034000 08:01 786233                     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+... (выведено только первые 20 строк)
+
+
+Нажмите Enter чтобы завершить...
