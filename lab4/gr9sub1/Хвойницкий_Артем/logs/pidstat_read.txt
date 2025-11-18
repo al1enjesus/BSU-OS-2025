@@ -1,0 +1,8 @@
+Linux 6.14.0-29-generic (armiqu-VirtualBox) 	30.10.2025 	_x86_64_	(4 CPU)
+
+12:35:53      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+12:35:54     1000      7775 556404,00      0,00      0,00       0  c_disk_stress
+12:35:55     1000      7775 662352,48      0,00      0,00       0  c_disk_stress
+12:35:56     1000      7775 960808,00      0,00      0,00       0  c_disk_stress
+12:35:57     1000      7775 972732,00      0,00      0,00       0  c_disk_stress
+12:35:58     1000      7775 1139564,00      0,00      0,00       0  c_disk_stress
