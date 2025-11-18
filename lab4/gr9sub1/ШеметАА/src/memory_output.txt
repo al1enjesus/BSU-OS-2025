@@ -1,0 +1,209 @@
+[32mMetrics and Map before memory allocation:
+[0m[32mMemory Metrics (Before Allocation):
+[0m[33m  VmSize (VSZ): 2748 KB (2.7 MB)
+[0m[33m  VmRSS:        1532 KB (1.5 MB)
+[0m[33m  VmData:       224 KB (0.2 MB)
+[0m[33m  VmStk:        132 KB (0.1 MB)
+[0m[33m  PSS:          198 KB (0.2 MB)
+[0m[33m  USS:          12 KB (0.0 MB)
+[0m[32m
+Memory Map (Before Allocation):
+[0m[34mAddress Range        Perms    Size (KB)  Path
+[0m[34m------------------------------------------------
+[0m593a44b56000-593a44b57000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b57000-593a44b58000 r-xp        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b58000-593a44b59000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b59000-593a44b5a000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b5a000-593a44b5b000 rw-p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a4c694000-593a4c6b5000 rw-p      132 KB [heap]
+738d08800000-738d08828000 r--p      160 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08828000-738d089bd000 r-xp     1620 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d089bd000-738d08a0c000 r--p      316 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a0c000-738d08a10000 r--p       16 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a10000-738d08a12000 rw-p        8 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a12000-738d08a1f000 rw-p       52 KB 
+738d08ad5000-738d08ad8000 rw-p       12 KB 
+738d08ae7000-738d08ae9000 rw-p        8 KB 
+738d08ae9000-738d08aeb000 r--p        8 KB [vvar]
+738d08aeb000-738d08aed000 r--p        8 KB [vvar_vclock]
+738d08aed000-738d08aef000 r-xp        8 KB [vdso]
+738d08aef000-738d08af0000 r--p        4 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08af0000-738d08b1e000 r-xp      184 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b1e000-738d08b29000 r--p       44 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b29000-738d08b2b000 r--p        8 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b2b000-738d08b2c000 rw-p        4 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b2c000-738d08b2d000 rw-p        4 KB 
+7ffd1e692000-7ffd1e6b3000 rw-p      132 KB [stack]
+ffffffffff600000-ffffffffff601000 --xp        4 KB [vsyscall]
+[32m
+ASCII Memory Map Visualization (Before Allocation):
+[0m[ Low addresses ]
+| 593a44b56000-593a44b57000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b57000-593a44b58000 | r-xp |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b58000-593a44b59000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b59000-593a44b5a000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b5a000-593a44b5b000 | rw-p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a4c694000-593a4c6b5000 | rw-p |  132 KB | â | [heap]
+| 738d08800000-738d08828000 | r--p |  160 KB | â | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08828000-738d089bd000 | r-xp | 1620 KB | â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d089bd000-738d08a0c000 | r--p |  316 KB | â–ˆ | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a0c000-738d08a10000 | r--p |   16 KB |  | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a10000-738d08a12000 | rw-p |    8 KB |  | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a12000-738d08a1f000 | rw-p |   52 KB |  | 
+| 738d08ad5000-738d08ad8000 | rw-p |   12 KB |  | 
+| 738d08ae7000-738d08ae9000 | rw-p |    8 KB |  | 
+| 738d08ae9000-738d08aeb000 | r--p |    8 KB |  | [vvar]
+| 738d08aeb000-738d08aed000 | r--p |    8 KB |  | [vvar_vclock]
+| 738d08aed000-738d08aef000 | r-xp |    8 KB |  | [vdso]
+| 738d08aef000-738d08af0000 | r--p |    4 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08af0000-738d08b1e000 | r-xp |  184 KB | â | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b1e000-738d08b29000 | r--p |   44 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b29000-738d08b2b000 | r--p |    8 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b2b000-738d08b2c000 | rw-p |    4 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b2c000-738d08b2d000 | rw-p |    4 KB |  | 
+| 7ffd1e692000-7ffd1e6b3000 | rw-p |  132 KB | â | [stack]
+| ffffffffff600000-ffffffffff601000 | --xp |    4 KB |  | [vsyscall]
+[ High addresses ]
+[32m
+Press Enter to allocate memory...
+[0m[31m1. Stack: 1 KB at 0x7ffd1e6b1630
+[0m[31m2. Heap: 2 MB at 0x738d085ff010
+[0m[31m3. Anonymous mmap: 1 MB at 0x738d084ff000
+[0m[32m
+Metrics and Map after memory allocation:
+[0m[32mMemory Metrics (After Allocation):
+[0m[33m  VmSize (VSZ): 5824 KB (5.7 MB)
+[0m[33m  VmRSS:        4732 KB (4.6 MB)
+[0m[33m  VmData:       3300 KB (3.2 MB)
+[0m[33m  VmStk:        132 KB (0.1 MB)
+[0m[33m  PSS:          3274 KB (3.2 MB)
+[0m[33m  USS:          12 KB (0.0 MB)
+[0m[32m
+Memory Map (After Allocation):
+[0m[34mAddress Range        Perms    Size (KB)  Path
+[0m[34m------------------------------------------------
+[0m593a44b56000-593a44b57000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b57000-593a44b58000 r-xp        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b58000-593a44b59000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b59000-593a44b5a000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b5a000-593a44b5b000 rw-p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a4c694000-593a4c6b5000 rw-p      132 KB [heap]
+738d084ff000-738d08800000 rw-p     3076 KB 
+738d08800000-738d08828000 r--p      160 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08828000-738d089bd000 r-xp     1620 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d089bd000-738d08a0c000 r--p      316 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a0c000-738d08a10000 r--p       16 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a10000-738d08a12000 rw-p        8 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a12000-738d08a1f000 rw-p       52 KB 
+738d08ad5000-738d08ad8000 rw-p       12 KB 
+738d08ae7000-738d08ae9000 rw-p        8 KB 
+738d08ae9000-738d08aeb000 r--p        8 KB [vvar]
+738d08aeb000-738d08aed000 r--p        8 KB [vvar_vclock]
+738d08aed000-738d08aef000 r-xp        8 KB [vdso]
+738d08aef000-738d08af0000 r--p        4 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08af0000-738d08b1e000 r-xp      184 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b1e000-738d08b29000 r--p       44 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b29000-738d08b2b000 r--p        8 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b2b000-738d08b2c000 rw-p        4 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b2c000-738d08b2d000 rw-p        4 KB 
+7ffd1e692000-7ffd1e6b3000 rw-p      132 KB [stack]
+ffffffffff600000-ffffffffff601000 --xp        4 KB [vsyscall]
+[32m
+ASCII Memory Map Visualization (After Allocation):
+[0m[ Low addresses ]
+| 593a44b56000-593a44b57000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b57000-593a44b58000 | r-xp |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b58000-593a44b59000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b59000-593a44b5a000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b5a000-593a44b5b000 | rw-p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a4c694000-593a4c6b5000 | rw-p |  132 KB | â | [heap]
+| 738d084ff000-738d08800000 | rw-p | 3076 KB | â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ | 
+| 738d08800000-738d08828000 | r--p |  160 KB | â | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08828000-738d089bd000 | r-xp | 1620 KB | â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d089bd000-738d08a0c000 | r--p |  316 KB | â–ˆ | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a0c000-738d08a10000 | r--p |   16 KB |  | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a10000-738d08a12000 | rw-p |    8 KB |  | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a12000-738d08a1f000 | rw-p |   52 KB |  | 
+| 738d08ad5000-738d08ad8000 | rw-p |   12 KB |  | 
+| 738d08ae7000-738d08ae9000 | rw-p |    8 KB |  | 
+| 738d08ae9000-738d08aeb000 | r--p |    8 KB |  | [vvar]
+| 738d08aeb000-738d08aed000 | r--p |    8 KB |  | [vvar_vclock]
+| 738d08aed000-738d08aef000 | r-xp |    8 KB |  | [vdso]
+| 738d08aef000-738d08af0000 | r--p |    4 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08af0000-738d08b1e000 | r-xp |  184 KB | â | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b1e000-738d08b29000 | r--p |   44 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b29000-738d08b2b000 | r--p |    8 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b2b000-738d08b2c000 | rw-p |    4 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b2c000-738d08b2d000 | rw-p |    4 KB |  | 
+| 7ffd1e692000-7ffd1e6b3000 | rw-p |  132 KB | â | [stack]
+| ffffffffff600000-ffffffffff601000 | --xp |    4 KB |  | [vsyscall]
+[ High addresses ]
+[32m
+Press Enter to free memory and show metrics again...
+[0m[32m
+Metrics and Map after freeing memory:
+[0m[32mMemory Metrics (After Freeing):
+[0m[33m  VmSize (VSZ): 2748 KB (2.7 MB)
+[0m[33m  VmRSS:        1660 KB (1.6 MB)
+[0m[33m  VmData:       224 KB (0.2 MB)
+[0m[33m  VmStk:        132 KB (0.1 MB)
+[0m[33m  PSS:          198 KB (0.2 MB)
+[0m[33m  USS:          12 KB (0.0 MB)
+[0m[32m
+Memory Map (After Freeing):
+[0m[34mAddress Range        Perms    Size (KB)  Path
+[0m[34m------------------------------------------------
+[0m593a44b56000-593a44b57000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b57000-593a44b58000 r-xp        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b58000-593a44b59000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b59000-593a44b5a000 r--p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a44b5a000-593a44b5b000 rw-p        4 KB /home/vboxuser/BSU-OS-2025/lab4/memory_info
+593a4c694000-593a4c6b5000 rw-p      132 KB [heap]
+738d08800000-738d08828000 r--p      160 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08828000-738d089bd000 r-xp     1620 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d089bd000-738d08a0c000 r--p      316 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a0c000-738d08a10000 r--p       16 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a10000-738d08a12000 rw-p        8 KB /usr/lib/x86_64-linux-gnu/libc.so.6
+738d08a12000-738d08a1f000 rw-p       52 KB 
+738d08ad5000-738d08ad8000 rw-p       12 KB 
+738d08ae7000-738d08ae9000 rw-p        8 KB 
+738d08ae9000-738d08aeb000 r--p        8 KB [vvar]
+738d08aeb000-738d08aed000 r--p        8 KB [vvar_vclock]
+738d08aed000-738d08aef000 r-xp        8 KB [vdso]
+738d08aef000-738d08af0000 r--p        4 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08af0000-738d08b1e000 r-xp      184 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b1e000-738d08b29000 r--p       44 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b29000-738d08b2b000 r--p        8 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b2b000-738d08b2c000 rw-p        4 KB /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+738d08b2c000-738d08b2d000 rw-p        4 KB 
+7ffd1e692000-7ffd1e6b3000 rw-p      132 KB [stack]
+ffffffffff600000-ffffffffff601000 --xp        4 KB [vsyscall]
+[32m
+ASCII Memory Map Visualization (After Freeing):
+[0m[ Low addresses ]
+| 593a44b56000-593a44b57000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b57000-593a44b58000 | r-xp |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b58000-593a44b59000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b59000-593a44b5a000 | r--p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a44b5a000-593a44b5b000 | rw-p |    4 KB |  | /home/vboxuser/BSU-OS-2025/lab4/memory_info
+| 593a4c694000-593a4c6b5000 | rw-p |  132 KB | â | [heap]
+| 738d08800000-738d08828000 | r--p |  160 KB | â | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08828000-738d089bd000 | r-xp | 1620 KB | â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d089bd000-738d08a0c000 | r--p |  316 KB | â–ˆ | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a0c000-738d08a10000 | r--p |   16 KB |  | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a10000-738d08a12000 | rw-p |    8 KB |  | /usr/lib/x86_64-linux-gnu/libc.so.6
+| 738d08a12000-738d08a1f000 | rw-p |   52 KB |  | 
+| 738d08ad5000-738d08ad8000 | rw-p |   12 KB |  | 
+| 738d08ae7000-738d08ae9000 | rw-p |    8 KB |  | 
+| 738d08ae9000-738d08aeb000 | r--p |    8 KB |  | [vvar]
+| 738d08aeb000-738d08aed000 | r--p |    8 KB |  | [vvar_vclock]
+| 738d08aed000-738d08aef000 | r-xp |    8 KB |  | [vdso]
+| 738d08aef000-738d08af0000 | r--p |    4 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08af0000-738d08b1e000 | r-xp |  184 KB | â | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b1e000-738d08b29000 | r--p |   44 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b29000-738d08b2b000 | r--p |    8 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b2b000-738d08b2c000 | rw-p |    4 KB |  | /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+| 738d08b2c000-738d08b2d000 | rw-p |    4 KB |  | 
+| 7ffd1e692000-7ffd1e6b3000 | rw-p |  132 KB | â | [stack]
+| ffffffffff600000-ffffffffff601000 | --xp |    4 KB |  | [vsyscall]
+[ High addresses ]
