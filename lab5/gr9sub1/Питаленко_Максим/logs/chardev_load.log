@@ -1,0 +1,4 @@
+[ 4070.565449] chardev: Initializing
+[ 4070.565465] chardev: Registered with major number 240
+[ 4070.565519] chardev: Device registered successfully
+[ 4070.565522] chardev: Create device with: mknod /dev/mychardev c 240 0
