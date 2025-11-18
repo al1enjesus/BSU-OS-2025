@@ -5,6 +5,7 @@
 #include <linux/uaccess.h>
 #include <linux/jiffies.h>
 #include <linux/seq_file.h>
+#include <linux/atomic.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("ШеметАА");
@@ -13,17 +14,17 @@ MODULE_VERSION("1.0");
 
 static struct proc_dir_entry *proc_file;
 static unsigned long load_time;
-static unsigned int read_count = 0;
+static atomic_t read_count = ATOMIC_INIT(0);
 
 // Функция чтения для /proc/student_info
 static int student_info_show(struct seq_file *m, void *v)
 {
-    read_count++;
+    atomic_inc(&read_count); // Атомарно увеличиваем счётчик
     
     seq_printf(m, "Name: ШеметАА\n");
     seq_printf(m, "Group: 6, Subgroup: 1\n");
     seq_printf(m, "Module loaded at: %lu jiffies\n", load_time);
-    seq_printf(m, "Read count: %u\n", read_count);
+    seq_printf(m, "Read count: %d\n", atomic_read(&read_count));
     
     return 0;
 }
@@ -34,7 +35,7 @@ static int student_info_open(struct inode *inode, struct file *file)
     return single_open(file, student_info_show, NULL);
 }
 
-// Операции с файлом
+// Операции с файлом - ДОЛЖНЫ БЫТЬ ОБЪЯВЛЕНЫ ДО ИСПОЛЬЗОВАНИЯ!
 static const struct proc_ops student_info_fops = {
     .proc_open = student_info_open,
     .proc_read = seq_read,

@@ -28,8 +28,10 @@ static int dev_open(struct inode *inode, struct file *file)
 
 static int dev_release(struct inode *inode, struct file *file)
 {
-    printk(KERN_INFO "mychardev: Device closed, open count: %d\n", atomic_read(&open_count));
+    // Сначала уменьшаем счётчик...
     atomic_dec(&open_count);
+    // ...а затем выводим сообщение с актуальным значением.
+    printk(KERN_INFO "mychardev: Device closed, open count: %d\n", atomic_read(&open_count));
     return 0;
 }
 
