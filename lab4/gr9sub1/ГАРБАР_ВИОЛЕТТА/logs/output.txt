@@ -1,0 +1,64 @@
+vboxuser@ubuntu:~/BSU-OS-2025/lab4/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ ./memory_profiler $$ --map
+Process: bash (PID 3624)
+=====================================
+
+Memory Metrics:
+  VSZ (Virtual):       20.5 MB
+  RSS (Resident):       6.3 MB
+  PSS (Proportional):   3.9 MB (more accurate)
+  USS (Unique):         3.8 MB
+
+Memory Breakdown:
+  Shared (clean):       2.6 MB
+  Shared (dirty):       0 KB
+  Private (clean):      1.6 MB
+  Private (dirty):      2.3 MB
+
+Memory Regions:
+  Text (code):          1.2 MB
+  Data + Heap:          2.2 MB
+  Stack:              132 KB
+  Libraries:            1.9 MB
+
+Page Faults:
+  Minor: 1121
+  Major: 0
+
+Memory Map (33 segments):
+Address Range      Perms        Size  Path
+----------------------------------------------------------------
+5cea8fa8f000-5cea8fabf000 r--p    192 KB  /usr/bin/bash
+5cea8fabf000-5cea8fbf5000 r-xp      1.2 MB  /usr/bin/bash
+5cea8fbf5000-5cea8fc2b000 r--p    216 KB  /usr/bin/bash
+5cea8fc2b000-5cea8fc2f000 r--p     16 KB  /usr/bin/bash
+5cea8fc2f000-5cea8fc38000 rw-p     36 KB  /usr/bin/bash
+5cea8fc38000-5cea8fc43000 rw-p     44 KB  [anonymous]
+5ceaa3f27000-5ceaa412f000 rw-p      2.0 MB  [heap]
+77cca9c00000-77ccaa9f1000 r--p     13.9 MB  /usr/lib/locale/locale-archive
+77ccaaa00000-77ccaaa28000 r--p    160 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+77ccaaa28000-77ccaabbe000 r-xp      1.6 MB  /usr/lib/x86_64-linux-gnu/libc.so.6
+77ccaabbe000-77ccaac0d000 r--p    316 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+77ccaac0d000-77ccaac11000 r--p     16 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+77ccaac11000-77ccaac13000 rw-p      8 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+77ccaac13000-77ccaac20000 rw-p     52 KB  [anonymous]
+77ccaace0000-77ccaace3000 rw-p     12 KB  [anonymous]
+77ccaace3000-77ccaacf1000 r--p     56 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.5
+77ccaacf1000-77ccaad08000 r-xp     92 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.5
+77ccaad08000-77ccaad16000 r--p     56 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.5
+77ccaad16000-77ccaad1a000 r--p     16 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.5
+77ccaad1a000-77ccaad1b000 rw-p      4 KB  /usr/lib/x86_64-linux-gnu/libtinfo.so.6.5
+77ccaad23000-77ccaad2a000 r--s     28 KB  /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+77ccaad2a000-77ccaad2c000 rw-p      8 KB  [anonymous]
+77ccaad2c000-77ccaad2e000 r--p      8 KB  [vvar]
+77ccaad2e000-77ccaad30000 r--p      8 KB  [vvar_vclock]
+77ccaad30000-77ccaad32000 r-xp      8 KB  [vdso]
+... (8 more segments)
+
+Segment Statistics:
+  Heap segments:     1
+  Stack segments:    0
+  Library segments:  12
+  Anonymous segments:4
+  Executable segments:2
+  Other segments:    6
+
