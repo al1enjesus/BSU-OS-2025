@@ -1,30 +1,73 @@
-obj-m += hello_module.o
-obj-m += proc_module.o
-obj-m += chardev_module.o
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/proc_fs.h>
+#include <linux/uaccess.h>
+#include <linux/jiffies.h>
 
-KERNEL_DIR := /lib/modules/$(shell uname -r)/build
-PWD := $(shell pwd)
+#define PROC_NAME "student_info"
+#define MAX_SIZE 1024
 
-all:
-	@echo "Building all kernel modules..."
-	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) modules
+static struct proc_dir_entry *proc_file = NULL;
+static int read_count = 0;
+static unsigned long load_time = 0;
 
-hello_module.ko: hello_module.c
-	@echo "Building hello_module..."
-	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) hello_module.ko
+static ssize_t proc_read(struct file *file, char __user *ubuf,
+                         size_t count, loff_t *ppos)
+{
+    char buf[MAX_SIZE];
+    int len;
 
-proc_module.ko: proc_module.c
-	@echo "Building proc_module..."
-	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) proc_module.ko
+    if (*ppos > 0)
+        return 0;
 
-chardev_module.ko: chardev_module.c
-	@echo "Building chardev_module..."
-	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) chardev_module.ko
+    read_count++;
 
-clean:
-	@echo "Cleaning up..."
-	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) clean
-	rm -f *.o *.ko *.mod.c *.mod *.symvers *.order .*.cmd
-	rm -rf .tmp_versions
+    len = snprintf(buf, sizeof(buf),
+        "Name: Tiganin Vladislav\n"
+        "Group: 9, Subgroup: 1\n"
+        "Module loaded at: %lu jiffies\n"
+        "Read count: %d\n",
+        load_time, read_count);
 
-.PHONY: all clean
+    if (copy_to_user(ubuf, buf, len))
+        return -EFAULT;
+
+    *ppos = len;
+    return len;
+}
+
+static const struct proc_ops proc_file_ops = {
+    .proc_read = proc_read,
+};
+
+static int __init proc_module_init(void)
+{
+    printk(KERN_INFO "proc_module: Initializing\n");
+
+    load_time = jiffies;
+
+    proc_file = proc_create(PROC_NAME, 0444, NULL, &proc_file_ops);
+    if (!proc_file) {
+        printk(KERN_ERR "proc_module: Failed to create /proc/%s\n", PROC_NAME);
+        return -ENOMEM;
+    }
+
+    printk(KERN_INFO "proc_module: Created /proc/%s\n", PROC_NAME);
+    return 0;
+}
+
+static void __exit proc_module_exit(void)
+{
+    if (proc_file) {
+        proc_remove(proc_file);
+        printk(KERN_INFO "proc_module: Removed /proc/%s\n", PROC_NAME);
+    }
+}
+
+module_init(proc_module_init);
+module_exit(proc_module_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Tiganin Vladislav");
+MODULE_DESCRIPTION("Proc filesystem example");
+MODULE_VERSION("1.0");

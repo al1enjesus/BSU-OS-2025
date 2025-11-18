@@ -16,20 +16,20 @@ static int __init hello_init(void)
     if (message) {
         printk(KERN_INFO "hello_module: %s\n", message);
     } else {
-        printk(KERN_INFO "hello_module: Hello from Alexey Petrov module!\n");
+        printk(KERN_INFO "hello_module: Hello from Tiganin Vladislav module!\n");
     }
     return 0;
 }
 
 static void __exit hello_exit(void)
 {
-    printk(KERN_INFO "hello_module: Goodbye from Alexey Petrov module!\n");
+    printk(KERN_INFO "hello_module: Goodbye from Tiganin Vladislav module!\n");
 }
 
 module_init(hello_init);
 module_exit(hello_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Alexey Petrov <alexey@example.com>");
+MODULE_AUTHOR("Tiganin Vladislav");
 MODULE_DESCRIPTION("Simple Hello World kernel module");
 MODULE_VERSION("1.0");
