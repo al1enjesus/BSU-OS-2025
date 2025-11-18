@@ -90,7 +90,7 @@ Module loaded at: 4297221157 jiffies
 Read count: 1
 3. Reading again (counter should increase):
 Name: Maxim Pitalenko
-Group: 6, Subgroup: 1
+Group: 9, Subgroup: 1
 Module loaded at: 4297221157 jiffies
 Read count: 2
 4. Unloading module...
