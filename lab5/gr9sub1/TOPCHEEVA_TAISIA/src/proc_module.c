@@ -17,11 +17,15 @@ MODULE_DESCRIPTION("Proc module with read/write for lab5");
 static struct proc_dir_entry *proc_file;
 static char *proc_data = NULL;
 static size_t data_size = 0;
-static bool is_safe_string(const char *str, size_t len) {
+static bool is_safe_string(const char *str, size_t len) 
+{
     size_t i;
     
-    for (i = 0; i < len; i++) {
-        if (!isprint(str[i]) && !isspace(str[i])) {
+    for (i = 0; i < len; i++) 
+    {
+        if (!isprint(str[i]) && !isspace(str[i]) && 
+            str[i] != '\n' && str[i] != '\r' && str[i] != '\t') 
+            {
             return false;
         }
     }
@@ -40,14 +44,12 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
 }
 static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t count, loff_t *ppos) {
     char *new_data;
-    char kernel_buf[MAX_BUF_SIZE]
-    if (count < MIN_BUF_SIZE)
-    {
+    char kernel_buf[MAX_BUF_SIZE];  
+    if (count < MIN_BUF_SIZE) {
         printk(KERN_WARNING "proc_module: write too small (%zu bytes)\n", count);
         return -EINVAL;
     }
-    if (count >= MAX_BUF_SIZE) 
-    {
+    if (count >= MAX_BUF_SIZE) {
         printk(KERN_WARNING "proc_module: write too large (%zu bytes)\n", count);
         return -EFBIG;
     }
@@ -55,24 +57,23 @@ static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t cou
     {
         return -EFAULT;
     }
-    if (count < MAX_BUF_SIZE - 1) {
+
+    if (count < MAX_BUF_SIZE - 1) 
+    {
         kernel_buf[count] = '\0';
     } else {
         kernel_buf[MAX_BUF_SIZE - 1] = '\0';
     }
-
-    if (!is_safe_string(kernel_buf, count)) {
+    if (!is_safe_string(kernel_buf, count))
+    {
         printk(KERN_WARNING "proc_module: unsafe characters in input\n");
         return -EINVAL;
     }
-
-
     new_data = kmalloc(count + 1, GFP_KERNEL);
     if (!new_data) {
         printk(KERN_ERR "proc_module: kmalloc failed\n");
         return -ENOMEM;
     }
-
     memcpy(new_data, kernel_buf, count);
     new_data[count] = '\0';
 
@@ -91,15 +92,14 @@ static const struct proc_ops proc_fops = {
     .proc_write = proc_write,
 };
 
-static int __init proc_init(void) {
- 
+static int __init proc_init(void)
+{
     proc_data = kmalloc(strlen("default") + 1, GFP_KERNEL);
     if (!proc_data) {
         return -ENOMEM;
     }
     strcpy(proc_data, "default");
     data_size = strlen("default");
-
     proc_file = proc_create("my_config", 0644, NULL, &proc_fops);
     if (!proc_file) {
         kfree(proc_data);
