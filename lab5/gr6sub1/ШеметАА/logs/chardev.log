@@ -1,0 +1,9 @@
+[    1.722957] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+[ 3057.681281] mychardev: Registered with major 240
+[ 3139.522196] mychardev: Device opened, open count: 1
+[ 3139.522223] mychardev: Written 33 bytes
+[ 3139.522230] mychardev: Device closed, open count: 1
+[ 3139.526917] mychardev: Device opened, open count: 1
+[ 3139.526941] mychardev: Read 1024 bytes
+[ 3139.527948] mychardev: Device closed, open count: 1
+[ 3187.382048] mychardev: Unregistered

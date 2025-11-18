@@ -1,0 +1,11 @@
+filename:       /home/vboxuser/BSU-OS-2025/lab5/gr6sub1/ШеметАА/src/hello_module.ko
+version:        1.0
+description:    Simple Hello World module with parameter
+author:         Shemet Alina
+license:        GPL
+srcversion:     ECDA41519C102AC1190FF15
+depends:        
+name:           hello_module
+retpoline:      Y
+vermagic:       6.14.0-34-generic SMP preempt mod_unload modversions 
+parm:           message:Message to display on module load (charp)
