@@ -79,10 +79,10 @@ test-chardev: all
 	@echo "✓ chardev_module test completed"
 
 test-all: 
-	@echo "🚀 Running all tests..."
+	@echo "Running all tests..."
 	@make test-hello
 	@make test-proc
 	@make test-chardev
-	@echo "🎉 All tests completed!"
+	@echo "All tests completed!"
 
 .PHONY: all clean test-hello test-hello-param test-proc test-chardev test-all

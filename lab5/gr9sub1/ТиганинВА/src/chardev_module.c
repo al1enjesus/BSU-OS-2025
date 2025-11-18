@@ -117,6 +117,6 @@ module_init(chardev_init);
 module_exit(chardev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Alexey Petrov");
+MODULE_AUTHOR("Tiganin Vladislav");
 MODULE_DESCRIPTION("Simple character device driver");
 MODULE_VERSION("1.0");
