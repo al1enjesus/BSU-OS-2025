@@ -1,0 +1,6 @@
+2025-04-15 17:19:59 install libzstd1:arm64 <none> 1.5.6+dfsg-2
+2025-04-15 17:19:59 status half-installed libzstd1:arm64 1.5.6+dfsg-2
+2025-04-15 17:20:01 status installed libzstd1:arm64 1.5.6+dfsg-2
+2025-04-15 17:40:07 install zstd:arm64 <none> 1.5.6+dfsg-2
+2025-04-15 17:40:07 status half-installed zstd:arm64 1.5.6+dfsg-2
+2025-04-15 17:40:33 status installed zstd:arm64 1.5.6+dfsg-2

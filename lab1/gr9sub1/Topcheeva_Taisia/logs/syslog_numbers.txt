@@ -1,0 +1,10 @@
+2025-09-14T14:40:18.386859+03:00 tayjie rsyslogd: [origin software="rsyslogd" swVersion="8.2412.0" x-pid="1536" x-info="https://www.rsyslog.com"] rsyslogd was HUPed
+2025-09-14T14:40:18.388100+03:00 tayjie systemd[1]: logrotate.service: Deactivated successfully.
+2025-09-14T14:40:18.388182+03:00 tayjie systemd[1]: Finished logrotate.service - Rotate log files.
+2025-09-14T14:40:18.469567+03:00 tayjie kernel: usb 1-3.1: new full-speed USB device number 6 using xhci_hcd
+2025-09-14T14:40:18.533745+03:00 tayjie NetworkManager[1553]: <info>  [1757850018.5336] dhcp4 (ens160): state changed new lease, address=192.168.52.128
+2025-09-14T14:40:18.534628+03:00 tayjie avahi-daemon[1322]: Joining mDNS multicast group on interface ens160.IPv4 with address 192.168.52.128.
+2025-09-14T14:40:18.534857+03:00 tayjie avahi-daemon[1322]: New relevant interface ens160.IPv4 for mDNS.
+2025-09-14T14:40:18.534879+03:00 tayjie avahi-daemon[1322]: Registering new address record for 192.168.52.128 on ens160.IPv4.
+2025-09-14T14:40:18.535082+03:00 tayjie NetworkManager[1553]: <info>  [1757850018.5349] policy: set 'netplan-ens160' (ens160) as default for IPv4 routing and DNS
+2025-09-14T14:40:18.538993+03:00 tayjie systemd-resolved[435]: ens160: Bus client set search domain list to: localdomain
