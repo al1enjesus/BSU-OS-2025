@@ -65,7 +65,7 @@ sudo rmmod hello_module
 - выводит:
   - имя и группу студента;
   - `jiffies` на момент загрузки модуля;
-  - счётчик обращений к файлу.
+  - счётчик обращений к файлу (реализован с помощью `atomic_t`).
 
 Пример проверки:
 
@@ -89,9 +89,9 @@ ls /proc | grep student_info  # файл должен исчезнуть
 
 - регистрирует символьное устройство `/dev/mychardev` с буфером 1024 байта;
 - реализует операции `open`, `release`, `read`, `write`;
-- логирует действия через `pr_info`.
+- защищает доступ к буферу и размеру данных с помощью `mutex`.
 
-Пример проверки:
+Пример проверки (учебная виртуальная машина):
 
 ```bash
 sudo insmod src/char_device.ko
@@ -99,7 +99,9 @@ dmesg | tail -n 20          # посмотреть major-номер устрой
 
 # допустим, ядро выдало major = 240
 sudo mknod /dev/mychardev c 240 0
-sudo chmod 666 /dev/mychardev
+
+# права доступа: только root и группа могут читать и писать
+sudo chmod 660 /dev/mychardev
 
 echo "Hello from user space" > /dev/mychardev
 cat /dev/mychardev
