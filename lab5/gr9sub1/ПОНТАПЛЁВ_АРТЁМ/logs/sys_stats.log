@@ -1,0 +1,6 @@
+//sudo insmod sys_stats_module.ko
+//cat /proc/sys_stats
+Processes: 237
+Memory Used: 3247 MB
+System Uptime: 7619 seconds
+

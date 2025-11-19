@@ -1,0 +1,8 @@
+//sudo insmod proc_module.ko
+//cat /proc/my_config
+default
+
+//echo "new value" > /proc/my_config
+//cat /proc/my_config
+new value
+

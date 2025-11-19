@@ -1,0 +1,28 @@
+//sudo insmod hello_module.ko
+//sudo dmesg | tail -5
+[23557.813963] hello_module: Hello from Artem Pontaplev module!
+[23644.563080] hello_module: Goodbye from Artem Pontaplev module!
+[23667.142826] hello_module: Custom greeting
+[23754.639309] hello_module: Goodbye from Artem Pontaplev module!
+[23855.786739] hello_module: Hello from Artem Pontaplev module!
+
+//sudo insmod hello_module.ko message='"Custom greeting"'
+//sudo dmesg | tail -5
+[23667.142826] hello_module: Custom greeting
+[23754.639309] hello_module: Goodbye from Artem Pontaplev module!
+[23855.786739] hello_module: Hello from Artem Pontaplev module!
+[23881.848621] hello_module: Goodbye from Artem Pontaplev module!
+[23902.591510] hello_module: Custom greeting
+
+//cat /sys/module/hello_module/parameters/message
+Custom greeting
+
+//sudo rmmod hello_module
+//sudo dmesg | tail -5
+[23754.639309] hello_module: Goodbye from Artem Pontaplev module!
+[23855.786739] hello_module: Hello from Artem Pontaplev module!
+[23881.848621] hello_module: Goodbye from Artem Pontaplev module!
+[23902.591510] hello_module: Custom greeting
+[24015.589761] hello_module: Goodbye from Artem Pontaplev module!
+
+
