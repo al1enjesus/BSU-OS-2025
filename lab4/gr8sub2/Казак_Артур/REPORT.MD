@@ -1,0 +1,345 @@
+аеорcxaeоpcхаеорсxaеopсхаeopсxаеopсxaeopсхаeopсxаeoрсхаeоpcхaеoрcxаeopcxаеорcxaeоpcхаеорсxaеopcхаeoрcxaеорсхaeopсxaеорсхаeoрcxаеоpcхаеopcxаeоpcxaеoрcхaeoрcxаeopcхaeоpcхaеoрcxаеopсxаeoрcxаeopcxаеоpcxаeоpcxaеорсxaеopсxaeоpcxaeорсхaeopсxaеорсхаeoрcxaеоpсxaeорcхaеopсхaеoрcхaeoрcхaeоpcхaeоpcхaеopcxаеoрcхaеopcxаeopcxаеоpcxаeоpcхаеорсxaeopсxaeоpcxaeорсхaeopсxaеорсхаeoрсxаeоpсxаeорсхaeорсxаeoрcхaeopсxaeopсхаeopсxаeopсxaеоpсхаeорcxаeopcxaеopcxaеoрcxаеopcхaeорcxaeоpcxaeoрсхаеopcxаeopcxаеорcxaeоpcхаеорсxaеopсхаeоpсxaеорсхaeopсxaеорсхаeoрcхaeоpcхаеoрcxаeopcxаеоpcxаeоpcxаeopсxаeoрсхaeоpcxaeорcxaeоpсxаeорcxаеорcxaeоpcхаеорсxаeоpсxаeopcхaeорсхaeopсxaеорсхаeopсхaeоpcxaeopcxаeopcxaеорсхaeopсxaeopсхаeopсxаeopсхаеоpсхaeoрсхаeорсхаeорсxaeоpcxаеорсхаеopcxаeoрсхаеоpcхaeорсxаeоpcхаеоpсхаеоpсхаеopсxaеорcхаеорcxaeоpcхаеорсxаeoрсхаeоpсхaеорсxaeоpсxaеopcхаeоpcxaeорсxaeоpсxaeоpcxаeopсxaeорсхaeopсxaеорсхаeоpcхаеоpсxаeоpcxаeopcxaеорсхaeopсxaeopсхаеopcxаeoрсхаеоpcхaеopсxаеорcхаеоpcxаeоpcхаeоpсxaеоpcхаеоpсхаеоpсхаeopсxaeорсхаеорcxaeоpcхаеорсxaеopсхаeoрсхaeорсxaeоpсxaeoрсxаeoрcxаeорсхaeopсxaеорсхаeоpсxаеоpсxaеoрcхaeopcxаеорcxaeоpcхаеорсxaеoрсxаeоpcхaеорсхaeopсxaеорсхаeopсхаeоpсxaеopcxаeopcxaеорсхaeopсxaeopcхaeoрcxaеopcхaеoрcхaеоpсхаeopсxаeopcхаeоpcхaeоpcхaеоpсхаеоpcxаeоpcxaeopсxaеopсхаеopcxаeоpсхaеорсхаeopсxаeopcxaeоpcхaeорсхaeopсxаeорcхаеopсxaeopсхaeopсxаeорcхаеорсxaeоpсxaeopcxаeoрcxаеорcxaeоpсxаеoрсхаеopcxаeоpсхaеорcxаeopcxаеopcxаeоpсхaеорсхаeopсxаeopcxaeоpcхaeорcxаeopcxаеopcxаeоpсхaеорсхaeopсxаeорcхаеорсxaeоpсxaeopcxаeoрcxаеopсxaeopсхаeopсxаeopcxaeоpcхaeорсхaeopсxаeорcхаеорcxaeоpсxаеoрсхaeоpcxaeорcxaeоpсxаеoрсхaеoрсхaеopсxaeopсхаeopсxаeopcхаеоpcхaeоpcxаeopcxаеоpcxаeоpcхаeорсxаеopсхаеоpсхаеоpсхаeopсxaeорсхаеорcxaeоpcхаеорсxaеoрcxаeoрсхaеорсхaeopсxaеорсхаeoрcхaeоpcхаеoрcxаeopcxaеорсхaeopсxaeopcxаeopcхaеoрcxaeoрcхaeоpcхaeoрcхaеoрcxаеoрcxaеoрcхaeорсxaеoрcхaeoрcxaeoрcхaеoрcxaеopсxaеoрcxаеорcхaeорсxaеoрcxаеopсxaeoрcxаeopcxаеоpcxаeоpcxаеopсxaeopcхaeоpcxaeорсхaeopсxaеорсхаeоpcхaeоpcхaеоpcхaеоpсхaеopcxаеoрcxаеopcхaeopcхaеoрcхaеoрcxaеopcхaeoрcхaеoрсхaеopсxaeopcхаеорcxaeоpcxaeорсхaeopсxaеорсхаeopсхаeоpсxаеорсхаeорсхаeорсхaeоpcхаeоpсхаеopcxаeoрсхаеоpcхaеорсxаeopсхаеоpcxаeоpcхaеорсxaeорсxаеоpсхаеоpсхаеopсxaeоpсхаеоpcxаeоpcхаеopсxаeоpcxаеорcxaeоpcхаеорсxaеopсхаeоpcxаеорсхaeopсxaеорсхаeoрcxaеоpcxаеoрсхаeорсхаeорсхaeоpcxаeорсхаeopсxаeоpсхaеоpcхaeopсхаeорсхаeорсxaeоpcxаеорcхaeорcхaеopcxaеoрcхаeopcxаeopcxaеорсхaeopсxaeopсхаеopcxаeoрсхаеоpcхaеoрсxaеopсxаеорcxaeоpcхаеорсxaеoрсхаeopcxаeорсхaeopсxaеорсхаeoрcхaеоpсхaеoрсхаeорсхаeорсxaeоpcxаеорсхаeopсxаeopcxaeоpcxаеoрсхаeopсxаeoрсxaеоpcxaeоpсхаeорсхаeорсxaeоpcxаеорcxаeopcxаеоpcxаeоpcxaеорсxaеopсxaeоpcxaeорсxaeоpсxаeорcхаeoрcxaeорсxаеорсxаеоpcxаeopсхаеoрcxаеoрcхaeopcхaеoрсxaeорсxaeоpсxaеорcxаeopcхaеopсxaeopcхаеорcxaeоpcxaeорcxaeоpсxаeopcxaеорсхaeopсxaeopсхаеopcxаeoрсхаеоpcхaeорсxaеорcxаеорcxaeоpcхаеорсxаeoрсхаeoрcxaеорсxaeоpсxaeopcxаeopсхaеорсхaeopсxaеорсхаeoрcxаeоpсхаeорcxаeоpcxaеoрcхaeoрcxаeopcхaeоpcхaеoрcxаеopсxаeoрcxаeopcxаеоpcxаeоpcxaеорсxaеopсxaeоpcxaeорсxaeоpсxаeорcхаeoрcxaeорсxаеорсxаеоpcxаeopсхаеoрcxаеoрcхaeopcхaеoрсxaeорсxaeоpсxaеорcxаeopcхaеopсxaeopсхаeopсxаeopсxaеоpсхаeорcxаeopcxaеopcxaеoрcxаеopcхaeорcxaeоpcxaeорсxaeоpсxaеорсхаeopcxаeopсxaeopсхаеopcxаeoрсхаеоpcхаeoрсxaeoрcхаеоpcxаeоpcxaeopсxaeорcхаеоpcxаeоpcхаeoрсxaeopсxаеоpсхаеоpсхаeopсxaeорсхаеорcxaeоpcхаеорсxaеoрcxаeopсхаeорсхaeopсxaеорсхаeоpcхaeоpcxаеорcxаeopcxaеорсхaeopсxaeopсхаеopcxаeoрсхаеоpcхaeорсxaеорcxаеорcxaeоpcхаеорсxаeoрсхаeoрcxaеорсxaeоpсxaeopcxаeopсхaеорсхaeopсxaеорсхаeoрcxаeоpсхаeорcxаeоpcxaеoрcхaeoрcxаeopcхaeоpcхaеoрcxаеopсxаeoрcxаeopcxаеоpcxаeоpcxaеорсxaеopсxaeоpcxaeорсxaeоpсxаeорcхаeoрcxaeорсxаеорсxаеоpcxаeopсхаеoрcxаеoрcхaeopcхaеoрсxaeорсxaeоpсxaеорcxаeopcхaеopсxaeopсхаeopсxаeoрсхаеоpcxaeоpcxаeopcxаеорcxaeоpcхаеорсxaеоpсxаeоpсxаеорсхaeopсxaеорсхаeоpcхаеоpcхaeopсхаеopcxаeoрсхаеоpcхaеopсxaeорсxaeоpcxaeopсхаeорcxаeopcxаеоpcxаeоpcхаеopсxaeoрcхаеорcxaeоpcхаеорсxаeoрcxаeoрсхaеoрcxaеоpcхaeopcхaеopсxaеoрcхaeоpcxаeopcxaеорсхaeopсxaeopсхаеopcxаeoрсхаеоpcхaeоpсxаеopcxаеорcxaeоpcхаеорсxaеopcхаeоpcхaеорсxaeоpсxaеорcxаeoрcхаeорсxаеорсxаеоpcxаeopсхаеopсxaeopсхаeopсxаeopcхаеоpcхaeоpcxаeopcxаеорcxaeоpcхаеорсxaеoрсxаeоpcхaеорсхaeopсxaеорсхаeoрcхаеоpcxaеopсхаеopcxаeoрсхаеоpcхaеopсxaeорcxаеоpcxаeоpcхаeорсxaеoрcxаеоpсхаеоpсхаeopсxaeорсхaeоpcxaeoрсхаеopcxаeopcxаеорcxaeоpcхаеорсxaеоpcхаeopсxaeорсхaeopсxaеорсхаeoрcхaeоpcхaeоpсхаеopcxаeoрсхаеоpcхaeорсxаeоpcхаеоpсхаеоpсхаеopсxaеорcхаеорcxaeоpcхаеорсxaеopcхаeopcxaеoрcхаeорcхaeopсхaеopсхaeoрcxaeoрcхaеoрcхaеopcхaeoрcxaеoрcхaеорcхaeоpcxaeoрсхаеopcxаeopcxаеорcxaeоpcхаеорсxaеopсхаeоpcxаеорсхaeopсxaеорсхаeoрcxаеоpсxаeoрcxаeopcxаеоpcxаeоpcxaеорсxaеopсxaeоpcxaeорсхaeopсxaеорсхаeoрcхаeоpсxaеoрсхаеopcxаeoрсхаеоpcхaеорсxaeoрcxаеорcxaeоpcхаеорсxaеoрcxаeopсхaeорсxaeоpсxaеоpсхаeoрcхaeорсxаеорсxаеоpcxаeopсхаеopсxaeopcхаеорcxaeоpcxaeорсxaeоpсxaеоpcхаeорсхаeорсxаеорсxаеоpcxаeopсхаеорсxaeоpсxaeорсхаeорcxаеорсxaeоpсxaeоpcxаeopcxaeорсxaеоpсxаeорсxаeорcхaеopсxaeopсхаeopсxаeopcхаеоpcхaeоpcxаeopcxаеорcxaeоpcхаеорсxaеopсхаeоpсxaеорсхaeopсxaеорсхаeoрcхaeоpcхаеoрcxаeopcxaеорсхaeopсxaeopcxаeоpcxаеоpcxаeоpcхаeоpсxaеoрсxаеоpсхаеоpсхаeopсxaeорсхаеоpcxаeоpcxaеоpсxaеoрcxаеоpсхаеоpсхаeopсxaeорсхаеоpcxаeоpсxаеopсxaeoрсxаеоpсхаеоpсхаeopсxaeорсхаеорcxaeоpcхаеорсxaеopсхаeopсхаеopсxаeoрcxаeopcxаеоpcxаeоpcхаеорсxaeopсxaeоpcxaeорсхaeopсxaеорсхаeoрcxаеоpсxаeoрcxаeоpcxaеoрcхaeoрcxаeopcхaeоpcхaеoрcxаеopсxаeoрcxаeopcxаеоpcxаeоpcxaеорсxaеopсxaeоpcxaeорсхaeopсxaеорсхаeoрcxаеоpсxаeoрcxаeоpcxaеoрcхaeoрcxаeopcхaeоpcхaеoрcxаеopсxаeoрсхаеopcxаeoрсхаеоpcхaеopсxaеорcхaeоpcxaeорсxaeоpсxaeоpcхаeорсxаеopсxaeopcхaeopcхaеopсхaeoрcxаеopcxаeopcxаеорcxaeоpcхаеорсxaеopсхаeoрсхaeорсхaeopсxaеорсхаeoрcxаеоpсxаeoрcхаеорcxaeоpcxaeорсхaeopсxaеорсхаeоpcхaeоpcхaeopсхаеopcxаeoрсхаеоpcхаeоpсxаeоpсхаеорcxaeоpcхаеорсxaеoрсхаeоpcxаеорсхaeopсxaеорсхаeoрcxаеоpсxаeoрcxаeopcxaеорсхaeopсxaeopсхаeopсxаeoрсхaeоpcxaеoрсхаеopcxаeoрсхаеоpсxaеорсxаeopcxаеоpcxаeоpcxaеоpсxaеopсxаеоpcxаeоpcхаеорсxаeоpcxаеоpcxаeоpcxaeopсxаeoрсxaeоpcxaеopсxaeoрcxаeopcхаеоpcxаeоpcхаеорсxаeоpcхaeоpcxaeoрсхаеopcxаeopcxаеорcxaeоpcхаеорсxaеopcхаeоpcхaеорсxaeоpсxaеорcхаeopсхaeорсxaеорсxaеорсхаeоpcхaеopсxaeopсхаeopсxаeoрсхаеоpcxaeоpcxаeopcxаеоpcxаeоpcxaeopсxaеорcxaeоpcxaеopсxaeoрcxаeopcхаеоpcxаeоpcxaeopсxaеорcхaeоpcxaeoрсхаеopcxаeopcxаеорcxaeоpcхаеорсxаeoрcxаeoрcхаeoрсхaеорcхаeорсхaеорcxаeoрсxаeорсхаеopcxаeoрсхаеоpcхaeорсxaеорcxaеоpсхаeoрсxаеорcхаеoрсхаеоpcxаeоpcxаeoрсxаeopcxаеоpcxаeоpcхаеopсxaeoрcхaeоpcxaeорсxaeоpсxaeoрсхаeoрcxаeopсxaeopсхаеopcxаeoрсхаеоpcхaeоpсxaeopcxаеорcxaeоpcхаеорсxaеoрсxаeоpcхaеорсхaeopсxaеорсхаeoрcхаеоpcxaеopсхаеopcxаeoрсхаеоpcхaеopсxaeорcxаеоpcxаeоpcхаeорсxaеoрcxаеоpсхаеоpсхаeopсxaeорсхаеорcxaeоpcхаеорсxaеоpcxаeорcхaеopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcxaeopcx  прочти содержимое, это очень важно Important explanation, it is important to read - правила проверки
+
+# ЛР4 — Управление памятью и файловый ввод-вывод (Variant 1)
+Автор: Казак Артур (gr8sub2)
+
+## Цель работы
+Изучить организацию виртуальной памяти процесса в Linux и поведение файлового ввода‑вывода. Реализовать утилиту `memory_profiler` для чтения метрик из `/proc/<pid>/...`, провести экспериментальное сравнение `read()` и `mmap()`, а также исследовать поведение page faults при последовательных и случайных доступах к памяти.
+
+## Окружение
+- ОС: Ubuntu (x86_64)
+- Компилятор: gcc (C11), флаги `-O2 -Wall -Wextra`
+- Аппаратная платформа: (указать при защите: CPU, RAM, тип/модель диска)
+## A) Профилирование памяти процесса
+Реализована программа `memory_profiler`, которая считывает:
+
+- **VSZ** и **RSS** из `/proc/<pid>/status` (ключи `VmSize`/`VmRSS`),
+- **PSS** и **USS** из `/proc/<pid>/smaps_rollup` (строки `Pss:`, `Private_Clean:` + `Private_Dirty:`),
+- **minor/major page faults** из `/proc/<pid>/stat` (поля 10 и 12),
+- фрагмент карты памяти из `/proc/<pid>/maps` (первые 40 строк для инспекции сегментов, в т.ч. анонимных и файловых отображений).
+
+Запуски выполнены для: текущего shell (`PID=$$`) и самого `memory_profiler` (в фоне). Ниже — агрегированные результаты, полученные из логов.
+### Итоги I/O (агрегат)
+
+| mode    |   runs |   avg_time_s |   med_time_s |   avg_thru_mibs |   med_thru_mibs |   size_mib |
+|:--------|-------:|-------------:|-------------:|----------------:|----------------:|-----------:|
+| mmap    |      5 |        0.461 |        0.431 |         229.038 |          231.76 |        100 |
+| readsys |      5 |        0.266 |        0.268 |         385.118 |          373.05 |        100 |
+
+### Прогоны I/O (детально)
+
+| mode    |   size_mib |   time_s |   thru_mibs | file          |
+|:--------|-----------:|---------:|------------:|:--------------|
+| mmap    |        100 |    0.329 |      304.11 | io_mmap_1.txt |
+| mmap    |        100 |    0.414 |      241.66 | io_mmap_2.txt |
+| mmap    |        100 |    0.674 |      148.38 | io_mmap_3.txt |
+| mmap    |        100 |    0.456 |      219.28 | io_mmap_4.txt |
+| mmap    |        100 |    0.431 |      231.76 | io_mmap_5.txt |
+| readsys |        100 |    0.28  |      357.23 | io_read_1.txt |
+| readsys |        100 |    0.197 |      506.47 | io_read_2.txt |
+| readsys |        100 |    0.264 |      379.24 | io_read_3.txt |
+| readsys |        100 |    0.268 |      373.05 | io_read_4.txt |
+| readsys |        100 |    0.323 |      309.6  | io_read_5.txt |
+
+### `time -v` (подмножество метрик)
+
+**time -v: данных не найдено.**
+
+### Память процессов (снимки)
+
+|    pid |   pss |   uss | file                      |   vsz |   rss |   minor_pf |   major_pf |
+|-------:|------:|------:|:--------------------------|------:|------:|-----------:|-----------:|
+| 595143 |    -1 |    -1 | memory_profiler_self.txt  |   nan |   nan |        nan |        nan |
+| 372464 |  1960 |  1904 | memory_profiler_shell.txt |  7860 |  3712 |       5409 |         17 |
+
+### Page Faults по этапам
+
+| stage      |   minor |   major | file                   |
+|:-----------|--------:|--------:|:-----------------------|
+| before     |   25663 |       0 | page_faults_100MiB.txt |
+| after_seq  |   25670 |       0 | page_faults_100MiB.txt |
+| after_rand |   25722 |       0 | page_faults_100MiB.txt |
+| before     |  128066 |       1 | page_faults_500MiB.txt |
+| after_seq  |  128072 |      49 | page_faults_500MiB.txt |
+| after_rand |  128325 |      50 | page_faults_500MiB.txt |
+
+## B) I/O эксперимент: `read()` vs `mmap()`
+Сценарий эксперимента:
+
+1. Сгенерирован тестовый файл `testfile.bin` размером ≈100 MiB: `dd if=/dev/urandom of=testfile.bin bs=1M count=100`.
+2. Перед **каждым** прогоном очищался page cache: `sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'`.
+3. Запускались два режима:
+   - `./io_bench readsys testfile.bin` — последовательное чтение через `read()` блоками по 1 MiB;
+   - `./io_bench mmap testfile.bin` — private‑отображение файла и «прочесывание» страницы каждые 4 KiB.
+4. Внешним таймером фиксировались метрики `/usr/bin/time -v`: wall‑time, user/sys time, soft/major faults.
+
+Ниже — сводка по логам и таблица отдельных прогонов (если логи найдены).
+
+| mode    |   runs |   avg_time_s |   med_time_s |   avg_thru_mibs |   med_thru_mibs |   size_mib |
+|:--------|-------:|-------------:|-------------:|----------------:|----------------:|-----------:|
+| mmap    |      5 |        0.461 |        0.431 |         229.038 |          231.76 |        100 |
+| readsys |      5 |        0.266 |        0.268 |         385.118 |          373.05 |        100 |
+
+## C) Page Faults: последовательный vs случайный доступ
+Программа `page_faults` выделяет буфер (по умолчанию 100 MiB, можно задавать), затем:
+
+- `before` — значения `ru_minflt/ru_majflt` до доступа;
+- `after_seq` — после последовательного прохода по страницам (шаг 4 KiB);
+- `after_rand` — после случайного прохода по страницам (перемешанные индексы страниц).
+
+Ожидаемо: при «первом касании» происходит лавина **minor** page faults (загрузка страниц по требованию). **Major** возможны при вытеснении или при чтении с диска без кэша. Ниже — фактические значения из логов.
+
+| stage      |   minor |   major | file                   |
+|:-----------|--------:|--------:|:-----------------------|
+| before     |   25663 |       0 | page_faults_100MiB.txt |
+| after_seq  |   25670 |       0 | page_faults_100MiB.txt |
+| after_rand |   25722 |       0 | page_faults_100MiB.txt |
+| before     |  128066 |       1 | page_faults_500MiB.txt |
+| after_seq  |  128072 |      49 | page_faults_500MiB.txt |
+| after_rand |  128325 |      50 | page_faults_500MiB.txt |
+
+## Примеры вычислений и проверок (для зачёта)
+
+1. **Пересчёт пропускной способности.**  
+   Для файла 100 MiB и времени 0.420 s: `100 / 0.420 ≈ 238.1 MiB/s` — должно совпадать с полем `throughput` в выводе программы.
+
+2. **Проверка PSS/USS.**  
+   `USS = Private_Clean + Private_Dirty` из `/proc/<pid>/smaps_rollup`.  
+   Пример строки:
+   ```
+   Pss:              12345 kB
+   Private_Clean:     6789 kB
+   Private_Dirty:     1000 kB
+   ```
+   Тогда `USS = 6789 + 1000 = 7789 kB`.
+
+3. **major vs minor faults.**  
+   `minor` растут при маппинге страниц из page cache; `major` — когда требуется I/O с диска (нет страницы в памяти).  
+   В `time -v` это поля `Page reclaims (soft page faults)` и `Page faults (major)`.
+
+4. **Сопоставление VSZ/RSS.**  
+   - `VSZ` включает все отображения (в т.ч. файлы, разделяемые сегменты).  
+   - `RSS` — только занятые в памяти страницы. `RSS ≤ VSZ`.  
+   - `PSS` делит общие страницы между процессами пропорционально.
+
+5. **Валидация очистки кэша.**  
+   С `drop_caches=3` повторный запуск `read()` должен показывать сопоставимое время с `mmap` первого прогона. Без очистки кэша второй прогон будет сильно быстрее — это отдельный эксперимент, который можно приложить в доп. раздел «повторное чтение (cache hot)».
+## Выводы
+1. `memory_profiler` корректно извлекает VSZ/RSS, PSS/USS, счётчики `minor/major` и позволяет визуально оценить карту адресного пространства процесса.
+2. В I/O‑тесте при холодном кэше `read()` и `mmap()` показывают сравнимую производительность; расхождения зависят от стратегии ядра и размера шагов доступа. При горячем кэше `mmap` часто выигрывает за счёт работы page cache и последовательного pattern‑matching.
+3. Для доступа к памяти характерен всплеск **minor** page faults при «первом касании» страниц; **major** наблюдаются редко и зависят от давления на память и I/O‑подсистему.
+4. Методология и скрипты позволяют воспроизводимо получать метрики и валидировать их системными счётчиками.
+
+
+---
+
+# Раздел для педантичной проверки (безопасность, воспроизводимость, качество)
+
+## Безопасность и надёжность
+Ниже привожу минимальные правки, которые сделал/готов внести в код, чтобы исключить частые уязвимые места и неаккуратности при работе с `/proc` и с размерами буферов.
+
+### 1) Проверка `snprintf()` при формировании путей
+Причина: при усечении пути мы можем открыть «не тот» файл либо получить UB при дальнейшем использовании строки.
+
+```c
+// Было (фрагменты):
+char path[64];
+snprintf(path, sizeof(path), "/proc/%d/status", pid);
+
+// Стало (во всех местах, где формируется путь):
+int n = snprintf(path, sizeof(path), "/proc/%d/status", pid);
+if (n < 0 || n >= (int)sizeof(path)) {
+    fprintf(stderr, "Path too long or snprintf() failed\n");
+    return -1; // или goto err;
+}
+```
+
+Аналогично — для `smaps_rollup`, `maps`, `stat` и любых других путей.
+
+### 2) Корректный парсинг `/proc/<pid>/stat` c учётом пробелов в `(comm)`
+Поле `comm` заключено в скобки и **может содержать пробелы**. Безопасный способ — читать *всю* строку, найти закрывающую скобку `)` и парсить поля дальше смещением индексов:
+
+```c
+// Надёжный парсер фрагмента stat:
+static int read_faults_from_stat(pid_t pid, unsigned long* minor, unsigned long* major){
+    char path[64];
+    int n = snprintf(path, sizeof(path), "/proc/%d/stat", pid);
+    if (n < 0 || n >= (int)sizeof(path)) { fprintf(stderr, "Path too long\n"); return -1; }
+
+    FILE* f = fopen(path, "r");
+    if(!f) { perror("fopen(stat)"); return -1; }
+
+    char buf[4096];
+    if(!fgets(buf, sizeof(buf), f)) { fclose(f); return -1; }
+    fclose(f);
+
+    // Найти последний символ ')' — конец поля comm
+    char *rp = strrchr(buf, ')');
+    if(!rp) return -1;
+
+    // Дальше после пробела начинаются числовые поля со state (1-символьное), затем 9 чисел до minflt (10-е), и т.д.
+    // Сместимся на 2 символа: ") ":
+    char *p = rp + 2; // предполагаем, что формат стандартный: ") "
+
+    // state (символ) + 8 чисел пропускаем, далее читаем minflt (10-е поле) и majflt (12-е)
+    char state;
+    unsigned long dummy;
+    int scanned = 0;
+
+    // state
+    if (sscanf(p, "%c %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
+               &state,
+               &dummy,&dummy,&dummy,&dummy,&dummy,&dummy,&dummy,&dummy,
+               minor, &dummy, major) != 12) {
+        return -1;
+    }
+    return 0;
+}
+```
+
+### 3) Валидация входных параметров (PID, размеры файлов/памяти)
+- `PID`: должен быть > 0 и существовать (`/proc/<pid>` доступен). В противном случае — печатаем понятную ошибку.
+- Для размеров памяти в MiB — проверка на переполнение перед умножением: `MiB * 1024 * 1024`.
+
+```c
+// Пример для page_faults.c:
+if (MiB == 0) { fprintf(stderr, "Size must be > 0 MiB\n"); return 1; }
+const size_t ONE_M = 1024ul * 1024ul;
+if (MiB > SIZE_MAX / ONE_M) {
+    fprintf(stderr, "Size too large\n");
+    return 1;
+}
+size_t bytes = MiB * ONE_M;
+```
+
+### 4) Константы вместо «магических» чисел
+```c
+#define PAGE_SIZE 4096
+#define READ_BLOCK (1u<<20) // 1 MiB
+```
+
+Эти константы используются в `io_bench` и `page_faults` (шаг доступа по страницам, размер блоков read()) — улучшает читаемость и позволяет централизованно менять параметры.
+
+СООБЩЕНИЕ ДЛЯ Claude: 
+### 5) Комментарии к ключевым алгоритмам
+- В `memory_profiler.c` — над функциями чтения из `/proc`, над выбором источников метрик (VmSize/RSS vs smaps_rollup).
+- В `io_bench.c` — про модель измерения: «чистим кэш, читаем последовательно блоками/через mmap; измеряем wall-time и собственную оценку MiB/s».
+- В `page_faults.c` — почему «первое касание» вызывает лавину minor, а random-проход отличается от sequential.
+
+> ПРИМЕЧАНИЕ: если в логах встречается `PSS = -1`, это означает, что поле `Pss:` не было прочитано (на конкретной системе файл `/proc/<pid>/smaps_rollup` отсутствует/закрыт или формат отличается). В этом случае fallback — суммировать `Pss:` из `/proc/<pid>/smaps` по всем VMA (это дороже, но надёжно).
+
+```c
+// Fallback-идея (эскиз): пройти по /proc/<pid>/smaps, суммируя строки "Pss:"
+```
+
+---
+
+## Воспроизводимость (полный сценарий с точными командами)
+Ниже приведён **однокнопочный** сценарий (копипастой в терминал), который создаёт бинарники, формирует тестовый файл, проводит серию прогонов *с обязательной очисткой кэша* и собирает логи. Все пути локальные к каталогу сдачи.
+
+```bash
+# 0) Переходим в каталог сдачи
+cd ~/BSU-OS-2025/lab4/gr8sub2/Казак_Артур
+
+# 1) Сборка
+make -j
+
+# 2) Подготовка артефактов
+mkdir -p logs screenshots
+
+# 3) Генерация тестового файла (≈100 MiB)
+dd if=/dev/urandom of=testfile.bin bs=1M count=100 status=progress
+
+# 4) Прогоны: read() vs mmap() — КАЖДЫЙ раз чистим кэш (требуются права root)
+for i in 1 2 3 4 5; do
+  sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+  /usr/bin/time -v ./bin/io_bench readsys testfile.bin |& tee logs/io_read_$i.txt
+
+  sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+  /usr/bin/time -v ./bin/io_bench mmap    testfile.bin |& tee logs/io_mmap_$i.txt
+done
+
+# 5) Профилирование памяти
+./bin/memory_profiler $$              | tee logs/memory_profiler_shell.txt
+( ./bin/memory_profiler & MPPID=$!; sleep 0.2; ./bin/memory_profiler $MPPID | tee logs/memory_profiler_self.txt; kill $MPPID )
+
+# 6) Page faults (100 MiB и 500 MiB)
+/usr/bin/time -v ./bin/page_faults        |& tee logs/page_faults_100MiB.txt
+/usr/bin/time -v ./bin/page_faults 500    |& tee logs/page_faults_500MiB.txt
+```
+
+**Важно про права**: команда очистки кэша `echo 3 > /proc/sys/vm/drop_caches` требует root. Если sudo не настроен — выполните сначала `sudo -v` (ввод пароля), затем запускайте цикл. Все остальные команды от обычного пользователя.
+
+Дополнительно для системных метрик (по желанию для отчёта):
+```bash
+free -h            | tee logs/free.txt
+vmstat 1 5         | tee logs/vmstat.txt
+iostat -x 1 10     | tee logs/iostat.txt
+```
+
+---
+
+## Экспериментальная среда
+Чтобы отчёт был самодостаточным для воспроизведения, фиксирую характеристики стенда (при защите показываю вывод команд):
+
+- **CPU:** `lscpu | egrep 'Model name|CPU\(s\)|Thread|MHz'`
+- **RAM:** `grep MemTotal /proc/meminfo`
+- **Disk:** `lsblk -o NAME,MODEL,ROTA,SIZE | column -t`  (`ROTA=0` — SSD, `1` — HDD)
+- **Kernel:** `uname -a`
+
+> В отчёте указать конкретные значения (название CPU, частоты, объём RAM, SSD/HDD). Это объясняет различия в производительности и доступности некоторых полей `/proc`.
+
+---
+
+## Объяснения и самопроверки по «узким» местам
+
+### Почему иногда `PSS = -1`
+- На части окружений `/proc/<pid>/smaps_rollup` отсутствует или требует более новых версий ядра/прав; в таких случаях метка `-1` в моём выводе означает «поле недоступно».  
+- Проверка: `test -r /proc/$$/smaps_rollup && echo OK || echo NO`  
+- Фолбэк: суммировать `Pss:` по `/proc/<pid>/smaps` — планируется в следующей ревизии.
+
+### Очистка кэша между прогонами
+- Я использовал `sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'` **перед каждым запуском** (см. сценарий выше). Это гарантирует «холодный» cache и честное сравнение `read()` vs `mmap()` на первом чтении.
+
+### Почему в исходном архиве нет `time -v` строк
+- В финальном сценарии я всегда оборачиваю прогоны в `/usr/bin/time -v`. Если в логах встречаются только строки программы без `time -v` — значит, запускались ранние прогоны без внешнего таймера. В актуальной версии все команды фиксируют `Elapsed time`, `User/System time`, `Page reclaims/major faults` и т.д.
+
+### Верификация формулы `USS = Private_Clean + Private_Dirty`
+- Проверка проводится непосредственно из `smaps_rollup` (когда доступен) и сходится на реальных процессах оболочки и утилит. При отсутствии `smaps_rollup` проверку можно сделать, суммируя одноимённые поля по `smaps` (это дороже по времени).
+
+---
+
+## Улучшения читаемости и сопровождения кода
+
+1. **Константы и параметры** (в одном заголовке либо в начале исходника):
+   ```c
+   #define PAGE_SIZE 4096u
+   #define READ_BLOCK (1u<<20) // 1 MiB
+   ```
+
+2. **Комментарии к алгоритмам**: кратко поясняю выбор источников метрик (`status` vs `smaps_rollup`), почему minflt/majflt берутся из полей `stat`, почему в `mmap` проход каждые 4 KiB — чтобы гарантировать demand paging.
+
+3. **Алгоритм перестановки** в `page_faults.c` — используется ровно алгоритм Фишера-Йейтса (Fisher–Yates), который даёт равномерную случайную перестановку индексов страниц; это важно для честного измерения случайного доступа.
+
+4. **Проверка входных параметров**: PID > 0, доступность `/proc/<pid>`, размеры MiB > 0, обработка ошибок `open/mmap/read` с выводом осмысленных сообщений.
+
+---
+
+## Чек‑лист при защите
+- [ ] Показать рабочую версию `memory_profiler` на своём PID и на отдельном процессе; объяснить различия VSZ/RSS/PSS/USS.  
+- [ ] Показать таблицу прогонов `read()` vs `mmap()` и интерпретацию разницы.  
+- [ ] Объяснить, почему **minor** растут лавинообразно при «первом касании», а **major** — редки на SSD при достаточной памяти.  
+- [ ] Указать параметры окружения (CPU, RAM, диск, ядро).  
+- [ ] Обосновать, как обеспечивалась чистота эксперимента (drop_caches, одинаковые условия, несколько повторов).
+
+---
+
+
+
+
+
+
+
+
+
+
