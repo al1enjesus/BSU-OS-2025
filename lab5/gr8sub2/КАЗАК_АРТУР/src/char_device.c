@@ -8,6 +8,7 @@
 #include <linux/cdev.h>
 #include <linux/slab.h>
 #include <linux/uaccess.h>
+#include <linux/mutex.h>
 
 #define MYCHDEV_NAME      "mychardev"
 #define MYCHDEV_MAX_SIZE  1024
@@ -17,6 +18,8 @@ static struct cdev my_cdev;
 
 static char *device_buffer;
 static size_t data_size;
+
+static DEFINE_MUTEX(mychdev_mutex);
 
 static int my_open(struct inode *inode, struct file *file)
 {
@@ -35,25 +38,39 @@ static ssize_t my_read(struct file *file, char __user *buf,
 {
 	size_t remaining;
 	size_t to_copy;
+	ssize_t ret;
 
-	if (*ppos >= data_size)
-		return 0;
+	if (mutex_lock_interruptible(&mychdev_mutex))
+		return -ERESTARTSYS;
+
+	if (*ppos >= data_size) {
+		ret = 0;
+		goto out_unlock;
+	}
 
 	remaining = data_size - *ppos;
 	to_copy = (len > remaining) ? remaining : len;
 
-	if (to_copy == 0)
-		return 0;
+	if (to_copy == 0) {
+		ret = 0;
+		goto out_unlock;
+	}
 
-	if (copy_to_user(buf, device_buffer + *ppos, to_copy))
-		return -EFAULT;
+	if (copy_to_user(buf, device_buffer + *ppos, to_copy)) {
+		ret = -EFAULT;
+		goto out_unlock;
+	}
 
 	*ppos += to_copy;
 
 	pr_info("char_device: read %zu bytes (pos=%lld, size=%zu)\n",
 		to_copy, *ppos, data_size);
 
-	return to_copy;
+	ret = to_copy;
+
+out_unlock:
+	mutex_unlock(&mychdev_mutex);
+	return ret;
 }
 
 static ssize_t my_write(struct file *file, const char __user *buf,
@@ -61,18 +78,28 @@ static ssize_t my_write(struct file *file, const char __user *buf,
 {
 	size_t space_left;
 	size_t to_copy;
+	ssize_t ret;
 
-	if (*ppos >= MYCHDEV_MAX_SIZE)
-		return -ENOSPC;
+	if (mutex_lock_interruptible(&mychdev_mutex))
+		return -ERESTARTSYS;
+
+	if (*ppos >= MYCHDEV_MAX_SIZE) {
+		ret = -ENOSPC;
+		goto out_unlock;
+	}
 
 	space_left = MYCHDEV_MAX_SIZE - *ppos;
 	to_copy = (len > space_left) ? space_left : len;
 
-	if (to_copy == 0)
-		return -ENOSPC;
+	if (to_copy == 0) {
+		ret = -ENOSPC;
+		goto out_unlock;
+	}
 
-	if (copy_from_user(device_buffer + *ppos, buf, to_copy))
-		return -EFAULT;
+	if (copy_from_user(device_buffer + *ppos, buf, to_copy)) {
+		ret = -EFAULT;
+		goto out_unlock;
+	}
 
 	*ppos += to_copy;
 
@@ -82,7 +109,11 @@ static ssize_t my_write(struct file *file, const char __user *buf,
 	pr_info("char_device: written %zu bytes (pos=%lld, size=%zu)\n",
 		to_copy, *ppos, data_size);
 
-	return to_copy;
+	ret = to_copy;
+
+out_unlock:
+	mutex_unlock(&mychdev_mutex);
+	return ret;
 }
 
 static const struct file_operations my_fops = {
@@ -149,8 +180,8 @@ static void __exit mychardev_exit(void)
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Kazak Artur");
-MODULE_DESCRIPTION("Simple character device /dev/mychardev example");
-MODULE_VERSION("1.0");
+MODULE_DESCRIPTION("Simple character device /dev/mychardev with mutex");
+MODULE_VERSION("1.1");
 
 module_init(mychardev_init);
 module_exit(mychardev_exit);
