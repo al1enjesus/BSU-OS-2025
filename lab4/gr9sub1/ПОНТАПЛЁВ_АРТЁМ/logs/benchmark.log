@@ -1,0 +1,200 @@
+//./io_benchmark --size 500
+I/O Benchmark
+=============
+Test file size: 500 MB
+Note: For clean results, run manually before:
+  sync && sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+========================================
+Benchmark: I/O Methods Comparison
+========================================
+File size: 500 MB
+Buffer size: 64 KB (for fwrite/write)
+=== fwrite() with buffer=65536 bytes ===
+Time: 0.622 seconds
+Throughput: 804.11 MB/s
+=== write() with buffer=65536 bytes ===
+Time: 0.785 seconds
+Throughput: 636.58 MB/s
+=== write() with O_SYNC (buffer=65536 bytes) ===
+Time: 18.800 seconds
+Throughput: 26.60 MB/s
+Note: O_SYNC forces physical write to disk on each write() call
+=== mmap() ===
+Time: 1.741 seconds
+Throughput: 287.22 MB/s
+=== write() with O_DIRECT (buffer=65536 bytes) ===
+Time: 1.308 seconds
+Throughput: 382.38 MB/s
+Note: O_DIRECT bypasses page cache (direct to disk)
+      Requires aligned memory and buffer size
+=== Summary ===
+Fastest method: (compare results above)
+Factors affecting performance:
+- stdio (fwrite) has user-space buffering
+- write() goes directly to kernel, but still uses page cache
+- mmap() allows direct memory access, lazy writes
+- O_SYNC forces physical write to disk on each call (VERY slow)
+- O_DIRECT bypasses page cache entirely (direct to disk)
+- Actual disk speed depends on: HDD vs SSD, filesystem, etc.
+========================================
+Benchmark: Buffer Size Impact
+========================================
+Testing write() with different buffer sizes:
+File size: 500 MB
+=== write() with buffer=512 bytes ===
+Time: 1.978 seconds
+Throughput: 252.73 MB/s
+=== write() with buffer=1024 bytes ===
+Time: 1.308 seconds
+Throughput: 382.30 MB/s
+=== write() with buffer=4096 bytes ===
+Time: 1.064 seconds
+Throughput: 469.94 MB/s
+=== write() with buffer=8192 bytes ===
+Time: 0.886 seconds
+Throughput: 564.58 MB/s
+=== write() with buffer=16384 bytes ===
+Time: 0.935 seconds
+Throughput: 534.81 MB/s
+=== write() with buffer=65536 bytes ===
+Time: 1.061 seconds
+Throughput: 471.30 MB/s
+=== write() with buffer=1048576 bytes ===
+Time: 0.961 seconds
+Throughput: 520.30 MB/s
+Creating file for read benchmarks...
+=== write() with buffer=65536 bytes ===
+Time: 1.013 seconds
+Throughput: 493.76 MB/s
+========================================
+Benchmark: Reading Methods
+========================================
+File: test_read.bin
+Size: 500.00 MB
+--- fread() ---
+Time: 0.100 seconds
+Throughput: 5001.32 MB/s
+--- read() ---
+Time: 0.076 seconds
+Throughput: 6544.17 MB/s
+--- mmap() ---
+Time: 0.034 seconds
+Throughput: 14539.18 MB/s
+========================================
+Benchmark completed!
+========================================
+
+
+//strace -c ./io_benchmark --size 10
+I/O Benchmark
+=============
+Test file size: 10 MB
+Note: For clean results, run manually before:
+  sync && sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+========================================
+Benchmark: I/O Methods Comparison
+========================================
+File size: 10 MB
+Buffer size: 64 KB (for fwrite/write)
+=== fwrite() with buffer=65536 bytes ===
+Time: 0.034 seconds
+Throughput: 297.29 MB/s
+=== write() with buffer=65536 bytes ===
+Time: 0.021 seconds
+Throughput: 480.56 MB/s
+=== write() with O_SYNC (buffer=65536 bytes) ===
+Time: 0.293 seconds
+Throughput: 34.17 MB/s
+Note: O_SYNC forces physical write to disk on each write() call
+=== mmap() ===
+Time: 0.026 seconds
+Throughput: 390.94 MB/s
+=== write() with O_DIRECT (buffer=65536 bytes) ===
+Time: 0.045 seconds
+Throughput: 223.64 MB/s
+Note: O_DIRECT bypasses page cache (direct to disk)
+      Requires aligned memory and buffer size
+=== Summary ===
+Fastest method: (compare results above)
+Factors affecting performance:
+- stdio (fwrite) has user-space buffering
+- write() goes directly to kernel, but still uses page cache
+- mmap() allows direct memory access, lazy writes
+- O_SYNC forces physical write to disk on each call (VERY slow)
+- O_DIRECT bypasses page cache entirely (direct to disk)
+- Actual disk speed depends on: HDD vs SSD, filesystem, etc.
+========================================
+Benchmark: Buffer Size Impact
+========================================
+Testing write() with different buffer sizes:
+File size: 10 MB
+=== write() with buffer=512 bytes ===
+Time: 0.322 seconds
+Throughput: 31.08 MB/s
+=== write() with buffer=1024 bytes ===
+Time: 0.186 seconds
+Throughput: 53.74 MB/s
+=== write() with buffer=4096 bytes ===
+Time: 0.211 seconds
+Throughput: 47.50 MB/s
+=== write() with buffer=8192 bytes ===
+Time: 0.046 seconds
+Throughput: 218.13 MB/s
+=== write() with buffer=16384 bytes ===
+Time: 0.078 seconds
+Throughput: 128.70 MB/s
+=== write() with buffer=65536 bytes ===
+Time: 0.022 seconds
+Throughput: 456.36 MB/s
+=== write() with buffer=1048576 bytes ===
+Time: 0.009 seconds
+Throughput: 1155.35 MB/s
+Creating file for read benchmarks...
+=== write() with buffer=65536 bytes ===
+Time: 0.012 seconds
+Throughput: 809.12 MB/s
+========================================
+Benchmark: Reading Methods
+========================================
+File: test_read.bin
+Size: 10.00 MB
+--- fread() ---
+Time: 0.010 seconds
+Throughput: 1045.21 MB/s
+--- read() ---
+Time: 0.008 seconds
+Throughput: 1227.67 MB/s
+--- mmap() ---
+Time: 0.001 seconds
+Throughput: 10414.29 MB/s
+========================================
+Benchmark completed!
+========================================
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 84.63    0.229514           6     36428           write
+  7.92    0.021469        1651        13           unlink
+  2.48    0.006728        6728         1           msync
+  2.13    0.005782          18       321           read
+  1.63    0.004407        1101         4           munmap
+  0.78    0.002121         117        18           openat
+  0.19    0.000514          46        11           clock_nanosleep
+  0.11    0.000302          16        18           close
+  0.09    0.000253          23        11           mmap
+  0.03    0.000083          83         1           ftruncate
+  0.00    0.000012          12         1           newfstatat
+  0.00    0.000004           0         5           fstat
+  0.00    0.000000           0         3           mprotect
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         2           pread64
+  0.00    0.000000           0         1         1 access
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         1           arch_prctl
+  0.00    0.000000           0         1           set_tid_address
+  0.00    0.000000           0         1           set_robust_list
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+  0.00    0.000000           0         1           rseq
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.271189           7     36848         1 total
+

@@ -1,0 +1,108 @@
+//./memory_info
+Memory Info Demo
+================
+No PID specified. Running demonstration mode.
+This will allocate different types of memory and show the results.
+=== Demonstrating Different Memory Types ===
+=== СОСТОЯНИЕ ДО выделения памяти ===
+Memory Metrics for PID 220169:
+  VSZ (Virtual):  2752 KB (2.7 MB)
+  RSS (Resident): 1536 KB (1.5 MB)
+  Data/Heap:      224 KB (0.2 MB)
+  Stack:          132 KB (0.1 MB)
+  PSS (Proportional): 138 KB (0.1 MB)
+  USS (Unique):       116 KB (0.1 MB)
+--- Выделение памяти ---
+1. Stack variable allocated: 1 KB at 0x7ffc24e8ce90
+2. Heap allocated: 10 MB at 0x7be73e1ff010
+3. Anonymous mmap: 50 MB at 0x7be73ae00000
+4. File-backed mmap: 5 MB at 0x7be73a900000 (file: /tmp/memory_info_demo.dat)
+Memory allocated. Check /proc/220169/maps to see different regions.
+Press Enter to see memory info ПОСЛЕ выделения...
+=== СОСТОЯНИЕ ПОСЛЕ выделения памяти ===
+Memory Metrics for PID 220169:
+  VSZ (Virtual):  69316 KB (67.7 MB)
+  RSS (Resident): 68352 KB (66.8 MB)
+  Data/Heap:      61668 KB (60.2 MB)
+  Stack:          132 KB (0.1 MB)
+  PSS (Proportional): 66706 KB (65.1 MB)
+  USS (Unique):       66684 KB (65.1 MB)
+Memory Map:
+Address Range      Perms  Size     Path
+----------------------------------------------------------------
+62efb8e31000-62efb8e32000 r--p   4 KB     /home/vboxuser/projects/BSU-OS-2025/lab4/gr9sub1/ПОНТАПЛЁВ_АРТЁМ/src/memory_info
+62efb8e32000-62efb8e34000 r-xp   8 KB     /home/vboxuser/projects/BSU-OS-2025/lab4/gr9sub1/ПОНТАПЛЁВ_АРТЁМ/src/memory_info
+62efb8e34000-62efb8e35000 r--p   4 KB     /home/vboxuser/projects/BSU-OS-2025/lab4/gr9sub1/ПОНТАПЛЁВ_АРТЁМ/src/memory_info
+62efb8e35000-62efb8e36000 r--p   4 KB     /home/vboxuser/projects/BSU-OS-2025/lab4/gr9sub1/ПОНТАПЛЁВ_АРТЁМ/src/memory_info
+62efb8e36000-62efb8e37000 rw-p   4 KB     /home/vboxuser/projects/BSU-OS-2025/lab4/gr9sub1/ПОНТАПЛЁВ_АРТЁМ/src/memory_info
+62efee811000-62efee832000 rw-p   132 KB   [heap]
+7be73a900000-7be73ae00000 rw-s   5.0 MB   /tmp/memory_info_demo.dat
+7be73ae00000-7be73e000000 rw-p   50.0 MB  [anonymous]
+7be73e1ff000-7be73ec00000 rw-p   10.0 MB  [anonymous]
+7be73ec00000-7be73ec28000 r--p   160 KB   /usr/lib/x86_64-linux-gnu/libc.so.6
+7be73ec28000-7be73edbd000 r-xp   1.6 MB   /usr/lib/x86_64-linux-gnu/libc.so.6
+7be73edbd000-7be73ee0c000 r--p   316 KB   /usr/lib/x86_64-linux-gnu/libc.so.6
+7be73ee0c000-7be73ee10000 r--p   16 KB    /usr/lib/x86_64-linux-gnu/libc.so.6
+7be73ee10000-7be73ee12000 rw-p   8 KB     /usr/lib/x86_64-linux-gnu/libc.so.6
+7be73ee12000-7be73ee1f000 rw-p   52 KB    [anonymous]
+7be73eebd000-7be73eec0000 rw-p   12 KB    [anonymous]
+7be73eed0000-7be73eed2000 rw-p   8 KB     [anonymous]
+7be73eed2000-7be73eed4000 r--p   8 KB     [vvar]
+7be73eed4000-7be73eed6000 r--p   8 KB     [vvar_vclock]
+7be73eed6000-7be73eed8000 r-xp   8 KB     [vdso]
+7be73eed8000-7be73eed9000 r--p   4 KB     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7be73eed9000-7be73ef07000 r-xp   184 KB   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7be73ef07000-7be73ef12000 r--p   44 KB    /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7be73ef12000-7be73ef14000 r--p   8 KB     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7be73ef14000-7be73ef15000 rw-p   4 KB     /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7be73ef15000-7be73ef16000 rw-p   4 KB     [anonymous]
+7ffc24e6e000-7ffc24e8f000 rw-p   132 KB   [stack]
+ffffffffff600000-ffffffffff601000 --xp   4 KB     [vsyscall]
+Press Enter to free memory and exit...
+
+
+//ps -o pid,comm,vsz,rss -p 220169
+    PID COMMAND            VSZ   RSS
+ 220169 memory_info      69316 68352
+
+
+//cat /proc/220169/status | grep -E "^Vm"
+VmPeak:	   69316 kB
+VmSize:	   69316 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	   68352 kB
+VmRSS:	   68352 kB
+VmData:	   61668 kB
+VmStk:	     132 kB
+VmExe:	       8 kB
+VmLib:	    1812 kB
+VmPTE:	     184 kB
+VmSwap:	       0 kB
+
+
+//cat /proc/220169/smaps_rollup
+62efb8e31000-7ffc24e8f000 ---p 00000000 00:00 0                          [rollup]
+Rss:               68468 kB
+Pss:               66702 kB
+Pss_Dirty:         66664 kB
+Pss_Anon:          61544 kB
+Pss_File:             38 kB
+Pss_Shmem:          5120 kB
+Shared_Clean:       1788 kB
+Shared_Dirty:          0 kB
+Private_Clean:        16 kB
+Private_Dirty:     66664 kB
+Referenced:        68468 kB
+Anonymous:         61544 kB
+KSM:                   0 kB
+LazyFree:              0 kB
+AnonHugePages:         0 kB
+ShmemPmdMapped:        0 kB
+FilePmdMapped:         0 kB
+Shared_Hugetlb:        0 kB
+Private_Hugetlb:       0 kB
+Swap:                  0 kB
+SwapPss:               0 kB
+Locked:                0 kB
+
