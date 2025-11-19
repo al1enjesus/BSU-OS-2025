@@ -4,6 +4,7 @@
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 #include <linux/slab.h>
+#include <linux/string.h>
 
 #define PROCFS_NAME "my_config"
 #define MAX_SIZE 256
@@ -44,8 +45,9 @@ static const struct proc_ops proc_fops = {
 
 static int __init proc_init(void)
 {
-    strcpy(procfs_buffer, "default");
-    proc_file = proc_create(PROCFS_NAME, 0666, NULL, &proc_fops);
+    memset(procfs_buffer, 0, MAX_SIZE);
+    strncpy(procfs_buffer, "default", MAX_SIZE - 1);
+    proc_file = proc_create(PROCFS_NAME, 0644, NULL, &proc_fops);
     if (!proc_file)
     {
         printk(KERN_ERR "Failed to create /proc/%s\n", PROCFS_NAME);

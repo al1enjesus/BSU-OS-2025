@@ -9,6 +9,8 @@
 #include <linux/fs.h>
 
 #define PROCFS_NAME "sys_stats"
+#define SYS_STATS_BUFFER_SIZE 512
+#define MB_DIVISOR (1024 * 1024)
 
 static struct proc_dir_entry *proc_file;
 
@@ -27,11 +29,12 @@ static int count_processes(void)
 
 static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, loff_t *ppos)
 {
-    char buffer[512];
+    char buffer[SYS_STATS_BUFFER_SIZE];
     int len;
     struct sysinfo si;
     unsigned long uptime_seconds;
     int process_count;
+    unsigned long memory_used_mb;
     
     if (*ppos > 0)
         return 0;
@@ -39,12 +42,28 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
     si_meminfo(&si);
     uptime_seconds = jiffies_to_msecs(get_jiffies_64()) / 1000;
     process_count = count_processes();
+    if (si.totalram < si.freeram)
+    {
+        memory_used_mb = 0;
+    }
+    else
+    {
+        memory_used_mb = (si.totalram - si.freeram) * si.mem_unit;
+        if (memory_used_mb > ULONG_MAX / MB_DIVISOR)
+        {
+            memory_used_mb = ULONG_MAX;
+        }
+        else
+        {
+            memory_used_mb /= MB_DIVISOR;
+        }
+    }
     len = snprintf(buffer, sizeof(buffer),
         "Processes: %d\n"
         "Memory Used: %lu MB\n"
         "System Uptime: %lu seconds\n",
         process_count,
-        (si.totalram - si.freeram) * si.mem_unit / (1024 * 1024),
+        memory_used_mb,
         uptime_seconds);
     
     if (copy_to_user(ubuf, buffer, len))
