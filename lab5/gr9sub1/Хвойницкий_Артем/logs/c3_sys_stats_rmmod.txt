@@ -1,0 +1,20 @@
+[  723.696721] hello_module: Hello from Artsem Khvainitski module!
+[  877.846871] hello_module: Goodbye from Artsem Khvainitski module!
+[  883.524665] hello_module: Hello from Artsem Khvainitski module!
+[ 1113.801326] hello_module: Goodbye from Artsem Khvainitski module!
+[ 1350.072448] hello_module: unknown parameter 'greeting' ignored
+[ 1350.072454] hello_module: unknown parameter 'from' ignored
+[ 1350.072456] hello_module: unknown parameter 'Artsem' ignored
+[ 1350.072457] hello_module: unknown parameter 'dd' ignored
+[ 1350.072601] hello_module: Custom
+[ 1449.663088] hello_module: Goodbye from Artsem Khvainitski module!
+[ 1459.492404] hello_module: unknown parameter 'greeting' ignored
+[ 1459.492409] hello_module: unknown parameter 'from' ignored
+[ 1459.492412] hello_module: unknown parameter 'Artsem' ignored
+[ 1459.492471] hello_module: Custom
+[ 1596.834717] hello_module: Goodbye from Artsem Khvainitski module!
+[ 1736.428128] my_config_module: /proc/my_config created, default='default'
+[ 1906.548622] my_config_module: new value = 'new value'
+[ 2069.483526] my_config_module: /proc/my_config removed
+[ 2346.167634] sys_stats_module: /proc/sys_stats created
+[ 2535.328968] sys_stats_module: /proc/sys_stats removed

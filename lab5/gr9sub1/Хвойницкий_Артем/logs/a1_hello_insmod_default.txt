@@ -1,0 +1,40 @@
+[  414.273466] audit: type=1400 audit(1763651478.630:223): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/snap/snapd/25577/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=3500 comm="apparmor_parser"
+[  414.945671] audit: type=1400 audit(1763651479.298:224): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.firefox" pid=3503 comm="apparmor_parser"
+[  414.984576] audit: type=1400 audit(1763651479.316:225): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.desktop-security-center" pid=3502 comm="apparmor_parser"
+[  415.353990] audit: type=1400 audit(1763651479.702:226): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.prompting-client" pid=3505 comm="apparmor_parser"
+[  415.413188] audit: type=1400 audit(1763651479.769:227): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.firmware-updater" pid=3504 comm="apparmor_parser"
+[  415.745711] audit: type=1400 audit(1763651479.814:228): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.snap-store" pid=3506 comm="apparmor_parser"
+[  415.853318] audit: type=1400 audit(1763651480.210:229): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.snapd-desktop-integration" pid=3507 comm="apparmor_parser"
+[  415.866764] audit: type=1400 audit(1763651480.223:230): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.desktop-security-center.hook.configure" pid=3510 comm="apparmor_parser"
+[  415.873296] audit: type=1400 audit(1763651480.231:231): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.desktop-security-center.desktop-security-center" pid=3509 comm="apparmor_parser"
+[  420.496199] loop19: detected capacity change from 0 to 8
+[  422.639552] kauditd_printk_skb: 20 callbacks suppressed
+[  422.639558] audit: type=1400 audit(1763651486.996:252): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/snap/snapd/25577/usr/lib/snapd/snap-confine" pid=4008 comm="apparmor_parser"
+[  422.668194] audit: type=1400 audit(1763651487.028:253): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/snap/snapd/25577/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=4008 comm="apparmor_parser"
+[  423.143768] audit: type=1400 audit(1763651487.501:254): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snapd-desktop-integration.hook.configure" pid=4011 comm="apparmor_parser"
+[  423.427803] audit: type=1400 audit(1763651487.733:255): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap-update-ns.snapd-desktop-integration" pid=4010 comm="apparmor_parser"
+[  423.624950] audit: type=1400 audit(1763651487.980:256): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snapd-desktop-integration.snapd-desktop-integration" pid=4012 comm="apparmor_parser"
+[  424.074830] audit: type=1400 audit(1763651488.434:257): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap-update-ns.firefox" pid=4022 comm="apparmor_parser"
+[  424.595233] audit: type=1400 audit(1763651488.953:258): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.firefox.firefox" pid=4029 comm="apparmor_parser"
+[  424.751448] audit: type=1400 audit(1763651489.110:259): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.firefox.hook.configure" pid=4041 comm="apparmor_parser"
+[  424.840549] audit: type=1400 audit(1763651489.200:260): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.firefox.hook.disconnect-plug-host-hunspell" pid=4042 comm="apparmor_parser"
+[  424.960733] audit: type=1400 audit(1763651489.320:261): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.firefox.hook.install" pid=4043 comm="apparmor_parser"
+[  428.269167] kauditd_printk_skb: 20 callbacks suppressed
+[  428.269171] audit: type=1400 audit(1763651492.629:282): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25577/usr/lib/snapd/snap-confine" pid=4112 comm="apparmor_parser"
+[  428.269176] audit: type=1400 audit(1763651492.629:283): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/25577/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=4112 comm="apparmor_parser"
+[  428.764480] audit: type=1400 audit(1763651493.118:284): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.snap-store" pid=4116 comm="apparmor_parser"
+[  428.788390] audit: type=1400 audit(1763651493.128:285): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.firmware-updater" pid=4117 comm="apparmor_parser"
+[  429.202587] audit: type=1400 audit(1763651493.561:286): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.desktop-security-center" pid=4123 comm="apparmor_parser"
+[  429.243136] audit: type=1400 audit(1763651493.603:287): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.snapd-desktop-integration" pid=4124 comm="apparmor_parser"
+[  429.530924] audit: type=1400 audit(1763651493.891:288): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.prompting-client" pid=4125 comm="apparmor_parser"
+[  429.544760] audit: type=1400 audit(1763651493.903:289): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.snap-store.hook.configure" pid=4134 comm="apparmor_parser"
+[  429.548661] audit: type=1400 audit(1763651493.908:290): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.snap-store.show-updates" pid=4135 comm="apparmor_parser"
+[  429.555832] audit: type=1400 audit(1763651493.916:291): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.snap-store.snap-store" pid=4136 comm="apparmor_parser"
+[  430.822441] hrtimer: interrupt took 2365725 ns
+[  466.391685] kauditd_printk_skb: 21 callbacks suppressed
+[  466.391689] audit: type=1400 audit(1763651530.753:313): apparmor="DENIED" operation="connect" class="file" profile="/usr/bin/wsdd" name="/run/uuidd/request" pid=5620 comm="python3" requested_mask="w" denied_mask="w" fsuid=1000 ouid=0
+[  466.391745] audit: type=1400 audit(1763651530.753:314): apparmor="DENIED" operation="mknod" class="file" profile="/usr/bin/wsdd" name="/var/lib/libuuid/clock.txt" pid=5620 comm="python3" requested_mask="c" denied_mask="c" fsuid=1000 ouid=1000
+[  469.404598] audit: type=1400 audit(1763651533.765:315): apparmor="DENIED" operation="connect" class="file" profile="/usr/bin/wsdd" name="/run/uuidd/request" pid=5620 comm="python3" requested_mask="w" denied_mask="w" fsuid=1000 ouid=0
+[  723.696721] hello_module: Hello from Artsem Khvainitski module!
+[  877.846871] hello_module: Goodbye from Artsem Khvainitski module!
+[  883.524665] hello_module: Hello from Artsem Khvainitski module!
