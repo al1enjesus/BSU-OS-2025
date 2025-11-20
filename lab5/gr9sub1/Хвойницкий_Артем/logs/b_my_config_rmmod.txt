@@ -1,0 +1,20 @@
+[  466.391745] audit: type=1400 audit(1763651530.753:314): apparmor="DENIED" operation="mknod" class="file" profile="/usr/bin/wsdd" name="/var/lib/libuuid/clock.txt" pid=5620 comm="python3" requested_mask="c" denied_mask="c" fsuid=1000 ouid=1000
+[  469.404598] audit: type=1400 audit(1763651533.765:315): apparmor="DENIED" operation="connect" class="file" profile="/usr/bin/wsdd" name="/run/uuidd/request" pid=5620 comm="python3" requested_mask="w" denied_mask="w" fsuid=1000 ouid=0
+[  723.696721] hello_module: Hello from Artsem Khvainitski module!
+[  877.846871] hello_module: Goodbye from Artsem Khvainitski module!
+[  883.524665] hello_module: Hello from Artsem Khvainitski module!
+[ 1113.801326] hello_module: Goodbye from Artsem Khvainitski module!
+[ 1350.072448] hello_module: unknown parameter 'greeting' ignored
+[ 1350.072454] hello_module: unknown parameter 'from' ignored
+[ 1350.072456] hello_module: unknown parameter 'Artsem' ignored
+[ 1350.072457] hello_module: unknown parameter 'dd' ignored
+[ 1350.072601] hello_module: Custom
+[ 1449.663088] hello_module: Goodbye from Artsem Khvainitski module!
+[ 1459.492404] hello_module: unknown parameter 'greeting' ignored
+[ 1459.492409] hello_module: unknown parameter 'from' ignored
+[ 1459.492412] hello_module: unknown parameter 'Artsem' ignored
+[ 1459.492471] hello_module: Custom
+[ 1596.834717] hello_module: Goodbye from Artsem Khvainitski module!
+[ 1736.428128] my_config_module: /proc/my_config created, default='default'
+[ 1906.548622] my_config_module: new value = 'new value'
+[ 2069.483526] my_config_module: /proc/my_config removed
