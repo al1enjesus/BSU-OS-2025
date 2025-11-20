@@ -2,9 +2,8 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/proc_fs.h>
-#include <linux/uaccess.h> // Required for copy_to_user and copy_from_user
-#include <linux/string.h>  // Required for strlen, memset, etc.
-#include <asm/uaccess.h>
+#include <linux/uaccess.h>
+#include <linux/string.h>
 
 #define PROC_NAME "my_config"
 #define MAX_SIZE 256
@@ -76,6 +75,6 @@ module_init(proc_module_init);
 module_exit(proc_module_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Michael");
+MODULE_AUTHOR("Michael <srp981680@gmail.com>");
 MODULE_DESCRIPTION("/proc/my_config");
 MODULE_VERSION("1.0");
