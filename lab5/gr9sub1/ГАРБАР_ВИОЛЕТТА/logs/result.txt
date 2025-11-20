@@ -1,0 +1,154 @@
+vboxuser@ubuntu:~/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ make clean
+Очистка временных файлов...
+make -C /lib/modules/6.14.0-29-generic/build M=/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src clean
+make[1]: Entering directory '/usr/src/linux-headers-6.14.0-29-generic'
+make[2]: Entering directory '/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src'
+  CLEAN   Module.symvers
+make[2]: Leaving directory '/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src'
+make[1]: Leaving directory '/usr/src/linux-headers-6.14.0-29-generic'
+rm -f *.o *.ko *.mod.c *.mod *.symvers *.order .*.cmd
+rm -rf .tmp_versions
+Очистка завершена
+vboxuser@ubuntu:~/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ make all
+Сборка модулей ядра...
+make -C /lib/modules/6.14.0-29-generic/build M=/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src modules
+make[1]: Entering directory '/usr/src/linux-headers-6.14.0-29-generic'
+make[2]: Entering directory '/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-14 (Ubuntu 14.2.0-19ubuntu2) 14.2.0
+  You are using:           gcc-14 (Ubuntu 14.2.0-19ubuntu2) 14.2.0
+  CC [M]  hello_module.o
+  CC [M]  proc_module.o
+proc_module.c: In function ‘proc_read’:
+proc_module.c:43:1: warning: the frame size of 1032 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+   43 | }
+      | ^
+  CC [M]  char_device.o
+  MODPOST Module.symvers
+  CC [M]  hello_module.mod.o
+  CC [M]  .module-common.o
+  LD [M]  hello_module.ko
+  BTF [M] hello_module.ko
+Skipping BTF generation for hello_module.ko due to unavailability of vmlinux
+  CC [M]  proc_module.mod.o
+  LD [M]  proc_module.ko
+  BTF [M] proc_module.ko
+Skipping BTF generation for proc_module.ko due to unavailability of vmlinux
+  CC [M]  char_device.mod.o
+  LD [M]  char_device.ko
+  BTF [M] char_device.ko
+Skipping BTF generation for char_device.ko due to unavailability of vmlinux
+make[2]: Leaving directory '/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src'
+make[1]: Leaving directory '/usr/src/linux-headers-6.14.0-29-generic'
+
+Модули успешно собраны!
+Для тестирования используйте: make test-all
+
+vboxuser@ubuntu:~/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src$ make test-all
+Сборка модулей ядра...
+make -C /lib/modules/6.14.0-29-generic/build M=/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src modules
+make[1]: Entering directory '/usr/src/linux-headers-6.14.0-29-generic'
+make[2]: Entering directory '/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-14 (Ubuntu 14.2.0-19ubuntu2) 14.2.0
+  You are using:           gcc-14 (Ubuntu 14.2.0-19ubuntu2) 14.2.0
+make[2]: Leaving directory '/home/vboxuser/BSU-OS-2025/lab5/gr9sub1/ГАРБАР_ВИОЛЕТТА/src'
+make[1]: Leaving directory '/usr/src/linux-headers-6.14.0-29-generic'
+
+Модули успешно собраны!
+Для тестирования используйте: make test-all
+
+=== Тестирование Hello Module ===
+Загрузка модуля...
+[sudo] password for vboxuser: 
+sudo insmod hello_module.ko
+
+Вывод при загрузке:
+[  145.166697] hello_module: Hello from Гарбар Виолетта module!
+
+Выгрузка модуля...
+sudo rmmod hello_module
+
+Вывод при выгрузке:
+[  145.166697] hello_module: Hello from Гарбар Виолетта module!
+[  145.195739] hello_module: Goodbye from Гарбар Виолетта module!
+=== Тестирование Proc Module ===
+Загрузка модуля...
+sudo insmod proc_module.ko
+
+1. Первое чтение файла:
+Name: Гарбар Виолетта
+Group: 9, Subgroup: 1
+Module loaded at: 4294811840 jiffies
+Uptime: 4294811 seconds
+Read count: 1
+
+2. Второе чтение (счетчик должен увеличиться):
+Name: Гарбар Виолетта
+Group: 9, Subgroup: 1
+Module loaded at: 4294811840 jiffies
+Uptime: 4294811 seconds
+Read count: 2
+
+3. Третье чтение (счетчик должен снова увеличиться):
+Name: Гарбар Виолетта
+Group: 9, Subgroup: 1
+Module loaded at: 4294811840 jiffies
+Uptime: 4294811 seconds
+Read count: 3
+
+4. Выгрузка модуля...
+sudo rmmod proc_module
+
+Логи ядра (dmesg):
+[  145.240599] proc_module: Initializing
+[  145.240607] proc_module: Created /proc/student_info
+[  145.240608] proc_module: Load time: 4294811840 jiffies
+[  145.245420] proc_module: File read, count: 1
+[  145.248337] proc_module: File read, count: 2
+[  145.251280] proc_module: File read, count: 3
+[  145.259299] proc_module: Removed /proc/student_info
+[  145.259303] proc_module: Module unloaded. Total reads: 3
+=== Тестирование Character Device ===
+Загрузка модуля...
+sudo insmod char_device.ko
+
+1. Создание device node с major номером 240...
+
+2. Запись данных в устройство...
+Тестовые данные от Виолетты
+
+3. Чтение данных из устройства:
+Тестовые данные от Виолетты
+
+4. Повторная запись...
+Новые тестовые данные
+
+5. Повторное чтение:
+Новые тестовые данные
+
+
+6. Выгрузка модуля...
+sudo rmmod char_device
+
+Логи ядра (dmesg):
+[  145.393023] chardev: Device opened
+[  145.393055] chardev: Write 52 bytes: Тестовые данные от Виолетты
+[  145.393059] chardev: Device closed
+[  145.399885] chardev: Device opened
+[  145.399906] chardev: Read 52 bytes from offset 0
+[  145.400026] chardev: Device closed
+[  145.408221] chardev: Device opened
+[  145.408256] chardev: Write 41 bytes: Новые тестовые данные
+[  145.408261] chardev: Device closed
+[  145.416187] chardev: Device opened
+[  145.416198] chardev: Read 41 bytes from offset 0
+[  145.416227] chardev: Device closed
+[  145.435104] chardev: Device unregistered
+
+=== Все тесты завершены ===
+Все три модуля работают корректно!
+- Hello Module: загрузка/выгрузка с сообщениями
+- Proc Module: /proc/student_info с счетчиком
+- Character Device: чтение/запись через /dev/mychardev
+
