@@ -100,6 +100,6 @@ module_init(proc_stats_module_init);
 module_exit(proc_stats_module_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Michael");
+MODULE_AUTHOR("Michael <srp981680@gmail.com>");
 MODULE_DESCRIPTION("/proc/sys_stats");
 MODULE_VERSION("1.0");
