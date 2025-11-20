@@ -1,0 +1,20 @@
+CC = gcc
+CFLAGS = -Wall -O2
+
+.PHONY: all clean run_profiler
+
+PROFILER_PY = memory_profiler.py
+FAULTS_C = page_faults.c
+FAULTS_BIN = page_faults
+
+all: $(FAULTS_BIN)
+
+$(FAULTS_BIN): $(FAULTS_C)
+    $(CC) $(CFLAGS) -o $@ $<
+
+clean:
+    rm -f $(FAULTS_BIN)
+    rm -f logs/*.log
+
+run_profiler:
+    ./$(PROFILER_PY)
