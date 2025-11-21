@@ -1,0 +1,77 @@
+I/O Benchmark
+=============
+Test file size: 10 MB
+
+========================================
+Benchmark: I/O Methods Comparison
+========================================
+
+File size: 10 MB
+Buffer size: 64 KB (for fwrite/write)
+
+=== fwrite() with buffer=65536 bytes ===
+Time: 0.026 seconds
+Throughput: 388.64 MB/s
+
+=== write() with buffer=65536 bytes ===
+Time: 0.070 seconds
+Throughput: 143.40 MB/s
+
+=== mmap() ===
+Time: 0.102 seconds
+Throughput: 98.21 MB/s
+
+=== Summary ===
+Method        Time (s)    Throughput (MB/s)
+--------------------------------------------
+fwrite()      0.026       388.64  
+write()       0.070       143.40  
+mmap()        0.102       98.21   
+
+Fastest method: fwrite() (0.026 seconds)
+
+Factors affecting performance:
+- stdio (fwrite) has user-space buffering
+- write() goes directly to kernel, but still uses page cache
+- mmap() allows direct memory access, lazy writes
+- Actual disk speed depends on: HDD vs SSD, filesystem, etc.
+
+
+========================================
+Benchmark: Buffer Size Impact
+========================================
+
+Testing write() with different buffer sizes:
+File size: 10 MB
+
+=== write() with buffer=512 bytes ===
+Time: 0.145 seconds
+Throughput: 68.86 MB/s
+
+=== write() with buffer=1024 bytes ===
+Time: 0.104 seconds
+Throughput: 96.05 MB/s
+
+=== write() with buffer=4096 bytes ===
+Time: 0.085 seconds
+Throughput: 117.78 MB/s
+
+=== write() with buffer=8192 bytes ===
+Time: 0.096 seconds
+Throughput: 104.46 MB/s
+
+=== write() with buffer=16384 bytes ===
+Time: 0.075 seconds
+Throughput: 133.11 MB/s
+
+=== write() with buffer=65536 bytes ===
+Time: 0.088 seconds
+Throughput: 113.85 MB/s
+
+=== write() with buffer=1048576 bytes ===
+Time: 0.071 seconds
+Throughput: 140.70 MB/s
+
+========================================
+Benchmark completed!
+========================================

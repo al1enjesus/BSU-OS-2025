@@ -1,0 +1,42 @@
+Creating test file 'test.bin' (5 MB)...
+Test file created successfully.
+
+Comparing I/O methods for file: test.bin
+===========================================
+Note: For accurate results, clear page cache with:
+      sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+
+
+=== Method 1: read() syscall ===
+File size: 5242880 bytes (5.00 MB)
+Time elapsed: 0.007 seconds
+Throughput: 736.92 MB/s
+Minor page faults: 1
+Major page faults: 0
+Checksum: 668467200
+
+=== Method 2: mmap() ===
+File size: 5242880 bytes (5.00 MB)
+Time elapsed: 0.008 seconds
+Throughput: 634.44 MB/s
+Minor page faults: 80
+Major page faults: 0
+Checksum: 668467200
+
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+File size: 5242880 bytes (5.00 MB)
+Time elapsed: 0.008 seconds
+Throughput: 632.18 MB/s
+Minor page faults: 80
+Major page faults: 0
+Checksum: 668467200
+
+=== Verification ===
+✓ All checksums match: 668467200
+
+=== Summary ===
+Method comparison completed.
+Typical observations:
+- mmap() is faster for large files due to fewer system calls
+- read() has more predictable memory usage
+- madvise(SEQUENTIAL) can improve performance for sequential access

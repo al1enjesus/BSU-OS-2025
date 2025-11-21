@@ -1,0 +1,65 @@
+Memory Info Demo
+================
+
+No PID specified. Running demonstration mode.
+This will allocate different types of memory and show the results.
+
+
+=== Demonstrating Different Memory Types ===
+
+1. Stack variable allocated: 1 KB at 0x7ffd54bc8af0
+2. Heap allocated: 10 MB at 0x70d8395ff010
+3. Anonymous mmap: 50 MB at 0x70d836200000
+4. File-backed mmap: 5 MB at 0x70d835c00000
+
+Memory allocated. Check /proc/10159/maps to see different regions.
+Press Enter to see memory info and map...
+
+Memory Metrics for PID 10159:
+  VSZ (Virtual):  64196 KB (62.7 MB)
+  RSS (Resident): 16880 KB (16.5 MB)
+  Data/Heap:      61668 KB (60.2 MB)
+  Stack:          132 KB (0.1 MB)
+  Text (code):    8 KB (0.0 MB)
+  Libraries:      1812 KB (1.8 MB)
+
+Advanced Memory Metrics:
+  PSS (Proportional): 15495 KB (15.1 MB)
+  USS (Unique):       15480 KB (15.1 MB)
+  Shared Clean:       1760 KB
+  Shared Dirty:       0 KB
+  Private Clean:      16 KB
+  Private Dirty:      15464 KB
+
+Memory Map:
+Address Range      Perms  Size     Path
+----------------------------------------------------------------
+62d3bb6e3000-62d3bb6e4000 r--p     4.0 KB  /home/maksick/BSU-OS-2025/BSU-OS-2025/lab4/gr9sub1/Питаленко_Максим/memory_info
+62d3bb6e4000-62d3bb6e6000 r-xp     8.0 KB  /home/maksick/BSU-OS-2025/BSU-OS-2025/lab4/gr9sub1/Питаленко_Максим/memory_info
+62d3bb6e6000-62d3bb6e7000 r--p     4.0 KB  /home/maksick/BSU-OS-2025/BSU-OS-2025/lab4/gr9sub1/Питаленко_Максим/memory_info
+62d3bb6e7000-62d3bb6e8000 r--p     4.0 KB  /home/maksick/BSU-OS-2025/BSU-OS-2025/lab4/gr9sub1/Питаленко_Максим/memory_info
+62d3bb6e8000-62d3bb6e9000 rw-p     4.0 KB  /home/maksick/BSU-OS-2025/BSU-OS-2025/lab4/gr9sub1/Питаленко_Максим/memory_info
+62d3e017f000-62d3e01a0000 rw-p   132.0 KB  [heap]
+70d836200000-70d839400000 rw-p    50.0 MB  (anonymous)
+70d8395ff000-70d83a000000 rw-p    10.0 MB  (anonymous)
+70d83a000000-70d83a028000 r--p   160.0 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+70d83a028000-70d83a1bd000 r-xp     1.6 MB  /usr/lib/x86_64-linux-gnu/libc.so.6
+70d83a1bd000-70d83a20c000 r--p   316.0 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+70d83a20c000-70d83a210000 r--p    16.0 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+70d83a210000-70d83a212000 rw-p     8.0 KB  /usr/lib/x86_64-linux-gnu/libc.so.6
+70d83a212000-70d83a21f000 rw-p    52.0 KB  (anonymous)
+70d83a296000-70d83a299000 rw-p    12.0 KB  (anonymous)
+70d83a2a8000-70d83a2aa000 rw-p     8.0 KB  (anonymous)
+70d83a2aa000-70d83a2ac000 r--p     8.0 KB  [vvar]
+70d83a2ac000-70d83a2ae000 r--p     8.0 KB  [vvar_vclock]
+70d83a2ae000-70d83a2b0000 r-xp     8.0 KB  [vdso]
+70d83a2b0000-70d83a2b1000 r--p     4.0 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+70d83a2b1000-70d83a2df000 r-xp   184.0 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+70d83a2df000-70d83a2ea000 r--p    44.0 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+70d83a2ea000-70d83a2ec000 r--p     8.0 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+70d83a2ec000-70d83a2ed000 rw-p     4.0 KB  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+70d83a2ed000-70d83a2ee000 rw-p     4.0 KB  (anonymous)
+7ffd54baa000-7ffd54bcb000 rw-p   132.0 KB  [stack]
+ffffffffff600000-ffffffffff601000 --xp     4.0 KB  [vsyscall]
+
+Press Enter to free memory and exit...
