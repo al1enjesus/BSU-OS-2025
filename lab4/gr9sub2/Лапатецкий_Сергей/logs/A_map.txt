@@ -1,0 +1,30 @@
+Memory Map:
+Address Range             Perms  Size(KB) Path
+----------------------------------------------------------------
+629058fee000-629058fef000 r--p   4 /home/killerser/sambashare/lab4/src/memory_info
+629058fef000-629058ff0000 r-xp   4 /home/killerser/sambashare/lab4/src/memory_info
+629058ff0000-629058ff1000 r--p   4 /home/killerser/sambashare/lab4/src/memory_info
+629058ff1000-629058ff2000 r--p   4 /home/killerser/sambashare/lab4/src/memory_info
+629058ff2000-629058ff3000 rw-p   4 /home/killerser/sambashare/lab4/src/memory_info
+629095d75000-629095d96000 rw-p   132 [heap]
+78b407400000-78b40a600000 rw-p   51200 
+78b40a7ff000-78b40b200000 rw-p   10244 
+78b40b200000-78b40b228000 r--p   160 /usr/lib/x86_64-linux-gnu/libc.so.6
+78b40b228000-78b40b3b0000 r-xp   1568 /usr/lib/x86_64-linux-gnu/libc.so.6
+78b40b3b0000-78b40b3ff000 r--p   316 /usr/lib/x86_64-linux-gnu/libc.so.6
+78b40b3ff000-78b40b403000 r--p   16 /usr/lib/x86_64-linux-gnu/libc.so.6
+78b40b403000-78b40b405000 rw-p   8 /usr/lib/x86_64-linux-gnu/libc.so.6
+78b40b405000-78b40b412000 rw-p   52 
+78b40b46f000-78b40b472000 rw-p   12 
+78b40b481000-78b40b483000 rw-p   8 
+78b40b483000-78b40b485000 r--p   8 [vvar]
+78b40b485000-78b40b487000 r--p   8 [vvar_vclock]
+78b40b487000-78b40b489000 r-xp   8 [vdso]
+78b40b489000-78b40b48a000 r--p   4 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+78b40b48a000-78b40b4b5000 r-xp   172 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+78b40b4b5000-78b40b4bf000 r--p   40 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+78b40b4bf000-78b40b4c1000 r--p   8 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+78b40b4c1000-78b40b4c3000 rw-p   8 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffee9ecc000-7ffee9eed000 rw-p   132 [stack]
+ffffffffff600000-ffffffffff601000 --xp   4 [vsyscall]
+
