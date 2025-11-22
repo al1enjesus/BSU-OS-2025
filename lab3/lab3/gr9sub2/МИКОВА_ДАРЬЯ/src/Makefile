@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -O2 -pthread
+CFLAGS=-Wall -Wextra -O0 -pthread
 
 all: thread_race prodcons
 
@@ -19,7 +19,7 @@ run_race_atomic: thread_race
 	./thread_race 4 1000000 atomic
 
 run_prodcons: prodcons
-	./prodcons -P 2 -C 2 -N 100000 -B 64
+	./prodcons -P 2 -C 2 -N 1000000 -B 64
 
 clean:
 	rm -f thread_race prodcons

@@ -6,7 +6,7 @@
 #include <time.h>
 #include <unistd.h>
 
-typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } mode_t;
+typedef enum { MODE_UNSYNC, MODE_MUTEX, MODE_ATOMIC } race_mode_t;
 
 typedef struct {
     int thread_index;
@@ -26,36 +26,36 @@ static inline long long now_monotonic_ms(void) {
 
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
-    // TODO: реализуйте небезопасное инкрементирование общего счетчика без синхронизации
-    // Пример цели: shared_counter_unsync++ внутри цикла для демонстрации гонки
+
+
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        // TODO: shared_counter_unsync++;
+        shared_counter_unsync++;
     }
     return NULL;
 }
 
 static void* worker_mutex(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
-    // TODO: реализуйте корректное инкрементирование под защитой mutex
+
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        // TODO:
-        // pthread_mutex_lock(&counter_mutex);
-        // shared_counter_mutex++;
-        // pthread_mutex_unlock(&counter_mutex);
+
+        pthread_mutex_lock(&counter_mutex);
+        shared_counter_mutex++;
+        pthread_mutex_unlock(&counter_mutex);
     }
     return NULL;
 }
 
 static void* worker_atomic(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
-    // TODO: реализуйте корректное инкрементирование через атомики (stdatomic.h)
+
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        // TODO: atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
+        atomic_fetch_add_explicit(&shared_counter_atomic, 1, memory_order_relaxed);
     }
     return NULL;
 }
 
-static mode_t parse_mode(const char* s) {
+static race_mode_t parse_mode(const char* s) {
     if (strcmp(s, "unsync") == 0) return MODE_UNSYNC;
     if (strcmp(s, "mutex") == 0) return MODE_MUTEX;
     if (strcmp(s, "atomic") == 0) return MODE_ATOMIC;
@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
     }
     int num_threads = atoi(argv[1]);
     long long iters = atoll(argv[2]);
-    mode_t mode = parse_mode(argv[3]);
+    race_mode_t mode = parse_mode(argv[3]);
 
     if (num_threads <= 0 || iters < 0) {
         fprintf(stderr, "Invalid arguments\n");
@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
     shared_counter_unsync = 0;
     shared_counter_mutex = 0;
 
-    fprintf(stderr, "[thread_race] Внимание: это скелет (samples). Реализуйте TODO для осмысленных результатов.\n");
+    //fprintf(stderr, "[thread_race] Внимание: это скелет (samples). Реализуйте TODO для осмысленных результатов.\n");
 
     long long start_ms = now_monotonic_ms();
 

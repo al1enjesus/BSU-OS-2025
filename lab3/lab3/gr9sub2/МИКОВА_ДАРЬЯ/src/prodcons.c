@@ -15,7 +15,7 @@ typedef struct {
     pthread_cond_t not_full;
     pthread_cond_t not_empty;
     int producers_active;
-} ring_buffer_t; // TODO: это готовая структура. Не меняйте поля без необходимости.
+} ring_buffer_t;
 
 typedef struct {
     ring_buffer_t* rb;
@@ -31,8 +31,13 @@ typedef struct {
 } consumer_args_t;
 
 static void rb_init(ring_buffer_t* rb, int capacity, int producers_total) {
-    // TODO: выделите буфер, инициализируйте индексы и синхронизацию
+
     rb->data = (int*)malloc(sizeof(int)*capacity);
+    if (!rb->data) {
+    fprintf(stderr, "malloc failed\n");
+    exit(1);
+    }
+    
     rb->capacity = capacity;
     rb->head = 0;
     rb->tail = 0;
@@ -51,7 +56,7 @@ static void rb_destroy(ring_buffer_t* rb) {
 }
 
 static void rb_push(ring_buffer_t* rb, int value) {
-    // TODO: реализуйте вставку в кольцевой буфер под mutex с ожиданием not_full
+
     pthread_mutex_lock(&rb->mutex);
     while (rb->count == rb->capacity) {
         pthread_cond_wait(&rb->not_full, &rb->mutex);
@@ -64,7 +69,7 @@ static void rb_push(ring_buffer_t* rb, int value) {
 }
 
 static int rb_pop(ring_buffer_t* rb, int* value) {
-    // TODO: реализуйте извлечение из кольцевого буфера под mutex с ожиданием not_empty
+
     pthread_mutex_lock(&rb->mutex);
     while (rb->count == 0 && rb->producers_active > 0) {
         pthread_cond_wait(&rb->not_empty, &rb->mutex);
@@ -82,7 +87,7 @@ static int rb_pop(ring_buffer_t* rb, int* value) {
 }
 
 static void rb_producer_done(ring_buffer_t* rb) {
-    // TODO: сообщайте потребителям об окончании производителей
+
     pthread_mutex_lock(&rb->mutex);
     rb->producers_active--;
     if (rb->producers_active == 0) {
@@ -92,8 +97,9 @@ static void rb_producer_done(ring_buffer_t* rb) {
 }
 
 static void* producer_thread(void* arg) {
-    // TODO: генерируйте элементы и кладите их в буфер
+
     producer_args_t* a = (producer_args_t*)arg;
+
     for (int i = 0; i < a->items_to_produce; i++) {
         int value = (a->producer_index + 1) * 1000000 + i; // пример кодирования
         rb_push(a->rb, value);
@@ -103,7 +109,7 @@ static void* producer_thread(void* arg) {
 }
 
 static void* consumer_thread(void* arg) {
-    // TODO: извлекайте элементы пока доступны и агрегируйте метрики
+
     consumer_args_t* a = (consumer_args_t*)arg;
     int v;
     while (rb_pop(a->rb, &v)) {
@@ -172,6 +178,7 @@ int main(int argc, char** argv) {
         }
     }
 
+
     long long produced_total = 0;
     for (int i = 0; i < P; i++) {
         pthread_join(pt[i], NULL);
@@ -188,7 +195,7 @@ int main(int argc, char** argv) {
         consumed_sum += cargs[i].consumed_sum;
     }
 
-    printf("[prodcons] (samples skeleton) P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
+    printf("P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
            P, C, N, B, produced_total, consumed_total, consumed_sum);
 
     free(pt);
@@ -196,5 +203,6 @@ int main(int argc, char** argv) {
     free(pargs);
     free(cargs);
     rb_destroy(&rb);
+     
     return 0;
 }
