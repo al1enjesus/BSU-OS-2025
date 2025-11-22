@@ -1,5 +1,0 @@
-      3 telegram-desktop
-      3 protobuf
-      3 /etc/pacman.d/mirrorlist
-      2 wpa_supplicant
-      2 semver
