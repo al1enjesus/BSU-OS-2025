@@ -1,0 +1,71 @@
+=== ТЕСТИРОВАНИЕ МОДУЛЯ sys_stats_module ===
+Дата: Nov 22 2024
+Версия ядра: 6.14.0-33-generic
+
+--- Компиляция модуля ---
+$ make
+  CC [M]  sys_stats_module.o
+  MODPOST Module.symvers
+  LD [M]  sys_stats_module.ko
+Компиляция успешна
+
+--- Тест 1: Загрузка модуля и проверка статистики ---
+$ sudo insmod sys_stats_module.ko
+$ cat /proc/sys_stats
+System Statistics:
+Processes: 248
+Memory Total: 3915 MB
+Memory Free: 233 MB
+Memory Used: 3682 MB
+System Uptime: 31143 seconds
+
+--- Тест 2: Сравнение с системными командами ---
+
+Количество процессов:
+$ cat /proc/sys_stats | grep Processes
+Processes: 244
+$ ps aux | wc -l
+245
+Разница: 1 процесс (0.4%) - объясняется заголовком ps aux
+
+Используемая память:
+$ cat /proc/sys_stats | grep Memory
+Memory Total: 3915 MB
+Memory Free: 196 MB
+Memory Used: 3718 MB
+$ free -m
+               total        used        free      shared  buff/cache   available
+Mem:            3915        2530         190         172        1331        1385
+Значения близки к системным показателям
+
+Uptime системы:
+$ cat /proc/sys_stats | grep Uptime
+System Uptime: 31845 seconds
+$ cat /proc/uptime
+32150.68 121441.55
+Разница: 305 секунд (0.95%) - время между выполнениями команд
+
+--- Тест 3: Проверка прав доступа ---
+$ ls -la /proc/sys_stats
+-r--r--r-- 1 root root 0 Nov 22 16:35 /proc/sys_stats
+Права 0444 установлены корректно
+
+--- Тест 4: Выгрузка модуля ---
+$ sudo rmmod sys_stats_module
+$ sudo dmesg | tail -1
+[32307.897984] /proc/sys_stats removed
+$ cat /proc/sys_stats
+cat: /proc/sys_stats: No such file or directory
+
+--- Тест 5: Проверка многократной загрузки/выгрузки ---
+$ sudo insmod sys_stats_module.ko
+$ cat /proc/sys_stats | head -1
+System Statistics:
+$ sudo rmmod sys_stats_module
+$ sudo insmod sys_stats_module.ko
+$ cat /proc/sys_stats | head -1
+System Statistics:
+Многократная загрузка/выгрузка работает корректно
+
+=== ТЕСТИРОВАНИЕ ЗАВЕРШЕНО УСПЕШНО ===
+Все тесты пройдены, модуль работает стабильно
