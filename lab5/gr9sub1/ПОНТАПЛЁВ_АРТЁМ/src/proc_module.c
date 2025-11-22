@@ -7,14 +7,15 @@
 #include <linux/string.h>
 
 #define PROCFS_NAME "my_config"
-#define MAX_SIZE 256
+#define PROC_BUFFER_SIZE 256
+#define PROC_READ_BUFFER_SIZE (PROC_BUFFER_SIZE + 2)
 
 static struct proc_dir_entry *proc_file;
-static char procfs_buffer[MAX_SIZE];
+static char procfs_buffer[PROC_BUFFER_SIZE];
 
 static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, loff_t *ppos)
 {
-    char buffer[MAX_SIZE + 2];
+    char buffer[PROC_READ_BUFFER_SIZE];
     int len;
     
     if (*ppos > 0) return 0;
@@ -27,13 +28,25 @@ static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t cou
 {
     ssize_t result;
     
-    if (count >= MAX_SIZE) 
+    if (count >= PROC_BUFFER_SIZE) 
         return -EFBIG;
     
-    result = simple_write_to_buffer(procfs_buffer, MAX_SIZE, ppos, ubuf, count);
+    result = simple_write_to_buffer(procfs_buffer, PROC_BUFFER_SIZE, ppos, ubuf, count);
     
-    if (result > 0 && procfs_buffer[result - 1] == '\n')
-        procfs_buffer[result - 1] = '\0';
+    if (result > 0)
+    {
+        if (result < PROC_BUFFER_SIZE)
+        {
+            procfs_buffer[result] = '\0';
+        }
+        else
+        {
+            procfs_buffer[PROC_BUFFER_SIZE - 1] = '\0';
+        }
+        
+        if (procfs_buffer[result - 1] == '\n')
+            procfs_buffer[result - 1] = '\0';
+    }
     
     return result;
 }
@@ -45,8 +58,8 @@ static const struct proc_ops proc_fops = {
 
 static int __init proc_init(void)
 {
-    memset(procfs_buffer, 0, MAX_SIZE);
-    strncpy(procfs_buffer, "default", MAX_SIZE - 1);
+    memset(procfs_buffer, 0, PROC_BUFFER_SIZE);
+    strncpy(procfs_buffer, "default", PROC_BUFFER_SIZE - 1);
     proc_file = proc_create(PROCFS_NAME, 0644, NULL, &proc_fops);
     if (!proc_file)
     {

@@ -7,10 +7,13 @@
 #include <linux/sched.h>
 #include <linux/timer.h>
 #include <linux/fs.h>
+#include <linux/limits.h>
 
 #define PROCFS_NAME "sys_stats"
 #define SYS_STATS_BUFFER_SIZE 512
 #define MB_DIVISOR (1024 * 1024)
+#define SECONDS_IN_MS 1000
+#define MAX_MEMORY_MB (ULONG_MAX / MB_DIVISOR)
 
 static struct proc_dir_entry *proc_file;
 
@@ -35,12 +38,13 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
     unsigned long uptime_seconds;
     int process_count;
     unsigned long memory_used_mb;
+    unsigned long pages_used;
     
     if (*ppos > 0)
         return 0;
     
     si_meminfo(&si);
-    uptime_seconds = jiffies_to_msecs(get_jiffies_64()) / 1000;
+    uptime_seconds = jiffies_to_msecs(get_jiffies_64()) / SECONDS_IN_MS;
     process_count = count_processes();
     if (si.totalram < si.freeram)
     {
@@ -48,14 +52,14 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
     }
     else
     {
-        memory_used_mb = (si.totalram - si.freeram) * si.mem_unit;
-        if (memory_used_mb > ULONG_MAX / MB_DIVISOR)
+        pages_used = si.totalram - si.freeram;
+        if (pages_used > ULONG_MAX / si.mem_unit)
         {
-            memory_used_mb = ULONG_MAX;
+            memory_used_mb = ULONG_MAX / MB_DIVISOR;
         }
         else
         {
-            memory_used_mb /= MB_DIVISOR;
+            memory_used_mb = (pages_used * si.mem_unit) / MB_DIVISOR;
         }
     }
     len = snprintf(buffer, sizeof(buffer),
