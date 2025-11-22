@@ -25,6 +25,9 @@ static ssize_t proc_read(struct file *file, char __user *user_buf,
     if (*ppos > 0) 
         return 0;
         
+    if (!config_data)
+        return 0;
+        
     len = strlen(config_data);
     
    
@@ -91,7 +94,7 @@ static int __init proc_init(void)
     config_size = strlen(config_data);
     
   
-    proc_file = proc_create(PROC_NAME, 0666, NULL, &proc_fops);
+    proc_file = proc_create(PROC_NAME, 0644, NULL, &proc_fops);
     if (!proc_file) {
         kfree(config_data);
         printk(KERN_ERR "Failed to create /proc/%s\n", PROC_NAME);
