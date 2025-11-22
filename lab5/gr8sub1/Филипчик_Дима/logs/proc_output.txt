@@ -1,0 +1,7 @@
+=== Student Information ===
+Name: Filipchik Dima
+Group: 8, Subgroup: 1
+Module loaded at: 4299339083 jiffies
+Uptime: 4299425 seconds
+Read count: 3
+===========================

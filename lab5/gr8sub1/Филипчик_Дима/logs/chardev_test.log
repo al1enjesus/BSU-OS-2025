@@ -1,0 +1,27 @@
+[ 5209.652533] chardev: Initializing character device
+[ 5209.652540] chardev: Registered with major number 240, minor 0
+[ 5209.652562] chardev: Device registered successfully
+[ 5209.652563] chardev: Create device with: sudo mknod /dev/mychardev c 240 0
+[ 5286.770577] chardev: Device opened
+[ 5286.770620] chardev: Write 26 bytes: 'Hello from Filipchik Dima
+               '
+[ 5286.770627] chardev: Device closed
+[ 5295.046712] chardev: Device opened
+[ 5295.046727] chardev: Read 26 bytes from offset 0
+[ 5295.046748] chardev: Device closed
+[ 5305.282952] chardev: Device opened
+[ 5305.282970] chardev: Write 30 bytes: 'New data for character device
+               '
+[ 5305.282976] chardev: Device closed
+[ 5305.285381] chardev: Device opened
+[ 5305.285394] chardev: Read 30 bytes from offset 0
+[ 5305.285418] chardev: Device closed
+[ 5319.888603] chardev: Device opened
+[ 5320.077286] chardev: Device closed
+[ 5333.943811] chardev: Device opened
+[ 5333.943831] chardev: Write 115 bytes: 'This is a longer test message to verify that our character device driver works correctly with different data sizes
+               '
+[ 5333.943838] chardev: Device closed
+[ 5342.959312] chardev: Device opened
+[ 5342.959362] chardev: Read 115 bytes from offset 0
+[ 5342.962053] chardev: Device closed
