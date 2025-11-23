@@ -29,7 +29,7 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
         "Read count: %d\n",
         load_time, read_count);
 
-    if (len < 0 || len > MAX_SIZE) {
+    if (len < 0) {
         printk(KERN_ERR "proc_module: snprintf formatting error\n");
         return -EFAULT;
     }

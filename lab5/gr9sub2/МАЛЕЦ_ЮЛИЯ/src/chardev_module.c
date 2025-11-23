@@ -128,7 +128,9 @@ static int __init chardev_init(void)
     }
 
     printk(KERN_INFO "chardev: Registered with major %d minor %d\n", MAJOR(dev_num), MINOR(dev_num));
-    printk(KERN_INFO "chardev: Create device with: mknod /dev/%s c %d 0\n", DEVICE_NAME, MAJOR(dev_num));
+    printk(KERN_INFO "chardev: Registered device '%s' with major %d minor %d\n",
+           DEVICE_NAME, MAJOR(dev_num), MINOR(dev_num));
+
     return 0;
 }
 
@@ -143,6 +145,6 @@ module_init(chardev_init);
 module_exit(chardev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Malets Yuliya <jullia.minsk@gmale.com>");
+MODULE_AUTHOR("Malets Julia <jullia.minsk@gmale.com>");
 MODULE_DESCRIPTION("Character device with buffer and error handling");
 MODULE_VERSION("1.0");

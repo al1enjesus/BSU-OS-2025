@@ -12,7 +12,8 @@ static int __init hello_init(void)
     if (message) {
         if (strlen(message) > 1024) {
             printk(KERN_ERR "hello_module: message too long\n");
-            return -EINVAL;        }
+            return -EINVAL;        
+        }
         printk(KERN_INFO "hello_module: %s\n", message);
     } else {
         printk(KERN_INFO "hello_module: Hello from Malets Julia module!\n");
