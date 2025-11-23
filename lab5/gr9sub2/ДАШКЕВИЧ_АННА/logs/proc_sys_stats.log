@@ -1,0 +1,19 @@
+Processes: 241
+Memory Used: 2978 MB
+System Uptime: 2285 seconds
+
+Processes: 240
+Memory Used: 2981 MB
+System Uptime: 2322 seconds
+
+Processes: 240
+Memory Used: 2979 MB
+System Uptime: 2328 seconds
+
+sudo rmmod proc_sys_stats
+ls /proc/sys_stats   
+sudo dmesg | tail -10 
+
+ls: невозможно получить доступ к '/proc/sys_stats': Нет такого файла или каталога
+[ 2560.455755] proc_sys_stats: /proc/sys_stats created
+[ 2658.844712] proc_sys_stats: /proc/sys_stats removed

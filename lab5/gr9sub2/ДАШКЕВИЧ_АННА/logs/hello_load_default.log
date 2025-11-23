@@ -1,0 +1,5 @@
+[ 4671.730431] hello_module: Custom
+[ 5840.297283] workqueue: blk_mq_requeue_work hogged CPU for >10000us 11 times, consider switching to WQ_UNBOUND
+[ 6151.571772] hello_module: Goodbye from Anya module!
+[ 6151.607456] Hello from Anya module!
+[ 6198.927725] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 67 times, consider switching to WQ_UNBOUND

@@ -1,0 +1,3 @@
+[  118.796194] Hello Module: Custom_greeting_from_lab5
+[  214.417555] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[  220.569382] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 5 times, consider switching to WQ_UNBOUND

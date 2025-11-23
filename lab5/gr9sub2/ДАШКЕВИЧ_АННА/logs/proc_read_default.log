@@ -1,0 +1,2 @@
+[  821.323378] proc_config: /proc/my_config created, default='default'
+[  873.885277] proc_config: new value set: 'new value'
