@@ -102,31 +102,39 @@ Read count: 1
 При повторных чтениях поле `Read count` увеличивается.
 
 
-### Задание C: Character device
-
-Реализован модуль `chardevmodule.c`. Создаётся символьное устройство `/dev/mychardev` с буфером на 1024 байта.
+### Задание C: Символьное устройство
 
 ```bash
 sudo insmod chardevmodule.ko
-dmesg | grep chardev | tail -1
-# Предположим, номер major — 240
-sudo mknod /dev/mychardev c 240 0
-sudo chmod 666 /dev/mychardev
+dmesg | grep 'Registered device with major'
+```
+Вывода:
+```
+[19544.744318] chardev: Registered device with major 248
+```
+
+```bash
+sudo mknod /dev/mychardev c 248 0
+sudo chmod 644 /dev/mychardev
+```
+
+```bash
 echo Hello > /dev/mychardev
 cat /dev/mychardev
 sudo rmmod chardevmodule
 ```
 
-Результат:
+Результаты:
 ```
-[19544.744318] chardev: Registered device with major 240
+[19544.744318] chardev: Registered device with major 248
 [19545.411986] chardev: Device opened
-[19545.411990] chardev: Written 6 bytes
+[19545.411990] chardev: Written 6 bytes at offset 0
 [19545.413001] chardev: Device opened
 [19545.413250] chardev: Read 6 bytes
 [19546.113110] chardev: Module unloaded
 ```
-Результат:
+
+Результат работы:
 ```
 Hello
 ```
