@@ -1,0 +1,12 @@
+# Скомпилированные модули ядра
+*.ko
+*.o
+*.mod
+*.mod.c
+*.mod.o
+Module.symvers
+modules.order
+.*.cmd
+
+# Логи (если не нужны)
+*.log

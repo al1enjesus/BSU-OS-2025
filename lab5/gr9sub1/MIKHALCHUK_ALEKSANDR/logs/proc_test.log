@@ -1,0 +1,39 @@
+=== ТЕСТИРОВАНИЕ МОДУЛЯ proc_module ===
+Дата: Nov 22 2024
+Версия ядра: 6.14.0-33-generic
+
+--- Компиляция модуля ---
+$ make
+  CC [M]  proc_module.o
+  MODPOST Module.symvers
+  LD [M]  proc_module.ko
+Компиляция успешна
+
+--- Тест 1: Загрузка модуля ---
+$ sudo insmod proc_module.ko
+$ sudo dmesg | tail -1
+[34846.937313] /proc/my_config created
+
+--- Тест 2: Проверка начального значения ---
+$ cat /proc/my_config
+default
+
+--- Тест 3: Запись нового значения ---
+$ echo "new test value" | sudo tee /proc/my_config
+new test value
+
+--- Тест 4: Проверка обновленного значения ---
+$ cat /proc/my_config
+new test value
+
+--- Тест 5: Проверка прав доступа ---
+$ ls -la /proc/my_config
+-rw-rw-rw- 1 root root 0 Nov 22 16:35 /proc/my_config
+
+--- Тест 6: Выгрузка модуля ---
+$ sudo rmmod proc_module
+$ cat /proc/my_config
+cat: /proc/my_config: No such file or directory
+
+=== ТЕСТИРОВАНИЕ ЗАВЕРШЕНО УСПЕШНО ===
+Все тесты пройдены успешно

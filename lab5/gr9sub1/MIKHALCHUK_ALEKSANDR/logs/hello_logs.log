@@ -1,0 +1,26 @@
+=== ТЕСТИРОВАНИЕ МОДУЛЯ hello_module ===
+Дата: Nov 22 2024
+Версия ядра: 6.14.0-33-generic
+
+--- Компиляция модуля ---
+$ make
+  CC [M]  hello_module.o
+  MODPOST Module.symvers
+  LD [M]  hello_module.ko
+Компиляция успешна
+
+--- Тест 1: Загрузка с параметром по умолчанию ---
+$ sudo insmod hello_module.ko
+$ sudo dmesg | tail -1
+[12575.938679] Hello from Sasha module
+
+--- Тест 2: Выгрузка модуля ---
+$ sudo rmmod hello_module
+$ sudo dmesg | tail -1
+[13510.584325] Goodbye from Sasha module!
+
+--- Проверка загруженных модулей ---
+$ lsmod | grep hello_module
+(модуль не найден - выгружен корректно)
+
+=== ТЕСТИРОВАНИЕ ЗАВЕРШЕНО УСПЕШНО ===
