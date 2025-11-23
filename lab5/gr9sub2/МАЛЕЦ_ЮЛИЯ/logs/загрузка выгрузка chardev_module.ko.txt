@@ -1,0 +1,19 @@
+$ sudo insmod chardev_module.ko
+$ sudo dmesg | tail -5 
+[19266.350514] chardev: Create device with: mknod /dev/mychardev c 240 0
+[19270.967502] chardev: Device unregistered
+[19284.427438] chardev: Initializing
+[19284.427479] chardev: Registered with major 240 minor 0
+[19284.427482] chardev: Create device with: mknod /dev/mychardev c 240 0
+$ sudo rmmod chardev_module.ko
+$ sudo dmesg | tail -10
+[19050.424223] proc_module: Exiting
+[19259.426305] chardev: Device unregistered
+[19266.350502] chardev: Initializing
+[19266.350511] chardev: Registered with major 240 minor 0
+[19266.350514] chardev: Create device with: mknod /dev/mychardev c 240 0
+[19270.967502] chardev: Device unregistered
+[19284.427438] chardev: Initializing
+[19284.427479] chardev: Registered with major 240 minor 0
+[19284.427482] chardev: Create device with: mknod /dev/mychardev c 240 0
+[19296.886729] chardev: Device unregistered

@@ -1,0 +1,4 @@
+$ lsmod | grep module
+chardev_module         12288  0
+proc_module            12288  0
+hello_module           12288  0

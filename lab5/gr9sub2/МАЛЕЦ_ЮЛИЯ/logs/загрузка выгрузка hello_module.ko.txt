@@ -1,0 +1,14 @@
+$ sudo insmod hello_module.ko
+$ sudo dmesg | tail -5
+[18281.059004] proc_module: Initializing
+[18281.059018] proc_module: Created /proc/student_info
+[18288.714541] proc_module: Removed /proc/student_info
+[18288.714549] proc_module: Exiting
+[18513.250865] hello_module: Hello from Malets Julia module!
+$ sudo rmmod hello_module
+$ sudo dmesg | tail -5
+[18281.059018] proc_module: Created /proc/student_info
+[18288.714541] proc_module: Removed /proc/student_info
+[18288.714549] proc_module: Exiting
+[18513.250865] hello_module: Hello from Malets Julia module!
+[18538.290310] hello_module: Goodbye from Malets Julia module!
