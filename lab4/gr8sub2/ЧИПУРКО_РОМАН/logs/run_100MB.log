@@ -1,0 +1,86 @@
+I/O Benchmark
+=============
+Test file size: 100 MB
+
+========================================
+Benchmark: I/O Methods Comparison
+========================================
+
+File size: 100 MB
+Buffer size: 64 KB (for fwrite/write)
+
+=== fwrite() with buffer=65536 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.085 seconds
+Throughput: 1178.25 MB/s
+
+=== write() with buffer=65536 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.066 seconds
+Throughput: 1515.93 MB/s
+
+=== write() with O_SYNC (buffer=65536 bytes) ===
+Written: 104857600 bytes (requested 104857600)
+Time: 4.100 seconds
+Throughput: 24.39 MB/s
+
+=== mmap() ===
+Touched+msync: 104857600 bytes
+Time: 0.981 seconds
+Throughput: 101.95 MB/s
+
+=== Summary ===
+Fastest method: (compare results above)
+
+Factors affecting performance:
+- stdio (fwrite) has user-space buffering
+- write() goes directly to kernel, but still uses page cache
+- mmap() allows direct memory access, lazy writes (msync forces write)
+- Actual disk speed depends on: HDD vs SSD, filesystem, etc.
+
+
+========================================
+Benchmark: Buffer Size Impact
+========================================
+
+Testing write() with different buffer sizes:
+File size: 100 MB
+
+=== write() with buffer=512 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.465 seconds
+Throughput: 215.24 MB/s
+
+=== write() with buffer=1024 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.307 seconds
+Throughput: 326.22 MB/s
+
+=== write() with buffer=4096 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.135 seconds
+Throughput: 742.81 MB/s
+
+=== write() with buffer=8192 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.099 seconds
+Throughput: 1009.89 MB/s
+
+=== write() with buffer=16384 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.081 seconds
+Throughput: 1240.13 MB/s
+
+=== write() with buffer=65536 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.070 seconds
+Throughput: 1434.20 MB/s
+
+=== write() with buffer=1048576 bytes ===
+Written: 104857600 bytes (requested 104857600)
+Time: 0.061 seconds
+Throughput: 1637.57 MB/s
+
+========================================
+Benchmark completed!
+========================================
