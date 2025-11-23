@@ -106,7 +106,7 @@ sudo chmod 666 /dev/mychardev
 логи
 ```
 [19361.130339] chardev: Device opened
-[19361.130363] chardev: Read request
+[19361.130363] chardev: Read request, 6 bytes
 [19361.130897] chardev: Device closed
 ```
 Чтение: cat /dev/mychardev
