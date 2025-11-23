@@ -8,8 +8,8 @@
 #include <linux/mm.h>
 #include <linux/slab.h>
 
-#define PROC_NAME "sys_stats"
-#define KBUF_SIZE 512
+#define PROC_NAME  "sys_stats"
+#define KBUF_SIZE  512
 
 static struct proc_dir_entry *proc_file;
 
@@ -32,9 +32,11 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
         return -EINVAL;
 
     if (*ppos == 0) {
+        rcu_read_lock();
         for_each_process(task) {
             total_procs++;
         }
+        rcu_read_unlock();
 
         si_meminfo(&i);
         {
@@ -44,15 +46,8 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
 
             uptime_sec = jiffies_to_msecs(get_jiffies_64()) / 1000;
 
-            if (kbuf) {
-                kfree(kbuf);
-                kbuf = NULL;
-                kbuf_len = 0;
-            }
-
-            kbuf = kmalloc(KBUF_SIZE, GFP_KERNEL);
             if (!kbuf) {
-                pr_err("proc_sys_stats: failed to allocate kbuf\n");
+                pr_err("proc_sys_stats: kbuf is NULL in proc_read\n");
                 return -ENOMEM;
             }
 
@@ -66,14 +61,10 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
 
             if (kbuf_len < 0) {
                 pr_err("proc_sys_stats: snprintf failed\n");
-                kfree(kbuf);
-                kbuf = NULL;
                 kbuf_len = 0;
                 return -EFAULT;
             }
 
-            if (kbuf_len > KBUF_SIZE)
-                kbuf_len = KBUF_SIZE;
         }
     }
 
@@ -101,9 +92,17 @@ static int __init proc_sys_stats_init(void)
     kbuf     = NULL;
     kbuf_len = 0;
 
+    kbuf = kmalloc(KBUF_SIZE, GFP_KERNEL);
+    if (!kbuf) {
+        pr_err("proc_sys_stats: failed to allocate kbuf\n");
+        return -ENOMEM;
+    }
+
     proc_file = proc_create(PROC_NAME, 0444, NULL, &proc_file_ops);
     if (!proc_file) {
         pr_err("proc_sys_stats: failed to create /proc/%s\n", PROC_NAME);
+        kfree(kbuf);
+        kbuf = NULL;
         return -ENOMEM;
     }
 
@@ -132,4 +131,4 @@ module_exit(proc_sys_stats_exit);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Anya");
 MODULE_DESCRIPTION("/proc/sys_stats: simple system statistics (partial read supported)");
-MODULE_VERSION("1.2");
+MODULE_VERSION("1.3");
