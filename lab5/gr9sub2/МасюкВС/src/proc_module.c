@@ -22,6 +22,7 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
         return 0;
 
     len = snprintf(buffer, sizeof(buffer), "%s\n", procfs_buffer);
+
     return simple_read_from_buffer(ubuf, count, ppos, buffer, len);
 }
 
@@ -29,18 +30,22 @@ static ssize_t proc_write(struct file *file, const char __user *ubuf, size_t cou
 {
     ssize_t written;
 
+    if (count == 0)
+        return 0;
+
     if (count >= PROC_BUFFER_SIZE)
         return -EFBIG;
 
     written = simple_write_to_buffer(procfs_buffer, PROC_BUFFER_SIZE, ppos, ubuf, count);
 
     if (written > 0) {
-        if (written < PROC_BUFFER_SIZE)
-            procfs_buffer[written] = '\0';
-        else
-            procfs_buffer[PROC_BUFFER_SIZE - 1] = '\0';
 
-        if (procfs_buffer[written - 1] == '\n')
+        if (written >= PROC_BUFFER_SIZE)
+            written = PROC_BUFFER_SIZE - 1;
+
+        procfs_buffer[written] = '\0';
+
+        if (written > 0 && procfs_buffer[written - 1] == '\n')
             procfs_buffer[written - 1] = '\0';
     }
 

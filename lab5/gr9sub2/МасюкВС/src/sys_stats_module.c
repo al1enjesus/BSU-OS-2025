@@ -69,7 +69,7 @@ static ssize_t proc_read(struct file *file, char __user *ubuf, size_t count, lof
     if (copy_to_user(ubuf, buffer, len))
         return -EFAULT;
 
-    *ppos = len;
+    *ppos += len;
     return len;
 }
 
