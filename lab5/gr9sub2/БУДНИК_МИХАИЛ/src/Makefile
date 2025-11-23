@@ -81,8 +81,6 @@ test-hello: all
 	-@sudo rmmod hello_module 2>/dev/null || true
 	sudo insmod hello_module.ko
 	@echo ""
-	@echo "Output:"
-	@dmesg | tail -5
 	@echo ""
 	@echo "Unloading module..."
 	sudo rmmod hello_module
@@ -108,7 +106,7 @@ test-proc: all
 	sudo rmmod proc_module
 	@echo ""
 	@echo "dmesg output:"
-	-@sudo dmesg | grep -i proc_module | tail -10
+	sudo dmesg | grep -i proc_module | tail -10
 
 # Быстрый тест proc_stats_module
 test-proc-stats: all
@@ -124,7 +122,7 @@ test-proc-stats: all
 	sudo rmmod proc_stats_module
 	@echo ""
 	@echo "dmesg output:"
-	-@sudo dmesg | grep -i proc_stats_module | tail -10
+	sudo dmesg | grep -i proc_stats_module | tail -10
 
 # Проверка окружения
 check:

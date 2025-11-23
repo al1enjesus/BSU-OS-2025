@@ -65,7 +65,7 @@ static void __exit proc_module_exit(void)
 {
     if (proc_file) {
         proc_remove(proc_file);
-        printk(KERN_INFO "proc_module: Removed /proc/%s\n", PROC_NAME);
+        printk(KERN_INFO "proc_module: removed /proc/%s\n", PROC_NAME);
     }
      
     printk(KERN_INFO "proc_module: exiting\n");
