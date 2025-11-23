@@ -5,7 +5,8 @@
 
 static char *message = NULL;
 module_param(message, charp, 0644);
-MODULE_PARM_DESC(message, "Custom greeting message");
+MODULE_PARM_DESC(message, "Custom greeting message (NULL for default)");
+
 
 static int __init helloinit(void)
 {

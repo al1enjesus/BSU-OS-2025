@@ -27,6 +27,9 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
         "Module loaded at: %lu jiffies\n"
         "Read count: %d\n",
         load_time, read_count);
+    if (len >= sizeof(buf))
+        len = sizeof(buf) - 1;
+
 
     if (copy_to_user(ubuf, buf, len))
         return -EFAULT;

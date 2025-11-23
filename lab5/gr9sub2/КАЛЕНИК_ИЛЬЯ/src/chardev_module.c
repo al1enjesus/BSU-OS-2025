@@ -64,7 +64,12 @@ static ssize_t dev_write(struct file *file, const char __user *buf,
         return -EFAULT;
     }
     *off += bytes_to_write;
-    buffer_size = max(buffer_size, (int)(*off));
+    
+    if (*off > buffer_size) {
+    memset(device_buffer + buffer_size, 0, *off - buffer_size);
+    }
+    buffer_size = *off;
+
     mutex_unlock(&device_mutex);
     printk(KERN_INFO "chardev: Write request, %d bytes\n", bytes_to_write);
     return bytes_to_write;
