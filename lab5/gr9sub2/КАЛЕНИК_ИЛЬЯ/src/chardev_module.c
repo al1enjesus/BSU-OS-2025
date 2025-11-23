@@ -28,7 +28,7 @@ static ssize_t dev_read(struct file *file, char __user *buf,
     int bytes_to_read;
 
     if (*off >= buffer_size)
-        return 0; // EOF
+        return 0; 
 
     bytes_to_read = min(len, (size_t)(buffer_size - *off));
     if (copy_to_user(buf, device_buffer + *off, bytes_to_read))
@@ -40,15 +40,17 @@ static ssize_t dev_read(struct file *file, char __user *buf,
 }
 
 static ssize_t dev_write(struct file *file, const char __user *buf,
-                         size_t len, loff_t *off) {
+                        size_t len, loff_t *off)
+{
     int bytes_to_write;
-
-    bytes_to_write = min(len, (size_t)BUF_SIZE);
-    memset(device_buffer, 0, BUF_SIZE);
-    if (copy_from_user(device_buffer, buf, bytes_to_write))
+    if (*off >= BUF_SIZE)
+        return 0; // За пределами буфера
+    
+    bytes_to_write = min(len, (size_t)(BUF_SIZE - *off));
+    if (copy_from_user(device_buffer + *off, buf, bytes_to_write))
         return -EFAULT;
-
-    buffer_size = bytes_to_write;
+    *off += bytes_to_write;
+    buffer_size = max(buffer_size, (int)(*off)); // Обновляем размер
     printk(KERN_INFO "chardev: Write request, %d bytes\n", bytes_to_write);
     return bytes_to_write;
 }

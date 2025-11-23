@@ -12,13 +12,15 @@ static struct proc_dir_entry *proc_file = NULL;
 static int read_count = 0;
 static unsigned long load_time = 0;
 
-static ssize_t proc_read(struct file *file, char __user *ubuf,
-                        size_t count, loff_t *ppos) {
+sstatic ssize_t proc_read(struct file *file, char __user *ubuf,
+                        size_t count, loff_t *ppos)
+{
     char buf[MAX_SIZE];
-    int len = 0;
-    if (*ppos > 0) return 0; // Для cat: EOF после первой выдачи
-
-    read_count++;
+    int len;
+    if (*ppos > 0)
+        return 0;
+    
+    read_count++; 
     len = snprintf(buf, sizeof(buf),
         "Name: Kalenik Ilya\n"
         "Group: 9, Subgroup: 2\n"
@@ -26,10 +28,12 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
         "Read count: %d\n",
         load_time, read_count);
 
-    if (copy_to_user(ubuf, buf, len)) return -EFAULT;
+    if (copy_to_user(ubuf, buf, len))
+        return -EFAULT;
     *ppos = len;
     return len;
 }
+
 
 static const struct proc_ops proc_file_ops = {
     .proc_read = proc_read,
@@ -37,7 +41,7 @@ static const struct proc_ops proc_file_ops = {
 
 static int __init proc_module_init(void) {
     printk(KERN_INFO "proc_module: Initializing\n");
-    load_time = jiffies; // Сохраняем время загрузки
+    load_time = jiffies; 
     proc_file = proc_create(PROC_NAME, 0444, NULL, &proc_file_ops);
     if (!proc_file) {
         printk(KERN_ERR "proc_module: Failed to create /proc/%s\n", PROC_NAME);

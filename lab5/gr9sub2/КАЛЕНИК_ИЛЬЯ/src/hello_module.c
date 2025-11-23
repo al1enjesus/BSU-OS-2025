@@ -1,7 +1,7 @@
 #include <linux/module.h>       // Для всех модулей
-#include <linux/kernel.h>       // Для KERN_INFO
-#include <linux/init.h>         // Макросы init и exit
-#include <linux/moduleparam.h>  // Для module_param
+#include <linux/kernel.h>       
+#include <linux/init.h>         
+#include <linux/moduleparam.h>  
 
 static char *message = NULL;
 module_param(message, charp, 0644);
