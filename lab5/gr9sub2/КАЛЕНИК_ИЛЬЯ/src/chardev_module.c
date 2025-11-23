@@ -64,7 +64,7 @@ static ssize_t dev_write(struct file *file, const char __user *buf,
         return -EFAULT;
     }
     *off += bytes_to_write;
-    
+    // If writing starts past old buffer_size, fill gap with zeros (sparse write behavior)
     if (*off > buffer_size) {
     memset(device_buffer + buffer_size, 0, *off - buffer_size);
     }
