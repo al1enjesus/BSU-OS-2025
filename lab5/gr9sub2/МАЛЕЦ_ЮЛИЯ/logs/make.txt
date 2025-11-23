@@ -1,0 +1,9 @@
+$ make
+Building kernel modules...
+make -C /lib/modules/6.8.0-79-generic/build M=/home/justli/lab5 modules
+make[1]: Entering directory '/usr/src/linux-headers-6.8.0-79-generic'
+make[1]: Leaving directory '/usr/src/linux-headers-6.8.0-79-generic'
+
+✓ Modules built successfully!
+  To load: sudo insmod <module>.ko
+  To view logs: dmesg | tail

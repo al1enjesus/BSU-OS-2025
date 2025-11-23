@@ -1,0 +1,23 @@
+$ sudo insmod proc_module.ko
+$ cat /proc/student_info
+Name: Malets Julia
+Group: 9, Subgroup: 2
+Module loaded at: 4313327194 jiffies
+Read count: 1
+$ cat /proc/student_info
+Name: Malets Julia
+Group: 9, Subgroup: 2
+Module loaded at: 4313327194 jiffies
+Read count: 2
+$ cat /proc/student_info
+Name: Malets Julia
+Group: 9, Subgroup: 2
+Module loaded at: 4313327194 jiffies
+Read count: 3
+$ sudo rmmod proc_module
+$ sudo dmesg | tail -5
+[18538.290310] hello_module: Goodbye from Malets Julia module!
+[18658.716114] proc_module: Initializing
+[18658.716129] proc_module: Created /proc/student_info
+[18676.903917] proc_module: Removed /proc/student_info
+[18676.903924] proc_module: Exiting
