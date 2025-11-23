@@ -4,8 +4,8 @@
 #include <linux/moduleparam.h>
 
 static char *message = NULL;
-    module_param(message, charp, 0644);
-    MODULE_PARM_DESC(message, "Custom greeting message");
+module_param(message, charp, 0644);
+MODULE_PARM_DESC(message, "Custom greeting message");
 
 static int __init hello_init(void)
 {

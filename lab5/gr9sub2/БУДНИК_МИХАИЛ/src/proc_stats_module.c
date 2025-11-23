@@ -29,8 +29,12 @@ unsigned long get_memory_usage(void) {
     long total_mem_mib, free_mem_mib, used_mem_mib;
     
     si_meminfo(&si);
+    // totalram & freeram are expressed in "memory units",
+    // which can be converted to bytes via mem_unit and then
+    // to megabytes by diving by 1024 * 1024 (bytes in 1 megabyte)
     total_mem_mib = si.totalram * si.mem_unit / (1024 * 1024);
     free_mem_mib = si.freeram * si.mem_unit / (1024 * 1024);
+    // used = total - free
     used_mem_mib = total_mem_mib - free_mem_mib; 
 
     return used_mem_mib;
