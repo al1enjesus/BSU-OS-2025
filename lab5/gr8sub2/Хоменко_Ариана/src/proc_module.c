@@ -126,7 +126,7 @@ static int __init proc_module_init(void)
     printk(KERN_INFO "proc_module: Use:\n");
     printk(KERN_INFO "  cat /proc/%s          # Read value\n", PROC_NAME);
     printk(KERN_INFO "  echo 'text' > /proc/%s  # Write value\n", PROC_NAME);
-    return 0;ca
+    return 0;
 }
 
 /* ========================================

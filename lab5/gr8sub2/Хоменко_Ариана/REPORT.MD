@@ -1,7 +1,15 @@
 # Лабораторная работа 5 - Модули ядра Linux
 ## Цель: Изучить архитектуру ядра, написать простые модули, научиться взаимодействовать с user-space через /proc и /sys, создать базовый character device
 Для выполнения лабораторной работы используется VirtualBox.
-
+* Проверим ядро `uname -r`
+```
+6.14.0-35-generic
+```
+* Проверим headers `ls /lib/modules/$(uname -r)/build/Makefile && echo "✓ Headers OK"`
+```
+/lib/modules/6.14.0-35-generic/build/Makefile
+✓ Headers OK
+```
 ## Вариант 2
 ---
 ## Задание A: Hello World модуль
