@@ -63,13 +63,15 @@ static ssize_t dev_write(struct file *file, const char __user *buf,
         mutex_unlock(&device_mutex);
         return -EFAULT;
     }
-    *off += bytes_to_write;
-    // Если запись начинается за текущим концом буфера, промежуток между buffer_size и новым offset заполняется нулями (эмулируется разреженная запись)
+    *off += bytes_to_write; 
+    // Если запись начинается за текущим концом буфера,
+    // промежуток между buffer_size и новым offset
+    // заполняется нулями для предотвращения утечки данных.
     if (*off > buffer_size) {
-    memset(device_buffer + buffer_size, 0, *off - buffer_size);
+        memset(device_buffer + buffer_size, 0, *off - buffer_size);
     }
+
     buffer_size = *off;
-    // утечки данных из-за этого быть не может, поэтому ошибки тут нет
 
     mutex_unlock(&device_mutex);
     printk(KERN_INFO "chardev: Write request, %d bytes\n", bytes_to_write);
