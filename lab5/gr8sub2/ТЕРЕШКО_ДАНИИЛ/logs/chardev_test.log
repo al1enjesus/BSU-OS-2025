@@ -1,0 +1,19 @@
+[ 2965.438969] chardev: Initializing character device
+[ 2965.438976] chardev: Registered with major number 240, minor 0
+[ 2965.438996] chardev: Device registered successfully
+[ 2965.438997] chardev: Create device with: sudo mknod /dev/mychardev c 240 0
+[ 3361.856532] chardev: Device opened
+[ 3361.856546] chardev: Write 34 bytes: 'Test message from Tereshko Daniil
+               '
+[ 3361.856550] chardev: Device closed
+[ 3456.599000] chardev: Device opened
+[ 3456.599012] chardev: Read 34 bytes from offset 0
+[ 3456.599377] chardev: Device closed
+[ 3496.683773] chardev: Device opened
+[ 3496.683784] chardev: Write 24 bytes: 'New data for the device
+               '
+[ 3496.683788] chardev: Device closed
+[ 3506.073905] chardev: Device opened
+[ 3506.073918] chardev: Read 24 bytes from offset 0
+[ 3506.073952] chardev: Device closed
+[ 3588.594396] chardev: Device unregistered and resources freed

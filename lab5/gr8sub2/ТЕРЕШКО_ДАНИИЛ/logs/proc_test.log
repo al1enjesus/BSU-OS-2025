@@ -1,0 +1,7 @@
+[ 2357.824848] proc_module: Initializing
+[ 2357.824879] proc_module: Created /proc/student_info
+[ 2357.824881] proc_module: Load time: 4297024819 jiffies
+[ 2544.199827] proc_module: File read, count: 1
+[ 2564.354677] proc_module: File read, count: 2
+[ 2602.833125] proc_module: Removed /proc/student_info
+[ 2602.833130] proc_module: Total reads during lifetime: 2
