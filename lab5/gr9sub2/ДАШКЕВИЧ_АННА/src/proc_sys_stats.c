@@ -4,80 +4,92 @@
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 #include <linux/jiffies.h>
-#include <linux/sched/signal.h>  // for_each_process
-#include <linux/mm.h>            // si_meminfo
+#include <linux/sched/signal.h>
+#include <linux/mm.h>
 #include <linux/slab.h>
 
 #define PROC_NAME "sys_stats"
+#define KBUF_SIZE 512
 
 static struct proc_dir_entry *proc_file;
 
-/*
- * Функция чтения: cat /proc/sys_stats
- */
+static char *kbuf;
+static int   kbuf_len;
+
 static ssize_t proc_read(struct file *file, char __user *ubuf,
                          size_t count, loff_t *ppos)
 {
-    char *kbuf;
-    int len = 0;
+    size_t to_copy;
     struct sysinfo i;
     unsigned long uptime_sec;
     unsigned long total_procs = 0;
     struct task_struct *task;
 
-    /* Чтобы не печатать снова и снова при одном cat */
-    if (*ppos > 0)
+    if (!ubuf)
+        return -EFAULT;
+
+    if (*ppos < 0)
+        return -EINVAL;
+
+    if (*ppos == 0) {
+        for_each_process(task) {
+            total_procs++;
+        }
+
+        si_meminfo(&i);
+        {
+            unsigned long total_ram_mb = (i.totalram * i.mem_unit) >> 20;
+            unsigned long free_ram_mb  = (i.freeram  * i.mem_unit) >> 20;
+            unsigned long used_ram_mb  = total_ram_mb - free_ram_mb;
+
+            uptime_sec = jiffies_to_msecs(get_jiffies_64()) / 1000;
+
+            if (kbuf) {
+                kfree(kbuf);
+                kbuf = NULL;
+                kbuf_len = 0;
+            }
+
+            kbuf = kmalloc(KBUF_SIZE, GFP_KERNEL);
+            if (!kbuf) {
+                pr_err("proc_sys_stats: failed to allocate kbuf\n");
+                return -ENOMEM;
+            }
+
+            kbuf_len = snprintf(kbuf, KBUF_SIZE,
+                                "Processes: %lu\n"
+                                "Memory Used: %lu MB\n"
+                                "System Uptime: %lu seconds\n",
+                                total_procs,
+                                used_ram_mb,
+                                uptime_sec);
+
+            if (kbuf_len < 0) {
+                pr_err("proc_sys_stats: snprintf failed\n");
+                kfree(kbuf);
+                kbuf = NULL;
+                kbuf_len = 0;
+                return -EFAULT;
+            }
+
+            if (kbuf_len > KBUF_SIZE)
+                kbuf_len = KBUF_SIZE;
+        }
+    }
+
+    if (!kbuf || kbuf_len <= 0)
         return 0;
 
-    /* Считаем количество процессов */
-    for_each_process(task) {
-        total_procs++;
-    }
+    if (*ppos >= kbuf_len)
+        return 0;   
 
-    /* Получаем инфу о памяти */
-    si_meminfo(&i);
-    /*
-     * i.totalram, i.freeram, i.bufferram и т.д. — в страницах.
-     * Переведём в МБ примерно.
-     */
-    unsigned long total_ram_mb = (i.totalram * 4) / 1024;   // при PAGE_SIZE=4096
-    unsigned long free_ram_mb  = (i.freeram * 4) / 1024;
-    unsigned long used_ram_mb  = total_ram_mb - free_ram_mb;
+    to_copy = min_t(size_t, count, kbuf_len - *ppos);
 
-    /* Uptime через jiffies */
-    uptime_sec = jiffies_to_msecs(get_jiffies_64()) / 1000;
-
-    /* Выделяем временный буфер в kernel-space */
-    kbuf = kmalloc(512, GFP_KERNEL);
-    if (!kbuf)
-        return -ENOMEM;
-
-    len = snprintf(kbuf, 512,
-                   "Processes: %lu\n"
-                   "Memory Used: %lu MB\n"
-                   "System Uptime: %lu seconds\n",
-                   total_procs,
-                   used_ram_mb,
-                   uptime_sec);
-
-    if (len < 0) {
-        kfree(kbuf);
+    if (copy_to_user(ubuf, kbuf + *ppos, to_copy))
         return -EFAULT;
-    }
 
-    if (len > count) {
-        kfree(kbuf);
-        return -EINVAL; // буфер юзера слишком маленький
-    }
-
-    if (copy_to_user(ubuf, kbuf, len)) {
-        kfree(kbuf);
-        return -EFAULT;
-    }
-
-    kfree(kbuf);
-    *ppos = len;
-    return len;
+    *ppos += to_copy;
+    return to_copy;
 }
 
 static const struct proc_ops proc_file_ops = {
@@ -86,13 +98,16 @@ static const struct proc_ops proc_file_ops = {
 
 static int __init proc_sys_stats_init(void)
 {
+    kbuf     = NULL;
+    kbuf_len = 0;
+
     proc_file = proc_create(PROC_NAME, 0444, NULL, &proc_file_ops);
     if (!proc_file) {
-        printk(KERN_ERR "proc_sys_stats: failed to create /proc/%s\n", PROC_NAME);
+        pr_err("proc_sys_stats: failed to create /proc/%s\n", PROC_NAME);
         return -ENOMEM;
     }
 
-    printk(KERN_INFO "proc_sys_stats: /proc/%s created\n", PROC_NAME);
+    pr_info("proc_sys_stats: /proc/%s created\n", PROC_NAME);
     return 0;
 }
 
@@ -100,7 +115,14 @@ static void __exit proc_sys_stats_exit(void)
 {
     if (proc_file) {
         proc_remove(proc_file);
-        printk(KERN_INFO "proc_sys_stats: /proc/%s removed\n", PROC_NAME);
+        proc_file = NULL;
+        pr_info("proc_sys_stats: /proc/%s removed\n", PROC_NAME);
+    }
+
+    if (kbuf) {
+        kfree(kbuf);
+        kbuf = NULL;
+        kbuf_len = 0;
     }
 }
 
@@ -109,5 +131,5 @@ module_exit(proc_sys_stats_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Anya");
-MODULE_DESCRIPTION("/proc/sys_stats: simple system statistics");
-MODULE_VERSION("1.0");
+MODULE_DESCRIPTION("/proc/sys_stats: simple system statistics (partial read supported)");
+MODULE_VERSION("1.2");

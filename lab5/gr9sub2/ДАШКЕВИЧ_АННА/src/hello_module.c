@@ -8,18 +8,15 @@ MODULE_AUTHOR("Anya");
 MODULE_DESCRIPTION("Hello World Kernel Module");
 MODULE_VERSION("1.0");
 
-/* Параметр message: по умолчанию NULL => не задан */
 static char *message = NULL;
 module_param(message, charp, 0444);
 MODULE_PARM_DESC(message, "Custom greeting message");
 
 static int __init hello_init(void)
 {
-    if (message == NULL) {
-        /* Параметр НЕ задан — дефолтное сообщение (для теста 1) */
+    if (!message) {
         printk(KERN_INFO "Hello from Anya module!\n");
     } else {
-        /* Параметр задан — выводим его вместо дефолтного (для теста 4) */
         printk(KERN_INFO "Hello Module: %s\n", message);
     }
 
