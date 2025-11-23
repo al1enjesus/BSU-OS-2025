@@ -23,15 +23,15 @@ clean:
 # Тесты
 test-all:
 	# Тест A
-	sudo insmod hello_module.ko message="Test"
-	sudo rmmod hello_module
+	sudo insmod hello_module.ko message="Test" && \
+	sudo rmmod hello_module && \
 	# Тест B
-	sudo insmod config_module.ko
-	echo "TestConfig" | sudo tee /proc/my_config
-	cat /proc/my_config
-	sudo rmmod config_module
+	sudo insmod config_module.ko && \
+	echo "TestConfig" | sudo tee /proc/my_config && \
+	cat /proc/my_config && \
+	sudo rmmod config_module && \
 	# Тест C
-	sudo insmod stats_module.ko
-	cat /proc/sys_stats
-	sudo rmmod stats_module
+	sudo insmod stats_module.ko && \
+	cat /proc/sys_stats && \
+	sudo rmmod stats_module && \
 	dmesg | tail -10
