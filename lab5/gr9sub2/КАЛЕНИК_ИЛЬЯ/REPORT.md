@@ -71,7 +71,7 @@ Read count: 2
 Name: Kalenik Ilya
 Group: 9, Subgroup: 2
 Module loaded at: 4312756964 jiffies
-Read count: 2
+Read count: 3
 ```
 
 Выгружаю модуль: sudo rmmod proc_module.ko 

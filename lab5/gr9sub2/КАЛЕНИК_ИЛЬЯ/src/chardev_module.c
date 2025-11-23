@@ -4,6 +4,8 @@
 #include <linux/fs.h>
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
+#include <linux/mutex.h>
+static DEFINE_MUTEX(device_mutex);
 
 #define DEVICE_NAME "mychardev"
 #define BUF_SIZE 1024
@@ -24,33 +26,46 @@ static int dev_release(struct inode *inode, struct file *file) {
 }
 
 static ssize_t dev_read(struct file *file, char __user *buf,
-                        size_t len, loff_t *off) {
+                        size_t len, loff_t *off)
+{
     int bytes_to_read;
 
+    
     if (*off >= buffer_size)
         return 0; 
 
     bytes_to_read = min(len, (size_t)(buffer_size - *off));
-    if (copy_to_user(buf, device_buffer + *off, bytes_to_read))
+
+    // Блокируем доступ к буферу для потокобезопасности
+    mutex_lock(&device_mutex);
+    if (copy_to_user(buf, device_buffer + *off, bytes_to_read)) {
+        mutex_unlock(&device_mutex);
         return -EFAULT;
+    }
+    mutex_unlock(&device_mutex);
 
     *off += bytes_to_read;
     printk(KERN_INFO "chardev: Read request, %d bytes\n", bytes_to_read);
     return bytes_to_read;
 }
 
+
 static ssize_t dev_write(struct file *file, const char __user *buf,
                         size_t len, loff_t *off)
 {
     int bytes_to_write;
     if (*off >= BUF_SIZE)
-        return 0; // За пределами буфера
-    
+        return 0;
+
     bytes_to_write = min(len, (size_t)(BUF_SIZE - *off));
-    if (copy_from_user(device_buffer + *off, buf, bytes_to_write))
+    mutex_lock(&device_mutex);
+    if (copy_from_user(device_buffer + *off, buf, bytes_to_write)) {
+        mutex_unlock(&device_mutex);
         return -EFAULT;
+    }
     *off += bytes_to_write;
-    buffer_size = max(buffer_size, (int)(*off)); // Обновляем размер
+    buffer_size = max(buffer_size, (int)(*off));
+    mutex_unlock(&device_mutex);
     printk(KERN_INFO "chardev: Write request, %d bytes\n", bytes_to_write);
     return bytes_to_write;
 }

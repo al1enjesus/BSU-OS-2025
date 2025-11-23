@@ -12,7 +12,7 @@ static struct proc_dir_entry *proc_file = NULL;
 static int read_count = 0;
 static unsigned long load_time = 0;
 
-sstatic ssize_t proc_read(struct file *file, char __user *ubuf,
+static ssize_t proc_read(struct file *file, char __user *ubuf,
                         size_t count, loff_t *ppos)
 {
     char buf[MAX_SIZE];
