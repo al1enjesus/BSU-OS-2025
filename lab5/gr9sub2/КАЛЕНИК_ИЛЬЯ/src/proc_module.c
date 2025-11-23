@@ -27,9 +27,13 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
         "Module loaded at: %lu jiffies\n"
         "Read count: %d\n",
         load_time, read_count);
-    if (len >= sizeof(buf))
+    len = snprintf(buf, sizeof(buf), ...);
+    if (len >= sizeof(buf)) {
+    // Строка была обрезана по размеру буфера, возвращаем только допустимый объём
         len = sizeof(buf) - 1;
-
+    
+        printk(KERN_WARNING "proc_module: /proc/student_info output truncated\n");
+    }
 
     if (copy_to_user(ubuf, buf, len))
         return -EFAULT;
