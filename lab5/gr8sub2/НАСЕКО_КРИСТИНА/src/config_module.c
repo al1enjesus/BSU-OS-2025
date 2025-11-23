@@ -127,3 +127,4 @@ module_exit(config_exit);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Chris");
 MODULE_DESCRIPTION("Lab 5 Variant 2 Task B: Writable Proc File");
+MODULE_VERSION("1.0");
