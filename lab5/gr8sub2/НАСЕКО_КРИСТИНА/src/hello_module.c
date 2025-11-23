@@ -27,7 +27,13 @@ static int __init hello_init(void)
 
 static void __exit hello_exit(void)
 {
-    printk(KERN_INFO "hello_module: Goodbye from Chris module!\n");
+    // Прощальное сообщение, которое зависит от того, был ли задан параметр message при insmod.
+    // ЭТА ФУНКЦИЯ НЕ МОЖЕТ ПОЛУЧИТЬ ПАРАМЕТР ИЗ КОМАНДЫ RMMOD.
+    if (message) {
+        printk(KERN_INFO "hello_module: Goodbye! Module was running in custom mode.\n");
+    } else {
+        printk(KERN_INFO "hello_module: Goodbye from Chris module!\n");
+    }
 }
 
 module_init(hello_init);
