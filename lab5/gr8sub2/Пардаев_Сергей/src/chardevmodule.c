@@ -3,6 +3,7 @@
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include <linux/mutex.h>
 #include <linux/slab.h>
 #include <linux/uaccess.h>
 
@@ -13,6 +14,8 @@ static dev_t devnum;
 static struct cdev mycdev;
 static char device_buffer[BUFSIZE];
 static int buffersize = 0;
+
+static DEFINE_MUTEX(chardev_mutex);
 
 static int dev_open(struct inode *inode, struct file *file) {
   printk(KERN_INFO "chardev: Device opened\n");
@@ -26,26 +29,57 @@ static int dev_release(struct inode *inode, struct file *file) {
 
 static ssize_t dev_read(struct file *file, char __user *buf, size_t len,
                         loff_t *off) {
-  if (*off >= buffersize)
-    return 0;
-  if (len > buffersize - *off)
-    len = buffersize - *off;
-  if (copy_to_user(buf, device_buffer + *off, len))
-    return -EFAULT;
-  *off += len;
-  printk(KERN_INFO "chardev: Read %zu bytes\n", len);
-  return len;
+  ssize_t ret = 0;
+  mutex_lock(&chardev_mutex);
+
+  if (*off >= buffersize) {
+    ret = 0;
+  } else {
+    if (len > buffersize - *off)
+      len = buffersize - *off;
+    if (copy_to_user(buf, device_buffer + *off, len))
+      ret = -EFAULT;
+    else {
+      *off += len;
+      ret = len;
+      printk(KERN_INFO "chardev: Read %zu bytes\n", len);
+    }
+  }
+
+  mutex_unlock(&chardev_mutex);
+  return ret;
 }
 
 static ssize_t dev_write(struct file *file, const char __user *buf, size_t len,
                          loff_t *off) {
-  if (len > BUFSIZE)
-    len = BUFSIZE;
-  if (copy_from_user(device_buffer, buf, len))
-    return -EFAULT;
-  buffersize = len;
-  printk(KERN_INFO "chardev: Written %zu bytes\n", len);
-  return len;
+  size_t to_write;
+  ssize_t ret = 0;
+
+  mutex_lock(&chardev_mutex);
+
+  if (*off >= BUFSIZE) {
+    ret = -ENOSPC;
+  } else {
+    if (*off + len > BUFSIZE)
+      to_write = BUFSIZE - *off;
+    else
+      to_write = len;
+    if (to_write == 0)
+      ret = -ENOSPC;
+    else if (copy_from_user(device_buffer + *off, buf, to_write))
+      ret = -EFAULT;
+    else {
+      *off += to_write;
+      if (buffersize < *off)
+        buffersize = *off;
+      printk(KERN_INFO "chardev: Written %zu bytes at offset %lld\n", to_write,
+             *off - to_write);
+      ret = to_write;
+    }
+  }
+
+  mutex_unlock(&chardev_mutex);
+  return ret;
 }
 
 static const struct file_operations fops = {

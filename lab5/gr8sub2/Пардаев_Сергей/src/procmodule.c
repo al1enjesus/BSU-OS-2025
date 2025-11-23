@@ -2,6 +2,7 @@
 #include <linux/jiffies.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include <linux/mutex.h>
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 
@@ -12,17 +13,24 @@ static struct proc_dir_entry *procfile = NULL;
 static int readcount = 0;
 static unsigned long loadtime = 0;
 
+static DEFINE_MUTEX(proc_mutex);
+
 static ssize_t procread(struct file *file, char __user *ubuf, size_t count,
                         loff_t *ppos) {
   char buf[MAXSIZE];
   int len = 0;
+
   if (*ppos > 0)
     return 0;
+
+  mutex_lock(&proc_mutex);
   readcount++;
   len = snprintf(buf, sizeof(buf),
                  "Name: Pardaev Sergey\nGroup: 6, Subgroup: 1\nModule loaded "
                  "at %lu jiffies\nRead count: %d\n",
                  loadtime, readcount);
+  mutex_unlock(&proc_mutex);
+
   if (copy_to_user(ubuf, buf, len))
     return -EFAULT;
   *ppos = len;
