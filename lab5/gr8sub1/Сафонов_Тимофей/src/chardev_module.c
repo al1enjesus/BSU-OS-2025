@@ -4,6 +4,7 @@
 #include <linux/fs.h>
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
+#include <linux/slab.h>
 
 #define DEVICE_NAME "mychardev"
 #define BUF_SIZE 1024
@@ -29,26 +30,38 @@ static ssize_t dev_read(struct file *file, char __user *buf,
                         size_t len, loff_t *off)
 {
     int bytes_to_read;
+    int ret = 0;
 
     if (*off < 0 || *off >= BUF_SIZE)
         return -EINVAL;
 
-    if(*off >= buffer_size){
+    if (*off >= buffer_size) {
         return 0;
     }
+    
     bytes_to_read = min_t(size_t, len, buffer_size - *off);
     bytes_to_read = min_t(size_t, bytes_to_read, BUF_SIZE - *off);
-    if (copy_to_user(buf, device_buffer + *off, bytes_to_read))
-        return -EFAULT;
-    *off += bytes_to_read;
-    printk(KERN_INFO "chardev: Read request, Read %d bytes from offset %lld \n",bytes_to_read, *off - bytes_to_read);
-    return bytes_to_read;
+    
+    if (bytes_to_read <= 0)
+        return 0;
+        
+    if (copy_to_user(buf, device_buffer + *off, bytes_to_read)) {
+        ret = -EFAULT;
+    } else {
+        *off += bytes_to_read;
+        ret = bytes_to_read;
+        printk(KERN_INFO "chardev: Read %d bytes from offset %lld\n", 
+               bytes_to_read, *off - bytes_to_read);
+    }
+    
+    return ret;
 }
 
 static ssize_t dev_write(struct file *file, const char __user *buf,
                          size_t len, loff_t *off)
 {
     int bytes_to_write;
+    int ret = 0;
     
     if (*off < 0 || *off >= BUF_SIZE)
         return -EINVAL;
@@ -58,21 +71,37 @@ static ssize_t dev_write(struct file *file, const char __user *buf,
     if (bytes_to_write <= 0)
         return -ENOSPC;
 
+    // БЕЗОПАСНАЯ обработка расширения буфера
     if (*off + bytes_to_write > buffer_size) {
-        if (*off > buffer_size) {
-            memset(device_buffer + buffer_size, 0, *off - buffer_size);
+        // Проверяем, что не выходим за границы буфера
+        if (*off > buffer_size && *off <= BUF_SIZE) {
+            size_t clear_size = *off - buffer_size;
+            if (buffer_size + clear_size <= BUF_SIZE) {
+                memset(device_buffer + buffer_size, 0, clear_size);
+            } else {
+                return -EINVAL;
+            }
+        } else if (*off > BUF_SIZE) {
+            return -EINVAL;
+        }
+        
+        // Проверяем новый размер буфера
+        if (*off + bytes_to_write > BUF_SIZE) {
+            return -ENOSPC;
         }
         buffer_size = *off + bytes_to_write;
     }
 
-    if (copy_from_user(device_buffer + *off, buf, bytes_to_write))
-        return -EFAULT;
-
-    *off += bytes_to_write;
-
-    printk(KERN_INFO "chardev: Write request, Write %d bytes at offset %lld\n", 
-           bytes_to_write, *off - bytes_to_write);
-    return bytes_to_write; 
+    if (copy_from_user(device_buffer + *off, buf, bytes_to_write)) {
+        ret = -EFAULT;
+    } else {
+        *off += bytes_to_write;
+        ret = bytes_to_write;
+        printk(KERN_INFO "chardev: Write %d bytes at offset %lld\n", 
+               bytes_to_write, *off - bytes_to_write);
+    }
+    
+    return ret;
 }
 
 static loff_t dev_llseek(struct file *file, loff_t offset, int whence)
@@ -115,6 +144,10 @@ static int __init chardev_init(void)
 
     printk(KERN_INFO "chardev: Initializing\n");
 
+    // Инициализация буфера при загрузке модуля
+    memset(device_buffer, 0, BUF_SIZE);
+    buffer_size = 0;
+
     ret = alloc_chrdev_region(&dev_num, 0, 1, DEVICE_NAME);
     if (ret < 0) {
         printk(KERN_ERR "chardev: Failed to allocate major number\n");
@@ -143,9 +176,12 @@ static int __init chardev_init(void)
 static void __exit chardev_exit(void)
 {
     cdev_del(&my_cdev);
-
     unregister_chrdev_region(dev_num, 1);
-
+    
+    // Очистка буфера при выгрузке
+    memset(device_buffer, 0, BUF_SIZE);
+    buffer_size = 0;
+    
     printk(KERN_INFO "chardev: Device unregistered successfully\n");
 }
 
