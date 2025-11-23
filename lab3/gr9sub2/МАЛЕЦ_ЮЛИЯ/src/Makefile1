@@ -1,0 +1,17 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11 -pthread
+TARGET = thread_race
+SOURCES = thread_race.c
+
+allone: $(TARGET)
+
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
+
+cleanone:
+	rm -f $(TARGET)
+
+runone: $(TARGET)
+	./$(TARGET) 4 1000000 atomic
+
+.PHONY: allone cleanone runone
