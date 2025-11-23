@@ -102,3 +102,4 @@ module_exit(stats_exit);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Chris");
 MODULE_DESCRIPTION("Lab 5 Variant 2 Task C: System Statistics");
+MODULE_VERSION("1.0");
