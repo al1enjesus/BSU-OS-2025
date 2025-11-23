@@ -1,0 +1,988 @@
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./A_mem --size-mb=1 --show-maps
+--- Before allocations ---
+VmSize: 6364 kB
+VmRSS : 3244 kB
+PSS   : 307 kB
+USS   : 236 kB (Private_Clean 4, Private_Dirty 232)
+--- After allocations (touched) ---
+VmSize: 8416 kB
+VmRSS : 5420 kB
+PSS   : 2372 kB
+USS   : 2292 kB (Private_Clean 4, Private_Dirty 2288)
+
+ΔVmRSS: 2176 kB for 1 MB heap+mmap touched
+ΔPSS  : 2065 kB
+ΔUSS  : 2056 kB
+===== /proc/self/maps =====
+5844a2e99000-5844a2e9b000 r--p 00000000 103:05 1062512                   /home/discessit/EDU/ospractise/lab1/lab4/src/A_mem
+5844a2e9b000-5844a2e9d000 r-xp 00002000 103:05 1062512                   /home/discessit/EDU/ospractise/lab1/lab4/src/A_mem
+5844a2e9d000-5844a2e9e000 r--p 00004000 103:05 1062512                   /home/discessit/EDU/ospractise/lab1/lab4/src/A_mem
+5844a2e9e000-5844a2e9f000 r--p 00004000 103:05 1062512                   /home/discessit/EDU/ospractise/lab1/lab4/src/A_mem
+5844a2e9f000-5844a2ea0000 rw-p 00005000 103:05 1062512                   /home/discessit/EDU/ospractise/lab1/lab4/src/A_mem
+5844cbdb2000-5844cbdd3000 rw-p 00000000 00:00 0                          [heap]
+7a75ea700000-7a75ea800000 rw-p 00000000 00:00 0 
+7a75ea800000-7a75ea828000 r--p 00000000 103:05 4365034                   /usr/lib/x86_64-linux-gnu/libc.so.6
+7a75ea828000-7a75ea9b0000 r-xp 00028000 103:05 4365034                   /usr/lib/x86_64-linux-gnu/libc.so.6
+7a75ea9b0000-7a75ea9ff000 r--p 001b0000 103:05 4365034                   /usr/lib/x86_64-linux-gnu/libc.so.6
+7a75ea9ff000-7a75eaa03000 r--p 001fe000 103:05 4365034                   /usr/lib/x86_64-linux-gnu/libc.so.6
+7a75eaa03000-7a75eaa05000 rw-p 00202000 103:05 4365034                   /usr/lib/x86_64-linux-gnu/libc.so.6
+7a75eaa05000-7a75eaa12000 rw-p 00000000 00:00 0 
+7a75eaaff000-7a75eac00000 rw-p 00000000 00:00 0 
+7a75eac00000-7a75eac9d000 r--p 00000000 103:05 4337397                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+7a75eac9d000-7a75eade5000 r-xp 0009d000 103:05 4337397                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+7a75eade5000-7a75eae6c000 r--p 001e5000 103:05 4337397                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+7a75eae6c000-7a75eae77000 r--p 0026b000 103:05 4337397                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+7a75eae77000-7a75eae7a000 rw-p 00276000 103:05 4337397                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+7a75eae7a000-7a75eae7e000 rw-p 00000000 00:00 0 
+7a75eaf21000-7a75eaf26000 rw-p 00000000 00:00 0 
+7a75eaf26000-7a75eaf36000 r--p 00000000 103:05 4365037                   /usr/lib/x86_64-linux-gnu/libm.so.6
+7a75eaf36000-7a75eafb5000 r-xp 00010000 103:05 4365037                   /usr/lib/x86_64-linux-gnu/libm.so.6
+7a75eafb5000-7a75eb00d000 r--p 0008f000 103:05 4365037                   /usr/lib/x86_64-linux-gnu/libm.so.6
+7a75eb00d000-7a75eb00e000 r--p 000e7000 103:05 4365037                   /usr/lib/x86_64-linux-gnu/libm.so.6
+7a75eb00e000-7a75eb00f000 rw-p 000e8000 103:05 4365037                   /usr/lib/x86_64-linux-gnu/libm.so.6
+7a75eb00f000-7a75eb013000 r--p 00000000 103:05 4337004                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7a75eb013000-7a75eb037000 r-xp 00004000 103:05 4337004                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7a75eb037000-7a75eb03b000 r--p 00028000 103:05 4337004                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7a75eb03b000-7a75eb03c000 r--p 0002b000 103:05 4337004                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7a75eb03c000-7a75eb03d000 rw-p 0002c000 103:05 4337004                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7a75eb04f000-7a75eb051000 rw-p 00000000 00:00 0 
+7a75eb051000-7a75eb053000 r--p 00000000 00:00 0                          [vvar]
+7a75eb053000-7a75eb055000 r--p 00000000 00:00 0                          [vvar_vclock]
+7a75eb055000-7a75eb057000 r-xp 00000000 00:00 0                          [vdso]
+7a75eb057000-7a75eb058000 r--p 00000000 103:05 4365031                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7a75eb058000-7a75eb083000 r-xp 00001000 103:05 4365031                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7a75eb083000-7a75eb08d000 r--p 0002c000 103:05 4365031                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7a75eb08d000-7a75eb08f000 r--p 00036000 103:05 4365031                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7a75eb08f000-7a75eb091000 rw-p 00038000 103:05 4365031                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fff7430d000-7fff7432e000 rw-p 00000000 00:00 0                          [stack]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+===== end maps =====
+PID: 73453. Press ENTER to exit...
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./A_mem --size-mb=1 --only-mmap
+--- Before allocations ---
+VmSize: 6364 kB
+VmRSS : 3288 kB
+PSS   : 304 kB
+USS   : 232 kB (Private_Clean 24, Private_Dirty 208)
+--- After allocations (touched) ---
+VmSize: 8416 kB
+VmRSS : 5464 kB
+PSS   : 2369 kB
+USS   : 2288 kB (Private_Clean 24, Private_Dirty 2264)
+
+ΔVmRSS: 2176 kB for 1 MB heap+mmap touched
+ΔPSS  : 2065 kB
+ΔUSS  : 2056 kB
+PID: 76235. Press ENTER to exit...
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./A_mem --size-mb=1 --only-heap
+--- Before allocations ---
+VmSize: 6364 kB
+VmRSS : 3288 kB
+PSS   : 304 kB
+USS   : 232 kB (Private_Clean 24, Private_Dirty 208)
+--- After allocations (touched) ---
+VmSize: 8416 kB
+VmRSS : 5464 kB
+PSS   : 2369 kB
+USS   : 2288 kB (Private_Clean 24, Private_Dirty 2264)
+
+ΔVmRSS: 2176 kB for 1 MB heap+mmap touched
+ΔPSS  : 2065 kB
+ΔUSS  : 2056 kB
+PID: 77833. Press ENTER to exit...
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./A_mem --size-mb=64 --only-mmap --no-touch
+--- Before allocations ---
+VmSize: 6364 kB
+VmRSS : 3264 kB
+PSS   : 307 kB
+USS   : 236 kB (Private_Clean 24, Private_Dirty 212)
+--- After allocations (touched) ---
+VmSize: 137440 kB
+VmRSS : 134208 kB
+PSS   : 131396 kB
+USS   : 131316 kB (Private_Clean 24, Private_Dirty 131292)
+
+ΔVmRSS: 130944 kB for 64 MB heap+mmap touched
+ΔPSS  : 131089 kB
+ΔUSS  : 131080 kB
+PID: 78132. Press ENTER to exit...
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./B_io_bench --size-mb=100 --buffers=512,4096,65536 | column -s, -t
+mode        buf    size_mb  write_sec  read_sec   write_calls  read_calls
+stdio_char  1      100      0.688811   0.0410098  104857600    25600
+stdio_buf   512    100      1.02745    0.0433162  204800       204800
+stdio_buf   4096   100      0.196086   0.036875   25600        25600
+stdio_buf   65536  100      0.0843926  0.0291157  1600         1600
+sys         512    100      1.0722     0.17577    204800       204800
+sys         4096   100      0.249285   0.0314038  25600        25600
+sys         65536  100      0.188179   0.0236734  1600         1600
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ strace -c ./B_io_bench --size-mb=100 --buffers=65536 --no-stdio-char
+mode,buf,size_mb,write_sec,read_sec,write_calls,read_calls
+stdio_buf,65536,100,0.134294,0.0629481,1600,1600
+sys,65536,100,0.204931,0.0699485,1600,1600
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 57.39    0.182123          56      3203           write
+ 19.08    0.060558          18      3206           read
+ 15.21    0.048279       24139         2           unlink
+  7.73    0.024541       24541         1           fsync
+  0.25    0.000796         796         1           execve
+  0.13    0.000413          45         9           openat
+  0.11    0.000340          15        22           mmap
+  0.04    0.000125          13         9           close
+  0.02    0.000053          10         5           brk
+  0.01    0.000046           6         7           fstat
+  0.01    0.000041           6         6           mprotect
+  0.00    0.000013           6         2           pread64
+  0.00    0.000013          13         1         1 access
+  0.00    0.000007           7         1           arch_prctl
+  0.00    0.000007           7         1           set_tid_address
+  0.00    0.000007           7         1           rseq
+  0.00    0.000006           6         1           set_robust_list
+  0.00    0.000000           0         1           munmap
+  0.00    0.000000           0         1           futex
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.317368          48      6482         1 total
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ 
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./C_io_monitor --iters=10 --interval=1 | column -s, -t
+time                          dev        read_MBps  write_MBps  util_%  await_ms
+1.0                           loop0      0.0        0.0         0.0     0.0
+1.0                           loop1      0.0        0.0         0.0     0.0
+1.0                           loop10     0.0        0.0         0.0     0.0
+1.0                           loop11     0.0        0.0         0.0     0.0
+1.0                           loop12     0.0        0.0         0.0     0.0
+1.0                           loop13     0.0        0.0         0.0     0.0
+1.0                           loop14     0.0        0.0         0.0     0.0
+1.0                           loop15     0.0        0.0         0.0     0.0
+1.0                           loop16     0.0        0.0         0.0     0.0
+1.0                           loop17     0.0        0.0         0.0     0.0
+1.0                           loop18     0.0        0.0         0.0     0.0
+1.0                           loop19     0.0        0.0         0.0     0.0
+1.0                           loop2      0.0        0.0         0.0     0.0
+1.0                           loop20     0.0        0.0         0.0     0.0
+1.0                           loop21     0.0        0.0         0.0     0.0
+1.0                           loop22     0.0        0.0         0.0     0.0
+1.0                           loop23     0.0        0.0         0.0     0.0
+1.0                           loop24     0.0        0.0         0.0     0.0
+1.0                           loop25     0.0        0.0         0.0     0.0
+1.0                           loop26     0.0        0.0         0.0     0.0
+1.0                           loop27     0.0        0.0         0.0     0.0
+1.0                           loop28     0.0        0.0         0.0     0.0
+1.0                           loop29     0.0        0.0         0.0     0.0
+1.0                           loop3      0.0        0.0         0.0     0.0
+1.0                           loop30     0.0        0.0         0.0     0.0
+1.0                           loop4      0.0        0.0         0.0     0.0
+1.0                           loop5      0.0        0.0         0.0     0.0
+1.0                           loop6      0.0        0.0         0.0     0.0
+1.0                           loop7      0.0        0.0         0.0     0.0
+1.0                           loop8      0.0        0.0         0.0     0.0
+1.0                           loop9      0.0        0.0         0.0     0.0
+1.0                           nvme0n1    0.0        0.0         0.1     0.0
+1.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+1.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+1.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+1.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+1.0                           nvme0n1p5  0.0        0.0         0.1     0.0
+1.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+1.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+1.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+2.0                           loop0      0.0        0.0         0.0     0.0
+2.0                           loop1      0.0        0.0         0.0     0.0
+2.0                           loop10     0.0        0.0         0.0     0.0
+2.0                           loop11     0.0        0.0         0.0     0.0
+2.0                           loop12     0.0        0.0         0.0     0.0
+2.0                           loop13     0.0        0.0         0.0     0.0
+2.0                           loop14     0.0        0.0         0.0     0.0
+2.0                           loop15     0.0        0.0         0.0     0.0
+2.0                           loop16     0.0        0.0         0.0     0.0
+2.0                           loop17     0.0        0.0         0.0     0.0
+2.0                           loop18     0.0        0.0         0.0     0.0
+2.0                           loop19     0.0        0.0         0.0     0.0
+2.0                           loop2      0.0        0.0         0.0     0.0
+2.0                           loop20     0.0        0.0         0.0     0.0
+2.0                           loop21     0.0        0.0         0.0     0.0
+2.0                           loop22     0.0        0.0         0.0     0.0
+2.0                           loop23     0.0        0.0         0.0     0.0
+2.0                           loop24     0.0        0.0         0.0     0.0
+2.0                           loop25     0.0        0.0         0.0     0.0
+2.0                           loop26     0.0        0.0         0.0     0.0
+2.0                           loop27     0.0        0.0         0.0     0.0
+2.0                           loop28     0.0        0.0         0.0     0.0
+2.0                           loop29     0.0        0.0         0.0     0.0
+2.0                           loop3      0.0        0.0         0.0     0.0
+2.0                           loop30     0.0        0.0         0.0     0.0
+2.0                           loop4      0.0        0.0         0.0     0.0
+2.0                           loop5      0.0        0.0         0.0     0.0
+2.0                           loop6      0.0        0.0         0.0     0.0
+2.0                           loop7      0.0        0.0         0.0     0.0
+2.0                           loop8      0.0        0.0         0.0     0.0
+2.0                           loop9      0.0        0.0         0.0     0.0
+2.0                           nvme0n1    0.0        0.0         0.0     0.0
+2.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p5  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+2.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+3.0                           loop0      0.0        0.0         0.0     0.0
+3.0                           loop1      0.0        0.0         0.0     0.0
+3.0                           loop10     0.0        0.0         0.0     0.0
+3.0                           loop11     0.0        0.0         0.0     0.0
+3.0                           loop12     0.0        0.0         0.0     0.0
+3.0                           loop13     0.0        0.0         0.0     0.0
+3.0                           loop14     0.0        0.0         0.0     0.0
+3.0                           loop15     0.0        0.0         0.0     0.0
+3.0                           loop16     0.0        0.0         0.0     0.0
+3.0                           loop17     0.0        0.0         0.0     0.0
+3.0                           loop18     0.0        0.0         0.0     0.0
+3.0                           loop19     0.0        0.0         0.0     0.0
+3.0                           loop2      0.0        0.0         0.0     0.0
+3.0                           loop20     0.0        0.0         0.0     0.0
+3.0                           loop21     0.0        0.0         0.0     0.0
+3.0                           loop22     0.0        0.0         0.0     0.0
+3.0                           loop23     0.0        0.0         0.0     0.0
+3.0                           loop24     0.0        0.0         0.0     0.0
+3.0                           loop25     0.0        0.0         0.0     0.0
+3.0                           loop26     0.0        0.0         0.0     0.0
+3.0                           loop27     0.0        0.0         0.0     0.0
+3.0                           loop28     0.0        0.0         0.0     0.0
+3.0                           loop29     0.0        0.0         0.0     0.0
+3.0                           loop3      0.0        0.0         0.0     0.0
+3.0                           loop30     0.0        0.0         0.0     0.0
+3.0                           loop4      0.0        0.0         0.0     0.0
+3.0                           loop5      0.0        0.0         0.0     0.0
+3.0                           loop6      0.0        0.0         0.0     0.0
+3.0                           loop7      0.0        0.0         0.0     0.0
+3.0                           loop8      0.0        0.0         0.0     0.0
+3.0                           loop9      0.0        0.0         0.0     0.0
+3.0                           nvme0n1    0.0        0.0         0.0     0.0
+3.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p5  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+3.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+4.0                           loop0      0.0        0.0         0.0     0.0
+4.0                           loop1      0.0        0.0         0.0     0.0
+4.0                           loop10     0.0        0.0         0.0     0.0
+4.0                           loop11     0.0        0.0         0.0     0.0
+4.0                           loop12     0.0        0.0         0.0     0.0
+4.0                           loop13     0.0        0.0         0.0     0.0
+4.0                           loop14     0.0        0.0         0.0     0.0
+4.0                           loop15     0.0        0.0         0.0     0.0
+4.0                           loop16     0.0        0.0         0.0     0.0
+4.0                           loop17     0.0        0.0         0.0     0.0
+4.0                           loop18     0.0        0.0         0.0     0.0
+4.0                           loop19     0.0        0.0         0.0     0.0
+4.0                           loop2      0.0        0.0         0.0     0.0
+4.0                           loop20     0.0        0.0         0.0     0.0
+4.0                           loop21     0.0        0.0         0.0     0.0
+4.0                           loop22     0.0        0.0         0.0     0.0
+4.0                           loop23     0.0        0.0         0.0     0.0
+4.0                           loop24     0.0        0.0         0.0     0.0
+4.0                           loop25     0.0        0.0         0.0     0.0
+4.0                           loop26     0.0        0.0         0.0     0.0
+4.0                           loop27     0.0        0.0         0.0     0.0
+4.0                           loop28     0.0        0.0         0.0     0.0
+4.0                           loop29     0.0        0.0         0.0     0.0
+4.0                           loop3      0.0        0.0         0.0     0.0
+4.0                           loop30     0.0        0.0         0.0     0.0
+4.0                           loop4      0.0        0.0         0.0     0.0
+4.0                           loop5      0.0        0.0         0.0     0.0
+4.0                           loop6      0.0        0.0         0.0     0.0
+4.0                           loop7      0.0        0.0         0.0     0.0
+4.0                           loop8      0.0        0.0         0.0     0.0
+4.0                           loop9      0.0        0.0         0.0     0.0
+4.0                           nvme0n1    0.0        0.0         3.2     32.0
+4.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+4.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+4.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+4.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+4.0                           nvme0n1p5  0.0        0.0         3.2     32.0
+4.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+4.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+4.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+5.0                           loop0      0.0        0.0         0.0     0.0
+5.0                           loop1      0.0        0.0         0.0     0.0
+5.0                           loop10     0.0        0.0         0.0     0.0
+5.0                           loop11     0.0        0.0         0.0     0.0
+5.0                           loop12     0.0        0.0         0.0     0.0
+5.0                           loop13     0.0        0.0         0.0     0.0
+5.0                           loop14     0.0        0.0         0.0     0.0
+5.0                           loop15     0.0        0.0         0.0     0.0
+5.0                           loop16     0.0        0.0         0.0     0.0
+5.0                           loop17     0.0        0.0         0.0     0.0
+5.0                           loop18     0.0        0.0         0.0     0.0
+5.0                           loop19     0.0        0.0         0.0     0.0
+5.0                           loop2      0.0        0.0         0.0     0.0
+5.0                           loop20     0.0        0.0         0.0     0.0
+5.0                           loop21     0.0        0.0         0.0     0.0
+5.0                           loop22     0.0        0.0         0.0     0.0
+5.0                           loop23     0.0        0.0         0.0     0.0
+5.0                           loop24     0.0        0.0         0.0     0.0
+5.0                           loop25     0.0        0.0         0.0     0.0
+5.0                           loop26     0.0        0.0         0.0     0.0
+5.0                           loop27     0.0        0.0         0.0     0.0
+5.0                           loop28     0.0        0.0         0.0     0.0
+5.0                           loop29     0.0        0.0         0.0     0.0
+5.0                           loop3      0.0        0.0         0.0     0.0
+5.0                           loop30     0.0        0.0         0.0     0.0
+5.0                           loop4      0.0        0.0         0.0     0.0
+5.0                           loop5      0.0        0.0         0.0     0.0
+5.0                           loop6      0.0        0.0         0.0     0.0
+5.0                           loop7      0.0        0.0         0.0     0.0
+5.0                           loop8      0.0        0.0         0.0     0.0
+5.0                           loop9      0.0        0.0         0.0     0.0
+5.0                           nvme0n1    0.0        0.1         0.7     3.5
+5.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+5.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+5.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+5.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+5.0                           nvme0n1p5  0.0        0.1         0.7     3.5
+5.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+5.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+5.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+6.0                           loop0      0.0        0.0         0.0     0.0
+6.0                           loop1      0.0        0.0         0.0     0.0
+6.0                           loop10     0.0        0.0         0.0     0.0
+6.0                           loop11     0.0        0.0         0.0     0.0
+6.0                           loop12     0.0        0.0         0.0     0.0
+6.0                           loop13     0.0        0.0         0.0     0.0
+6.0                           loop14     0.0        0.0         0.0     0.0
+6.0                           loop15     0.0        0.0         0.0     0.0
+6.0                           loop16     0.0        0.0         0.0     0.0
+6.0                           loop17     0.0        0.0         0.0     0.0
+6.0                           loop18     0.0        0.0         0.0     0.0
+6.0                           loop19     0.0        0.0         0.0     0.0
+6.0                           loop2      0.0        0.0         0.0     0.0
+6.0                           loop20     0.0        0.0         0.0     0.0
+6.0                           loop21     0.0        0.0         0.0     0.0
+6.0                           loop22     0.0        0.0         0.0     0.0
+6.0                           loop23     0.0        0.0         0.0     0.0
+6.0                           loop24     0.0        0.0         0.0     0.0
+6.0                           loop25     0.0        0.0         0.0     0.0
+6.0                           loop26     0.0        0.0         0.0     0.0
+6.0                           loop27     0.0        0.0         0.0     0.0
+6.0                           loop28     0.0        0.0         0.0     0.0
+6.0                           loop29     0.0        0.0         0.0     0.0
+6.0                           loop3      0.0        0.0         0.0     0.0
+6.0                           loop30     0.0        0.0         0.0     0.0
+6.0                           loop4      0.0        0.0         0.0     0.0
+6.0                           loop5      0.0        0.0         0.0     0.0
+6.0                           loop6      0.0        0.0         0.0     0.0
+6.0                           loop7      0.0        0.0         0.0     0.0
+6.0                           loop8      0.0        0.0         0.0     0.0
+6.0                           loop9      0.0        0.0         0.0     0.0
+6.0                           nvme0n1    0.0        0.0         0.2     2.0
+6.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+6.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+6.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+6.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+6.0                           nvme0n1p5  0.0        0.0         0.2     2.0
+6.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+6.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+6.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+7.0                           loop0      0.0        0.0         0.0     0.0
+7.0                           loop1      0.0        0.0         0.0     0.0
+7.0                           loop10     0.0        0.0         0.0     0.0
+7.0                           loop11     0.0        0.0         0.0     0.0
+7.0                           loop12     0.0        0.0         0.0     0.0
+7.0                           loop13     0.0        0.0         0.0     0.0
+7.0                           loop14     0.0        0.0         0.0     0.0
+7.0                           loop15     0.0        0.0         0.0     0.0
+7.0                           loop16     0.0        0.0         0.0     0.0
+7.0                           loop17     0.0        0.0         0.0     0.0
+7.0                           loop18     0.0        0.0         0.0     0.0
+7.0                           loop19     0.0        0.0         0.0     0.0
+7.0                           loop2      0.0        0.0         0.0     0.0
+7.0                           loop20     0.0        0.0         0.0     0.0
+7.0                           loop21     0.0        0.0         0.0     0.0
+7.0                           loop22     0.0        0.0         0.0     0.0
+7.0                           loop23     0.0        0.0         0.0     0.0
+7.0                           loop24     0.0        0.0         0.0     0.0
+7.0                           loop25     0.0        0.0         0.0     0.0
+7.0                           loop26     0.0        0.0         0.0     0.0
+7.0                           loop27     0.0        0.0         0.0     0.0
+7.0                           loop28     0.0        0.0         0.0     0.0
+7.0                           loop29     0.0        0.0         0.0     0.0
+7.0                           loop3      0.0        0.0         0.0     0.0
+7.0                           loop30     0.0        0.0         0.0     0.0
+7.0                           loop4      0.0        0.0         0.0     0.0
+7.0                           loop5      0.0        0.0         0.0     0.0
+7.0                           loop6      0.0        0.0         0.0     0.0
+7.0                           loop7      0.0        0.0         0.0     0.0
+7.0                           loop8      0.0        0.0         0.0     0.0
+7.0                           loop9      0.0        0.0         0.0     0.0
+7.0                           nvme0n1    0.0        0.0         0.0     0.0
+7.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p5  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+7.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+8.0                           loop0      0.0        0.0         0.0     0.0
+8.0                           loop1      0.0        0.0         0.0     0.0
+8.0                           loop10     0.0        0.0         0.0     0.0
+8.0                           loop11     0.0        0.0         0.0     0.0
+8.0                           loop12     0.0        0.0         0.0     0.0
+8.0                           loop13     0.0        0.0         0.0     0.0
+8.0                           loop14     0.0        0.0         0.0     0.0
+8.0                           loop15     0.0        0.0         0.0     0.0
+8.0                           loop16     0.0        0.0         0.0     0.0
+8.0                           loop17     0.0        0.0         0.0     0.0
+8.0                           loop18     0.0        0.0         0.0     0.0
+8.0                           loop19     0.0        0.0         0.0     0.0
+8.0                           loop2      0.0        0.0         0.0     0.0
+8.0                           loop20     0.0        0.0         0.0     0.0
+8.0                           loop21     0.0        0.0         0.0     0.0
+8.0                           loop22     0.0        0.0         0.0     0.0
+8.0                           loop23     0.0        0.0         0.0     0.0
+8.0                           loop24     0.0        0.0         0.0     0.0
+8.0                           loop25     0.0        0.0         0.0     0.0
+8.0                           loop26     0.0        0.0         0.0     0.0
+8.0                           loop27     0.0        0.0         0.0     0.0
+8.0                           loop28     0.0        0.0         0.0     0.0
+8.0                           loop29     0.0        0.0         0.0     0.0
+8.0                           loop3      0.0        0.0         0.0     0.0
+8.0                           loop30     0.0        0.0         0.0     0.0
+8.0                           loop4      0.0        0.0         0.0     0.0
+8.0                           loop5      0.0        0.0         0.0     0.0
+8.0                           loop6      0.0        0.0         0.0     0.0
+8.0                           loop7      0.0        0.0         0.0     0.0
+8.0                           loop8      0.0        0.0         0.0     0.0
+8.0                           loop9      0.0        0.0         0.0     0.0
+8.0                           nvme0n1    0.0        0.8         4.6     34.3
+8.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+8.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+8.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+8.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+8.0                           nvme0n1p5  0.0        0.8         4.6     34.3
+8.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+8.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+8.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+9.0                           loop0      0.0        0.0         0.0     0.0
+9.0                           loop1      0.0        0.0         0.0     0.0
+9.0                           loop10     0.0        0.0         0.0     0.0
+9.0                           loop11     0.0        0.0         0.0     0.0
+9.0                           loop12     0.0        0.0         0.0     0.0
+9.0                           loop13     0.0        0.0         0.0     0.0
+9.0                           loop14     0.0        0.0         0.0     0.0
+9.0                           loop15     0.0        0.0         0.0     0.0
+9.0                           loop16     0.0        0.0         0.0     0.0
+9.0                           loop17     0.0        0.0         0.0     0.0
+9.0                           loop18     0.0        0.0         0.0     0.0
+9.0                           loop19     0.0        0.0         0.0     0.0
+9.0                           loop2      0.0        0.0         0.0     0.0
+9.0                           loop20     0.0        0.0         0.0     0.0
+9.0                           loop21     0.0        0.0         0.0     0.0
+9.0                           loop22     0.0        0.0         0.0     0.0
+9.0                           loop23     0.0        0.0         0.0     0.0
+9.0                           loop24     0.0        0.0         0.0     0.0
+9.0                           loop25     0.0        0.0         0.0     0.0
+9.0                           loop26     0.0        0.0         0.0     0.0
+9.0                           loop27     0.0        0.0         0.0     0.0
+9.0                           loop28     0.0        0.0         0.0     0.0
+9.0                           loop29     0.0        0.0         0.0     0.0
+9.0                           loop3      0.0        0.0         0.0     0.0
+9.0                           loop30     0.0        0.0         0.0     0.0
+9.0                           loop4      0.0        0.0         0.0     0.0
+9.0                           loop5      0.0        0.0         0.0     0.0
+9.0                           loop6      0.0        0.0         0.0     0.0
+9.0                           loop7      0.0        0.0         0.0     0.0
+9.0                           loop8      0.0        0.0         0.0     0.0
+9.0                           loop9      0.0        0.0         0.0     0.0
+9.0                           nvme0n1    0.0        0.0         0.2     2.0
+9.0                           nvme0n1p1  0.0        0.0         0.0     0.0
+9.0                           nvme0n1p2  0.0        0.0         0.0     0.0
+9.0                           nvme0n1p3  0.0        0.0         0.0     0.0
+9.0                           nvme0n1p4  0.0        0.0         0.0     0.0
+9.0                           nvme0n1p5  0.0        0.0         0.2     2.0
+9.0                           nvme0n1p6  0.0        0.0         0.0     0.0
+9.0                           nvme0n1p7  0.0        0.0         0.0     0.0
+9.0                           nvme0n1p8  0.0        0.0         0.0     0.0
+10.0                          loop0      0.0        0.0         0.0     0.0
+10.0                          loop1      0.0        0.0         0.0     0.0
+10.0                          loop10     0.0        0.0         0.0     0.0
+10.0                          loop11     0.0        0.0         0.0     0.0
+10.0                          loop12     0.0        0.0         0.0     0.0
+10.0                          loop13     0.0        0.0         0.0     0.0
+10.0                          loop14     0.0        0.0         0.0     0.0
+10.0                          loop15     0.0        0.0         0.0     0.0
+10.0                          loop16     0.0        0.0         0.0     0.0
+10.0                          loop17     0.0        0.0         0.0     0.0
+10.0                          loop18     0.0        0.0         0.0     0.0
+10.0                          loop19     0.0        0.0         0.0     0.0
+10.0                          loop2      0.0        0.0         0.0     0.0
+10.0                          loop20     0.0        0.0         0.0     0.0
+10.0                          loop21     0.0        0.0         0.0     0.0
+10.0                          loop22     0.0        0.0         0.0     0.0
+10.0                          loop23     0.0        0.0         0.0     0.0
+10.0                          loop24     0.0        0.0         0.0     0.0
+10.0                          loop25     0.0        0.0         0.0     0.0
+10.0                          loop26     0.0        0.0         0.0     0.0
+10.0                          loop27     0.0        0.0         0.0     0.0
+10.0                          loop28     0.0        0.0         0.0     0.0
+10.0                          loop29     0.0        0.0         0.0     0.0
+10.0                          loop3      0.0        0.0         0.0     0.0
+10.0                          loop30     0.0        0.0         0.0     0.0
+10.0                          loop4      0.0        0.0         0.0     0.0
+10.0                          loop5      0.0        0.0         0.0     0.0
+10.0                          loop6      0.0        0.0         0.0     0.0
+10.0                          loop7      0.0        0.0         0.0     0.0
+10.0                          loop8      0.0        0.0         0.0     0.0
+10.0                          loop9      0.0        0.0         0.0     0.0
+10.0                          nvme0n1    0.0        0.0         0.0     0.0
+10.0                          nvme0n1p1  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p2  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p3  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p4  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p5  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p6  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p7  0.0        0.0         0.0     0.0
+10.0                          nvme0n1p8  0.0        0.0         0.0     0.0
+Schedulers:                                                             
+loop1: [none] mq-deadline                                               
+loop29: [none] mq-deadline                                              
+loop19: [none] mq-deadline                                              
+nvme0n1: [none] mq-deadline                                             
+loop27: [none] mq-deadline                                              
+loop17: [none] mq-deadline                                              
+loop8: [none] mq-deadline                                               
+loop25: [none] mq-deadline                                              
+loop15: [none] mq-deadline                                              
+loop6: [none] mq-deadline                                               
+loop23: [none] mq-deadline                                              
+loop13: [none] mq-deadline                                              
+loop4: [none] mq-deadline                                               
+loop21: [none] mq-deadline                                              
+loop11: [none] mq-deadline                                              
+loop2: [none] mq-deadline                                               
+loop0: [none] mq-deadline                                               
+loop28: [none] mq-deadline                                              
+loop18: [none] mq-deadline                                              
+loop9: [none] mq-deadline                                               
+loop26: [none] mq-deadline                                              
+loop16: [none] mq-deadline                                              
+loop7: [none] mq-deadline                                               
+loop24: [none] mq-deadline                                              
+loop14: [none] mq-deadline                                              
+loop5: [none] mq-deadline                                               
+loop22: [none] mq-deadline                                              
+loop12: [none] mq-deadline                                              
+loop3: [none] mq-deadline                                               
+loop30: [none] mq-deadline                                              
+loop20: [none] mq-deadline                                              
+loop10: [none] mq-deadline                                              
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./C_io_monitor --dev=nvme0n1 --iters=5 --interval=0.5 --pid="$(pidof -s firefox)" | column -s, -t
+time                          dev      read_MBps  write_MBps  util_%  await_ms
+0.5                           nvme0n1  0.0        0.0         0.0     0.0
+1.0                           nvme0n1  0.0        0.0         0.0     0.0
+1.5                           nvme0n1  0.0        0.0         0.0     0.0
+2.0                           nvme0n1  0.0        0.0         0.0     0.0
+2.5                           nvme0n1  0.0        0.0         0.0     0.0
+Schedulers:                                                           
+loop1: [none] mq-deadline                                             
+loop29: [none] mq-deadline                                            
+loop19: [none] mq-deadline                                            
+nvme0n1: [none] mq-deadline                                           
+loop27: [none] mq-deadline                                            
+loop17: [none] mq-deadline                                            
+loop8: [none] mq-deadline                                             
+loop25: [none] mq-deadline                                            
+loop15: [none] mq-deadline                                            
+loop6: [none] mq-deadline                                             
+loop23: [none] mq-deadline                                            
+loop13: [none] mq-deadline                                            
+loop4: [none] mq-deadline                                             
+loop21: [none] mq-deadline                                            
+loop11: [none] mq-deadline                                            
+loop2: [none] mq-deadline                                             
+loop0: [none] mq-deadline                                             
+loop28: [none] mq-deadline                                            
+loop18: [none] mq-deadline                                            
+loop9: [none] mq-deadline                                             
+loop26: [none] mq-deadline                                            
+loop16: [none] mq-deadline                                            
+loop7: [none] mq-deadline                                             
+loop24: [none] mq-deadline                                            
+loop14: [none] mq-deadline                                            
+loop5: [none] mq-deadline                                             
+loop22: [none] mq-deadline                                            
+loop12: [none] mq-deadline                                            
+loop3: [none] mq-deadline                                             
+loop30: [none] mq-deadline                                            
+loop20: [none] mq-deadline                                            
+loop10: [none] mq-deadline                                            
+--- /proc/21498/io ---                                                
+rchar: 128027065                                                      
+wchar: 1773057                                                        
+syscr: 671555                                                         
+syscw: 777861                                                         
+read_bytes: 109209600                                                 
+write_bytes: 0                                                        
+cancelled_write_bytes: 0                                              
+
+
+
+
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ DIR=.; BLK=$(df -P "$DIR" | awk 'NR==2{print $1}'); DEV=$(lsblk -no PKNAME "$BLK" 2>/dev/null | head -1); [ -z "$DEV" ] && DEV=$(basename "$BLK"); \
+dd if=/dev/zero of="$DIR/io_test.bin" bs=1M count=10000 oflag=direct status=progress & LOAD_PID=$!; \
+./C_io_monitor --dev="$DEV" --iters=6 --interval=0.5 --pid="$LOAD_PID" | column -s, -t; \
+wait "$LOAD_PID" || true; sync; rm -f "$DIR/io_test.bin"
+[1] 107660
+3722444800 bytes (3.7 GB, 3.5 GiB) copied, 3 s, 1.2 GB/stime                          dev      read_MBps  write_MBps  util_%  await_ms
+0.5                           nvme0n1  0.0        1132.0      44.0    0.3
+1.0                           nvme0n1  0.1        1196.0      44.0    0.3
+1.5                           nvme0n1  0.0        1170.0      37.6    0.3
+2.0                           nvme0n1  0.0        1208.0      38.2    0.3
+2.5                           nvme0n1  0.0        1191.8      47.4    0.3
+3.0                           nvme0n1  0.0        1216.2      42.2    0.3
+Schedulers:                                                           
+loop1: [none] mq-deadline                                             
+loop29: [none] mq-deadline                                            
+loop19: [none] mq-deadline                                            
+nvme0n1: [none] mq-deadline                                           
+loop27: [none] mq-deadline                                            
+loop17: [none] mq-deadline                                            
+loop8: [none] mq-deadline                                             
+loop25: [none] mq-deadline                                            
+loop15: [none] mq-deadline                                            
+loop6: [none] mq-deadline                                             
+loop23: [none] mq-deadline                                            
+loop13: [none] mq-deadline                                            
+loop4: [none] mq-deadline                                             
+loop21: [none] mq-deadline                                            
+loop11: [none] mq-deadline                                            
+loop2: [none] mq-deadline                                             
+loop0: [none] mq-deadline                                             
+loop28: [none] mq-deadline                                            
+loop18: [none] mq-deadline                                            
+loop9: [none] mq-deadline                                             
+loop26: [none] mq-deadline                                            
+loop16: [none] mq-deadline                                            
+loop7: [none] mq-deadline                                             
+loop24: [none] mq-deadline                                            
+loop14: [none] mq-deadline                                            
+loop5: [none] mq-deadline                                             
+loop22: [none] mq-deadline                                            
+loop12: [none] mq-deadline                                            
+loop3: [none] mq-deadline                                             
+loop30: [none] mq-deadline                                            
+loop20: [none] mq-deadline                                            
+loop10: [none] mq-deadline                                            
+--- /proc/107660/io ---                                               
+rchar: 3731889072                                                     
+wchar: 3730833579                                                     
+syscr: 3570                                                           
+syscw: 3564                                                           
+read_bytes: 4096                                                      
+write_bytes: 3731881984                                               
+cancelled_write_bytes: 0                                              
+9687793664 bytes (9.7 GB, 9.0 GiB) copied, 12 s, 807 MB/s
+10000+0 records in
+10000+0 records out
+10485760000 bytes (10 GB, 9.8 GiB) copied, 12.611 s, 831 MB/s
+[1]+  Done                    dd if=/dev/zero of="$DIR/io_test.bin" bs=1M count=10000 oflag=direct status=progress
+
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./memory_profiler "$PID"
+Process: forkserver (PID 21498)
+VSZ:  292.8 MB
+RSS:  22.6 MB
+PSS:  2.7 MB
+USS:  0.2 MB
+Shared:  22.2 MB    Private: 0.2 MB
+
+Page Faults:
+  Minor: 3761
+  Major: 9
+
+Memory Map (categories):
+  anonymous   size 6.2 MB | RSS 0.5 MB | PSS 0.2 MB | Private 0.1 MB | Shared 0.4 MB
+  heap        size 0.0 MB | RSS 0.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  libs        size 286.4 MB | RSS 21.9 MB | PSS 2.4 MB | Private 0.1 MB | Shared 21.8 MB
+  other       size 0.0 MB | RSS 0.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  stack       size 0.1 MB | RSS 0.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+
+Top libraries (by shared KB):
+  /snap/firefox/7177/usr/lib/firefox/libxul.so
+     size 158.4 MB | PSS 0.9 MB | Private 0.0 MB | Shared 11.7 MB
+  /usr/lib/x86_64-linux-gnu/libc.so.6
+     size 2.1 MB | PSS 0.1 MB | Private 0.0 MB | Shared 1.4 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.7800.1
+     size 1.4 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.7 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libpixman-1.so.0.42.2
+     size 1.0 MB | PSS 0.2 MB | Private 0.0 MB | Shared 0.5 MB
+  /snap/firefox/7177/usr/lib/firefox/libmozsqlite3.so
+     size 1.4 MB | PSS 0.2 MB | Private 0.0 MB | Shared 0.4 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libepoxy.so.0.0.0
+     size 1.2 MB | PSS 0.1 MB | Private 0.0 MB | Shared 0.4 MB
+  /snap/firefox/7177/usr/lib/firefox/firefox
+     size 0.8 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.4 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.7800.1
+     size 0.4 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.4 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.7800.1
+     size 2.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.3 MB
+  /usr/lib/x86_64-linux-gnu/libm.so.6
+     size 0.9 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.3 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+     size 2.2 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+     size 0.2 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+  /snap/firefox/7177/usr/lib/firefox/libnss3.so
+     size 0.7 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+     size 1.2 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libgdk-3.so.0.2406.32
+     size 1.1 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./memory_profiler --watch --interval=1 --samples=10 --graph "$PID"
+Watching: forkserver (PID 21498), interval 1s, samples 10
+
+t(s)    RSS         PSS         USS         ΔRSS         ΔPSS         ΔUSS         minfltΔ        majfltΔ        
+0.0     22.6 MB     2.7 MB      0.2 MB      +             0+             0+             0+               0+               0
+1.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+2.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+3.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+4.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+5.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+6.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+7.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+8.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+9.0     22.6 MB     2.7 MB      0.2 MB      +             0kB+             0kB+             0kB+               0+               0
+
+RSS ASCII graph (10 samples, min=22.6 MB, max=22.6 MB):
+0    | ##### 22.6 MB
+1    | ##### 22.6 MB
+2    | ##### 22.6 MB
+3    | ##### 22.6 MB
+4    | ##### 22.6 MB
+5    | ##### 22.6 MB
+6    | ##### 22.6 MB
+7    | ##### 22.6 MB
+8    | ##### 22.6 MB
+9    | ##### 22.6 MB
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ PID=$(pidof -s firefox)
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./memory_profiler --share-scan "$PID"
+Process: forkserver (PID 21498)
+VSZ:  292.8 MB
+RSS:  22.6 MB
+PSS:  2.7 MB
+USS:  0.2 MB
+Shared:  22.2 MB    Private: 0.2 MB
+
+Page Faults:
+  Minor: 3761
+  Major: 9
+
+Memory Map (categories):
+  anonymous   size 6.2 MB | RSS 0.5 MB | PSS 0.2 MB | Private 0.1 MB | Shared 0.4 MB
+  heap        size 0.0 MB | RSS 0.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  libs        size 286.4 MB | RSS 21.9 MB | PSS 2.4 MB | Private 0.1 MB | Shared 21.8 MB
+  other       size 0.0 MB | RSS 0.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  stack       size 0.1 MB | RSS 0.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+
+Top libraries (by shared KB):
+  /snap/firefox/7177/usr/lib/firefox/libxul.so
+     size 158.4 MB | PSS 0.9 MB | Private 0.0 MB | Shared 11.7 MB | used_by_procs 16
+  /usr/lib/x86_64-linux-gnu/libc.so.6
+     size 2.1 MB | PSS 0.1 MB | Private 0.0 MB | Shared 1.4 MB | used_by_procs 99
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.7800.1
+     size 1.4 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.7 MB | used_by_procs 16
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libpixman-1.so.0.42.2
+     size 1.0 MB | PSS 0.2 MB | Private 0.0 MB | Shared 0.5 MB | used_by_procs 16
+  /snap/firefox/7177/usr/lib/firefox/libmozsqlite3.so
+     size 1.4 MB | PSS 0.2 MB | Private 0.0 MB | Shared 0.4 MB | used_by_procs 16
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libepoxy.so.0.0.0
+     size 1.2 MB | PSS 0.1 MB | Private 0.0 MB | Shared 0.4 MB | used_by_procs 16
+  /snap/firefox/7177/usr/lib/firefox/firefox
+     size 0.8 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.4 MB | used_by_procs 16
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.7800.1
+     size 0.4 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.4 MB | used_by_procs 16
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.7800.1
+     size 2.0 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.3 MB | used_by_procs 16
+  /usr/lib/x86_64-linux-gnu/libm.so.6
+     size 0.9 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.3 MB | used_by_procs 94
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+     size 2.2 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB | used_by_procs 17
+  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+     size 0.2 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB | used_by_procs 99
+  /snap/firefox/7177/usr/lib/firefox/libnss3.so
+     size 0.7 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB | used_by_procs 16
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+     size 1.2 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB | used_by_procs 16
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/libgdk-3.so.0.2406.32
+     size 1.1 MB | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB | used_by_procs 16
+
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ P1=$(pgrep -n -x firefox)
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ P2=$(pgrep -n -x code) 
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ ./memory_profiler --compare "$P1" "$P2"
+Compare processes:
+  A: firefox (PID 20433)
+     VSZ 12.26 GB | RSS 597.8 MB | PSS 462.0 MB | USS 439.2 MB
+  B: code (PID 64922)
+     VSZ 1391.90 GB | RSS 80.4 MB | PSS 24.2 MB | USS 20.7 MB
+
+Shared libraries intersection: 0
+  Estimated shared by PSS: 0.0 MB
+
+Common libs (top 10) (0):
+
+Unique to A (top 10) (159):
+  /snap/firefox/7177/gnome-platform/lib/x86_64-linux-gnu/bindtextdomain.so | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/firefox/7177/gnome-platform/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13 | PSS 0.0 MB | Private 0.0 MB | Shared 0.3 MB
+  /snap/firefox/7177/gnome-platform/lib/x86_64-linux-gnu/libexpat.so.1.8.7 | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+  /snap/firefox/7177/gnome-platform/lib/x86_64-linux-gnu/libgpg-error.so.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.1 MB
+  /snap/firefox/7177/gnome-platform/lib/x86_64-linux-gnu/libselinux.so.1 | PSS 0.0 MB | Private 0.0 MB | Shared 0.1 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/libcanberra.so.0.2.5 | PSS 0.1 MB | Private 0.1 MB | Shared 0.0 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/librsvg-2.so.2.48.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/dri/iris_dri.so | PSS 2.3 MB | Private 1.3 MB | Shared 2.1 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/firefox/7177/gnome-platform/usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  ... (149 more)
+
+Unique to B (top 10) (80):
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.2 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXcomposite.so.1.0.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXdamage.so.1.1.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXext.so.6.4.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.1 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXi.so.6.1.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.1 MB
+  /snap/code/211/usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0 | PSS 0.0 MB | Private 0.0 MB | Shared 0.0 MB
+  ... (70 more)
+
+
+
+
+discessit@discessit-MCLF-XX:~/EDU/ospractise/lab1/lab4/src$ python3 - <<'PY' &
+import time
+x=[]
+for i in range(12):
+    x += [b"x"*1024*1024]*20   # +20 МБ
+    time.sleep(0.3)
+for i in range(12):
+    del x[:20]                 # -20 МБ
+    time.sleep(0.3)
+time.sleep(2)
+PY
+LOAD=$!
+./memory_profiler --watch --interval=0.3 --samples=60 --graph "$LOAD"
+wait "$LOAD"
+[1] 203998
+Watching: bash (PID 203998), interval 0.3s, samples 60
+
+t(s)    RSS         PSS         USS         ΔRSS         ΔPSS         ΔUSS         minfltΔ        majfltΔ        
+0.0     3.8 MB      1.5 MB      0.4 MB      +             0+             0+             0+               0+               0
+0.3     10.2 MB     7.9 MB      7.8 MB      +             6512kB+             6593kB+             7664kB+               1154+               40
+0.6     11.2 MB     8.9 MB      8.8 MB      +             1024kB+             1028kB+             1028kB+               257+               0
+0.9     12.2 MB     9.9 MB      9.9 MB      +             1024kB+             1028kB+             1028kB+               257+               0
+1.2     13.2 MB     10.9 MB     10.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+1.5     14.2 MB     11.9 MB     11.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+1.8     15.2 MB     12.9 MB     12.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+2.1     16.2 MB     13.9 MB     13.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+2.4     17.2 MB     14.9 MB     14.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+2.7     18.2 MB     15.9 MB     15.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+3.0     19.2 MB     16.9 MB     16.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+3.3     20.2 MB     17.9 MB     17.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+3.6     21.2 MB     18.9 MB     18.9 MB     +             1024kB+             1028kB+             1028kB+               257+               0
+3.9     20.2 MB     17.9 MB     17.9 MB                   -980kB              -1028kB              -1028kB+               0+               0
+4.2     19.2 MB     16.9 MB     16.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+4.5     18.2 MB     15.9 MB     15.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+4.8     17.2 MB     14.9 MB     14.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+5.1     16.2 MB     13.9 MB     13.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+5.4     15.2 MB     12.9 MB     12.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+5.7     14.2 MB     11.9 MB     11.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+6.0     13.2 MB     10.9 MB     10.9 MB                   -1028kB              -1028kB              -1028kB+               0+               0
+6.3     12.2 MB     9.9 MB      9.9 MB                    -1028kB              -1028kB              -1028kB+               0+               0
+6.6     11.2 MB     8.9 MB      8.8 MB                    -1028kB              -1028kB              -1028kB+               0+               0
+6.9     10.2 MB     7.9 MB      7.8 MB                    -1028kB              -1028kB              -1028kB+               0+               0
+7.2     9.2 MB      6.9 MB      6.8 MB                    -1028kB              -1028kB              -1028kB+               0+               0
+7.5     9.2 MB      6.9 MB      6.8 MB      +             0kB+             0kB+             0kB+               0+               0
+7.8     9.2 MB      6.9 MB      6.8 MB      +             0kB+             0kB+             0kB+               0+               0
+8.1     9.2 MB      6.9 MB      6.8 MB      +             0kB+             0kB+             0kB+               0+               0
+8.4     9.2 MB      6.9 MB      6.8 MB      +             0kB+             0kB+             0kB+               0+               0
+8.7     9.2 MB      6.9 MB      6.8 MB      +             0kB+             0kB+             0kB+               0+               0
+9.0     9.2 MB      6.9 MB      6.8 MB      +             0kB+             0kB+             0kB+               0+               0
+
+RSS ASCII graph (31 samples, min=3.8 MB, max=21.2 MB):
+0    | # 3.8 MB
+1    | ##################### 10.2 MB
+2    | ######################### 11.2 MB
+3    | ############################ 12.2 MB
+4    | ################################ 13.2 MB
+5    | ################################### 14.2 MB
+6    | ####################################### 15.2 MB
+7    | ########################################## 16.2 MB
+8    | ############################################## 17.2 MB
+9    | ################################################# 18.2 MB
+10   | ##################################################### 19.2 MB
+11   | ######################################################## 20.2 MB
+12   | ############################################################ 21.2 MB
+13   | ######################################################## 20.2 MB
+14   | ##################################################### 19.2 MB
+15   | ################################################# 18.2 MB
+16   | ############################################## 17.2 MB
+17   | ########################################## 16.2 MB
+18   | ####################################### 15.2 MB
+19   | ################################### 14.2 MB
+20   | ################################ 13.2 MB
+21   | ############################ 12.2 MB
+22   | ######################### 11.2 MB
+23   | ##################### 10.2 MB
+24   | ################## 9.2 MB
+25   | ################## 9.2 MB
+26   | ################## 9.2 MB
+27   | ################## 9.2 MB
+28   | ################## 9.2 MB
+29   | ################## 9.2 MB
+30   | ################## 9.2 MB
+[1]+  Done                    python3 - <<'PY'
+import time
+x=[]
+for i in range(12):
+    x += [b"x"*1024*1024]*20   # +20 МБ
+    time.sleep(0.3)
+for i in range(12):
+    del x[:20]                 # -20 МБ
+    time.sleep(0.3)
+time.sleep(2)
+PY
+
