@@ -95,7 +95,7 @@ sudo rmmod procmodule
 Результат чтения файла:
 ```
 Name: Pardaev Sergey
-Group: 6, Subgroup: 1
+Group: 8, Subgroup: 2
 Module loaded at 1563982 jiffies
 Read count: 1
 ```

@@ -26,9 +26,13 @@ static ssize_t procread(struct file *file, char __user *ubuf, size_t count,
   mutex_lock(&proc_mutex);
   readcount++;
   len = snprintf(buf, sizeof(buf),
-                 "Name: Pardaev Sergey\nGroup: 6, Subgroup: 1\nModule loaded "
+                 "Name: Pardaev Sergey\nGroup: 8, Subgroup: 2\nModule loaded "
                  "at %lu jiffies\nRead count: %d\n",
                  loadtime, readcount);
+  if (len >= MAXSIZE) {
+    printk(KERN_WARNING "procmodule: output truncated\n");
+    len = MAXSIZE - 1;
+  }
   mutex_unlock(&proc_mutex);
 
   if (copy_to_user(ubuf, buf, len))
