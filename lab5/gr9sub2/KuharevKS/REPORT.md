@@ -228,9 +228,11 @@ MODULE_VERSION("1.0");
 #include <linux/uaccess.h>
 #include <linux/slab.h>
 #include <linux/mutex.h>
+#include <linux/string.h>
 
 #define DEVICE_NAME "mychardev"
 #define BUF_SIZE 1024
+#define MAX_LOG_SIZE 64  
 
 static dev_t dev_num;
 static struct cdev my_cdev;
@@ -254,26 +256,37 @@ static ssize_t dev_read(struct file *file, char __user *buf,
                         size_t len, loff_t *off)
 {
     int bytes_to_read;
+    char log_buf[MAX_LOG_SIZE];
 
     mutex_lock(&device_mutex);
 
     if (*off >= buffer_size) {
         mutex_unlock(&device_mutex);
-        return 0;  // EOF
+        return 0;
     }
 
     bytes_to_read = min((size_t)(buffer_size - *off), len);
 
+    if (bytes_to_read < 0 || bytes_to_read > BUF_SIZE) {
+        printk(KERN_ERR "chardev: Invalid bytes_to_read: %d\n", bytes_to_read);
+        mutex_unlock(&device_mutex);
+        return -EINVAL;
+    }
+
+    
     if (copy_to_user(buf, device_buffer + *off, bytes_to_read)) {
         mutex_unlock(&device_mutex);
         return -EFAULT;
     }
 
     *off += bytes_to_read;
+
+    snprintf(log_buf, sizeof(log_buf), "Read %d bytes from offset %lld",
+             bytes_to_read, *off - bytes_to_read);
+    
     mutex_unlock(&device_mutex);
 
-    printk(KERN_INFO "chardev: Read %d bytes from offset %lld\n",
-           bytes_to_read, *off - bytes_to_read);
+    printk(KERN_INFO "chardev: %s\n", log_buf);
 
     return bytes_to_read;
 }
@@ -282,21 +295,49 @@ static ssize_t dev_write(struct file *file, const char __user *buf,
                          size_t len, loff_t *off)
 {
     int bytes_to_write;
+    char log_buf[MAX_LOG_SIZE];
 
     mutex_lock(&device_mutex);
 
-    bytes_to_write = min(len, (size_t)BUF_SIZE);
-    memset(device_buffer, 0, BUF_SIZE);
-
-    if (copy_from_user(device_buffer, buf, bytes_to_write)) {
-        mutex_unlock(&device_mutex);
-        return -EFAULT;
+    if (len > BUF_SIZE) {
+        bytes_to_write = BUF_SIZE;
+        printk(KERN_WARNING "chardev: Write size %zu exceeds buffer, truncating to %d\n",
+               len, BUF_SIZE);
+    } else {
+        bytes_to_write = len;
     }
 
-    buffer_size = bytes_to_write;
+    if (bytes_to_write < 0) {
+        mutex_unlock(&device_mutex);
+        return -EINVAL;
+    }
+
+    if (bytes_to_write > 0) {
+        memset(device_buffer, 0, BUF_SIZE);
+
+        if (copy_from_user(device_buffer, buf, bytes_to_write)) {
+            mutex_unlock(&device_mutex);
+            return -EFAULT;
+        }
+
+        if (bytes_to_write < BUF_SIZE) {
+            device_buffer[bytes_to_write] = '\0';
+        } else {
+            device_buffer[BUF_SIZE - 1] = '\0';
+            bytes_to_write = BUF_SIZE - 1;
+        }
+
+        buffer_size = bytes_to_write;
+
+        snprintf(log_buf, sizeof(log_buf), "Write %d bytes", bytes_to_write);
+    } else {
+        buffer_size = 0;
+        snprintf(log_buf, sizeof(log_buf), "Write 0 bytes (empty)");
+    }
+
     mutex_unlock(&device_mutex);
 
-    printk(KERN_INFO "chardev: Write %d bytes: %s\n", bytes_to_write, device_buffer);
+    printk(KERN_INFO "chardev: %s\n", log_buf);
 
     return bytes_to_write;
 }
@@ -327,25 +368,39 @@ static loff_t dev_lseek(struct file *file, loff_t offset, int whence)
         return -EINVAL;
     }
 
-    if (new_pos > BUF_SIZE)
+    if (new_pos > BUF_SIZE) {
         new_pos = BUF_SIZE;
+    }
 
     file->f_pos = new_pos;
     mutex_unlock(&device_mutex);
+
+    printk(KERN_DEBUG "chardev: Seek to position %lld\n", new_pos);
 
     return new_pos;
 }
 
 static long dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
+    int ret = 0;
+
+    
+    if (!arg) {
+        return -EINVAL;
+    }
+
     switch (cmd) {
     case 0x10:  
-        if (copy_to_user((int __user *)arg, &buffer_size, sizeof(int)))
-            return -EFAULT;
-        printk(KERN_INFO "chardev: IOCTL GET_BUFFER_SIZE: %d\n", buffer_size);
+        mutex_lock(&device_mutex);
+        if (copy_to_user((int __user *)arg, &buffer_size, sizeof(int))) {
+            ret = -EFAULT;
+        } else {
+            printk(KERN_INFO "chardev: IOCTL GET_BUFFER_SIZE: %d\n", buffer_size);
+        }
+        mutex_unlock(&device_mutex);
         break;
 
-    case 0x11:  
+    case 0x11: 
         mutex_lock(&device_mutex);
         memset(device_buffer, 0, BUF_SIZE);
         buffer_size = 0;
@@ -354,10 +409,11 @@ static long dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
         break;
 
     default:
+        printk(KERN_WARNING "chardev: Unknown IOCTL command: 0x%x\n", cmd);
         return -EINVAL;
     }
 
-    return 0;
+    return ret;
 }
 
 static struct file_operations fops = {
@@ -386,11 +442,14 @@ static int __init chardev_init(void)
 
     device_buffer = kmalloc(BUF_SIZE, GFP_KERNEL);
     if (!device_buffer) {
+        printk(KERN_ERR "chardev: Failed to allocate device buffer\n");
         ret = -ENOMEM;
         goto fail_alloc;
     }
 
     memset(device_buffer, 0, BUF_SIZE);
+    buffer_size = 0;
+
     mutex_init(&device_mutex);
 
     cdev_init(&my_cdev, &fops);
@@ -410,6 +469,7 @@ static int __init chardev_init(void)
 
 fail_cdev:
     kfree(device_buffer);
+    device_buffer = NULL;
 fail_alloc:
     unregister_chrdev_region(dev_num, 1);
     return ret;
@@ -417,19 +477,27 @@ fail_alloc:
 
 static void __exit chardev_exit(void)
 {
-    cdev_del(&my_cdev);
-    kfree(device_buffer);
+    if (&my_cdev) {
+        cdev_del(&my_cdev);
+    }
+
+    if (device_buffer) {
+        kfree(device_buffer);
+        device_buffer = NULL;  
+    }
+
     unregister_chrdev_region(dev_num, 1);
-    printk(KERN_INFO "chardev: Device unregistered\n");
+
+    printk(KERN_INFO "chardev: Device unregistered safely\n");
 }
 
 module_init(chardev_init);
 module_exit(chardev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Kirill Kuharev");
-MODULE_DESCRIPTION("Simple character device driver with advanced features");
-MODULE_VERSION("1.0");
+MODULE_AUTHOR("Kuharev Kirill");
+MODULE_DESCRIPTION("Character device driver with security improvements");
+MODULE_VERSION("1.1");
 ```
 
 **Ключевые компоненты:**
