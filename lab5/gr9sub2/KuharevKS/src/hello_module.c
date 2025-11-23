@@ -26,7 +26,7 @@ static int __init hello_init(void)
          printk(KERN_INFO "hello_module: Hello from Kirill module!\n");
      }
 
-    printk(KERN_INFO "hello_module: Module loaded (TODO: implement greeting)\n");
+    printk(KERN_INFO "hello_module: Module loaded\n");
 
     return 0;  
 }
@@ -34,7 +34,7 @@ static int __init hello_init(void)
 static void __exit hello_exit(void)
 {
     printk(KERN_INFO "hello_module: Goodbye from Kirill module!\n");
-    printk(KERN_INFO "hello_module: Module unloaded (TODO: implement goodbye)\n");
+    printk(KERN_INFO "hello_module: Module unloaded\n");
 }
 
 module_init(hello_init);
