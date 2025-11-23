@@ -1,0 +1,7 @@
+=== Student Information ===
+Name: Tereshko Daniil
+Group: 8, Subgroup: 2
+Module loaded at: 4297024819 jiffies
+Uptime: 4297231 seconds
+Read count: 2
+===========================
