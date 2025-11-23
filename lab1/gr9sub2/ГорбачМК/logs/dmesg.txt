@@ -1,0 +1,1595 @@
+[Sun Sep 14 10:01:18 2025] 14:01:18.366112 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.366517 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.366583 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.370675 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.370776 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.370857 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.370920 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.372969 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.377538 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.378281 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.381474 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.408448 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.408583 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.408663 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.408724 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.433781 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.433909 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.437585 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.438136 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.440283 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.440952 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.442764 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.451625 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.453452 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.453555 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.453642 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.453707 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.476420 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.479639 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.481944 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.482023 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.483293 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.483955 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.484044 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.484767 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.484977 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.485070 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.485155 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.485218 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.485575 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.486437 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.488687 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.488753 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.489190 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.489285 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.489369 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.489437 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.489808 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.489902 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.489987 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.491035 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.493857 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.494059 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.494493 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.494561 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.494779 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.496344 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.496988 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.497434 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.497608 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.497699 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.497785 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.497849 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.498144 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.498244 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.498332 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.498399 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.498762 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.498859 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.498945 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.499015 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.499366 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.499460 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.499544 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.500220 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.501048 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.501158 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.501240 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.501305 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.502260 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.502350 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.502436 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.502500 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.502780 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.502876 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.502961 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.503025 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.503396 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.503488 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.503571 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.503639 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.504051 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.504478 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.504566 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.504634 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.504870 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.504965 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.505051 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.505115 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.505476 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.505572 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.505660 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.505917 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.506201 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.506295 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.506381 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.506448 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.506621 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.506795 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.506883 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.506949 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.507416 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.507509 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.508965 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.509728 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.510297 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.510619 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.510708 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.510772 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.511354 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.511447 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.511534 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.511600 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.511770 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.512095 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.512186 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.512730 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.513120 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.513496 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.513582 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.513651 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.513961 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.514054 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.514283 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.514362 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.515175 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.515267 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.516153 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.516435 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.516748 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.516844 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.517025 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.517133 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.517514 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.517607 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.518029 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.518095 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.518443 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.518540 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.518627 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.518699 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.519046 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.519141 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.519226 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.519295 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.519762 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.520011 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.520101 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.520168 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.520885 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.520982 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.521066 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.521129 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.521437 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.521530 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.521880 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.521950 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.522311 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.522404 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.522492 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.522557 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.522953 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.523044 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.523393 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.524164 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.524371 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.524470 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.524555 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.524620 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.525044 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.525135 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.525227 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.525293 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.525601 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.525701 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.525788 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.525857 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.526217 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.526312 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.526398 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.526469 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.526970 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.527075 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.529293 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.530877 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.531502 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.532609 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.532844 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.532927 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.536703 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.536798 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.541378 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.543088 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.548073 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.554917 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.555005 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.555070 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.555364 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.556172 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.561947 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.562036 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.563076 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.563312 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.563791 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.565225 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.565733 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.565865 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.566687 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.566753 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.567088 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.567354 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.570360 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.570425 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.570635 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.572181 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.572845 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.573281 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.577476 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.577596 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.577678 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.577746 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.578856 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.579008 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.579090 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.579160 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.579474 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.579606 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.579692 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.579756 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.581233 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.581329 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.581816 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.581890 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.582059 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.582153 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.582238 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.582301 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.582758 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.582872 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.583361 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.583638 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.584369 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.584866 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.585320 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.585459 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.586185 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.586386 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.586681 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.586744 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.587095 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.587384 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.587621 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.587686 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.588284 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.588380 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.588465 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.588614 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.589085 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.589506 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.590046 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.590110 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.590327 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.590417 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.590502 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.590565 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.590763 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.590859 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.590940 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.591006 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.591176 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.591264 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.591348 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.591414 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.591869 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.592513 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.593185 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.593718 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.594133 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.594227 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.594313 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.594378 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.594564 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.594654 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.594736 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.595264 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.595570 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.595667 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.595754 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.595876 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.596405 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.596605 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.596689 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.596760 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.598819 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.598983 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.599219 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.599285 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.600622 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.600750 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.600832 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.600904 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.601375 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.601583 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.601848 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.601923 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.602248 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.602339 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.602423 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.602486 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.602827 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.602959 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.603135 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.603282 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.603793 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.604533 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.605763 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.606013 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.606291 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.606382 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.606464 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.606530 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.606866 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.607255 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.607437 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.607572 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.608907 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.609001 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.609447 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.609514 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.609907 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.610002 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.610084 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.610152 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.610609 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.610832 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.610919 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.610982 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.611234 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.611324 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.611891 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.612364 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.612745 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.613037 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.613159 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.613223 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.613828 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.614546 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.614728 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.614869 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.615057 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.615385 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.615470 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.615599 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.616242 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.616654 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.616736 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.616929 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.617211 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.617389 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.617502 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.617569 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.617786 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.617881 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.617971 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.618209 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.618477 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.618572 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.618661 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.618725 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.619042 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.619262 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.619443 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.619790 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.620483 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.620575 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.620821 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.620913 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.621173 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.621269 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.621353 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.621418 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.621675 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.621769 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.621854 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.621922 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.622264 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.622756 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.622935 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.622999 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.623469 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.623562 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.623849 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.624235 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.624554 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.624648 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.624741 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.624903 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.625572 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.625777 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.625949 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.626016 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.626359 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.626454 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.626535 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.626606 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.626993 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.627194 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.627378 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.627515 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.628302 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.628614 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.628801 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.629010 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.629411 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.629503 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.629587 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.629655 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.630216 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.631071 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.631234 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.631302 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.631658 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.631750 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.631840 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.632249 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.632558 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.632789 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.633377 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.633441 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.633673 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.633762 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.633843 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.633906 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.634241 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.634334 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.634420 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.634484 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.635061 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.635152 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.635234 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.635299 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.635774 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.636012 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.636168 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.636236 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.636584 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.636834 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.636984 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.637049 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.637469 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.637667 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.637856 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.638521 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.638915 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.639238 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.639323 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.639474 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.640493 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.640586 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.640671 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.640740 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.641031 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.641123 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.641207 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.641272 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.641750 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.641846 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.641932 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.642000 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.642262 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.642368 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.642456 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.642521 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.642882 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.643349 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.643428 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.643681 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.644424 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.644621 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.644798 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.644936 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.645445 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.645663 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.645845 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.646003 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.646286 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.646569 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.646653 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.646720 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.646933 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.647026 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.647107 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.647170 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.647528 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.647621 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.647703 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.647782 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.648231 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.648322 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.648422 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.648485 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.649022 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.649113 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.649192 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.649260 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.649692 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.649884 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.650030 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.650093 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.650433 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.650523 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.650604 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.650667 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.651097 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.651187 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.651268 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.651336 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.651685 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.651840 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.652078 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.652149 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.652609 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.652807 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.652995 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.653068 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.653396 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.653490 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.653571 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.653634 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.654075 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.654168 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.654248 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.654315 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.654535 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.654628 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.654713 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.654776 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.655129 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.655221 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.655301 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.655364 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.655705 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.656202 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.656565 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.656806 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.657212 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.657303 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.657385 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.657459 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.657817 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.658115 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.658198 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.658262 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.658800 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.659020 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.659099 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.659161 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.659669 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.659757 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.660964 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.661055 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.663043 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.663252 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.663430 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.663627 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.664253 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.664342 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.664431 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.664496 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.664867 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.665056 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.665136 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.665197 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.666077 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.666169 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.666253 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.666317 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.666636 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.666836 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.667011 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.667083 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.667369 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.667456 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.667538 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.667599 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.668205 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.668334 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.668458 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.668549 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.668816 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.668994 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.669137 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.669224 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.669540 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.669636 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.669730 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.669793 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.670019 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.670204 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.670383 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.670519 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.671008 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.671124 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.671204 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.671267 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.671560 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.671655 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.671740 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.671803 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.672155 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.673526 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.673705 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.673845 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.674190 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.674286 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:18 2025] 14:01:18.674369 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:18 2025] 14:01:18.674431 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:18 2025] 14:01:18.674792 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:18 2025] 14:01:18.674941 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:19 2025] 14:01:19.738686 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:19 2025] 14:01:19.738774 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:19 2025] 14:01:19.766595 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:19 2025] 14:01:19.818996 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:19 2025] 14:01:19.872992 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:19 2025] 14:01:19.923157 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:19 2025] 14:01:19.984336 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.041940 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.090664 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.155138 X11 events  Monitor 0 (w,h)=(1654,994) (x,y)=(0,0)
+[Sun Sep 14 10:01:20 2025] 14:01:20.155277 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:20 2025] 14:01:20.155407 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:20 2025] 14:01:20.156289 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:20 2025] 14:01:20.764532 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.824875 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.884360 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.938011 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:20 2025] 14:01:20.992716 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.049395 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.106311 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.158243 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.213245 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.279080 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.338390 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.394238 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.453136 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.514504 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.572389 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.634861 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.694088 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.746333 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.806107 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.866173 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.925423 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:21 2025] 14:01:21.983121 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.039423 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.102863 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.159934 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.220010 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.278536 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.337593 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.400671 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.460458 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:22 2025] 14:01:22.517776 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:24 2025] 14:01:24.032067 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:24 2025] 14:01:24.087855 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:25 2025] 14:01:25.328354 X11 events  Monitor 0 (w,h)=(2029,1240) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.328693 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.328784 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.328852 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.384124 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:25 2025] 14:01:25.552988 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.559605 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.559699 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.559766 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.574328 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.579142 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.582248 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.582355 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.597457 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.597627 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.597915 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.598529 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.611752 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.612117 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.612239 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.613259 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.629769 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.630022 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.630136 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.630204 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.636415 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.636554 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.640158 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.641002 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.641345 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.641441 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.647258 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.647405 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.654262 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.659077 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.659185 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.659250 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.702357 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.705648 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.706520 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.712823 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.729846 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.729988 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.730099 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.730173 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.732011 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.732144 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.732349 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.732444 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.734835 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.734965 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.740287 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.741745 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.742499 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.742595 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.743476 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.746470 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.748413 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.748527 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.748618 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.748946 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.749186 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.749750 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.750580 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.751367 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.751654 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.751793 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.762876 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.762945 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.763652 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.765707 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.765801 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.765868 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.767359 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.767486 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.768101 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.768175 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.768606 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.768730 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.768841 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.768935 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.771031 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.771155 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.771280 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.771480 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.773694 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.773908 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.774002 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.774074 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.775113 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.775209 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.775302 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.775369 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.807288 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.809848 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.813366 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.813454 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.818390 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.818489 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.818576 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.818641 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.819173 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.819495 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.819576 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.819639 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.844389 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.844640 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.845035 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.845099 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.845333 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.845550 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.848950 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.849973 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.850157 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.850252 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.850338 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.850405 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.850698 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.851641 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.851756 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.851819 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.852699 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.852797 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.852878 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.852940 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.853171 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.853264 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.853883 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.853948 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.854435 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.854722 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.855408 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.855474 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.856408 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.856683 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.857031 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.857495 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.858026 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.858117 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.858304 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.858527 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.859407 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.859498 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.859585 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.859654 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.860097 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.860187 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.860273 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.860334 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.860815 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.861021 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.861205 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.861346 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.861771 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.861864 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.861947 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.862009 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.862555 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.862712 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.862794 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.862859 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.863122 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.863214 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.863299 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.863373 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.863663 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.863754 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.863835 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.864071 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.864357 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.864449 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.864532 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.864595 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.864896 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.864991 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.865074 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.865141 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.865511 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.865779 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.865966 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.866102 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.866726 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.867154 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.867237 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.867301 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.867533 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.867627 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.867708 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.867774 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.868407 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.868581 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.868706 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.868804 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.869231 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.869362 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.869485 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.869567 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.869791 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.869926 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.870052 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.870147 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.870521 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.870620 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.870701 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.870765 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.871092 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.871186 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.871379 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.871518 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.871755 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.871850 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.871930 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.872201 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.872486 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.872580 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.872662 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.872726 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.873076 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.873172 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.873253 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.873317 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.873662 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.873754 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.873832 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.873895 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.874204 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.874297 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.874375 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.874438 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.874862 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.875165 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.875250 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.875312 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.875792 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.875965 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.876128 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.876197 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.876822 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.877030 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.877210 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.877347 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.877648 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.877739 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.877818 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.877881 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.878157 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.878359 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.878536 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.878621 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.878934 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.879030 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.879110 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.879172 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.879514 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.879608 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.879689 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.879752 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.880450 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.880604 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.880689 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.880752 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.880975 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.881078 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.881160 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.881224 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.881612 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.881807 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.881989 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.882129 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.882537 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.882645 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.882725 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.882788 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.882991 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.883083 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.883162 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.883225 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.883661 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.883863 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.884036 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.884174 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.884652 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.884741 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.884821 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.884893 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.885610 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.885700 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.885785 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.885848 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.886245 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.886340 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.886418 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.886480 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.886683 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.886775 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.886854 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.886917 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.887226 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.887318 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.887399 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.887460 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.887733 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.887827 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.887908 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.887970 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.888241 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.888637 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.888914 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.888980 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.889295 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.889387 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.889504 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.889571 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.889872 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.889960 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.890048 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.890112 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.890575 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.890710 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.890832 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.890929 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.891214 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.891311 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.891389 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.891538 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.891772 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.891864 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.891948 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.892200 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.892714 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.892915 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.893093 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.893233 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.893595 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.893684 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.893764 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.893831 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.894098 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.894298 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.894474 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.894596 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.894785 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.894876 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.894961 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.895208 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.895754 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.895845 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.895930 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.896189 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.896714 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.896807 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.896886 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.896948 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.897133 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.897228 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.897314 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.897376 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.897639 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.897731 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.897814 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.897876 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.898141 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.898230 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.898308 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.898368 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.898639 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.898726 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.898803 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.898863 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.899130 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.899218 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.899295 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.899355 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.899623 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.899710 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.899787 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.899848 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.900448 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.900635 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.900713 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.900774 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.901046 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.901134 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.901211 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.901272 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.901541 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.901632 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.901709 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.901769 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.902036 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.902123 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.902200 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.902260 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.902532 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.902633 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.902804 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.902937 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.903402 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.903592 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.903697 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.903758 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.904039 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.904128 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.904208 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.904270 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.904759 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.904862 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.904940 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.905193 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.905641 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.905728 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.905819 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.905879 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.906154 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.906241 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.906319 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.906380 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.906761 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.906852 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.906930 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.906990 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.907340 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.907530 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.907669 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.907730 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.908078 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.908267 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.908438 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.908569 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.909221 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.909414 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.909586 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.909754 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.910268 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.910458 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.910626 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.910686 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.910954 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.911041 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.911119 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.911179 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.911458 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.911545 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.911622 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.911682 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.912302 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.912536 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.912676 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.912736 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.913099 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.913291 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.913464 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.913597 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.914205 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.914395 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.914566 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.914671 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.914939 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.915027 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.915105 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.915166 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.915438 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.915525 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.915603 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.915668 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.916466 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.916657 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.916742 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.916803 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.917232 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.917321 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.917403 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.917465 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.917790 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.917878 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.917956 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.918017 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.918365 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.918556 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.918705 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.918766 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.919190 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.919490 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.919738 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.919801 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.920089 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.920178 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.920257 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.920319 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.920708 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.920806 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.920885 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.921129 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.921595 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.921729 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.921809 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.921870 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.922176 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.922265 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.922345 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.922406 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.922702 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.922790 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.922869 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.922931 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.923310 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.923503 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.923668 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.923728 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.924517 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.924717 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.924798 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.924859 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.925157 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.925252 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.925332 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.925393 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.925692 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.925780 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.925858 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.925919 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.926218 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.926305 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.926383 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.926444 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.926737 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.926825 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.926912 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.926973 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.927483 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.927753 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.927832 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.927893 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.928584 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.928736 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.928815 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.928876 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.929343 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.929432 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.929510 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.929571 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.929870 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.929958 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.930035 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.930095 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.930386 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.930474 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.930551 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.930611 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.931097 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.931186 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.931264 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.931325 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.931939 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.932133 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.932304 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.932440 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.933180 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.933372 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.933544 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.933677 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.934278 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.934485 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.934661 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.934732 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.935182 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.935314 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.935392 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.935453 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.936363 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.936577 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.936725 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.936786 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.937081 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.937171 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.937250 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.937310 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.937670 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.937769 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.937846 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.937907 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.938177 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.938264 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.938341 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.938401 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.938671 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.938811 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.938982 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.939120 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.939574 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.939725 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.939815 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.939876 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.940593 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.940762 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.940839 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.940901 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.941178 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.941276 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.941354 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.941415 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.941894 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.942089 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.942260 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.942393 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.942928 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.943077 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.943155 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.943223 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.943897 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.944091 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.944262 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.944396 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.944898 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.944985 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.945063 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.945123 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.945481 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.945671 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.945780 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.945840 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.946129 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.946248 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.946326 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.946387 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.946657 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.946746 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.946827 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.946890 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.947358 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.947449 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.948126 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.948190 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.948640 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.948727 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.948808 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.948874 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.949277 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.949365 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.949442 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.949502 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.949872 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.949959 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.950036 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.950096 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.950387 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.950474 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:25 2025] 14:01:25.950552 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:25 2025] 14:01:25.950612 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:25 2025] 14:01:25.951043 X11 events  Monitor 0 (w,h)=(2028,1239) (x,y)=(0,0)
+[Sun Sep 14 10:01:25 2025] 14:01:25.951131 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:26 2025] 14:01:26.268587 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:26 2025] 14:01:26.284666 dp-svga-x11  create mode 2560x1252_vbox (675) on output 0
+[Sun Sep 14 10:01:26 2025] 14:01:26.285964 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:26 2025] 14:01:26.286040 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:26 2025] 14:01:26.451315 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:26 2025] 14:01:26.453299 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:26 2025] 14:01:26.458375 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:26 2025] 14:01:26.458454 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:26 2025] 14:01:26.459764 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:26 2025] 14:01:26.462833 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:32 2025] 14:01:32.491594 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:32 2025] 14:01:32.523264 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:32 2025] 14:01:32.523456 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:32 2025] 14:01:32.608861 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:32 2025] 14:01:32.614894 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:32 2025] 14:01:32.615032 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:32 2025] 14:01:32.615120 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:32 2025] 14:01:32.619239 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:32 2025] 14:01:32.620818 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:32 2025] 14:01:32.620936 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:32 2025] 14:01:32.621270 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:32 2025] 14:01:32.621992 X11 events  Monitor 0 (w,h)=(1491,918) (x,y)=(0,0)
+[Sun Sep 14 10:01:32 2025] 14:01:32.622116 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:01:35 2025] 14:01:35.062486 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.078856 dp-svga-x11  create mode 2137x999_vbox (677) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.078980 dp-svga-x11  removing unused mode 675 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.082920 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.082998 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.140934 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.141698 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.182717 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.183101 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.207509 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.221433 dp-svga-x11  create mode 2182x1014_vbox (678) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.221635 dp-svga-x11  removing unused mode 677 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.224448 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.224545 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.225130 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.239510 dp-svga-x11  create mode 2251x1042_vbox (679) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.239615 dp-svga-x11  removing unused mode 678 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.240682 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.240765 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.374042 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.375077 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.375184 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.394419 dp-svga-x11  create mode 2266x1054_vbox (680) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.394568 dp-svga-x11  removing unused mode 679 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.398721 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.398860 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.402087 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.415555 dp-svga-x11  create mode 2307x1122_vbox (681) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.415671 dp-svga-x11  removing unused mode 680 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.417280 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.417364 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.417917 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.429465 dp-svga-x11  create mode 2308x1131_vbox (682) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.429566 dp-svga-x11  removing unused mode 681 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.430332 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.430474 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.617406 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.618357 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.625891 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.640118 dp-svga-x11  create mode 2308x1150_vbox (683) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.640211 dp-svga-x11  removing unused mode 682 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.641573 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.641650 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.642167 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.653313 dp-svga-x11  create mode 2349x1218_vbox (684) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.653419 dp-svga-x11  removing unused mode 683 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.655071 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.655150 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.760359 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.761912 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.790487 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.809121 dp-svga-x11  create mode 2350x1218_vbox (685) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.809247 dp-svga-x11  removing unused mode 684 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.810483 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.810560 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.811228 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:35 2025] 14:01:35.821876 dp-svga-x11  create mode 2350x1240_vbox (686) on output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.821972 dp-svga-x11  removing unused mode 685 from output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.823167 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:35 2025] 14:01:35.823295 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:35 2025] 14:01:35.939467 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.943261 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.969258 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.969553 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.984139 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.984400 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.991738 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.992592 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.993326 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.994158 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.994403 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.994984 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.996929 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.997198 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.997374 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.999386 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:35.999555 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:35.999624 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:36.000338 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:36.000751 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:35 2025] 14:01:36.001331 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:35 2025] 14:01:36.001408 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:36 2025] 14:01:36.008463 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:36 2025] 14:01:36.009377 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:36 2025] 14:01:36.009811 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:36 2025] 14:01:36.010214 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:36 2025] 14:01:36.013809 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:36 2025] 14:01:36.013878 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:36 2025] 14:01:36.014151 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:36 2025] 14:01:36.014540 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:36 2025] 14:01:36.017291 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:36 2025] 14:01:36.017365 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:47 2025] 14:01:47.308633 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:47 2025] 14:01:47.341302 dp-svga-x11  create mode 2560x1368_vbox (687) on output 0
+[Sun Sep 14 10:01:47 2025] 14:01:47.342477 dp-svga-x11  removing unused mode 686 from output 0
+[Sun Sep 14 10:01:47 2025] 14:01:47.345928 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:47 2025] 14:01:47.346923 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:47 2025] 14:01:47.691003 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:47 2025] 14:01:47.704905 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:47 2025] 14:01:47.715871 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:47 2025] 14:01:47.718231 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:59 2025] 14:01:59.136674 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:01:59 2025] 14:01:59.157181 dp-svga-x11  create mode 2560x1440_vbox (688) on output 0
+[Sun Sep 14 10:01:59 2025] 14:01:59.157312 dp-svga-x11  removing unused mode 687 from output 0
+[Sun Sep 14 10:01:59 2025] 14:01:59.158945 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:01:59 2025] 14:01:59.159023 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:01:59 2025] 14:01:59.381320 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:59 2025] 14:01:59.381490 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:01:59 2025] 14:01:59.387314 X11 events  received X11 event (89)
+[Sun Sep 14 10:01:59 2025] 14:01:59.387423 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:02:11 2025] 14:02:11.104463 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:02:11 2025] 14:02:11.135219 dp-svga-x11  create mode 2349x1239_vbox (690) on output 0
+[Sun Sep 14 10:02:11 2025] 14:02:11.135440 dp-svga-x11  removing unused mode 688 from output 0
+[Sun Sep 14 10:02:11 2025] 14:02:11.137122 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:02:11 2025] 14:02:11.137206 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:02:11 2025] 14:02:11.282460 X11 events  received X11 event (89)
+[Sun Sep 14 10:02:11 2025] 14:02:11.282571 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:02:11 2025] 14:02:11.286737 X11 events  received X11 event (89)
+[Sun Sep 14 10:02:11 2025] 14:02:11.288034 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:02:36 2025] 14:02:36.821214 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:02:36 2025] 14:02:36.839157 dp-svga-x11  create mode 2560x1440_vbox (692) on output 0
+[Sun Sep 14 10:02:36 2025] 14:02:36.839272 dp-svga-x11  removing unused mode 690 from output 0
+[Sun Sep 14 10:02:36 2025] 14:02:36.840680 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:02:36 2025] 14:02:36.840758 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:02:36 2025] 14:02:36.931430 X11 events  received X11 event (89)
+[Sun Sep 14 10:02:36 2025] 14:02:36.931952 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:02:36 2025] 14:02:36.934728 X11 events  received X11 event (89)
+[Sun Sep 14 10:02:36 2025] 14:02:36.934807 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.178120 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:23 2025] 14:03:23.207189 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.207283 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.267708 X11 events  Monitor 0 (w,h)=(1681,1036) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.267985 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:23 2025] 14:03:23.268073 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.268306 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.319883 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:23 2025] 14:03:23.501797 X11 events  Monitor 0 (w,h)=(1680,1035) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.502531 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:23 2025] 14:03:23.503013 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.503078 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.503534 X11 events  Monitor 0 (w,h)=(1680,1035) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.505556 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:23 2025] 14:03:23.506562 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.506661 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.507017 X11 events  Monitor 0 (w,h)=(1680,1035) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.507233 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:23 2025] 14:03:23.507562 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.507637 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.518549 X11 events  Monitor 0 (w,h)=(1680,1035) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.519644 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:23 2025] 14:03:23.521225 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.521776 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.523321 X11 events  Monitor 0 (w,h)=(1680,1035) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.526384 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:23 2025] 14:03:23.526511 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:23 2025] 14:03:23.526597 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:23 2025] 14:03:23.528578 X11 events  Monitor 0 (w,h)=(1680,1035) (x,y)=(0,0)
+[Sun Sep 14 10:03:23 2025] 14:03:23.529003 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:26 2025] 14:03:26.378566 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:26 2025] 14:03:26.440987 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:26 2025] 14:03:26.494473 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:26 2025] 14:03:26.627141 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.627299 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.767145 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:03:26 2025] 14:03:26.767468 X11 events  Monitor 0 (w,h)=(2037,1176) (x,y)=(0,0)
+[Sun Sep 14 10:03:26 2025] 14:03:26.767656 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:03:26 2025] 14:03:26.769052 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.769126 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.790076 dp-svga-x11  create mode 2052x1180_vbox (698) on output 0
+[Sun Sep 14 10:03:26 2025] 14:03:26.790506 dp-svga-x11  removing unused mode 692 from output 0
+[Sun Sep 14 10:03:26 2025] 14:03:26.792211 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:03:26 2025] 14:03:26.793170 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:26 2025] 14:03:26.915299 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.915566 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.918255 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.918681 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.919457 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.919535 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.919725 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.919799 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.920372 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.920452 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.920707 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.920783 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.921208 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.921302 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.922656 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.922731 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.923298 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.924202 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.933152 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.933262 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.933570 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.933714 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.937936 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.941354 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:26 2025] 14:03:26.943680 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:26 2025] 14:03:26.943754 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:44 2025] 14:03:44.146390 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:03:44 2025] 14:03:44.159486 dp-svga-x11  create mode 2560x1252_vbox (700) on output 0
+[Sun Sep 14 10:03:44 2025] 14:03:44.160486 dp-svga-x11  removing unused mode 698 from output 0
+[Sun Sep 14 10:03:44 2025] 14:03:44.163233 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:03:44 2025] 14:03:44.164104 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:44 2025] 14:03:44.170217 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:44 2025] 14:03:44.170307 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:44 2025] 14:03:44.216821 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:44 2025] 14:03:44.217535 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:57 2025] 14:03:57.797856 dp-svga-x11  Error: An X Window protocol error occurred: BadValue (integer parameter out of range for operation
+[Sun Sep 14 10:03:57 2025] 14:03:57.816923 dp-svga-x11  create mode 2559x1251_vbox (702) on output 0
+[Sun Sep 14 10:03:57 2025] 14:03:57.817092 dp-svga-x11  removing unused mode 700 from output 0
+[Sun Sep 14 10:03:57 2025] 14:03:57.818783 dp-svga-x11  Error: crtc set config failed for output 0
+[Sun Sep 14 10:03:57 2025] 14:03:57.818875 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:03:57 2025] 14:03:57.994192 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:57 2025] 14:03:57.994374 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:03:57 2025] 14:03:57.998009 X11 events  received X11 event (89)
+[Sun Sep 14 10:03:57 2025] 14:03:57.998107 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:04:36 2025] 14:04:36.594838 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:04:36 2025] 14:04:36.984609 X11 events  received X11 event (89)
+[Sun Sep 14 10:04:36 2025] 14:04:36.985741 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:04:36 2025] 14:04:36.986314 X11 events  Monitor 0 (w,h)=(1920,1080) (x,y)=(0,0)
+[Sun Sep 14 10:04:36 2025] 14:04:36.986425 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:04:36 2025] 14:04:36.986513 X11 events  received X11 event (89)
+[Sun Sep 14 10:04:36 2025] 14:04:36.986591 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:04:36 2025] 14:04:36.986926 X11 events  Monitor 0 (w,h)=(1920,1080) (x,y)=(0,0)
+[Sun Sep 14 10:04:36 2025] 14:04:36.987055 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:04:36 2025] 14:04:36.987176 X11 events  received X11 event (89)
+[Sun Sep 14 10:04:36 2025] 14:04:36.987245 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:04:36 2025] 14:04:36.988065 X11 events  Monitor 0 (w,h)=(1920,1080) (x,y)=(0,0)
+[Sun Sep 14 10:04:36 2025] 14:04:36.988200 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:29:31 2025] 14:29:31.949602 dp-svga-x11  output[0] successfully configured
+[Sun Sep 14 10:29:31 2025] 14:29:32.302188 X11 events  received X11 event (89)
+[Sun Sep 14 10:29:31 2025] 14:29:32.303127 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:29:31 2025] 14:29:32.307743 X11 events  Monitor 0 (w,h)=(1920,1200) (x,y)=(0,0)
+[Sun Sep 14 10:29:31 2025] 14:29:32.309237 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:29:31 2025] 14:29:32.310201 X11 events  received X11 event (89)
+[Sun Sep 14 10:29:31 2025] 14:29:32.310262 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:29:31 2025] 14:29:32.310657 X11 events  Monitor 0 (w,h)=(1920,1200) (x,y)=(0,0)
+[Sun Sep 14 10:29:31 2025] 14:29:32.310856 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:29:31 2025] 14:29:32.311027 X11 events  received X11 event (89)
+[Sun Sep 14 10:29:31 2025] 14:29:32.311160 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:29:31 2025] 14:29:32.311755 X11 events  Monitor 0 (w,h)=(1920,1200) (x,y)=(0,0)
+[Sun Sep 14 10:29:31 2025] 14:29:32.312400 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
+[Sun Sep 14 10:29:31 2025] 14:29:32.312550 X11 events  received X11 event (89)
+[Sun Sep 14 10:29:31 2025] 14:29:32.312611 X11 events  RRScreenChangeNotify event received
+[Sun Sep 14 10:29:31 2025] 14:29:32.312902 X11 events  Monitor 0 (w,h)=(1920,1200) (x,y)=(0,0)
+[Sun Sep 14 10:29:31 2025] 14:29:32.312993 X11 events  Sending monitor positions (8 of them)  to the host: VINF_SUCCESS
