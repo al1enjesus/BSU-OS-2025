@@ -112,7 +112,7 @@ sudo chmod 666 /dev/mychardev
 # Тестируйте:
 echo "Test data" > /dev/mychardev
 cat /dev/mychardev
-dmesg | tail -10
+sudo dmesg | tail -10
 # Очистка:
 sudo rm /dev/mychardev
 sudo rmmod chardev_module
