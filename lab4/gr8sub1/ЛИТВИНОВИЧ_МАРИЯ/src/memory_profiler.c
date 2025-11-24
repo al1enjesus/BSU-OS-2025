@@ -38,7 +38,7 @@ int main() {
     print_file("/proc/self/maps");
     print_file("/proc/self/status");
     print_file("/proc/self/smaps_rollup");
-
+size_t mmap_size=1024*1024;
 free(heap_var);
 munmap(mmap_var,mmap_size);
     return 0;

@@ -33,6 +33,8 @@ long read_mmap(const char *filename) {
     close(fd);
     return 1;
     }
+    
+    size_t size=st.st_size;
 
     char *ptr = mmap(NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
     if (ptr == MAP_FAILED) { perror("mmap"); exit(1); }
