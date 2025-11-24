@@ -11,7 +11,6 @@
 static atomic_t read_count = ATOMIC_INIT(0);
 static struct proc_dir_entry *proc_file;
 static unsigned long load_time; 
-static int read_count = 0; 
 
 static ssize_t student_read(struct file *file, char __user *ubuf,
 size_t count, loff_t *ppos)
