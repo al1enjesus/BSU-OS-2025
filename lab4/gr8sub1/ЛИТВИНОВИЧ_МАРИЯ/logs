@@ -1,0 +1,100 @@
+Задание А: ./memory_profiler
+PID = 23500
+Memory allocated. Press ENTER to continue...
+
+
+=== /proc/self/status ===
+Name:	memory_profiler
+Umask:	0002
+State:	R (running)
+Tgid:	23500
+Ngid:	0
+Pid:	23500
+PPid:	19737
+TracerPid:	0
+Uid:	1000	1000	1000	1000
+Gid:	1000	1000	1000	1000
+FDSize:	256
+Groups:	27 1000 
+NStgid:	23500
+NSpid:	23500
+NSpgid:	23500
+NSsid:	19737
+Kthread:	0
+VmPeak:	    4732 kB
+VmSize:	    4732 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	    1384 kB
+VmRSS:	    1384 kB
+RssAnon:	       0 kB
+RssFile:	    1384 kB
+RssShmem:	       0 kB
+VmData:	    2276 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+VmPTE:	      52 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+untag_mask:	0xffffffffffffffff
+Threads:	1
+SigQ:	0/25182
+
+=== /proc/self/smaps_rollup ===
+5837a118b000-7ffc1fa3a000 ---p 00000000 00:00 0                          [rollup]
+Rss:                1560 kB
+Pss:                 267 kB
+Pss_Dirty:           112 kB
+Pss_Anon:            112 kB
+Pss_File:            155 kB
+Pss_Shmem:             0 kB
+Shared_Clean:       1436 kB
+Shared_Dirty:          0 kB
+Private_Clean:        12 kB
+Private_Dirty:       112 kB
+Referenced:         1560 kB
+Anonymous:           112 kB
+KSM:                   0 kB
+LazyFree:              0 kB
+AnonHugePages:         0 kB
+ShmemPmdMapped:        0 kB
+FilePmdMapped:         0 kB
+Shared_Hugetlb:        0 kB
+Private_Hugetlb:       0 kB
+Swap:                  0 kB
+SwapPss:               0 kB
+Locked:                0 kB
+
+
+Задание В:
+
+time ./file_analyzer
+syscalls sum = -52055424 time = 1.000 sec
+mmap      sum = -52055424 time = 0.185 sec
+
+real	0m1.256s
+user	0m0.261s
+sys	0m0.932s
+
+
+Задание С: 
+./pagefaults 
+=== After malloc ===
+Minor faults: 80
+Major faults: 0
+
+=== After sequential access ===
+Minor faults: 25683
+Major faults: 0
+
+=== After random access ===
+Minor faults: 25685
+Major faults: 0
+
+=== After free ===
+Minor faults: 25685
+Major faults: 0
+
