@@ -4,6 +4,7 @@
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 #include <linux/jiffies.h>
+#include <linux/limits.h> 
 
 #define PROC_NAME "student_info"
 #define MAX_SIZE 512
@@ -21,20 +22,28 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
     if (*ppos > 0)
         return 0;
 
-    read_count++;
 
-    len = snprintf(buf, sizeof(buf),
+    if (read_count < INT_MAX)
+        read_count++;
+    else
+        read_count = 1;
+
+  
+    len = snprintf(buf, MAX_SIZE,
         "Name: %s\n"
         "Group: %d, Subgroup: %d\n"
         "Module loaded at: %lu jiffies\n"
         "Read count: %d\n",
         "Julia Pauliuchuk", 8, 1, load_time, read_count);
 
+
+    if (len >= MAX_SIZE)
+        return -EINVAL;
+
     if (copy_to_user(ubuf, buf, len))
         return -EFAULT;
 
     *ppos = len;
-
     return len;
 }
 
@@ -55,7 +64,6 @@ static int __init student_info_init(void)
     }
 
     printk(KERN_INFO "student_info_module: Created /proc/%s \n", PROC_NAME);
-
     return 0;
 }
 
@@ -76,3 +84,4 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Pauliuchuk Julia");
 MODULE_DESCRIPTION("/proc student info module");
 MODULE_VERSION("1.0");
+
