@@ -44,8 +44,8 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
     unsigned long uptime_sec = jiffies_to_msecs(jiffies - INITIAL_JIFFIES) / 1000;
 
     len = snprintf(buf, MAX_SIZE,
-        "Name: Иванов Иван Иванович\n"
-        "Group: 6, Subgroup: 1\n"
+        "Name: Paniavin Raman Yaugenavich\n"
+        "Group: 9, Subgroup: 1\n"
         "Variant: 1 (нечётный)\n"
         "Module loaded at: %lu jiffies\n"
         "Read count: %d\n"
@@ -60,6 +60,10 @@ static ssize_t proc_read(struct file *file, char __user *ubuf,
         proc_count,
         total_mb, used_mb, free_mb,
         uptime_sec);
+
+    if (len >= MAX_SIZE) {
+            len = MAX_SIZE - 1; 
+  }
 
     if (copy_to_user(ubuf, buf, len))
         return -EFAULT;
@@ -97,6 +101,6 @@ module_init(proc_module_init);
 module_exit(proc_module_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Иванов Иван");
+MODULE_AUTHOR("Paniavin Raman");
 MODULE_DESCRIPTION("Proc module with system stats - Variant 1");
 MODULE_VERSION("1.0");

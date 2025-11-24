@@ -99,6 +99,6 @@ module_init(chardev_init);
 module_exit(chardev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Иванов Иван");
+MODULE_AUTHOR("Paniavin Raman");
 MODULE_DESCRIPTION("Simple character device - Variant 1");
 MODULE_VERSION("1.0");
