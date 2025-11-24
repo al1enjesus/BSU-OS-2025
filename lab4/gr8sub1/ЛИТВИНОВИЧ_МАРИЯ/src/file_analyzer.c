@@ -57,5 +57,9 @@ int main() {
     printf("syscalls sum = %ld time = %.3f sec\n", s1, (double)(t2 - t1)/CLOCKS_PER_SEC);
     printf("mmap      sum = %ld time = %.3f sec\n", s2, (double)(t4 - t3)/CLOCKS_PER_SEC);
 
+printf("PID = %d\n", getpid());
+printf("Press ENTER to exit...\n");
+getchar();
+
     return 0;
 }
