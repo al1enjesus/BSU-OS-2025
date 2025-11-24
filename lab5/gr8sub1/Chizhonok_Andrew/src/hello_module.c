@@ -24,7 +24,6 @@ static void __exit hello_exit(void)
 {
     printk(KERN_INFO "hello_module: Goodbye from Andrew module!\n");
 
-    printk(KERN_INFO "hello_module: Module unloaded (TODO: implement goodbye)\n");
 }
 
 module_init(hello_init);
