@@ -1,9 +1,11 @@
+// proc_my_config.c
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 #include <linux/mutex.h>
+#include <linux/printk.h>
 
 #define PROC_NAME "my_config"
 #define MAX_LEN 256
@@ -14,7 +16,7 @@ static DEFINE_MUTEX(config_lock);
 
 static ssize_t my_read(struct file *file, char __user *ubuf, size_t count, loff_t *ppos)
 {
-    char tmp[MAX_LEN + 1];
+    char tmp[MAX_LEN + 2];
     ssize_t len;
 
     if (*ppos > 0)
@@ -24,7 +26,7 @@ static ssize_t my_read(struct file *file, char __user *ubuf, size_t count, loff_
     len = snprintf(tmp, sizeof(tmp), "%s\n", config_buf);
     mutex_unlock(&config_lock);
 
-    if (len > count)
+    if (len > (ssize_t)count)
         len = count;
 
     if (copy_to_user(ubuf, tmp, len))
@@ -49,10 +51,13 @@ static ssize_t my_write(struct file *file, const char __user *ubuf, size_t count
         mutex_unlock(&config_lock);
         return -EFAULT;
     }
-    config_buf[to_copy] = '\0';
 
     if (to_copy > 0 && config_buf[to_copy - 1] == '\n')
-        config_buf[to_copy - 1] = '\0';
+        to_copy--;
+
+    config_buf[to_copy] = '\0';
+    if (to_copy < MAX_LEN)
+        memset(config_buf + to_copy + 1, 0, MAX_LEN - to_copy);
 
     mutex_unlock(&config_lock);
 
@@ -68,7 +73,7 @@ static int __init my_init(void)
 {
     proc_file = proc_create(PROC_NAME, 0666, NULL, &my_proc_ops);
     if (!proc_file) {
-        pr_err("proc_create failed\n");
+        pr_err("my_config: proc_create failed\n");
         return -ENOMEM;
     }
 
@@ -78,7 +83,11 @@ static int __init my_init(void)
 
 static void __exit my_exit(void)
 {
-    proc_remove(proc_file);
+    if (proc_file)
+        proc_remove(proc_file);
+    else
+        remove_proc_entry(PROC_NAME, NULL);
+
     pr_info("/proc/%s removed\n", PROC_NAME);
 }
 

@@ -6,11 +6,12 @@
 #include <linux/seq_file.h>
 #include <linux/sched/signal.h>
 #include <linux/jiffies.h>
-#include <linux/mm.h> 
-#include <linux/mmzone.h>
-#include <linux/uaccess.h>
+#include <linux/sysinfo.h>
+#include <linux/types.h>
 
 #define PROC_NAME "sys_stats"
+
+static struct proc_dir_entry *sys_stats_entry;
 
 static int sys_stats_show(struct seq_file *m, void *v)
 {
@@ -25,12 +26,20 @@ static int sys_stats_show(struct seq_file *m, void *v)
     struct sysinfo si;
     si_meminfo(&si);
 
-    unsigned long used_pages = (si.totalram - si.freeram - si.bufferram);
-    unsigned long used_bytes = used_pages * (unsigned long)PAGE_SIZE;
-    unsigned long used_mb = used_bytes / (1024 * 1024);
+    unsigned long used_pages = 0;
+    unsigned long long used_bytes = 0;
+    unsigned long used_mb = 0;
+
+    if (si.totalram > (si.freeram + si.bufferram))
+        used_pages = si.totalram - si.freeram - si.bufferram;
+    else
+        used_pages = 0;
+
+    used_bytes = (unsigned long long)used_pages * (unsigned long long)si.mem_unit;
+    used_mb = (unsigned long)(used_bytes / (1024ULL * 1024ULL));
 
     unsigned long uptime_ms = jiffies_to_msecs(jiffies);
-    unsigned long uptime_s = uptime_ms / 1000;
+    unsigned long uptime_s = uptime_ms / 1000UL;
 
     seq_printf(m,
                "Processes: %lu\n"
@@ -55,8 +64,9 @@ static const struct proc_ops sys_stats_fops = {
 
 static int __init sys_stats_init(void)
 {
-    if (!proc_create(PROC_NAME, 0444, NULL, &sys_stats_fops)) {
-        pr_err("Failed to create /proc/%s\n", PROC_NAME);
+    sys_stats_entry = proc_create(PROC_NAME, 0444, NULL, &sys_stats_fops);
+    if (!sys_stats_entry) {
+        pr_err("sys_stats: failed to create /proc/%s\n", PROC_NAME);
         return -ENOMEM;
     }
     pr_info("/proc/%s created\n", PROC_NAME);
@@ -65,8 +75,12 @@ static int __init sys_stats_init(void)
 
 static void __exit sys_stats_exit(void)
 {
-    proc_remove(proc_create(PROC_NAME, 0444, NULL, &sys_stats_fops));
-    remove_proc_entry(PROC_NAME, NULL);
+    if (sys_stats_entry) {
+        proc_remove(sys_stats_entry);
+        sys_stats_entry = NULL;
+    } else {
+        remove_proc_entry(PROC_NAME, NULL);
+    }
     pr_info("/proc/%s removed\n", PROC_NAME);
 }
 
