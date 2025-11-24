@@ -4,9 +4,11 @@
 #include <linux/proc_fs.h>
 #include <linux/uaccess.h>
 #include <linux/jiffies.h>
+#include <linux/atomic.h>
 
 #define PROC_FILENAME "student_info"
 
+static atomic_t read_count = ATOMIC_INIT(0);
 static struct proc_dir_entry *proc_file;
 static unsigned long load_time; 
 static int read_count = 0; 
@@ -20,7 +22,7 @@ size_t count, loff_t *ppos)
 	if (*ppos > 0)
 		return 0;
 
-	read_count++;
+	current_count = atomic_inc_return(&read_count);
 
 	len = snprintf(buffer, sizeof(buffer),
 		"Name: Gorbach Matvey\n"

@@ -36,14 +36,14 @@ size_t len, loff_t *ppos)
 	mutex_lock(&chardev_mutex);
 
 	if (*ppos >= buffer_size) {
-		ret = 0
+		ret = 0;
 		goto out;
 	}
 	if (len > buffer_size - *ppos) 
 		len = buffer_size - *ppos;
 
 	if (copy_to_user(buf, kernel_buffer + *ppos, len)) {
-		return -EFAULT;
+		ret = -EFAULT;
 		goto out;
 	}
 
@@ -69,7 +69,7 @@ size_t len, loff_t *ppos)
 	}
 
 	buffer_size = len;
-	printk(KERN_INFO "mychardev: received %d bytes\n", buffer_size);
+	printk(KERN_INFO "mychardev: received %zu bytes\n", len);
 
 	ret = len;
 
