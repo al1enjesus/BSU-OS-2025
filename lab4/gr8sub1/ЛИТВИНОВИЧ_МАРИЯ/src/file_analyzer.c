@@ -28,8 +28,11 @@ long read_mmap(const char *filename) {
     if (fd < 0) { perror("open"); exit(1); }
 
     struct stat st;
-    fstat(fd, &st);
-    size_t size = st.st_size;
+    if(fstat(fd, &st)<0){
+    perror("fstat");
+    close(fd);
+    return 1;
+    }
 
     char *ptr = mmap(NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
     if (ptr == MAP_FAILED) { perror("mmap"); exit(1); }

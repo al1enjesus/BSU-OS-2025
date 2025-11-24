@@ -39,5 +39,7 @@ int main() {
     print_file("/proc/self/status");
     print_file("/proc/self/smaps_rollup");
 
+free(heap_var);
+munmap(mmap_var,mmap_size);
     return 0;
 }

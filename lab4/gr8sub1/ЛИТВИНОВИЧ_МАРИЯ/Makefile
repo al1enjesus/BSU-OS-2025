@@ -31,9 +31,10 @@ runA: memory_profiler
 runB: file_analyzer testfile.bin
 	@echo
 	@echo
-	sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+runB:
+	@echo "Перед запуском очистите кэш вручную:"
+	@echo "sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'"
 	./file_analyzer
-
 # Запуск задания C
 runC: pagefaults
 	./pagefaults
