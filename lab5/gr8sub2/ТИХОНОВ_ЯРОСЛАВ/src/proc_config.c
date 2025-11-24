@@ -10,7 +10,7 @@
 #define MAXLEN 256
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("ВАШ_ИМЯ");
+MODULE_AUTHOR("Ярослав");
 MODULE_DESCRIPTION("/proc file that stores a small configuration string");
 
 static char *config_buf;

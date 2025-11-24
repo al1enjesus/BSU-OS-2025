@@ -11,7 +11,7 @@
 #define PROC_NAME "sys_stats"
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("ВАШ_ИМЯ");
+MODULE_AUTHOR("Ярослав");
 MODULE_DESCRIPTION("/proc file providing simple system statistics");
 
 static int sys_stats_show(struct seq_file *m, void *v)
