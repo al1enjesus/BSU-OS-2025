@@ -48,7 +48,7 @@ size_t len, loff_t *ppos)
 	}
 
 	*ppos += len;
-	return len;
+	ret = len;
 out:
 	mutex_unlock(&chardev_mutex);
 	return ret;
@@ -64,7 +64,7 @@ size_t len, loff_t *ppos)
 	mutex_lock(&chardev_mutex);
 
 	if (copy_from_user(kernel_buffer, buf, len)) {
-		ret = - EFAULT;
+		ret = -EFAULT;
 		goto out;
 	}
 

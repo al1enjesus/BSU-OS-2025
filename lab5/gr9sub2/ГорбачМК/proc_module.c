@@ -28,7 +28,7 @@ size_t count, loff_t *ppos)
 		"Group: 9\n"
 		"Module loaded at: %lu jiffies\n"
 		"Read count: %d\n",
-	load_time, read_count);
+		load_time, current_count);
 
 	if (copy_to_user(ubuf, buffer, len))
 		return -EFAULT;
