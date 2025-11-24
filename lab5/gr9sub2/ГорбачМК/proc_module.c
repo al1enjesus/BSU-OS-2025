@@ -17,7 +17,7 @@ size_t count, loff_t *ppos)
 {
 	char buffer[256];
 	int len = 0;
-	int current_count = atomic_inc_return(&read_count);
+	int current_count;
 	
 	if (*ppos > 0)
 		return 0;
