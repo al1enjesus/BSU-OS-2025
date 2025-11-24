@@ -21,5 +21,5 @@ module_exit(hello_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Matvey Gorbach");
-MODULE_DESCRIPTION("Simple Hello World kernerl module for lab 5");
+MODULE_DESCRIPTION("Simple Hello World kernel module for lab 5");
 MODULE_VERSION("0.1");

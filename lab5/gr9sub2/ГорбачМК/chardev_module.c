@@ -5,10 +5,12 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 #include <linux/slab.h>
+#include <linux/mutex.h>
 
 #define DEVICE_NAME "mychardev"
 #define BUFFER_SIZE 1024
 
+static DEFINE_MUTEX(chardev_mutex);
 static dev_t dev_num;
 static struct cdev my_cdev;
 
@@ -30,32 +32,50 @@ static int dev_release(struct inode *inode, struct file *file)
 static ssize_t dev_read(struct file *file, char __user *buf,
 size_t len, loff_t *ppos)
 {
-	if (*ppos >= buffer_size)
-		return 0;
+	ssize_t ret;
+	mutex_lock(&chardev_mutex);
 
-	if (len > buffer_size - *ppos)
+	if (*ppos >= buffer_size) {
+		ret = 0
+		goto out;
+	}
+	if (len > buffer_size - *ppos) 
 		len = buffer_size - *ppos;
 
-	if (copy_to_user(buf, kernel_buffer + *ppos, len))
+	if (copy_to_user(buf, kernel_buffer + *ppos, len)) {
 		return -EFAULT;
+		goto out;
+	}
 
 	*ppos += len;
 	return len;
+out:
+	mutex_unlock(&chardev_mutex);
+	return ret;
 }
 
 static ssize_t dev_write(struct file *file, const char __user *buf,
 size_t len, loff_t *ppos)
 {
+	ssize_t ret;
 	if (len > BUFFER_SIZE)
-		len = BUFFER_SIZE;
+		return -EINVAL;
+	
+	mutex_lock(&chardev_mutex);
 
-	if (copy_from_user(kernel_buffer, buf, len))
-		return -EFAULT;
+	if (copy_from_user(kernel_buffer, buf, len)) {
+		ret = - EFAULT;
+		goto out;
+	}
 
 	buffer_size = len;
 	printk(KERN_INFO "mychardev: received %d bytes\n", buffer_size);
 
-	return len;
+	ret = len;
+
+out:
+	mutex_unlock(&chardev_mutex);
+	return ret;
 }
 
 static struct file_operations fops = {
