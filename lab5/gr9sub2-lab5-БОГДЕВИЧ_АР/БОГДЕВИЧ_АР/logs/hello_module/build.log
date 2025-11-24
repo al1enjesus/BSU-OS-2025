@@ -1,0 +1,3 @@
+Команда «make» не найдена, но может быть установлена с помощью:
+sudo apt install make        # version 4.3-4.1build1, or
+sudo apt install make-guile  # version 4.3-4.1build1
