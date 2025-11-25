@@ -1,5 +1,7 @@
+#include <errno.h>
 #include <getopt.h>
 #include <pthread.h>
+#include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,11 +14,9 @@ typedef struct {
   int tail;
   int count;
   pthread_mutex_t mutex;
-  pthread_cond_t not_full;
-  pthread_cond_t not_empty;
-  int producers_active;
-} ring_buffer_t; // TODO: это готовая структура. Не меняйте поля без
-                 // необходимости.
+  sem_t empty_slots;
+  sem_t full_slots;
+} ring_buffer_t;
 
 typedef struct {
   ring_buffer_t *rb;
@@ -31,84 +31,71 @@ typedef struct {
   int consumer_index;
 } consumer_args_t;
 
-static void rb_init(ring_buffer_t *rb, int capacity, int producers_total) {
-  // TODO: выделите буфер, инициализируйте индексы и синхронизацию
-  rb->data = (int *)malloc(sizeof(int) * capacity);
+static void rb_init(ring_buffer_t *rb, const int capacity) {
+  rb->data = (int *)malloc(sizeof(int) * (size_t)capacity);
+  if (!rb->data) {
+    perror("malloc");
+    exit(1);
+  }
   rb->capacity = capacity;
   rb->head = 0;
   rb->tail = 0;
   rb->count = 0;
-  rb->producers_active = producers_total;
   pthread_mutex_init(&rb->mutex, NULL);
-  pthread_cond_init(&rb->not_full, NULL);
-  pthread_cond_init(&rb->not_empty, NULL);
+  if (sem_init(&rb->empty_slots, 0, (unsigned int)capacity) != 0) {
+    perror("sem_init(empty_slots)");
+    exit(1);
+  }
+  if (sem_init(&rb->full_slots, 0, 0) != 0) {
+    perror("sem_init(full_slots)");
+    exit(1);
+  }
 }
 
 static void rb_destroy(ring_buffer_t *rb) {
   free(rb->data);
   pthread_mutex_destroy(&rb->mutex);
-  pthread_cond_destroy(&rb->not_full);
-  pthread_cond_destroy(&rb->not_empty);
+  sem_destroy(&rb->empty_slots);
+  sem_destroy(&rb->full_slots);
 }
 
-static void rb_push(ring_buffer_t *rb, int value) {
-  // TODO: реализуйте вставку в кольцевой буфер под mutex с ожиданием not_full
-  pthread_mutex_lock(&rb->mutex);
-  while (rb->count == rb->capacity) {
-    pthread_cond_wait(&rb->not_full, &rb->mutex);
+static void rb_push(ring_buffer_t *rb, const int value) {
+  while (sem_wait(&rb->empty_slots) == -1 && errno == EINTR) {
   }
+  pthread_mutex_lock(&rb->mutex);
   rb->data[rb->tail] = value;
   rb->tail = (rb->tail + 1) % rb->capacity;
-  rb->count++;
-  pthread_cond_signal(&rb->not_empty);
   pthread_mutex_unlock(&rb->mutex);
+  sem_post(&rb->full_slots);
 }
 
-static int rb_pop(ring_buffer_t *rb, int *value) {
-  // TODO: реализуйте извлечение из кольцевого буфера под mutex с ожиданием
-  // not_empty
+static int rb_pop(ring_buffer_t *rb) {
+  while (sem_wait(&rb->full_slots) == -1 && errno == EINTR) {
+  }
   pthread_mutex_lock(&rb->mutex);
-  while (rb->count == 0 && rb->producers_active > 0) {
-    pthread_cond_wait(&rb->not_empty, &rb->mutex);
-  }
-  if (rb->count == 0 && rb->producers_active == 0) {
-    pthread_mutex_unlock(&rb->mutex);
-    return 0; // no more items will arrive
-  }
-  *value = rb->data[rb->head];
+  const int val = rb->data[rb->head];
   rb->head = (rb->head + 1) % rb->capacity;
-  rb->count--;
-  pthread_cond_signal(&rb->not_full);
   pthread_mutex_unlock(&rb->mutex);
-  return 1;
-}
-
-static void rb_producer_done(ring_buffer_t *rb) {
-  // TODO: сообщайте потребителям об окончании производителей
-  pthread_mutex_lock(&rb->mutex);
-  rb->producers_active--;
-  if (rb->producers_active == 0) {
-    pthread_cond_broadcast(&rb->not_empty);
-  }
-  pthread_mutex_unlock(&rb->mutex);
+  sem_post(&rb->empty_slots);
+  return val;
 }
 
 static void *producer_thread(void *arg) {
-  // TODO: генерируйте элементы и кладите их в буфер
   producer_args_t *a = (producer_args_t *)arg;
   for (int i = 0; i < a->items_to_produce; i++) {
-    int value = (a->producer_index + 1) * 1000000 + i; // пример кодирования
+    int value = (a->producer_index + 1) * 1000000 + i;
     rb_push(a->rb, value);
   }
-  rb_producer_done(a->rb);
   return NULL;
 }
 
 static void *consumer_thread(void *arg) {
-  // TODO: извлекайте элементы пока доступны и агрегируйте метрики
   consumer_args_t *a = (consumer_args_t *)arg;
-  int v;
-  while (rb_pop(a->rb, &v)) {
+  for (;;) {
+    int v = rb_pop(a->rb);
+    if (v == -1) {
+      break;
+    }
     a->consumed_sum += v;
     a->consumed_count += 1;
   }
@@ -120,6 +107,7 @@ static void usage(const char *prog) {
           "Usage: %s -P <producers> -C <consumers> -N <items_total> -B "
           "<buffer_size>\n",
           prog);
+  fprintf(stderr, "Example: %s -P 2 -C 2 -N 100000 -B 64\n", prog);
 }
 
 int main(int argc, char **argv) {
@@ -152,7 +140,7 @@ int main(int argc, char **argv) {
   }
 
   ring_buffer_t rb;
-  rb_init(&rb, B, P);
+  rb_init(&rb, B);
 
   pthread_t *pt = (pthread_t *)calloc((size_t)P, sizeof(pthread_t));
   pthread_t *ct = (pthread_t *)calloc((size_t)C, sizeof(pthread_t));
@@ -194,6 +182,11 @@ int main(int argc, char **argv) {
     pthread_join(pt[i], NULL);
     produced_total += pargs[i].items_to_produce;
   }
+
+  for (int k = 0; k < C; k++) {
+    rb_push(&rb, -1);
+  }
+
   for (int i = 0; i < C; i++) {
     pthread_join(ct[i], NULL);
   }
@@ -205,9 +198,38 @@ int main(int argc, char **argv) {
     consumed_sum += cargs[i].consumed_sum;
   }
 
-  printf("[prodcons] (samples skeleton) P=%d C=%d N=%lld B=%d produced=%lld "
-         "consumed=%lld sum=%lld\n",
-         P, C, N, B, produced_total, consumed_total, consumed_sum);
+  printf(
+      "[prodcons] P=%d C=%d N=%lld B=%d produced=%lld consumed=%lld sum=%lld\n",
+      P, C, N, B, produced_total, consumed_total, consumed_sum);
+
+  int ok = 1;
+  if (produced_total != N) {
+    fprintf(stderr, "[ERR] produced_total (%lld) != N (%lld)\n", produced_total,
+            N);
+    ok = 0;
+  }
+  if (consumed_total != N) {
+    fprintf(stderr, "[ERR] consumed_total (%lld) != N (%lld)\n", consumed_total,
+            N);
+    ok = 0;
+  }
+
+  long long expected_sum = 0;
+  for (int i = 0; i < P; i++) {
+    long long k = pargs[i].items_to_produce;
+    long long base = (long long)(i + 1) * 1000000LL;
+    expected_sum += k * base + (k * (k - 1)) / 2;
+  }
+  if (consumed_sum != expected_sum) {
+    fprintf(stderr, "[WARN] consumed_sum (%lld) != expected_sum (%lld)\n",
+            consumed_sum, expected_sum);
+  } else {
+    fprintf(stderr, "[OK] sum check passed: %lld\n", consumed_sum);
+  }
+
+  if (!ok) {
+    return 2;
+  }
 
   free(pt);
   free(ct);
