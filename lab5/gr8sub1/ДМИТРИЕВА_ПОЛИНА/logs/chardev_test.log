@@ -1,0 +1,27 @@
+Building kernel modules in /home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА...
+make -C /lib/modules/6.12.48+deb13-amd64/build M=/home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА modules
+make[1]: Entering directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+make[1]: Leaving directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+
+✓ Modules built:
+chardev_module.ko
+hello_module.ko
+proc_module.ko
+
+=== Testing chardev_module ===
+sudo insmod chardev_module.ko
+Creating /dev/mychardev with major 244...
+cat /dev/mychardev:
+Hello
+sudo rmmod chardev_module
+dmesg:
+[16608.486996] chardev: Registered with major number 244
+[16608.486999] chardev: Device registered successfully
+[16608.486999] chardev: Create device with: mknod /dev/mychardev c 244 0
+[16608.558433] chardev: Device opened
+[16608.558440] chardev: Write 6 bytes (buffer_size=6)
+[16608.558442] chardev: Device closed
+[16608.559797] chardev: Device opened
+[16608.559805] chardev: Read 6 bytes, new offset=6
+[16608.559839] chardev: Device closed
+[16608.600458] chardev: Device unregistered
