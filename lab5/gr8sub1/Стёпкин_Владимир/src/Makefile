@@ -1,4 +1,4 @@
-# Указываем модуль при вызове: make MODULE=hello_module or MODULE=MODULE=student_info_module
+# Указываем модуль при вызове: make MODULE=hello_module or MODULE=MODULE=student_info_module or make MODULE=chardev_module
 MODULE ?= hello_module
 
 obj-m := $(MODULE).o
