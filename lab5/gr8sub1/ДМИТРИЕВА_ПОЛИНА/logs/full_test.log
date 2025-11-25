@@ -1,0 +1,82 @@
+=== Testing all modules ===
+Building kernel modules in /home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА...
+make -C /lib/modules/6.12.48+deb13-amd64/build M=/home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА modules
+make[1]: Entering directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+make[1]: Leaving directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+
+✓ Modules built:
+chardev_module.ko
+hello_module.ko
+proc_module.ko
+
+=== Testing hello_module ===
+sudo insmod hello_module.ko
+dmesg (load):
+[16608.559797] chardev: Device opened
+[16608.559805] chardev: Read 6 bytes, new offset=6
+[16608.559839] chardev: Device closed
+[16608.600458] chardev: Device unregistered
+[16644.275450] hello_module: Hello from Dmitrieva Polina module!
+sudo rmmod hello_module
+dmesg (unload):
+[16608.559805] chardev: Read 6 bytes, new offset=6
+[16608.559839] chardev: Device closed
+[16608.600458] chardev: Device unregistered
+[16644.275450] hello_module: Hello from Dmitrieva Polina module!
+[16644.329904] hello_module: Goodbye from Polina Dmitrieva module!
+Building kernel modules in /home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА...
+make -C /lib/modules/6.12.48+deb13-amd64/build M=/home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА modules
+make[1]: Entering directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+make[1]: Leaving directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+
+✓ Modules built:
+chardev_module.ko
+hello_module.ko
+proc_module.ko
+
+=== Testing proc_module ===
+sudo insmod proc_module.ko
+cat /proc/student_info:
+Name: Polina Dmitrieva
+Group: 8, Subgroup: 1
+Module loaded at: 4299053562 jiffies
+Read count: 1
+
+Name: Polina Dmitrieva
+Group: 8, Subgroup: 1
+Module loaded at: 4299053562 jiffies
+Read count: 2
+sudo rmmod proc_module
+dmesg:
+[16644.329904] hello_module: Goodbye from Polina Dmitrieva module!
+[16645.448517] proc_module: Initializing
+[16645.448528] proc_module: Created /proc/student_info
+[16645.497656] proc_module: Removed /proc/student_info
+[16645.497668] proc_module: Exiting
+Building kernel modules in /home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА...
+make -C /lib/modules/6.12.48+deb13-amd64/build M=/home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА modules
+make[1]: Entering directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+make[1]: Leaving directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+
+✓ Modules built:
+chardev_module.ko
+hello_module.ko
+proc_module.ko
+
+=== Testing chardev_module ===
+sudo insmod chardev_module.ko
+Creating /dev/mychardev with major 244...
+cat /dev/mychardev:
+Hello
+sudo rmmod chardev_module
+dmesg:
+[16646.424296] chardev: Registered with major number 244
+[16646.424299] chardev: Device registered successfully
+[16646.424299] chardev: Create device with: mknod /dev/mychardev c 244 0
+[16646.476285] chardev: Device opened
+[16646.476293] chardev: Write 6 bytes (buffer_size=6)
+[16646.476295] chardev: Device closed
+[16646.478271] chardev: Device opened
+[16646.478280] chardev: Read 6 bytes, new offset=6
+[16646.478292] chardev: Device closed
+[16646.532423] chardev: Device unregistered

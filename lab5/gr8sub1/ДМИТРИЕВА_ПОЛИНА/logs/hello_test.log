@@ -1,0 +1,25 @@
+Building kernel modules in /home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА...
+make -C /lib/modules/6.12.48+deb13-amd64/build M=/home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА modules
+make[1]: Entering directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+make[1]: Leaving directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+
+✓ Modules built:
+chardev_module.ko
+hello_module.ko
+proc_module.ko
+
+=== Testing hello_module ===
+sudo insmod hello_module.ko
+dmesg (load):
+[16357.577855] systemd-journald[179644]: Collecting audit messages is disabled.
+[16357.578376] systemd-journald[179644]: File /var/log/journal/4dc881ce92a64b359ddd7522b1620f09/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[16357.618087] systemd[1]: Started systemd-journald.service - Journal Service.
+[16439.735682] systemd-journald[179644]: File /var/log/journal/4dc881ce92a64b359ddd7522b1620f09/user-1000.journal corrupted or uncleanly shut down, renaming and replacing.
+[16585.819437] hello_module: Hello from Dmitrieva Polina module!
+sudo rmmod hello_module
+dmesg (unload):
+[16357.578376] systemd-journald[179644]: File /var/log/journal/4dc881ce92a64b359ddd7522b1620f09/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[16357.618087] systemd[1]: Started systemd-journald.service - Journal Service.
+[16439.735682] systemd-journald[179644]: File /var/log/journal/4dc881ce92a64b359ddd7522b1620f09/user-1000.journal corrupted or uncleanly shut down, renaming and replacing.
+[16585.819437] hello_module: Hello from Dmitrieva Polina module!
+[16585.879242] hello_module: Goodbye from Polina Dmitrieva module!

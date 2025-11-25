@@ -1,0 +1,29 @@
+Building kernel modules in /home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА...
+make -C /lib/modules/6.12.48+deb13-amd64/build M=/home/polina/BSU-OS-2025/lab5/gr8sub1/ДМИТРИЕВА_ПОЛИНА modules
+make[1]: Entering directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+make[1]: Leaving directory '/usr/src/linux-headers-6.12.48+deb13-amd64'
+
+✓ Modules built:
+chardev_module.ko
+hello_module.ko
+proc_module.ko
+
+=== Testing proc_module ===
+sudo insmod proc_module.ko
+cat /proc/student_info:
+Name: Polina Dmitrieva
+Group: 8, Subgroup: 1
+Module loaded at: 4299041730 jiffies
+Read count: 1
+
+Name: Polina Dmitrieva
+Group: 8, Subgroup: 1
+Module loaded at: 4299041730 jiffies
+Read count: 2
+sudo rmmod proc_module
+dmesg:
+[16585.879242] hello_module: Goodbye from Polina Dmitrieva module!
+[16598.129039] proc_module: Initializing
+[16598.129046] proc_module: Created /proc/student_info
+[16598.173207] proc_module: Removed /proc/student_info
+[16598.173213] proc_module: Exiting
