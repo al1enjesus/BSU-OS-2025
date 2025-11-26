@@ -1,0 +1,633 @@
+Benchmark results for race program
+===================================
+
+Mode: unsync | Threads: 2 | Iterations: 10
+./race 2 10 unsync
+Expected: 10, Actual: 10
+Elapsed: 0.00049 s
+
+Mode: unsync | Threads: 2 | Iterations: 100
+./race 2 100 unsync
+Expected: 100, Actual: 100
+Elapsed: 0.00038 s
+
+Mode: unsync | Threads: 2 | Iterations: 1000
+./race 2 1000 unsync
+Expected: 1000, Actual: 1000
+Elapsed: 0.00042 s
+
+Mode: unsync | Threads: 2 | Iterations: 10000
+./race 2 10000 unsync
+Expected: 10000, Actual: 10000
+Elapsed: 0.00037 s
+
+Mode: unsync | Threads: 2 | Iterations: 100000
+./race 2 100000 unsync
+Expected: 100000, Actual: 100000
+Elapsed: 0.00042 s
+
+Mode: unsync | Threads: 2 | Iterations: 1000000
+./race 2 1000000 unsync
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.00038 s
+
+Mode: unsync | Threads: 2 | Iterations: 10000000
+./race 2 10000000 unsync
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.00044 s
+
+Mode: unsync | Threads: 4 | Iterations: 10
+./race 4 10 unsync
+Expected: 10, Actual: 8
+Elapsed: 0.00054 s
+
+Mode: unsync | Threads: 4 | Iterations: 100
+./race 4 100 unsync
+Expected: 100, Actual: 100
+Elapsed: 0.00065 s
+
+Mode: unsync | Threads: 4 | Iterations: 1000
+./race 4 1000 unsync
+Expected: 1000, Actual: 1000
+Elapsed: 0.00060 s
+
+Mode: unsync | Threads: 4 | Iterations: 10000
+./race 4 10000 unsync
+Expected: 10000, Actual: 10000
+Elapsed: 0.00047 s
+
+Mode: unsync | Threads: 4 | Iterations: 100000
+./race 4 100000 unsync
+Expected: 100000, Actual: 100000
+Elapsed: 0.00063 s
+
+Mode: unsync | Threads: 4 | Iterations: 1000000
+./race 4 1000000 unsync
+Expected: 1000000, Actual: 750000
+Elapsed: 0.00038 s
+
+Mode: unsync | Threads: 4 | Iterations: 10000000
+./race 4 10000000 unsync
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.00045 s
+
+Mode: unsync | Threads: 8 | Iterations: 10
+./race 8 10 unsync
+Expected: 10, Actual: 8
+Elapsed: 0.00092 s
+
+Mode: unsync | Threads: 8 | Iterations: 100
+./race 8 100 unsync
+Expected: 100, Actual: 96
+Elapsed: 0.00086 s
+
+Mode: unsync | Threads: 8 | Iterations: 1000
+./race 8 1000 unsync
+Expected: 1000, Actual: 1000
+Elapsed: 0.00083 s
+
+Mode: unsync | Threads: 8 | Iterations: 10000
+./race 8 10000 unsync
+Expected: 10000, Actual: 10000
+Elapsed: 0.00092 s
+
+Mode: unsync | Threads: 8 | Iterations: 100000
+./race 8 100000 unsync
+Expected: 100000, Actual: 100000
+Elapsed: 0.00084 s
+
+Mode: unsync | Threads: 8 | Iterations: 1000000
+./race 8 1000000 unsync
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.00093 s
+
+Mode: unsync | Threads: 8 | Iterations: 10000000
+./race 8 10000000 unsync
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.00052 s
+
+Mode: unsync | Threads: 16 | Iterations: 10
+./race 16 10 unsync
+Expected: 10, Actual: 0
+Elapsed: 0.00153 s
+
+Mode: unsync | Threads: 16 | Iterations: 100
+./race 16 100 unsync
+Expected: 100, Actual: 96
+Elapsed: 0.00157 s
+
+Mode: unsync | Threads: 16 | Iterations: 1000
+./race 16 1000 unsync
+Expected: 1000, Actual: 992
+Elapsed: 0.00167 s
+
+Mode: unsync | Threads: 16 | Iterations: 10000
+./race 16 10000 unsync
+Expected: 10000, Actual: 10000
+Elapsed: 0.00158 s
+
+Mode: unsync | Threads: 16 | Iterations: 100000
+./race 16 100000 unsync
+Expected: 100000, Actual: 100000
+Elapsed: 0.00170 s
+
+Mode: unsync | Threads: 16 | Iterations: 1000000
+./race 16 1000000 unsync
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.00171 s
+
+Mode: unsync | Threads: 16 | Iterations: 10000000
+./race 16 10000000 unsync
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.00145 s
+
+Mode: unsync | Threads: 32 | Iterations: 10
+./race 32 10 unsync
+Expected: 10, Actual: 0
+Elapsed: 0.00226 s
+
+Mode: unsync | Threads: 32 | Iterations: 100
+./race 32 100 unsync
+Expected: 100, Actual: 96
+Elapsed: 0.00146 s
+
+Mode: unsync | Threads: 32 | Iterations: 1000
+./race 32 1000 unsync
+Expected: 1000, Actual: 992
+Elapsed: 0.00334 s
+
+Mode: unsync | Threads: 32 | Iterations: 10000
+./race 32 10000 unsync
+Expected: 10000, Actual: 9984
+Elapsed: 0.00323 s
+
+Mode: unsync | Threads: 32 | Iterations: 100000
+./race 32 100000 unsync
+Expected: 100000, Actual: 100000
+Elapsed: 0.00163 s
+
+Mode: unsync | Threads: 32 | Iterations: 1000000
+./race 32 1000000 unsync
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.00149 s
+
+Mode: unsync | Threads: 32 | Iterations: 10000000
+./race 32 10000000 unsync
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.00346 s
+
+Mode: unsync | Threads: 64 | Iterations: 10
+./race 64 10 unsync
+Expected: 10, Actual: 0
+Elapsed: 0.00330 s
+
+Mode: unsync | Threads: 64 | Iterations: 100
+./race 64 100 unsync
+Expected: 100, Actual: 64
+Elapsed: 0.00552 s
+
+Mode: unsync | Threads: 64 | Iterations: 1000
+./race 64 1000 unsync
+Expected: 1000, Actual: 960
+Elapsed: 0.00495 s
+
+Mode: unsync | Threads: 64 | Iterations: 10000
+./race 64 10000 unsync
+Expected: 10000, Actual: 9984
+Elapsed: 0.00353 s
+
+Mode: unsync | Threads: 64 | Iterations: 100000
+./race 64 100000 unsync
+Expected: 100000, Actual: 99968
+Elapsed: 0.00418 s
+
+Mode: unsync | Threads: 64 | Iterations: 1000000
+./race 64 1000000 unsync
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.00440 s
+
+Mode: unsync | Threads: 64 | Iterations: 10000000
+./race 64 10000000 unsync
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.00506 s
+
+Mode: mutex | Threads: 2 | Iterations: 10
+./race 2 10 mutex
+Expected: 10, Actual: 10
+Elapsed: 0.00030 s
+
+Mode: mutex | Threads: 2 | Iterations: 100
+./race 2 100 mutex
+Expected: 100, Actual: 100
+Elapsed: 0.00036 s
+
+Mode: mutex | Threads: 2 | Iterations: 1000
+./race 2 1000 mutex
+Expected: 1000, Actual: 1000
+Elapsed: 0.00033 s
+
+Mode: mutex | Threads: 2 | Iterations: 10000
+./race 2 10000 mutex
+Expected: 10000, Actual: 10000
+Elapsed: 0.00153 s
+
+Mode: mutex | Threads: 2 | Iterations: 100000
+./race 2 100000 mutex
+Expected: 100000, Actual: 100000
+Elapsed: 0.01626 s
+
+Mode: mutex | Threads: 2 | Iterations: 1000000
+./race 2 1000000 mutex
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.14234 s
+
+Mode: mutex | Threads: 2 | Iterations: 10000000
+./race 2 10000000 mutex
+Expected: 10000000, Actual: 10000000
+Elapsed: 1.75446 s
+
+Mode: mutex | Threads: 4 | Iterations: 10
+./race 4 10 mutex
+Expected: 10, Actual: 8
+Elapsed: 0.00054 s
+
+Mode: mutex | Threads: 4 | Iterations: 100
+./race 4 100 mutex
+Expected: 100, Actual: 100
+Elapsed: 0.00027 s
+
+Mode: mutex | Threads: 4 | Iterations: 1000
+./race 4 1000 mutex
+Expected: 1000, Actual: 1000
+Elapsed: 0.00061 s
+
+Mode: mutex | Threads: 4 | Iterations: 10000
+./race 4 10000 mutex
+Expected: 10000, Actual: 10000
+Elapsed: 0.00236 s
+
+Mode: mutex | Threads: 4 | Iterations: 100000
+./race 4 100000 mutex
+Expected: 100000, Actual: 100000
+Elapsed: 0.02177 s
+
+Mode: mutex | Threads: 4 | Iterations: 1000000
+./race 4 1000000 mutex
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.23283 s
+
+Mode: mutex | Threads: 4 | Iterations: 10000000
+./race 4 10000000 mutex
+Expected: 10000000, Actual: 10000000
+Elapsed: 2.21755 s
+
+Mode: mutex | Threads: 8 | Iterations: 10
+./race 8 10 mutex
+Expected: 10, Actual: 8
+Elapsed: 0.00048 s
+
+Mode: mutex | Threads: 8 | Iterations: 100
+./race 8 100 mutex
+Expected: 100, Actual: 96
+Elapsed: 0.00073 s
+
+Mode: mutex | Threads: 8 | Iterations: 1000
+./race 8 1000 mutex
+Expected: 1000, Actual: 1000
+Elapsed: 0.00057 s
+
+Mode: mutex | Threads: 8 | Iterations: 10000
+./race 8 10000 mutex
+Expected: 10000, Actual: 10000
+Elapsed: 0.00296 s
+
+Mode: mutex | Threads: 8 | Iterations: 100000
+./race 8 100000 mutex
+Expected: 100000, Actual: 100000
+Elapsed: 0.03164 s
+
+Mode: mutex | Threads: 8 | Iterations: 1000000
+./race 8 1000000 mutex
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.31025 s
+
+Mode: mutex | Threads: 8 | Iterations: 10000000
+./race 8 10000000 mutex
+Expected: 10000000, Actual: 10000000
+Elapsed: 2.92837 s
+
+Mode: mutex | Threads: 16 | Iterations: 10
+./race 16 10 mutex
+Expected: 10, Actual: 0
+Elapsed: 0.00180 s
+
+Mode: mutex | Threads: 16 | Iterations: 100
+./race 16 100 mutex
+Expected: 100, Actual: 96
+Elapsed: 0.00172 s
+
+Mode: mutex | Threads: 16 | Iterations: 1000
+./race 16 1000 mutex
+Expected: 1000, Actual: 992
+Elapsed: 0.00154 s
+
+Mode: mutex | Threads: 16 | Iterations: 10000
+./race 16 10000 mutex
+Expected: 10000, Actual: 10000
+Elapsed: 0.00279 s
+
+Mode: mutex | Threads: 16 | Iterations: 100000
+./race 16 100000 mutex
+Expected: 100000, Actual: 100000
+Elapsed: 0.03124 s
+
+Mode: mutex | Threads: 16 | Iterations: 1000000
+./race 16 1000000 mutex
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.29884 s
+
+Mode: mutex | Threads: 16 | Iterations: 10000000
+./race 16 10000000 mutex
+Expected: 10000000, Actual: 10000000
+Elapsed: 3.04767 s
+
+Mode: mutex | Threads: 32 | Iterations: 10
+./race 32 10 mutex
+Expected: 10, Actual: 0
+Elapsed: 0.00357 s
+
+Mode: mutex | Threads: 32 | Iterations: 100
+./race 32 100 mutex
+Expected: 100, Actual: 96
+Elapsed: 0.00311 s
+
+Mode: mutex | Threads: 32 | Iterations: 1000
+./race 32 1000 mutex
+Expected: 1000, Actual: 992
+Elapsed: 0.00318 s
+
+Mode: mutex | Threads: 32 | Iterations: 10000
+./race 32 10000 mutex
+Expected: 10000, Actual: 9984
+Elapsed: 0.00303 s
+
+Mode: mutex | Threads: 32 | Iterations: 100000
+./race 32 100000 mutex
+Expected: 100000, Actual: 100000
+Elapsed: 0.03063 s
+
+Mode: mutex | Threads: 32 | Iterations: 1000000
+./race 32 1000000 mutex
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.30641 s
+
+Mode: mutex | Threads: 32 | Iterations: 10000000
+./race 32 10000000 mutex
+Expected: 10000000, Actual: 10000000
+Elapsed: 2.99567 s
+
+Mode: mutex | Threads: 64 | Iterations: 10
+./race 64 10 mutex
+Expected: 10, Actual: 0
+Elapsed: 0.00666 s
+
+Mode: mutex | Threads: 64 | Iterations: 100
+./race 64 100 mutex
+Expected: 100, Actual: 64
+Elapsed: 0.00331 s
+
+Mode: mutex | Threads: 64 | Iterations: 1000
+./race 64 1000 mutex
+Expected: 1000, Actual: 960
+Elapsed: 0.00637 s
+
+Mode: mutex | Threads: 64 | Iterations: 10000
+./race 64 10000 mutex
+Expected: 10000, Actual: 9984
+Elapsed: 0.00633 s
+
+Mode: mutex | Threads: 64 | Iterations: 100000
+./race 64 100000 mutex
+Expected: 100000, Actual: 99968
+Elapsed: 0.03028 s
+
+Mode: mutex | Threads: 64 | Iterations: 1000000
+./race 64 1000000 mutex
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.30318 s
+
+Mode: mutex | Threads: 64 | Iterations: 10000000
+./race 64 10000000 mutex
+Expected: 10000000, Actual: 10000000
+Elapsed: 2.97262 s
+
+Mode: atomic | Threads: 2 | Iterations: 10
+./race 2 10 atomic
+Expected: 10, Actual: 10
+Elapsed: 0.00036 s
+
+Mode: atomic | Threads: 2 | Iterations: 100
+./race 2 100 atomic
+Expected: 100, Actual: 100
+Elapsed: 0.00037 s
+
+Mode: atomic | Threads: 2 | Iterations: 1000
+./race 2 1000 atomic
+Expected: 1000, Actual: 1000
+Elapsed: 0.00045 s
+
+Mode: atomic | Threads: 2 | Iterations: 10000
+./race 2 10000 atomic
+Expected: 10000, Actual: 10000
+Elapsed: 0.00053 s
+
+Mode: atomic | Threads: 2 | Iterations: 100000
+./race 2 100000 atomic
+Expected: 100000, Actual: 100000
+Elapsed: 0.00313 s
+
+Mode: atomic | Threads: 2 | Iterations: 1000000
+./race 2 1000000 atomic
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.04386 s
+
+Mode: atomic | Threads: 2 | Iterations: 10000000
+./race 2 10000000 atomic
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.39248 s
+
+Mode: atomic | Threads: 4 | Iterations: 10
+./race 4 10 atomic
+Expected: 10, Actual: 8
+Elapsed: 0.00060 s
+
+Mode: atomic | Threads: 4 | Iterations: 100
+./race 4 100 atomic
+Expected: 100, Actual: 100
+Elapsed: 0.00033 s
+
+Mode: atomic | Threads: 4 | Iterations: 1000
+./race 4 1000 atomic
+Expected: 1000, Actual: 1000
+Elapsed: 0.00064 s
+
+Mode: atomic | Threads: 4 | Iterations: 10000
+./race 4 10000 atomic
+Expected: 10000, Actual: 10000
+Elapsed: 0.00061 s
+
+Mode: atomic | Threads: 4 | Iterations: 100000
+./race 4 100000 atomic
+Expected: 100000, Actual: 100000
+Elapsed: 0.00652 s
+
+Mode: atomic | Threads: 4 | Iterations: 1000000
+./race 4 1000000 atomic
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.04725 s
+
+Mode: atomic | Threads: 4 | Iterations: 10000000
+./race 4 10000000 atomic
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.53373 s
+
+Mode: atomic | Threads: 8 | Iterations: 10
+./race 8 10 atomic
+Expected: 10, Actual: 8
+Elapsed: 0.00098 s
+
+Mode: atomic | Threads: 8 | Iterations: 100
+./race 8 100 atomic
+Expected: 100, Actual: 96
+Elapsed: 0.00090 s
+
+Mode: atomic | Threads: 8 | Iterations: 1000
+./race 8 1000 atomic
+Expected: 1000, Actual: 1000
+Elapsed: 0.00091 s
+
+Mode: atomic | Threads: 8 | Iterations: 10000
+./race 8 10000 atomic
+Expected: 10000, Actual: 10000
+Elapsed: 0.00107 s
+
+Mode: atomic | Threads: 8 | Iterations: 100000
+./race 8 100000 atomic
+Expected: 100000, Actual: 100000
+Elapsed: 0.00704 s
+
+Mode: atomic | Threads: 8 | Iterations: 1000000
+./race 8 1000000 atomic
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.05851 s
+
+Mode: atomic | Threads: 8 | Iterations: 10000000
+./race 8 10000000 atomic
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.45925 s
+
+Mode: atomic | Threads: 16 | Iterations: 10
+./race 16 10 atomic
+Expected: 10, Actual: 0
+Elapsed: 0.00182 s
+
+Mode: atomic | Threads: 16 | Iterations: 100
+./race 16 100 atomic
+Expected: 100, Actual: 96
+Elapsed: 0.00177 s
+
+Mode: atomic | Threads: 16 | Iterations: 1000
+./race 16 1000 atomic
+Expected: 1000, Actual: 992
+Elapsed: 0.00168 s
+
+Mode: atomic | Threads: 16 | Iterations: 10000
+./race 16 10000 atomic
+Expected: 10000, Actual: 10000
+Elapsed: 0.00195 s
+
+Mode: atomic | Threads: 16 | Iterations: 100000
+./race 16 100000 atomic
+Expected: 100000, Actual: 100000
+Elapsed: 0.00672 s
+
+Mode: atomic | Threads: 16 | Iterations: 1000000
+./race 16 1000000 atomic
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.06368 s
+
+Mode: atomic | Threads: 16 | Iterations: 10000000
+./race 16 10000000 atomic
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.60230 s
+
+Mode: atomic | Threads: 32 | Iterations: 10
+./race 32 10 atomic
+Expected: 10, Actual: 0
+Elapsed: 0.00340 s
+
+Mode: atomic | Threads: 32 | Iterations: 100
+./race 32 100 atomic
+Expected: 100, Actual: 96
+Elapsed: 0.00345 s
+
+Mode: atomic | Threads: 32 | Iterations: 1000
+./race 32 1000 atomic
+Expected: 1000, Actual: 992
+Elapsed: 0.00326 s
+
+Mode: atomic | Threads: 32 | Iterations: 10000
+./race 32 10000 atomic
+Expected: 10000, Actual: 9984
+Elapsed: 0.00345 s
+
+Mode: atomic | Threads: 32 | Iterations: 100000
+./race 32 100000 atomic
+Expected: 100000, Actual: 100000
+Elapsed: 0.00692 s
+
+Mode: atomic | Threads: 32 | Iterations: 1000000
+./race 32 1000000 atomic
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.06687 s
+
+Mode: atomic | Threads: 32 | Iterations: 10000000
+./race 32 10000000 atomic
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.57461 s
+
+Mode: atomic | Threads: 64 | Iterations: 10
+./race 64 10 atomic
+Expected: 10, Actual: 0
+Elapsed: 0.00390 s
+
+Mode: atomic | Threads: 64 | Iterations: 100
+./race 64 100 atomic
+Expected: 100, Actual: 64
+Elapsed: 0.00645 s
+
+Mode: atomic | Threads: 64 | Iterations: 1000
+./race 64 1000 atomic
+Expected: 1000, Actual: 960
+Elapsed: 0.00609 s
+
+Mode: atomic | Threads: 64 | Iterations: 10000
+./race 64 10000 atomic
+Expected: 10000, Actual: 9984
+Elapsed: 0.00322 s
+
+Mode: atomic | Threads: 64 | Iterations: 100000
+./race 64 100000 atomic
+Expected: 100000, Actual: 99968
+Elapsed: 0.00660 s
+
+Mode: atomic | Threads: 64 | Iterations: 1000000
+./race 64 1000000 atomic
+Expected: 1000000, Actual: 1000000
+Elapsed: 0.06834 s
+
+Mode: atomic | Threads: 64 | Iterations: 10000000
+./race 64 10000000 atomic
+Expected: 10000000, Actual: 10000000
+Elapsed: 0.66176 s
+

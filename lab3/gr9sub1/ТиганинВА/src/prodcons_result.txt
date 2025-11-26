@@ -1,0 +1,30 @@
+=== Test 1: -P 1 -C 1 -N 1000   -B 16 ===
+Result: P=1 C=1 N=1000 B=16 produced=1000 consumed=1000 sum=1000499500
+
+=== Test 2: -P 2 -C 2 -N 10000  -B 32 ===
+Result: P=2 C=2 N=10000 B=32 produced=10000 consumed=10000 sum=15024995000
+
+=== Test 3: -P 4 -C 2 -N 50000  -B 64 ===
+Result: P=4 C=2 N=50000 B=64 produced=50000 consumed=50000 sum=125312475000
+
+=== Test 4: -P 2 -C 4 -N 50000  -B 128 ===
+Result: P=2 C=4 N=50000 B=128 produced=50000 consumed=50000 sum=75624975000
+
+=== Test 5: -P 3 -C 3 -N 75000  -B 10 ===
+Result: P=3 C=3 N=75000 B=10 produced=75000 consumed=75000 sum=150937462500
+
+=== Test 6: -P 5 -C 2 -N 20000  -B 50 ===
+Result: P=5 C=2 N=20000 B=50 produced=20000 consumed=20000 sum=60039990000
+
+=== Test 7: -P 2 -C 5 -N 20000  -B 20 ===
+Result: P=2 C=5 N=20000 B=20 produced=20000 consumed=20000 sum=30099990000
+
+=== Test 8: -P 8 -C 8 -N 80000  -B 256 ===
+Result: P=8 C=8 N=80000 B=256 produced=80000 consumed=80000 sum=360399960000
+
+=== Test 9: -P 1 -C 4 -N 4000   -B 8 ===
+Result: P=1 C=4 N=4000 B=8 produced=4000 consumed=4000 sum=4007998000
+
+=== Test 10: -P 6 -C 3 -N 60000  -B 100 ===
+Result: P=6 C=3 N=60000 B=100 produced=60000 consumed=60000 sum=210299970000
+
