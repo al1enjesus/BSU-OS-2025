@@ -1,0 +1,13 @@
+
+*.save
+*.bak
+*.backup
+
+docs/lab2-process-tree.svg
+lab2/README.md
+
+lab1/gr6sub1/
+lab1/gr8sub1/
+lab1/gr8sub2/
+lab1/gr9sub1/
+lab1/gr9sub2/
