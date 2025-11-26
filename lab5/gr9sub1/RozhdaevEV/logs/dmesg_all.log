@@ -1,0 +1,17 @@
+[11231.409596] hello_module: Hello from RozhdaevEV module! (Group: 9 Subgroup: 1)
+[11245.767960] hello_module: Goodbye from RozhdaevEV module!
+[11287.095204] hello_module: builtInGod_sends_his_regards
+[11303.544063] hello_module: Goodbye from RozhdaevEV module!
+[11354.025771] proc_module: Initializing\n
+[11354.025775] proc_module: Created /proc/student_info\n
+[11454.012407] proc_module: Removed /proc/student_info\n
+[11454.012410] proc_module: Exiting\n
+[11516.616184] chardev: Initializing\n
+[11516.616187] chardev: Registered with major 240\n
+[11516.616189] chardev: Device ready. Use: mknod /dev/mychardev c 240 0\n
+[11601.715966] chardev: Device opened\n
+[11601.715977] chardev: Wrote 13 bytes\n
+[11601.715980] chardev: Device closed\n
+[11612.844041] chardev: Device opened\n
+[11612.844048] chardev: Read 13 bytes\n
+[11612.844071] chardev: Device closed\n
