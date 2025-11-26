@@ -1,0 +1,265 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/resource.h>
+#include <time.h>
+
+#define PAGE_SIZE 4096
+
+void get_page_faults(long *minor, long *major) {
+    struct rusage usage;
+
+    if(getrusage(RUSAGE_SELF, &usage) == 0){
+        *minor = usage.ru_minflt;
+        *major = usage.ru_majflt;
+    }else{
+        perror("getrusage failed");
+        *minor = *major = -1;
+    }
+}
+
+void print_page_fault_delta(const char *label, long start_minor, long start_major) {
+    long end_minor, end_major;
+    get_page_faults(&end_minor, &end_major);
+
+    long delta_minor = end_minor - start_minor;
+    long delta_major = end_major - start_major;
+
+    printf("%s:\n", label);
+    printf("  Minor faults: %ld (+%ld)\n", end_minor, delta_minor);
+    printf("  Major faults: %ld (+%ld)\n", end_major, delta_major);
+}
+
+void demo_allocation_no_access() {
+    printf("\n=== Demo 1: Allocation without access ===\n");
+
+    long start_minor, start_major;
+    get_page_faults(&start_minor, &start_major);
+
+    size_t size = 100 * 1024 * 1024;
+    char *ptr = malloc(size);
+
+    if (!ptr) {
+        perror("malloc failed");
+        return;
+    }
+
+    printf("Allocated %zu bytes (%.1f MB)\n", size, size / (1024.0 * 1024.0));
+
+    print_page_fault_delta("After malloc (no access)", start_minor, start_major);
+
+    free(ptr);
+}
+
+void demo_sequential_access() {
+    printf("\n=== Demo 2: Sequential access ===\n");
+
+    size_t size = 100 * 1024 * 1024;  // 100 MB
+    char *ptr = malloc(size);
+
+    if (!ptr) {
+        perror("malloc failed");
+        return;
+    }
+
+    printf("Allocated %zu bytes (%.1f MB)\n", size, size / (1024.0 * 1024.0));
+
+    long start_minor, start_major;
+    get_page_faults(&start_minor, &start_major);
+
+    for (size_t i = 0; i < size; i += PAGE_SIZE) {
+        ptr[i] = 'A';
+    }
+
+    print_page_fault_delta("After sequential write (one byte per page)", start_minor, start_major);
+
+    size_t expected_faults = size / PAGE_SIZE;
+    printf("Expected page faults: %zu (size / PAGE_SIZE)\n", expected_faults);
+
+    free(ptr);
+}
+
+void demo_full_write() {
+    printf("\n=== Demo 3: Full memory write ===\n");
+
+    size_t size = 50 * 1024 * 1024; 
+    char *ptr = malloc(size);
+
+    if (!ptr) {
+        perror("malloc failed");
+        return;
+    }
+
+    printf("Allocated %zu bytes (%.1f MB)\n", size, size / (1024.0 * 1024.0));
+
+    long start_minor, start_major;
+    get_page_faults(&start_minor, &start_major);
+
+    memset(ptr, 'B', size);
+
+    print_page_fault_delta("After memset", start_minor, start_major);
+
+    free(ptr);
+}
+
+void demo_random_access() {
+    printf("\n=== Demo 4: Random access ===\n");
+
+    size_t size = 100 * 1024 * 1024;  // 100 MB
+    char *ptr = malloc(size);
+
+    if (!ptr) {
+        perror("malloc failed");
+        return;
+    }
+
+    printf("Allocated %zu bytes (%.1f MB)\n", size, size / (1024.0 * 1024.0));
+
+    srand(time(NULL));
+
+    long start_minor, start_major;
+    get_page_faults(&start_minor, &start_major);
+
+    int num_accesses = 10000;
+
+    for (int i = 0; i < num_accesses; ++i) {
+        size_t random_offset = (rand() % (size / PAGE_SIZE)) * PAGE_SIZE;
+        ptr[random_offset] = 'C';
+    }
+
+    print_page_fault_delta("After random writes", start_minor, start_major);
+
+    printf("Random accesses performed: %d\n", num_accesses);
+    printf("Note: Some pages may have been accessed multiple times.\n");
+
+    free(ptr);
+}
+
+void demo_rereading() {
+    printf("\n=== Demo 5: Re-reading memory ===\n");
+
+    size_t size = 50 * 1024 * 1024;  // 50 MB
+    char *ptr = malloc(size);
+
+    if (!ptr) {
+        perror("malloc failed");
+        return;
+    }
+
+    printf("First pass: writing memory...\n");
+    long start_minor, start_major;
+    get_page_faults(&start_minor, &start_major);
+
+    memset(ptr, 'D', size);
+
+    print_page_fault_delta("After first write", start_minor, start_major);
+
+    printf("\nSecond pass: reading memory...\n");
+    get_page_faults(&start_minor, &start_major);
+
+    unsigned long long sum = 0;
+    for (size_t i = 0; i < size; i++) {
+        sum += (unsigned char)ptr[i];
+    }
+
+    print_page_fault_delta("After second read", start_minor, start_major);
+    printf("Checksum: %llu (to prevent optimization)\n", sum);
+    printf("Note: No new page faults expected (pages already in memory).\n");
+
+    free(ptr);
+}
+
+void demo_calloc_vs_malloc() {
+    printf("\n=== Demo 6: calloc vs malloc ===\n");
+
+    size_t size = 50 * 1024 * 1024;  // 50 MB
+
+    printf("Method 1: malloc + memset\n");
+    long start_minor, start_major;
+    get_page_faults(&start_minor, &start_major);
+
+    char *ptr1 = malloc(size);
+    if (ptr1) {
+        memset(ptr1, 0, size);
+        print_page_fault_delta("After malloc + memset", start_minor, start_major);
+        free(ptr1);
+    }
+
+    printf("\n");
+
+    printf("Method 2: calloc\n");
+    get_page_faults(&start_minor, &start_major);
+
+    char *ptr2 = calloc(size, 1);
+    if (ptr2) {
+        for (size_t i = 0; i < size; i += PAGE_SIZE) {
+            volatile char tmp = ptr2[i];
+            (void)tmp;
+        }
+
+        print_page_fault_delta("After calloc + read", start_minor, start_major);
+
+        get_page_faults(&start_minor, &start_major);
+
+        for (size_t i = 0; i < size; i += PAGE_SIZE) {
+            ptr2[i] = 1;
+        }
+
+        print_page_fault_delta("After calloc + write", start_minor, start_major);
+
+        free(ptr2);
+    }
+}
+
+int main() {
+    printf("Page Faults Demonstration\n");
+    printf("==========================\n");
+    printf("Page size: %d bytes\n", PAGE_SIZE);
+
+    long initial_minor, initial_major;
+    get_page_faults(&initial_minor, &initial_major);
+    printf("Initial page faults: minor=%ld, major=%ld\n", initial_minor, initial_major);
+
+    demo_allocation_no_access();
+    demo_sequential_access();
+    demo_full_write();
+    demo_random_access();
+    demo_rereading();
+    demo_calloc_vs_malloc();
+
+    printf("\n=== Summary ===\n");
+    get_page_faults(&initial_minor, &initial_major);
+    printf("Total page faults: minor=%ld, major=%ld\n", initial_minor, initial_major);
+}
+
+/*
+ * ЗАДАНИЯ для студента:
+ *
+ * 1. Реализуйте все TODO функции
+ *
+ * 2. Запустите программу и проанализируйте вывод:
+ *    $ ./page_faults_demo
+ *
+ * 3. Проверьте результаты системными средствами:
+ *    $ /usr/bin/time -v ./page_faults_demo
+ *    (смотрите "Minor page faults" и "Major page faults")
+ *
+ * 4. Ответьте на вопросы:
+ *    - Почему malloc без записи не вызывает page faults?
+ *    - Сколько page faults происходит при заполнении 100 MB памяти?
+ *    - Почему повторное чтение не вызывает новых faults?
+ *    - В чём разница между calloc и malloc с точки зрения page faults?
+ *
+ * 5. Дополнительные эксперименты:
+ *    - Увеличьте размер памяти до 1 GB (если есть достаточно RAM)
+ *    - Запустите под strace и посмотрите системные вызовы:
+ *      $ strace -e trace=mmap,brk,mprotect ./page_faults_demo 2>&1 | less
+ *    - Измените доступ к памяти (только чтение vs запись)
+ *    - Попробуйте вызвать major page faults (создайте swap pressure)
+ *
+ * 6. В отчёте:
+ *    - Постройте график: размер памяти vs количество page faults
+ *    - Объясните zero page optimization для calloc
+ *    - Опишите, как ОС управляет page faults
+ */

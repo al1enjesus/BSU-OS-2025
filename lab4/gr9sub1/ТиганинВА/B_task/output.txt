@@ -1,0 +1,312 @@
+Benchmark results (Вс 26 окт 2025 19:03:27 +03)
+File: testfile.bin (100 MB)
+===================================
+
+Run 1:
+=== Method 1: read() syscall ===
+Time elapsed: 0.693 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.612 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.608 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 2:
+=== Method 1: read() syscall ===
+Time elapsed: 0.709 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.650 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.609 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 3:
+=== Method 1: read() syscall ===
+Time elapsed: 0.705 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.666 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.692 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 4:
+=== Method 1: read() syscall ===
+Time elapsed: 0.712 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.628 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.673 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 5:
+=== Method 1: read() syscall ===
+Time elapsed: 0.687 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.659 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.680 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 6:
+=== Method 1: read() syscall ===
+Time elapsed: 0.700 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.635 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.609 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 7:
+=== Method 1: read() syscall ===
+Time elapsed: 0.705 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.611 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.606 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 8:
+=== Method 1: read() syscall ===
+Time elapsed: 0.690 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.686 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.660 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 9:
+=== Method 1: read() syscall ===
+Time elapsed: 0.711 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.611 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.609 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 10:
+=== Method 1: read() syscall ===
+Time elapsed: 0.701 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.598 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.609 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 11:
+=== Method 1: read() syscall ===
+Time elapsed: 0.709 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.639 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.637 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 12:
+=== Method 1: read() syscall ===
+Time elapsed: 0.724 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.610 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.609 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 13:
+=== Method 1: read() syscall ===
+Time elapsed: 0.727 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.624 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.671 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 14:
+=== Method 1: read() syscall ===
+Time elapsed: 0.725 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.649 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.608 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+Run 15:
+=== Method 1: read() syscall ===
+Time elapsed: 0.709 seconds
+Minor page faults: 2
+Major page faults: 0
+Checksum: 13369344000
+=== Method 2: mmap() ===
+Time elapsed: 0.613 seconds
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+=== Verification ===
+✓ Checksums match: 13369344000
+=== Method 3: mmap() + madvise(SEQUENTIAL) ===
+Time elapsed: 0.610 seconds:
+Minor page faults: 1600
+Major page faults: 0
+Checksum: 13369344000
+
+
+
++------+-----------+-----------+-----------+
+| Run  |  read()   |  mmap()   | mmap+adv  |
++------+-----------+-----------+-----------+
+|  1   |   0.693s  |   0.612s  |   0.608s  |
+|  2   |   0.709s  |   0.650s  |   0.609s  |
+|  3   |   0.705s  |   0.666s  |   0.692s  |
+|  4   |   0.712s  |   0.628s  |   0.673s  |
+|  5   |   0.687s  |   0.659s  |   0.680s  |
+|  6   |   0.700s  |   0.635s  |   0.609s  |
+|  7   |   0.705s  |   0.611s  |   0.606s  |
+|  8   |   0.690s  |   0.686s  |   0.660s  |
+|  9   |   0.711s  |   0.611s  |   0.609s  |
+| 10   |   0.701s  |   0.598s  |   0.609s  |
+| 11   |   0.709s  |   0.639s  |   0.637s  |
+| 12   |   0.724s  |   0.610s  |   0.609s  |
+| 13   |   0.727s  |   0.624s  |   0.671s  |
+| 14   |   0.725s  |   0.649s  |   0.608s  |
+| 15   |   0.709s  |   0.613s  |   0.610s  |
++------+-----------+-----------+-----------+
+| Avg  |  0.708s   |  0.632s   |  0.633s   |
++------+-----------+-----------+-----------+
