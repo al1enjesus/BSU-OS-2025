@@ -1,0 +1,6 @@
+
+# Lab2 binaries
+lab2/gr9sub2/BogdevichAR/fork_example
+lab2/gr9sub2/BogdevichAR/ptree
+*.o
+*.out
