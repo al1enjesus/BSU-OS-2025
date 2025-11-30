@@ -1,2 +1,2 @@
-journalctl -u sddm --since "yesterday" 
+journalctl -u sddm --since "yesterday" | grep Invalid
 
