@@ -30,7 +30,7 @@ static inline long long now_monotonic_ms(void) {
 static void* worker_unsync(void* arg) {
     thread_args_t* a = (thread_args_t*)arg;
     for (long long i = 0; i < a->iterations_per_thread; i++) {
-        shared_counter_unsync++; // Уязвим для race condition
+        shared_counter_unsync++; 
         usleep(1);  // Усиление race condition
     }
     return NULL;

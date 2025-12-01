@@ -1,0 +1,4 @@
+mode=unsync threads=1 iters_per_thread=10000000 expected=10000000 actual=10000000 time_ms=3
+mode=unsync threads=2 iters_per_thread=10000000 expected=20000000 actual=11803181 time_ms=14
+mode=unsync threads=4 iters_per_thread=10000000 expected=40000000 actual=17080829 time_ms=30
+mode=unsync threads=8 iters_per_thread=10000000 expected=80000000 actual=18872488 time_ms=75
