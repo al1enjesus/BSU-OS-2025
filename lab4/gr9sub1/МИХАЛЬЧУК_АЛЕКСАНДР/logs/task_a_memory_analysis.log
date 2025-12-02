@@ -1,0 +1,147 @@
+Анализ виртуальной памяти процесса
+PID: 5630
+
+=== Начальное состояние ===
+VmSize:	    2680 kB
+VmRSS:	    1564 kB
+VmData:	     224 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+
+Детальная информация (smaps_rollup):
+Pss:                 189 kB
+Private_Clean:         0 kB
+Private_Dirty:       176 kB
+Swap:                  0 kB
+
+Карта памяти (первые 15 строк):
+Адрес           Права Смещение Устр. Inode Путь
+------------------------------------------------
+634281177000-634281178000 r--p 00000000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+634281178000-634281179000 r-xp 00001000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+634281179000-63428117a000 r--p 00002000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+63428117a000-63428117b000 r--p 00002000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+63428117b000-63428117c000 rw-p 00003000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+6342bf18a000-6342bf1ab000 rw-p 00000000 00:00 0                          [heap]
+7a0db5a00000-7a0db5a28000 r--p 00000000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5a28000-7a0db5bb0000 r-xp 00028000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5bb0000-7a0db5bff000 r--p 001b0000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5bff000-7a0db5c03000 r--p 001fe000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5c03000-7a0db5c05000 rw-p 00202000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5c05000-7a0db5c12000 rw-p 00000000 00:00 0 
+7a0db5d2f000-7a0db5d32000 rw-p 00000000 00:00 0 
+7a0db5d40000-7a0db5d42000 rw-p 00000000 00:00 0 
+7a0db5d42000-7a0db5d44000 r--p 00000000 00:00 0                          [vvar]
+
+==================================================
+1. ВЫДЕЛЕНИЕ ПАМЯТИ В СТЕКЕ (64 KB)
+
+=== После выделения в стеке ===
+VmSize:	    2680 kB
+VmRSS:	    1564 kB
+VmData:	     224 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+
+Детальная информация (smaps_rollup):
+Pss:                 189 kB
+Private_Clean:         0 kB
+Private_Dirty:       176 kB
+Swap:                  0 kB
+
+==================================================
+2. ВЫДЕЛЕНИЕ В КУЧЕ ЧЕРЕЗ MALLOC (1 MB)
+
+=== После malloc(1MB) + частичная инициализация ===
+VmSize:	    3708 kB
+VmRSS:	    1564 kB
+VmData:	    1252 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+
+Детальная информация (smaps_rollup):
+Pss:                 197 kB
+Private_Clean:         0 kB
+Private_Dirty:       184 kB
+Swap:                  0 kB
+
+==================================================
+3. ВЫДЕЛЕНИЕ ЧЕРЕЗ MMAP (1 MB)
+
+=== После mmap(1MB) + полная инициализация ===
+VmSize:	    4732 kB
+VmRSS:	    2588 kB
+VmData:	    2276 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+
+Детальная информация (smaps_rollup):
+Pss:                1221 kB
+Private_Clean:         0 kB
+Private_Dirty:      1208 kB
+Swap:                  0 kB
+
+Карта памяти (первые 15 строк):
+Адрес           Права Смещение Устр. Inode Путь
+------------------------------------------------
+634281177000-634281178000 r--p 00000000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+634281178000-634281179000 r-xp 00001000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+634281179000-63428117a000 r--p 00002000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+63428117a000-63428117b000 r--p 00002000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+63428117b000-63428117c000 rw-p 00003000 08:02 1189878                    /home/sancher/BSU-OS-2025/lab4/gr9sub1/МИХАЛЬЧУК_АЛЕКСАНДР/memory_analysis
+6342bf18a000-6342bf1ab000 rw-p 00000000 00:00 0                          [heap]
+7a0db5900000-7a0db5a00000 rw-p 00000000 00:00 0 
+7a0db5a00000-7a0db5a28000 r--p 00000000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5a28000-7a0db5bb0000 r-xp 00028000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5bb0000-7a0db5bff000 r--p 001b0000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5bff000-7a0db5c03000 r--p 001fe000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5c03000-7a0db5c05000 rw-p 00202000 08:02 964568                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7a0db5c05000-7a0db5c12000 rw-p 00000000 00:00 0 
+7a0db5c2e000-7a0db5d32000 rw-p 00000000 00:00 0 
+7a0db5d40000-7a0db5d42000 rw-p 00000000 00:00 0 
+
+==================================================
+4. ДОПОЛНИТЕЛЬНОЕ ВЫДЕЛЕНИЕ В КУЧЕ (2 MB)
+
+=== После дополнительного malloc(2MB) ===
+VmSize:	    6784 kB
+VmRSS:	    2588 kB
+VmData:	    4328 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+
+Детальная информация (smaps_rollup):
+Pss:                1225 kB
+Private_Clean:         0 kB
+Private_Dirty:      1212 kB
+Swap:                  0 kB
+
+==================================================
+5. ОСВОБОЖДЕНИЕ ПАМЯТИ
+
+=== После освобождения всей памяти ===
+VmSize:	    2680 kB
+VmRSS:	    1600 kB
+VmData:	     224 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1748 kB
+
+Детальная информация (smaps_rollup):
+Pss:                 189 kB
+Private_Clean:         0 kB
+Private_Dirty:       176 kB
+Swap:                  0 kB
+
+==================================================
+Ожидание 20 секунд для анализа извне...
+Запустите в другом терминале:
+ps -o pid,comm,vsz,rss,pmem -p 5630
+cat /proc/5630/maps | head -20
+
+Программа завершена.
