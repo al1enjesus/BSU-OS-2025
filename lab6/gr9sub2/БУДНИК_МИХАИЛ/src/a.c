@@ -131,7 +131,7 @@ static int mishafuse_write(const char *path, const char *buf, size_t size,
         return res;
     }
     
-    log_operation("write", path, res); // Log number of bytes written
+    log_operation("write", path, res);
     return res;
 }
 
