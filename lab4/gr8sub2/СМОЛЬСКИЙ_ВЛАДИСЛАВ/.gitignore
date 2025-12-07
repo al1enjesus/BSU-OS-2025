@@ -1,0 +1,6 @@
+bin/
+!src/*
+
+# Logs
+!logs/*/
+!*.log

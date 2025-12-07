@@ -1,0 +1,34 @@
+Linux 6.14.0-33-generic (vczxo-laptop) 	03/11/25 	_x86_64_	(8 CPU)
+
+09:41:19      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:20     1000      4749      0.00 329145.63 377786.41       0  io_benchmark
+
+09:41:20      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:21     1000      4749      0.00 442556.00      0.00       0  io_benchmark
+
+09:41:21      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:22     1000      4749      0.00      0.00 385024.00       0  io_benchmark
+
+09:41:22      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:23     1000      4749      0.00 512000.00 385024.00       0  io_benchmark
+
+09:41:23      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:24     1000      4749      0.00 169976.00      0.00       0  io_benchmark
+
+09:41:24      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:25     1000      4749      0.00 342024.00 380928.00       0  io_benchmark
+
+09:41:25      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:26     1000      4749      0.00 512000.00 376832.00       0  io_benchmark
+
+09:41:26      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:27     1000      4749      0.00 219156.00      0.00       0  io_benchmark
+
+09:41:27      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:28     1000      4749      0.00 292844.00 372736.00       0  io_benchmark
+
+09:41:28      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+09:41:29     1000      4749      0.00 512000.00 368640.00       0  io_benchmark
+
+Average:      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+Average:     1000      4749      0.00 333158.13 265035.29       0  io_benchmark
