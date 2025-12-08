@@ -1,0 +1,7 @@
+Jan 1 10:00:01 debian system startup
+Jan 1 10:01:01 debian cron job started
+Jan 1 10:02:01 debian network connection established
+Jan 1 10:03:01 debian user login successful
+Jan 1 10:04:01 debian system update available
+Jan 1 10:05:01 debian kernel message
+Jan 1 10:06:01 debian system shutdown

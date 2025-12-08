@@ -1,0 +1,8 @@
+2024-01-01 10:00:01 install package: curl
+2024-01-01 10:01:01 install package: wget
+2024-01-01 10:02:01 install package: git
+2024-01-02 10:03:01 install package: vim
+2024-01-02 10:04:01 install package: htop
+2024-01-02 10:05:01 install package: curl
+2024-01-03 10:06:01 install package: python3
+2024-01-03 10:07:01 install package: nano
