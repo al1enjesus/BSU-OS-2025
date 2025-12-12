@@ -1,0 +1,593 @@
+[Пт дек 12 13:49:05 2025] Booting Linux on physical CPU 0x0000000000 [0x410f0000]
+[Пт дек 12 13:49:05 2025] Linux version 6.8.0-88-generic (buildd@bos03-arm64-004) (aarch64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #89-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 00:59:18 UTC 2025 (Ubuntu 6.8.0-88.89-generic 6.8.12)
+[Пт дек 12 13:49:05 2025] KASLR disabled due to lack of seed
+[Пт дек 12 13:49:05 2025] efi: EFI v2.7 by EDK II
+[Пт дек 12 13:49:05 2025] efi: SMBIOS 3.0=0x13f740000 ACPI 2.0=0x13c070000 MEMATTR=0x13e1d8298 MOKvar=0x13bd40000 INITRD=0x13bd56a18 MEMRESERVE=0x13bd56698 
+[Пт дек 12 13:49:05 2025] secureboot: Secure boot disabled
+[Пт дек 12 13:49:05 2025] ACPI: Early table checksum verification disabled
+[Пт дек 12 13:49:05 2025] ACPI: RSDP 0x000000013C070000 000024 (v02 PRLS  )
+[Пт дек 12 13:49:05 2025] ACPI: XSDT 0x000000013C060000 00004C (v01 PRLS   PRLS_OEM 00000002      01000013)
+[Пт дек 12 13:49:05 2025] ACPI: FACP 0x000000013BF20000 000114 (v06 PRLS   PRLS_OEM 00000002 PRLS 00000002)
+[Пт дек 12 13:49:05 2025] ACPI: DSDT 0x000000013BEF0000 00110E (v02 PRLS   PRLS_OEM 00000003 INTL 20200925)
+[Пт дек 12 13:49:05 2025] ACPI: GTDT 0x000000013BF10000 000050 (v01 PRLS   PRLS_OEM 00000002 PRLS 00000002)
+[Пт дек 12 13:49:05 2025] ACPI: MCFG 0x000000013BF00000 00003C (v01                 00000001      00000000)
+[Пт дек 12 13:49:05 2025] ACPI: APIC 0x000000013BEE0000 00010C (v04 PRLS   PRLS_OEM 00000002 PRLS 00000002)
+[Пт дек 12 13:49:05 2025] ACPI: PPTT 0x000000013BED0000 0000D4 (v01 PRLS   PRLS_OEM 00000002 PRLS 00000002)
+[Пт дек 12 13:49:05 2025] NUMA: Failed to initialise from firmware
+[Пт дек 12 13:49:05 2025] NUMA: Faking a node at [mem 0x0000000040000000-0x000000013fffffff]
+[Пт дек 12 13:49:05 2025] NUMA: NODE_DATA [mem 0x13f41c5c0-0x13f421fff]
+[Пт дек 12 13:49:05 2025] Zone ranges:
+[Пт дек 12 13:49:05 2025]   DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+[Пт дек 12 13:49:05 2025]   DMA32    empty
+[Пт дек 12 13:49:05 2025]   Normal   [mem 0x0000000100000000-0x000000013fffffff]
+[Пт дек 12 13:49:05 2025]   Device   empty
+[Пт дек 12 13:49:05 2025] Movable zone start for each node
+[Пт дек 12 13:49:05 2025] Early memory node ranges
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x0000000040000000-0x00000000fffeffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x00000000ffff0000-0x00000000ffffffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x0000000100000000-0x000000013bd3ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013bd40000-0x000000013bd4ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013bd50000-0x000000013be2ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013be30000-0x000000013becffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013bed0000-0x000000013bf2ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013bf30000-0x000000013bffffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013c000000-0x000000013c01ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013c020000-0x000000013c05ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013c060000-0x000000013f54ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013f550000-0x000000013f92ffff]
+[Пт дек 12 13:49:05 2025]   node   0: [mem 0x000000013f930000-0x000000013fffffff]
+[Пт дек 12 13:49:05 2025] Initmem setup node 0 [mem 0x0000000040000000-0x000000013fffffff]
+[Пт дек 12 13:49:05 2025] cma: Reserved 32 MiB at 0x00000000fde00000 on node -1
+[Пт дек 12 13:49:05 2025] psci: probing for conduit method from ACPI.
+[Пт дек 12 13:49:05 2025] psci: PSCIv1.0 detected in firmware.
+[Пт дек 12 13:49:05 2025] psci: Using standard PSCI v0.2 function IDs
+[Пт дек 12 13:49:05 2025] psci: Trusted OS migration not required
+[Пт дек 12 13:49:05 2025] psci: SMC Calling Convention v1.0
+[Пт дек 12 13:49:05 2025] percpu: Embedded 54 pages/cpu s95400 r8192 d117592 u221184
+[Пт дек 12 13:49:05 2025] pcpu-alloc: s95400 r8192 d117592 u221184 alloc=54*4096
+[Пт дек 12 13:49:05 2025] pcpu-alloc: [0] 0 [0] 1 
+[Пт дек 12 13:49:05 2025] Detected PIPT I-cache on CPU0
+[Пт дек 12 13:49:05 2025] CPU features: detected: Address authentication (IMP DEF algorithm)
+[Пт дек 12 13:49:05 2025] CPU features: detected: Spectre-v4
+[Пт дек 12 13:49:05 2025] alternatives: applying boot alternatives
+[Пт дек 12 13:49:05 2025] Kernel command line: BOOT_IMAGE=/vmlinuz-6.8.0-88-generic root=/dev/mapper/ubuntu--vg-ubuntu--lv ro console=tty0
+[Пт дек 12 13:49:05 2025] Unknown kernel command line parameters "BOOT_IMAGE=/vmlinuz-6.8.0-88-generic", will be passed to user space.
+[Пт дек 12 13:49:05 2025] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[Пт дек 12 13:49:05 2025] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[Пт дек 12 13:49:05 2025] Fallback order for Node 0: 0 
+[Пт дек 12 13:49:05 2025] Built 1 zonelists, mobility grouping on.  Total pages: 1032192
+[Пт дек 12 13:49:05 2025] Policy zone: Normal
+[Пт дек 12 13:49:05 2025] mem auto-init: stack:all(zero), heap alloc:on, heap free:off
+[Пт дек 12 13:49:05 2025] software IO TLB: area num 2.
+[Пт дек 12 13:49:05 2025] software IO TLB: mapped [mem 0x00000000f9e00000-0x00000000fde00000] (64MB)
+[Пт дек 12 13:49:05 2025] Memory: 3873052K/4194304K available (23232K kernel code, 5210K rwdata, 16088K rodata, 12288K init, 1233K bss, 288484K reserved, 32768K cma-reserved)
+[Пт дек 12 13:49:05 2025] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[Пт дек 12 13:49:05 2025] ftrace: allocating 62979 entries in 247 pages
+[Пт дек 12 13:49:05 2025] ftrace: allocated 247 pages with 7 groups
+[Пт дек 12 13:49:05 2025] Dynamic Preempt: voluntary
+[Пт дек 12 13:49:05 2025] rcu: Preemptible hierarchical RCU implementation.
+[Пт дек 12 13:49:05 2025] rcu: 	RCU restricting CPUs from NR_CPUS=512 to nr_cpu_ids=2.
+[Пт дек 12 13:49:05 2025] 	Trampoline variant of Tasks RCU enabled.
+[Пт дек 12 13:49:05 2025] 	Rude variant of Tasks RCU enabled.
+[Пт дек 12 13:49:05 2025] 	Tracing variant of Tasks RCU enabled.
+[Пт дек 12 13:49:05 2025] rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+[Пт дек 12 13:49:05 2025] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[Пт дек 12 13:49:05 2025] RCU Tasks: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[Пт дек 12 13:49:05 2025] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[Пт дек 12 13:49:05 2025] RCU Tasks Trace: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[Пт дек 12 13:49:05 2025] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[Пт дек 12 13:49:05 2025] GICv3: 96 SPIs implemented
+[Пт дек 12 13:49:05 2025] GICv3: 0 Extended SPIs implemented
+[Пт дек 12 13:49:05 2025] Root IRQ handler: gic_handle_irq
+[Пт дек 12 13:49:05 2025] GICv3: GICv3 features: 16 PPIs, RSS
+[Пт дек 12 13:49:05 2025] GICv3: CPU0: found redistributor 0 region 0:0x0000000002500000
+[Пт дек 12 13:49:05 2025] GICv2m: range[mem 0x02250000-0x02250fff], SPI[53:116]
+[Пт дек 12 13:49:05 2025] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[Пт дек 12 13:49:05 2025] ACPI GTDT: Revision:1 doesn't support Platform Timers.
+[Пт дек 12 13:49:05 2025] arch_timer: cp15 timer(s) running at 24.00MHz (virt).
+[Пт дек 12 13:49:05 2025] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+[Пт дек 12 13:49:05 2025] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns
+[Пт дек 12 13:49:05 2025] Console: colour dummy device 80x25
+[Пт дек 12 13:49:05 2025] printk: legacy console [tty0] enabled
+[Пт дек 12 13:49:05 2025] ACPI: Core revision 20230628
+[Пт дек 12 13:49:05 2025] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS (lpj=24000)
+[Пт дек 12 13:49:05 2025] pid_max: default: 32768 minimum: 301
+[Пт дек 12 13:49:05 2025] LSM: initializing lsm=lockdown,capability,landlock,yama,apparmor,integrity
+[Пт дек 12 13:49:05 2025] landlock: Up and running.
+[Пт дек 12 13:49:05 2025] Yama: becoming mindful.
+[Пт дек 12 13:49:05 2025] AppArmor: AppArmor initialized
+[Пт дек 12 13:49:05 2025] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[Пт дек 12 13:49:05 2025] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[Пт дек 12 13:49:05 2025] rcu: Hierarchical SRCU implementation.
+[Пт дек 12 13:49:05 2025] rcu: 	Max phase no-delay instances is 400.
+[Пт дек 12 13:49:05 2025] Remapping and enabling EFI services.
+[Пт дек 12 13:49:05 2025] smp: Bringing up secondary CPUs ...
+[Пт дек 12 13:49:05 2025] Detected PIPT I-cache on CPU1
+[Пт дек 12 13:49:05 2025] GICv3: CPU1: found redistributor 1 region 0:0x0000000002520000
+[Пт дек 12 13:49:05 2025] CPU1: Booted secondary processor 0x0000000001 [0x410f0000]
+[Пт дек 12 13:49:05 2025] smp: Brought up 1 node, 2 CPUs
+[Пт дек 12 13:49:05 2025] SMP: Total of 2 processors activated.
+[Пт дек 12 13:49:05 2025] CPU: All CPU(s) started at EL1
+[Пт дек 12 13:49:05 2025] CPU features: detected: ARMv8.4 Translation Table Level
+[Пт дек 12 13:49:05 2025] CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+[Пт дек 12 13:49:05 2025] CPU features: detected: Common not Private translations
+[Пт дек 12 13:49:05 2025] CPU features: detected: CRC32 instructions
+[Пт дек 12 13:49:05 2025] CPU features: detected: Data cache clean to Point of Deep Persistence
+[Пт дек 12 13:49:05 2025] CPU features: detected: Data cache clean to Point of Persistence
+[Пт дек 12 13:49:05 2025] CPU features: detected: Data independent timing control (DIT)
+[Пт дек 12 13:49:05 2025] CPU features: detected: E0PD
+[Пт дек 12 13:49:05 2025] CPU features: detected: Generic authentication (IMP DEF algorithm)
+[Пт дек 12 13:49:05 2025] CPU features: detected: RCpc load-acquire (LDAPR)
+[Пт дек 12 13:49:05 2025] CPU features: detected: LSE atomic instructions
+[Пт дек 12 13:49:05 2025] CPU features: detected: Privileged Access Never
+[Пт дек 12 13:49:05 2025] CPU features: detected: RAS Extension Support
+[Пт дек 12 13:49:05 2025] CPU features: detected: Speculation barrier (SB)
+[Пт дек 12 13:49:05 2025] CPU features: detected: TLB range maintenance instructions
+[Пт дек 12 13:49:05 2025] alternatives: applying system-wide alternatives
+[Пт дек 12 13:49:05 2025] devtmpfs: initialized
+[Пт дек 12 13:49:05 2025] setend instruction emulation is not supported on this system
+[Пт дек 12 13:49:05 2025] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+[Пт дек 12 13:49:05 2025] futex hash table entries: 512 (order: 3, 32768 bytes, linear)
+[Пт дек 12 13:49:05 2025] pinctrl core: initialized pinctrl subsystem
+[Пт дек 12 13:49:05 2025] SMBIOS 3.0.0 present.
+[Пт дек 12 13:49:05 2025] DMI: Parallels International GmbH. Parallels ARM Virtual Machine/Parallels ARM Virtual Platform, BIOS 26.1.2 (57293) Fri, 07 Nov 202
+[Пт дек 12 13:49:05 2025] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[Пт дек 12 13:49:05 2025] DMA: preallocated 512 KiB GFP_KERNEL pool for atomic allocations
+[Пт дек 12 13:49:05 2025] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[Пт дек 12 13:49:05 2025] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[Пт дек 12 13:49:05 2025] audit: initializing netlink subsys (disabled)
+[Пт дек 12 13:49:05 2025] audit: type=2000 audit(0.011:1): state=initialized audit_enabled=0 res=1
+[Пт дек 12 13:49:05 2025] thermal_sys: Registered thermal governor 'fair_share'
+[Пт дек 12 13:49:05 2025] thermal_sys: Registered thermal governor 'bang_bang'
+[Пт дек 12 13:49:05 2025] thermal_sys: Registered thermal governor 'step_wise'
+[Пт дек 12 13:49:05 2025] thermal_sys: Registered thermal governor 'user_space'
+[Пт дек 12 13:49:05 2025] thermal_sys: Registered thermal governor 'power_allocator'
+[Пт дек 12 13:49:05 2025] cpuidle: using governor ladder
+[Пт дек 12 13:49:05 2025] cpuidle: using governor menu
+[Пт дек 12 13:49:05 2025] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[Пт дек 12 13:49:05 2025] ASID allocator initialised with 256 entries
+[Пт дек 12 13:49:05 2025] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[Пт дек 12 13:49:05 2025] Serial: AMBA PL011 UART driver
+[Пт дек 12 13:49:05 2025] Modules: 18192 pages in range for non-PLT usage
+[Пт дек 12 13:49:05 2025] Modules: 509712 pages in range for PLT usage
+[Пт дек 12 13:49:05 2025] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[Пт дек 12 13:49:05 2025] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+[Пт дек 12 13:49:05 2025] HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+[Пт дек 12 13:49:05 2025] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+[Пт дек 12 13:49:05 2025] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[Пт дек 12 13:49:05 2025] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+[Пт дек 12 13:49:05 2025] HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+[Пт дек 12 13:49:05 2025] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[Пт дек 12 13:49:05 2025] fbcon: Taking over console
+[Пт дек 12 13:49:05 2025] ACPI: Added _OSI(Module Device)
+[Пт дек 12 13:49:05 2025] ACPI: Added _OSI(Processor Device)
+[Пт дек 12 13:49:05 2025] ACPI: Added _OSI(3.0 _SCP Extensions)
+[Пт дек 12 13:49:05 2025] ACPI: Added _OSI(Processor Aggregator Device)
+[Пт дек 12 13:49:05 2025] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[Пт дек 12 13:49:05 2025] ACPI: Interpreter enabled
+[Пт дек 12 13:49:05 2025] ACPI: Using GIC for interrupt routing
+[Пт дек 12 13:49:05 2025] ACPI: MCFG table detected, 1 entries
+[Пт дек 12 13:49:05 2025] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00])
+[Пт дек 12 13:49:05 2025] acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+[Пт дек 12 13:49:05 2025] acpi PNP0A08:00: _OSC: OS requested [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+[Пт дек 12 13:49:05 2025] acpi PNP0A08:00: _OSC: platform willing to grant [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+[Пт дек 12 13:49:05 2025] acpi PNP0A08:00: _OSC: platform retains control of PCIe features (AE_NOT_FOUND)
+[Пт дек 12 13:49:05 2025] acpi PNP0A08:00: [Firmware Bug]: ECAM area [mem 0x02300000-0x023fffff] not reserved in ACPI namespace
+[Пт дек 12 13:49:05 2025] acpi PNP0A08:00: ECAM at [mem 0x02300000-0x023fffff] for [bus 00]
+[Пт дек 12 13:49:05 2025] ACPI: Remapped I/O 0x0000000002400000 to [io  0x0000-0xfffff window]
+[Пт дек 12 13:49:05 2025] PCI host bridge to bus 0000:00
+[Пт дек 12 13:49:05 2025] pci_bus 0000:00: root bus resource [io  0x0000-0xfffff window] (bus address [0x2400000-0x24fffff])
+[Пт дек 12 13:49:05 2025] pci_bus 0000:00: root bus resource [mem 0x10000000-0x1fffffff window]
+[Пт дек 12 13:49:05 2025] pci_bus 0000:00: root bus resource [bus 00]
+[Пт дек 12 13:49:05 2025] pci 0000:00:01.0: [8086:293e] type 00 class 0x040300 PCIe Endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:01.0: BAR 0 [mem 0x14008000-0x1400bfff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:02.0: [8086:265c] type 00 class 0x0c0320 conventional PCI endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:02.0: BAR 0 [mem 0x14012000-0x140123ff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:03.0: [1033:0194] type 00 class 0x0c0330 conventional PCI endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:03.0: BAR 0 [mem 0x14011000-0x14011fff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:05.0: [1af4:1000] type 00 class 0x020000 PCIe Endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:05.0: BAR 0 [mem 0x14010000-0x14010fff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:05.0: BAR 1 [mem 0x1400f000-0x1400ffff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:09.0: [1ab8:4000] type 00 class 0xff0000 conventional PCI endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:09.0: BAR 0 [mem 0x1400e000-0x1400efff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: [1af4:1050] type 00 class 0x030000 conventional PCI endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: BAR 0 [mem 0x10000000-0x13ffffff pref]
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: BAR 1 [mem 0x1400d000-0x1400dfff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: BAR 4 [mem 0x14004000-0x14007fff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:0e.0: [1af4:1053] type 00 class 0x078000 conventional PCI endpoint
+[Пт дек 12 13:49:05 2025] pci 0000:00:0e.0: BAR 1 [mem 0x1400c000-0x1400cfff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:0e.0: BAR 4 [mem 0x14000000-0x14003fff]
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: BAR 0 [mem 0x10000000-0x13ffffff pref]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:01.0: BAR 0 [mem 0x14000000-0x14003fff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: BAR 4 [mem 0x14004000-0x14007fff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:0e.0: BAR 4 [mem 0x14008000-0x1400bfff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:03.0: BAR 0 [mem 0x1400c000-0x1400cfff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:05.0: BAR 0 [mem 0x1400d000-0x1400dfff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:05.0: BAR 1 [mem 0x1400e000-0x1400efff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:09.0: BAR 0 [mem 0x1400f000-0x1400ffff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: BAR 1 [mem 0x14010000-0x14010fff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:0e.0: BAR 1 [mem 0x14011000-0x14011fff]: assigned
+[Пт дек 12 13:49:05 2025] pci 0000:00:02.0: BAR 0 [mem 0x14012000-0x140123ff]: assigned
+[Пт дек 12 13:49:05 2025] pci_bus 0000:00: resource 4 [io  0x0000-0xfffff window]
+[Пт дек 12 13:49:05 2025] pci_bus 0000:00: resource 5 [mem 0x10000000-0x1fffffff window]
+[Пт дек 12 13:49:05 2025] iommu: Default domain type: Translated
+[Пт дек 12 13:49:05 2025] iommu: DMA domain TLB invalidation policy: strict mode
+[Пт дек 12 13:49:05 2025] SCSI subsystem initialized
+[Пт дек 12 13:49:05 2025] libata version 3.00 loaded.
+[Пт дек 12 13:49:05 2025] ACPI: bus type USB registered
+[Пт дек 12 13:49:05 2025] usbcore: registered new interface driver usbfs
+[Пт дек 12 13:49:05 2025] usbcore: registered new interface driver hub
+[Пт дек 12 13:49:05 2025] usbcore: registered new device driver usb
+[Пт дек 12 13:49:05 2025] pps_core: LinuxPPS API ver. 1 registered
+[Пт дек 12 13:49:05 2025] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[Пт дек 12 13:49:05 2025] PTP clock support registered
+[Пт дек 12 13:49:05 2025] EDAC MC: Ver: 3.0.0
+[Пт дек 12 13:49:05 2025] scmi_core: SCMI protocol bus registered
+[Пт дек 12 13:49:05 2025] efivars: Registered efivars operations
+[Пт дек 12 13:49:05 2025] NetLabel: Initializing
+[Пт дек 12 13:49:05 2025] NetLabel:  domain hash size = 128
+[Пт дек 12 13:49:05 2025] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[Пт дек 12 13:49:05 2025] NetLabel:  unlabeled traffic allowed by default
+[Пт дек 12 13:49:05 2025] mctp: management component transport protocol core
+[Пт дек 12 13:49:05 2025] NET: Registered PF_MCTP protocol family
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: vgaarb: setting as boot VGA device
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: vgaarb: bridge control possible
+[Пт дек 12 13:49:05 2025] pci 0000:00:0a.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[Пт дек 12 13:49:05 2025] vgaarb: loaded
+[Пт дек 12 13:49:05 2025] clocksource: Switched to clocksource arch_sys_counter
+[Пт дек 12 13:49:05 2025] VFS: Disk quotas dquot_6.6.0
+[Пт дек 12 13:49:05 2025] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[Пт дек 12 13:49:05 2025] AppArmor: AppArmor Filesystem Enabled
+[Пт дек 12 13:49:05 2025] pnp: PnP ACPI init
+[Пт дек 12 13:49:05 2025] pnp: PnP ACPI: found 0 devices
+[Пт дек 12 13:49:05 2025] NET: Registered PF_INET protocol family
+[Пт дек 12 13:49:05 2025] IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[Пт дек 12 13:49:05 2025] tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+[Пт дек 12 13:49:05 2025] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[Пт дек 12 13:49:05 2025] TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[Пт дек 12 13:49:05 2025] TCP bind hash table entries: 32768 (order: 8, 1048576 bytes, linear)
+[Пт дек 12 13:49:05 2025] TCP: Hash tables configured (established 32768 bind 32768)
+[Пт дек 12 13:49:05 2025] MPTCP token hash table entries: 4096 (order: 4, 98304 bytes, linear)
+[Пт дек 12 13:49:05 2025] UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[Пт дек 12 13:49:05 2025] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[Пт дек 12 13:49:05 2025] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[Пт дек 12 13:49:05 2025] NET: Registered PF_XDP protocol family
+[Пт дек 12 13:49:05 2025] pci 0000:00:03.0: enabling device (0010 -> 0012)
+[Пт дек 12 13:49:05 2025] PCI: CLS 0 bytes, default 64
+[Пт дек 12 13:49:05 2025] Trying to unpack rootfs image as initramfs...
+[Пт дек 12 13:49:05 2025] kvm [1]: HYP mode not available
+[Пт дек 12 13:49:05 2025] Initialise system trusted keyrings
+[Пт дек 12 13:49:05 2025] Key type blacklist registered
+[Пт дек 12 13:49:05 2025] workingset: timestamp_bits=40 max_order=20 bucket_order=0
+[Пт дек 12 13:49:05 2025] zbud: loaded
+[Пт дек 12 13:49:05 2025] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[Пт дек 12 13:49:05 2025] fuse: init (API version 7.39)
+[Пт дек 12 13:49:05 2025] integrity: Platform Keyring initialized
+[Пт дек 12 13:49:05 2025] integrity: Machine keyring initialized
+[Пт дек 12 13:49:05 2025] Key type asymmetric registered
+[Пт дек 12 13:49:05 2025] Asymmetric key parser 'x509' registered
+[Пт дек 12 13:49:05 2025] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 242)
+[Пт дек 12 13:49:05 2025] io scheduler mq-deadline registered
+[Пт дек 12 13:49:05 2025] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[Пт дек 12 13:49:05 2025] ACPI: AC: AC Adapter [ADP0] (off-line)
+[Пт дек 12 13:49:05 2025] input: Power Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
+[Пт дек 12 13:49:05 2025] ACPI: button: Power Button [PWRB]
+[Пт дек 12 13:49:05 2025] ACPI GTDT: Revision:1 doesn't support Platform Timers.
+[Пт дек 12 13:49:05 2025] virtio-pci 0000:00:05.0: virtio_pci: leaving for legacy driver
+[Пт дек 12 13:49:05 2025] virtio-pci 0000:00:0e.0: enabling device (0000 -> 0002)
+[Пт дек 12 13:49:05 2025] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[Пт дек 12 13:49:05 2025] msm_serial: driver initialized
+[Пт дек 12 13:49:05 2025] SuperH (H)SCI(F) driver initialized
+[Пт дек 12 13:49:05 2025] ACPI: battery: Slot [BAT0] (battery present)
+[Пт дек 12 13:49:05 2025] loop: module loaded
+[Пт дек 12 13:49:05 2025] ACPI: bus type drm_connector registered
+[Пт дек 12 13:49:05 2025] tun: Universal TUN/TAP device driver, 1.6
+[Пт дек 12 13:49:05 2025] PPP generic driver version 2.4.2
+[Пт дек 12 13:49:05 2025] ehci-pci 0000:00:02.0: EHCI Host Controller
+[Пт дек 12 13:49:05 2025] ehci-pci 0000:00:02.0: new USB bus registered, assigned bus number 1
+[Пт дек 12 13:49:05 2025] mousedev: PS/2 mouse device common for all mice
+[Пт дек 12 13:49:05 2025] ehci-pci 0000:00:02.0: Enabling legacy PCI PM
+[Пт дек 12 13:49:05 2025] ehci-pci 0000:00:02.0: irq 22, io mem 0x14012000
+[Пт дек 12 13:49:05 2025] rtc-efi rtc-efi.0: registered as rtc0
+[Пт дек 12 13:49:05 2025] rtc-efi rtc-efi.0: setting system clock to 2025-12-12T13:45:52 UTC (1765547152)
+[Пт дек 12 13:49:05 2025] i2c_dev: i2c /dev entries driver
+[Пт дек 12 13:49:05 2025] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[Пт дек 12 13:49:05 2025] device-mapper: uevent: version 1.0.3
+[Пт дек 12 13:49:05 2025] device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+[Пт дек 12 13:49:05 2025] ledtrig-cpu: registered to indicate activity on CPUs
+[Пт дек 12 13:49:05 2025] [drm] Initialized simpledrm 1.0.0 20200625 for simple-framebuffer.0 on minor 0
+[Пт дек 12 13:49:05 2025] Console: switching to colour frame buffer device 128x48
+[Пт дек 12 13:49:05 2025] simple-framebuffer simple-framebuffer.0: [drm] fb0: simpledrmdrmfb frame buffer device
+[Пт дек 12 13:49:05 2025] No ACPI PMU IRQ for CPU0
+[Пт дек 12 13:49:05 2025] No ACPI PMU IRQ for CPU1
+[Пт дек 12 13:49:05 2025] hw perfevents: enabled with armv8_pmuv3_0 PMU driver, 1 counters available
+[Пт дек 12 13:49:05 2025] drop_monitor: Initializing network drop monitor service
+[Пт дек 12 13:49:05 2025] NET: Registered PF_INET6 protocol family
+[Пт дек 12 13:49:05 2025] watchdog: Delayed init of the lockup detector failed: -19
+[Пт дек 12 13:49:05 2025] watchdog: Hard watchdog permanently disabled
+[Пт дек 12 13:49:05 2025] ehci-pci 0000:00:02.0: USB 2.0 started, EHCI 1.00
+[Пт дек 12 13:49:05 2025] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
+[Пт дек 12 13:49:05 2025] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[Пт дек 12 13:49:05 2025] usb usb1: Product: EHCI Host Controller
+[Пт дек 12 13:49:05 2025] usb usb1: Manufacturer: Linux 6.8.0-88-generic ehci_hcd
+[Пт дек 12 13:49:05 2025] usb usb1: SerialNumber: 0000:00:02.0
+[Пт дек 12 13:49:05 2025] hub 1-0:1.0: USB hub found
+[Пт дек 12 13:49:05 2025] hub 1-0:1.0: 15 ports detected
+[Пт дек 12 13:49:05 2025] Freeing initrd memory: 77132K
+[Пт дек 12 13:49:05 2025] Segment Routing with IPv6
+[Пт дек 12 13:49:05 2025] In-situ OAM (IOAM) with IPv6
+[Пт дек 12 13:49:05 2025] NET: Registered PF_PACKET protocol family
+[Пт дек 12 13:49:05 2025] Key type dns_resolver registered
+[Пт дек 12 13:49:05 2025] registered taskstats version 1
+[Пт дек 12 13:49:05 2025] Loading compiled-in X.509 certificates
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Build time autogenerated kernel key: 427c70dae779805823a965142c0a289aa2d9a18c'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+[Пт дек 12 13:49:05 2025] blacklist: Loading compiled-in revocation X.509 certificates
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+[Пт дек 12 13:49:05 2025] Key type .fscrypt registered
+[Пт дек 12 13:49:05 2025] Key type fscrypt-provisioning registered
+[Пт дек 12 13:49:05 2025] Key type encrypted registered
+[Пт дек 12 13:49:05 2025] AppArmor: AppArmor sha256 policy hashing enabled
+[Пт дек 12 13:49:05 2025] ima: secureboot mode disabled
+[Пт дек 12 13:49:05 2025] ima: No TPM chip found, activating TPM-bypass!
+[Пт дек 12 13:49:05 2025] Loading compiled-in module X.509 certificates
+[Пт дек 12 13:49:05 2025] Loaded X.509 cert 'Build time autogenerated kernel key: 427c70dae779805823a965142c0a289aa2d9a18c'
+[Пт дек 12 13:49:05 2025] ima: Allocated hash algorithm: sha256
+[Пт дек 12 13:49:05 2025] ima: No architecture policies found
+[Пт дек 12 13:49:05 2025] evm: Initialising EVM extended attributes:
+[Пт дек 12 13:49:05 2025] evm: security.selinux
+[Пт дек 12 13:49:05 2025] evm: security.SMACK64
+[Пт дек 12 13:49:05 2025] evm: security.SMACK64EXEC
+[Пт дек 12 13:49:05 2025] evm: security.SMACK64TRANSMUTE
+[Пт дек 12 13:49:05 2025] evm: security.SMACK64MMAP
+[Пт дек 12 13:49:05 2025] evm: security.apparmor
+[Пт дек 12 13:49:05 2025] evm: security.ima
+[Пт дек 12 13:49:05 2025] evm: security.capability
+[Пт дек 12 13:49:05 2025] evm: HMAC attrs: 0x1
+[Пт дек 12 13:49:05 2025] clk: Disabling unused clocks
+[Пт дек 12 13:49:05 2025] Freeing unused kernel memory: 12288K
+[Пт дек 12 13:49:05 2025] Checked W+X mappings: passed, no W+X pages found
+[Пт дек 12 13:49:05 2025] Run /init as init process
+[Пт дек 12 13:49:05 2025]   with arguments:
+[Пт дек 12 13:49:05 2025]     /init
+[Пт дек 12 13:49:05 2025]   with environment:
+[Пт дек 12 13:49:05 2025]     HOME=/
+[Пт дек 12 13:49:05 2025]     TERM=linux
+[Пт дек 12 13:49:05 2025]     BOOT_IMAGE=/vmlinuz-6.8.0-88-generic
+[Пт дек 12 13:49:05 2025] virtio_net virtio1 enp0s5: renamed from eth0
+[Пт дек 12 13:49:05 2025] xhci_hcd 0000:00:03.0: xHCI Host Controller
+[Пт дек 12 13:49:05 2025] xhci_hcd 0000:00:03.0: new USB bus registered, assigned bus number 2
+[Пт дек 12 13:49:05 2025] xhci_hcd 0000:00:03.0: hcc params 0x01c15001 hci version 0x110 quirks 0x0000000000000014
+[Пт дек 12 13:49:05 2025] xhci_hcd 0000:00:03.0: xHCI Host Controller
+[Пт дек 12 13:49:05 2025] xhci_hcd 0000:00:03.0: new USB bus registered, assigned bus number 3
+[Пт дек 12 13:49:05 2025] xhci_hcd 0000:00:03.0: Host supports USB 3.1 Enhanced SuperSpeed
+[Пт дек 12 13:49:05 2025] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
+[Пт дек 12 13:49:05 2025] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[Пт дек 12 13:49:05 2025] usb usb2: Product: xHCI Host Controller
+[Пт дек 12 13:49:05 2025] usb usb2: Manufacturer: Linux 6.8.0-88-generic xhci-hcd
+[Пт дек 12 13:49:05 2025] usb usb2: SerialNumber: 0000:00:03.0
+[Пт дек 12 13:49:05 2025] ahci PRL4010:00: supply ahci not found, using dummy regulator
+[Пт дек 12 13:49:05 2025] ahci PRL4010:00: supply phy not found, using dummy regulator
+[Пт дек 12 13:49:05 2025] ahci PRL4010:00: supply target not found, using dummy regulator
+[Пт дек 12 13:49:05 2025] ahci PRL4010:00: SSS flag set, parallel bus scan disabled
+[Пт дек 12 13:49:05 2025] ahci PRL4010:00: AHCI 0001.0100 32 slots 6 ports 3 Gbps 0x3f impl platform mode
+[Пт дек 12 13:49:05 2025] ahci PRL4010:00: flags: 64bit ncq stag pm led only slum part 
+[Пт дек 12 13:49:05 2025] hub 2-0:1.0: USB hub found
+[Пт дек 12 13:49:05 2025] hub 2-0:1.0: 2 ports detected
+[Пт дек 12 13:49:05 2025] usb usb3: We don't know the algorithms for LPM for this host, disabling LPM.
+[Пт дек 12 13:49:05 2025] usb usb3: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.08
+[Пт дек 12 13:49:05 2025] usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[Пт дек 12 13:49:05 2025] usb usb3: Product: xHCI Host Controller
+[Пт дек 12 13:49:05 2025] usb usb3: Manufacturer: Linux 6.8.0-88-generic xhci-hcd
+[Пт дек 12 13:49:05 2025] usb usb3: SerialNumber: 0000:00:03.0
+[Пт дек 12 13:49:05 2025] [drm] pci: virtio-vga detected at 0000:00:0a.0
+[Пт дек 12 13:49:05 2025] Console: switching to colour dummy device 80x25
+[Пт дек 12 13:49:05 2025] hub 3-0:1.0: USB hub found
+[Пт дек 12 13:49:05 2025] hub 3-0:1.0: 12 ports detected
+[Пт дек 12 13:49:05 2025] [drm] features: +virgl -edid -resource_blob -host_visible
+[Пт дек 12 13:49:05 2025] [drm] features: -context_init
+[Пт дек 12 13:49:05 2025] [drm] number of scanouts: 16
+[Пт дек 12 13:49:05 2025] [drm] number of cap sets: 1
+[Пт дек 12 13:49:05 2025] [drm] cap set 0: id 2, max-version 2, max-size 768
+[Пт дек 12 13:49:05 2025] scsi host0: ahci
+[Пт дек 12 13:49:05 2025] [drm] Initialized virtio_gpu 0.1.0 0 for 0000:00:0a.0 on minor 1
+[Пт дек 12 13:49:05 2025] scsi host1: ahci
+[Пт дек 12 13:49:05 2025] scsi host2: ahci
+[Пт дек 12 13:49:05 2025] scsi host3: ahci
+[Пт дек 12 13:49:05 2025] scsi host4: ahci
+[Пт дек 12 13:49:05 2025] scsi host5: ahci
+[Пт дек 12 13:49:05 2025] ata1: SATA max UDMA/133 mmio [mem 0x02140000-0x02141fff] port 0x100 irq 15 lpm-pol 0
+[Пт дек 12 13:49:05 2025] ata2: SATA max UDMA/133 mmio [mem 0x02140000-0x02141fff] port 0x180 irq 15 lpm-pol 0
+[Пт дек 12 13:49:05 2025] ata3: SATA max UDMA/133 mmio [mem 0x02140000-0x02141fff] port 0x200 irq 15 lpm-pol 0
+[Пт дек 12 13:49:05 2025] ata4: SATA max UDMA/133 mmio [mem 0x02140000-0x02141fff] port 0x280 irq 15 lpm-pol 0
+[Пт дек 12 13:49:05 2025] ata5: SATA max UDMA/133 mmio [mem 0x02140000-0x02141fff] port 0x300 irq 15 lpm-pol 0
+[Пт дек 12 13:49:05 2025] ata6: SATA max UDMA/133 mmio [mem 0x02140000-0x02141fff] port 0x380 irq 15 lpm-pol 0
+[Пт дек 12 13:49:05 2025] Console: switching to colour frame buffer device 128x48
+[Пт дек 12 13:49:05 2025] virtio-pci 0000:00:0a.0: [drm] fb0: virtio_gpudrmfb frame buffer device
+[Пт дек 12 13:49:06 2025] ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[Пт дек 12 13:49:06 2025] ata1.00: ATA-8: Ubuntu Linux-0 SSD, F.NNMB1R, max UDMA/100
+[Пт дек 12 13:49:06 2025] ata1.00: 134217728 sectors, multi 0: LBA48 NCQ (depth 32)
+[Пт дек 12 13:49:06 2025] ata1.00: configured for UDMA/100
+[Пт дек 12 13:49:06 2025] scsi 0:0:0:0: Direct-Access     ATA      Ubuntu Linux-0 S MB1R PQ: 0 ANSI: 5
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] 134217728 512-byte logical blocks: (68.7 GB/64.0 GiB)
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] 4096-byte physical blocks
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] Write Protect is off
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[Пт дек 12 13:49:06 2025] usb 3-1: new SuperSpeed USB device number 2 using xhci_hcd
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] Preferred minimum I/O size 4096 bytes
+[Пт дек 12 13:49:06 2025]  sda: sda1 sda2 sda3
+[Пт дек 12 13:49:06 2025] sd 0:0:0:0: [sda] Attached SCSI disk
+[Пт дек 12 13:49:06 2025] usb 3-1: LPM exit latency is zeroed, disabling LPM.
+[Пт дек 12 13:49:06 2025] usb 3-1: New USB device found, idVendor=203a, idProduct=fffc, bcdDevice= 1.00
+[Пт дек 12 13:49:06 2025] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[Пт дек 12 13:49:06 2025] usb 3-1: Product: Virtual Mouse
+[Пт дек 12 13:49:06 2025] usb 3-1: Manufacturer: Parallels
+[Пт дек 12 13:49:06 2025] usb 3-1: SerialNumber: PW3.0
+[Пт дек 12 13:49:06 2025] usb 3-2: new SuperSpeed USB device number 3 using xhci_hcd
+[Пт дек 12 13:49:06 2025] usb 3-2: LPM exit latency is zeroed, disabling LPM.
+[Пт дек 12 13:49:06 2025] usb 3-2: New USB device found, idVendor=203a, idProduct=fffb, bcdDevice= 1.10
+[Пт дек 12 13:49:06 2025] usb 3-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[Пт дек 12 13:49:06 2025] usb 3-2: Product: Virtual Keyboard
+[Пт дек 12 13:49:06 2025] usb 3-2: Manufacturer: Parallels
+[Пт дек 12 13:49:06 2025] usb 3-2: SerialNumber: KBD1.1
+[Пт дек 12 13:49:06 2025] hid: raw HID events driver (C) Jiri Kosina
+[Пт дек 12 13:49:06 2025] ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[Пт дек 12 13:49:06 2025] ata2.00: ATAPI: Virtual DVD-ROM [1], FWR1, max UDMA/25
+[Пт дек 12 13:49:06 2025] ata2.00: configured for UDMA/25
+[Пт дек 12 13:49:06 2025] scsi 1:0:0:0: CD-ROM                     Virtual DVD-ROM  R103 PQ: 0 ANSI: 5
+[Пт дек 12 13:49:06 2025] sr 1:0:0:0: [sr0] scsi3-mmc drive: 44x/44x cd/rw xa/form2 cdda tray
+[Пт дек 12 13:49:06 2025] cdrom: Uniform CD-ROM driver Revision: 3.20
+[Пт дек 12 13:49:06 2025] sr 1:0:0:0: Attached scsi CD-ROM sr0
+[Пт дек 12 13:49:06 2025] sr 1:0:0:0: Attached scsi generic sg1 type 5
+[Пт дек 12 13:49:06 2025] ata3: SATA link down (SStatus 0 SControl 300)
+[Пт дек 12 13:49:07 2025] ata4: SATA link down (SStatus 0 SControl 300)
+[Пт дек 12 13:49:07 2025] ata5: SATA link down (SStatus 0 SControl 300)
+[Пт дек 12 13:49:07 2025] ata6: SATA link down (SStatus 0 SControl 300)
+[Пт дек 12 13:49:07 2025] usbcore: registered new interface driver usbhid
+[Пт дек 12 13:49:07 2025] usbhid: USB HID core driver
+[Пт дек 12 13:49:07 2025] input: Parallels Virtual Mouse as /devices/pci0000:00/0000:00:03.0/usb3/3-1/3-1:1.0/0003:203A:FFFC.0001/input/input1
+[Пт дек 12 13:49:07 2025] hid-generic 0003:203A:FFFC.0001: input,hidraw0: USB HID v1.10 Mouse [Parallels Virtual Mouse] on usb-0000:00:03.0-1/input0
+[Пт дек 12 13:49:07 2025] input: Parallels Virtual Mouse as /devices/pci0000:00/0000:00:03.0/usb3/3-1/3-1:1.1/0003:203A:FFFC.0002/input/input2
+[Пт дек 12 13:49:07 2025] hid-generic 0003:203A:FFFC.0002: input,hidraw1: USB HID v1.10 Mouse [Parallels Virtual Mouse] on usb-0000:00:03.0-1/input1
+[Пт дек 12 13:49:07 2025] input: Parallels Virtual Keyboard as /devices/pci0000:00/0000:00:03.0/usb3/3-2/3-2:1.0/0003:203A:FFFB.0003/input/input3
+[Пт дек 12 13:49:07 2025] hid-generic 0003:203A:FFFB.0003: input,hidraw2: USB HID v10.01 Keyboard [Parallels Virtual Keyboard] on usb-0000:00:03.0-2/input0
+[Пт дек 12 13:49:07 2025] input: Parallels Virtual Keyboard as /devices/pci0000:00/0000:00:03.0/usb3/3-2/3-2:1.1/0003:203A:FFFB.0004/input/input4
+[Пт дек 12 13:49:07 2025] hid-generic 0003:203A:FFFB.0004: input,hidraw3: USB HID v10.01 Keyboard [Parallels Virtual Keyboard] on usb-0000:00:03.0-2/input1
+[Пт дек 12 13:49:08 2025] random: crng init done
+[Пт дек 12 13:49:09 2025] raid6: neonx8   gen() 25324 MB/s
+[Пт дек 12 13:49:09 2025] raid6: neonx4   gen() 27241 MB/s
+[Пт дек 12 13:49:09 2025] raid6: neonx2   gen() 30871 MB/s
+[Пт дек 12 13:49:09 2025] raid6: neonx1   gen() 32147 MB/s
+[Пт дек 12 13:49:09 2025] raid6: int64x8  gen() 14321 MB/s
+[Пт дек 12 13:49:09 2025] raid6: int64x4  gen() 12706 MB/s
+[Пт дек 12 13:49:09 2025] raid6: int64x2  gen() 11460 MB/s
+[Пт дек 12 13:49:09 2025] raid6: int64x1  gen() 10086 MB/s
+[Пт дек 12 13:49:09 2025] raid6: using algorithm neonx1 gen() 32147 MB/s
+[Пт дек 12 13:49:09 2025] raid6: .... xor() 22363 MB/s, rmw enabled
+[Пт дек 12 13:49:09 2025] raid6: using neon recovery algorithm
+[Пт дек 12 13:49:09 2025] xor: measuring software checksum speed
+[Пт дек 12 13:49:09 2025]    8regs           : 21150 MB/sec
+[Пт дек 12 13:49:09 2025]    32regs          : 42494 MB/sec
+[Пт дек 12 13:49:09 2025]    arm64_neon      : 42655 MB/sec
+[Пт дек 12 13:49:09 2025] xor: using function: arm64_neon (42655 MB/sec)
+[Пт дек 12 13:49:09 2025] async_tx: api initialized (async)
+[Пт дек 12 13:49:09 2025] Btrfs loaded, zoned=yes, fsverity=yes
+[Пт дек 12 13:49:09 2025] EXT4-fs (dm-0): mounted filesystem 91b7c075-554a-4d27-9509-03d365330f8f ro with ordered data mode. Quota mode: none.
+[Пт дек 12 13:49:10 2025] systemd[1]: Inserted module 'autofs4'
+[Пт дек 12 13:49:10 2025] NET: Registered PF_VSOCK protocol family
+[Пт дек 12 13:49:10 2025] systemd[1]: systemd 255.4-1ubuntu8.11 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[Пт дек 12 13:49:10 2025] systemd[1]: Detected virtualization parallels.
+[Пт дек 12 13:49:10 2025] systemd[1]: Detected architecture arm64.
+[Пт дек 12 13:49:10 2025] systemd[1]: Hostname set to <art>.
+[Пт дек 12 13:49:10 2025] systemd[1]: Queued start job for default target graphical.target.
+[Пт дек 12 13:49:10 2025] systemd[1]: Created slice system-modprobe.slice - Slice /system/modprobe.
+[Пт дек 12 13:49:10 2025] systemd[1]: Created slice system-systemd\x2dfsck.slice - Slice /system/systemd-fsck.
+[Пт дек 12 13:49:10 2025] systemd[1]: Created slice user.slice - User and Session Slice.
+[Пт дек 12 13:49:10 2025] systemd[1]: Started systemd-ask-password-wall.path - Forward Password Requests to Wall Directory Watch.
+[Пт дек 12 13:49:10 2025] systemd[1]: Set up automount proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats File System Automount Point.
+[Пт дек 12 13:49:10 2025] systemd[1]: Expecting device dev-disk-by\x2duuid-4935\x2d1326.device - /dev/disk/by-uuid/4935-1326...
+[Пт дек 12 13:49:10 2025] systemd[1]: Expecting device dev-disk-by\x2duuid-4f1862d3\x2d215e\x2d4844\x2db81c\x2d484e6a2c3bef.device - /dev/disk/by-uuid/4f1862d3-215e-4844-b81c-484e6a2c3bef...
+[Пт дек 12 13:49:10 2025] systemd[1]: Reached target integritysetup.target - Local Integrity Protected Volumes.
+[Пт дек 12 13:49:10 2025] systemd[1]: Reached target slices.target - Slice Units.
+[Пт дек 12 13:49:10 2025] systemd[1]: Reached target snapd.mounts-pre.target - Mounting snaps.
+[Пт дек 12 13:49:10 2025] systemd[1]: Reached target veritysetup.target - Local Verity Protected Volumes.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on dm-event.socket - Device-mapper event daemon FIFOs.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on lvm2-lvmpolld.socket - LVM2 poll daemon socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on multipathd.socket - multipathd control socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on syslog.socket - Syslog Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-fsckd.socket - fsck to fsckd communication Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-initctl.socket - initctl Compatibility Named Pipe.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-journald-dev-log.socket - Journal Socket (/dev/log).
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-journald.socket - Journal Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-networkd.socket - Network Service Netlink Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-oomd.socket - Userspace Out-Of-Memory (OOM) Killer Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: systemd-pcrextend.socket - TPM2 PCR Extension (Varlink) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+[Пт дек 12 13:49:10 2025] systemd[1]: Mounting dev-hugepages.mount - Huge Pages File System...
+[Пт дек 12 13:49:10 2025] systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+[Пт дек 12 13:49:10 2025] systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+[Пт дек 12 13:49:10 2025] systemd[1]: Mounting sys-kernel-tracing.mount - Kernel Trace File System...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting systemd-journald.service - Journal Service...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting kmod-static-nodes.service - Create List of Static Device Nodes...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting lvm2-monitor.service - Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting modprobe@configfs.service - Load Kernel Module configfs...
+[Пт дек 12 13:49:10 2025] systemd-journald[438]: Collecting audit messages is disabled.
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting modprobe@dm_mod.service - Load Kernel Module dm_mod...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting modprobe@loop.service - Load Kernel Module loop...
+[Пт дек 12 13:49:10 2025] pstore: Using crash dump compression: deflate
+[Пт дек 12 13:49:10 2025] systemd[1]: netplan-ovs-cleanup.service - OpenVSwitch configuration for cleanup was skipped because of an unmet condition check (ConditionFileIsExecutable=/usr/bin/ovs-vsctl).
+[Пт дек 12 13:49:10 2025] systemd[1]: systemd-fsck-root.service - File System Check on Root Device was skipped because of an unmet condition check (ConditionPathExists=!/run/initramfs/fsck-root).
+[Пт дек 12 13:49:10 2025] pstore: Registered efi_pstore as persistent store backend
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+[Пт дек 12 13:49:10 2025] systemd[1]: systemd-pcrmachine.service - TPM2 PCR Machine ID Measurement was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+[Пт дек 12 13:49:10 2025] systemd[1]: systemd-tpm2-setup-early.service - TPM2 SRK Setup (Early) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[Пт дек 12 13:49:10 2025] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+[Пт дек 12 13:49:10 2025] systemd[1]: Started systemd-journald.service - Journal Service.
+[Пт дек 12 13:49:10 2025] EXT4-fs (dm-0): re-mounted 91b7c075-554a-4d27-9509-03d365330f8f r/w. Quota mode: none.
+[Пт дек 12 13:49:10 2025] Adding 3994620k swap on /swap.img.  Priority:-2 extents:35 across:17825792k SS
+[Пт дек 12 13:49:10 2025] systemd-journald[438]: Received client request to flush runtime journal.
+[Пт дек 12 13:49:10 2025] systemd-journald[438]: /var/log/journal/24fbd54c23964147a061555735f03e23/system.journal: Realtime clock jumped backwards relative to last journal entry, rotating.
+[Пт дек 12 13:49:10 2025] systemd-journald[438]: Rotating system journal.
+[Пт дек 12 13:49:10 2025] loop0: detected capacity change from 0 to 8
+[Пт дек 12 13:49:10 2025] loop1: detected capacity change from 0 to 141184
+[Пт дек 12 13:49:10 2025] loop2: detected capacity change from 0 to 479584
+[Пт дек 12 13:49:10 2025] loop3: detected capacity change from 0 to 1010952
+[Пт дек 12 13:49:10 2025] loop4: detected capacity change from 0 to 90800
+[Пт дек 12 13:49:10 2025] loop5: detected capacity change from 0 to 187776
+[Пт дек 12 13:49:10 2025] loop6: detected capacity change from 0 to 449280
+[Пт дек 12 13:49:10 2025] acpi-tad ACPI000E:00: Unsupported capabilities
+[Пт дек 12 13:49:11 2025] snd_hda_intel 0000:00:01.0: enabling device (0000 -> 0002)
+[Пт дек 12 13:49:11 2025] snd_hda_intel 0000:00:01.0: Force to snoop mode by module option
+[Пт дек 12 13:49:11 2025] snd_hda_codec_generic hdaudioC0D0: autoconfig for Generic: line_outs=5 (0xa/0xc/0xb/0xf/0xd) type:speaker
+[Пт дек 12 13:49:11 2025] snd_hda_codec_generic hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+[Пт дек 12 13:49:11 2025] snd_hda_codec_generic hdaudioC0D0:    hp_outs=0 (0x0/0x0/0x0/0x0/0x0)
+[Пт дек 12 13:49:11 2025] snd_hda_codec_generic hdaudioC0D0:    mono: mono_out=0x0
+[Пт дек 12 13:49:11 2025] snd_hda_codec_generic hdaudioC0D0:    inputs:
+[Пт дек 12 13:49:11 2025] snd_hda_codec_generic hdaudioC0D0:      Mic=0xe
+[Пт дек 12 13:49:11 2025] input: HDA Intel Mic as /devices/pci0000:00/0000:00:01.0/sound/card0/input5
+[Пт дек 12 13:49:11 2025] input: HDA Intel Speaker as /devices/pci0000:00/0000:00:01.0/sound/card0/input6
+[Пт дек 12 13:49:11 2025] input: HDA Intel Speaker as /devices/pci0000:00/0000:00:01.0/sound/card0/input7
+[Пт дек 12 13:49:11 2025] input: HDA Intel Speaker as /devices/pci0000:00/0000:00:01.0/sound/card0/input8
+[Пт дек 12 13:49:11 2025] input: HDA Intel Speaker as /devices/pci0000:00/0000:00:01.0/sound/card0/input9
+[Пт дек 12 13:49:11 2025] input: HDA Intel Speaker as /devices/pci0000:00/0000:00:01.0/sound/card0/input10
+[Пт дек 12 13:49:11 2025] EXT4-fs (sda2): mounted filesystem 4f1862d3-215e-4844-b81c-484e6a2c3bef r/w with ordered data mode. Quota mode: none.
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.542:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="1password" pid=798 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.543:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Discord" pid=799 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.546:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name=4D6F6E676F444220436F6D70617373 pid=803 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.548:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="QtWebEngineProcess" pid=804 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.549:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="balena-etcher" pid=805 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.550:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="brave" pid=806 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.550:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="buildah" pid=807 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.554:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="cam" pid=810 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.555:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="busybox" pid=809 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] audit: type=1400 audit(1765547158.556:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ch-checkns" pid=812 comm="apparmor_parser"
+[Пт дек 12 13:49:11 2025] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[Пт дек 12 13:49:11 2025] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[Пт дек 12 13:49:11 2025] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[Пт дек 12 13:49:12 2025] NET: Registered PF_QIPCRTR protocol family
+[Пт дек 12 13:49:13 2025] loop7: detected capacity change from 0 to 8
+[Пт дек 12 13:51:13 2025] rfkill: input handler disabled
+[Пт дек 12 13:52:30 2025] systemd-journald[438]: Time jumped backwards, rotating.
+[Пт дек 12 13:52:36 2025] rfkill: input handler enabled
+[Пт дек 12 13:52:37 2025] rfkill: input handler disabled
+[Пт дек 12 13:52:57 2025] kauditd_printk_skb: 142 callbacks suppressed
+[Пт дек 12 13:52:57 2025] audit: type=1400 audit(1765547577.020:154): apparmor="DENIED" operation="open" class="file" profile="snap.firefox.firefox" name="/proc/pressure/memory" pid=2660 comm="firefox" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+[Пт дек 12 13:55:40 2025] hrtimer: interrupt took 19863333 ns
+[Пт дек 12 14:08:03 2025] audit: type=1400 audit(1765548483.949:155): apparmor="DENIED" operation="open" class="file" profile="snap.firefox.firefox" name="/proc/pressure/memory" pid=4722 comm="firefox" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
